@@ -8,8 +8,9 @@ date: 2026-09-10
 
 ⬅️ กลับไปที่ [[../README|README]] | เกี่ยวข้องกับ [[Assignment2-Roleplay|Assignment2-Roleplay]]
 
-> [!info] วิธีใช้ไฟล์นี้
-> ไฟล์นี้เขียนเป็นคำสั่งภาษาธรรมชาติ (natural-language task instruction) สำหรับส่งต่อให้ Antigravity (`agy`) ทำงานบน Google Sheets โดยตรง ไม่ใช่โน้ตสรุปเนื้อหาแบบไฟล์อื่นในวอลต์นี้ — คัดลอกเนื้อหาทั้งหมดด้านล่างหัวข้อ "## Task Instruction" ไปเป็น prompt ให้ Antigravity
+> [!success] Google Sheet ที่สร้างสำเร็จแล้ว
+> 🔗 **Google Sheet:** [JN60101 Role Play - Group Management](https://docs.google.com/spreadsheets/d/1hxdqQc7HwPmwbaCQOhHeyL4ujdrpnbZL32d5z8Qxntg/edit)
+> 👤 **Owner Account:** `phuriphathem@gmail.com`
 
 ## Task Instruction
 

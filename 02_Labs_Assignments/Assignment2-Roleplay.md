@@ -44,7 +44,7 @@ date: 2026-09-08
 > ส่งก่อนได้ ส่งหลังกำหนดมีผลต่อคะแนนความตรงต่อเวลา / ส่งให้ถูกกลุ่ม / ห้ามส่งลิงก์งานในช่อง comment
 
 > [!tip] เครื่องมือจัดการกลุ่ม
-> มีสเปกสำหรับให้ Antigravity สร้าง Google Sheet ช่วยจัดการสมาชิก/บทพูด/ไทม์ไลน์/เกณฑ์การให้คะแนนของงานนี้โดยเฉพาะ — ดู [[Roleplay-Group-Sheet-Spec|Roleplay-Group-Sheet-Spec]]
+> มี Google Sheet สำหรับจัดการกลุ่มสร้างเสร็จแล้ว: [JN60101 Role Play - Group Management](https://docs.google.com/spreadsheets/d/1hxdqQc7HwPmwbaCQOhHeyL4ujdrpnbZL32d5z8Qxntg/edit) — ดูรายละเอียดโครงสร้างและสเปกที่ [[Roleplay-Group-Sheet-Spec|Roleplay-Group-Sheet-Spec]]
 
 ---
 ➡️ ดูสถานะรวมที่ [[../Deadline-Tracker|Deadline Tracker]]
