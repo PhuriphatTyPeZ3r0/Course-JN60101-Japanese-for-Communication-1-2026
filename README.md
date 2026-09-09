@@ -72,7 +72,7 @@
 
 - [Quiz 1 Prep](02_Labs_Assignments/Quiz1-Prep.md) (บทที่ 1-2) · [Quiz 2 Prep](02_Labs_Assignments/Quiz2-Prep.md) (บทที่ 3-4) · [Quiz 3 Prep](02_Labs_Assignments/Quiz3-Prep.md) (บทที่ 5-6)
 - [Assignment 1 — Grammar Video](02_Labs_Assignments/Assignment1-Grammar-Video.md) (งานเดี่ยว, 10 คะแนน)
-- [Assignment 2 — Role Play](02_Labs_Assignments/Assignment2-Roleplay.md) (งานกลุ่ม, 15 คะแนน)
+- [Assignment 2 — Role Play](02_Labs_Assignments/Assignment2-Roleplay.md) (งานกลุ่ม, 15 คะแนน) · [Group Sheet Spec for Antigravity](02_Labs_Assignments/Roleplay-Group-Sheet-Spec.md)
 - [Final Exam Review](04_Exams_Review/Final-Exam-Review.md) (สอบปลายภาค, 25 คะแนน)
 
 ---
