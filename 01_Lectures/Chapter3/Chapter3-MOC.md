@@ -15,7 +15,7 @@ source: "บทที่ 3 การคุยเรื่องเวลา JN60
 ## ✅ เช็คลิสต์ก่อนเข้าเรียน
 
 - [ ] ทบทวนระบบคำชี้เฉพาะ こそあど (kore/kono/koko/kochira) — ดู [[Demonstratives-Kore-Sore-Are]]
-- [ ] ท่องคำศัพท์สถานที่และตัวเลข 1-100 ให้คล่อง — ดู [[Places-Vocabulary]], [[Japanese-Numbers]]
+- [ ] ท่องคำศัพท์สถานที่/เวลาและตัวเลข 1-100 ให้คล่อง — ดู [[Places-Vocabulary]], [[Time-Vocabulary]], [[Japanese-Numbers]]
 - [ ] ฝึกอ่านเลขโมง/นาทีที่มีข้อยกเว้นการออกเสียง (4=yo-ji, 7=shichi-ji, 9=ku-ji, 1/3/4/6/8/10/100 นาที) — ดู [[Telling-Time-Hours-Minutes]]
 
 ## 📋 ภาพรวมบทที่ 3 (สรุปย่อ)
@@ -23,10 +23,11 @@ source: "บทที่ 3 การคุยเรื่องเวลา JN60
 บทนี้สอนการพูดคุยเรื่องเวลาเป็นหลัก แบ่งเป็น 5 ส่วน:
 
 1. **คำชี้เฉพาะ (こそあど)** — kore/sore/are, kono/sono/ano, koko/soko/asoko, kochira/sochira/achira ใช้บอกตำแหน่ง/สิ่งของตามระยะห่างจากผู้พูด-คู่สนทนา
-2. **คำศัพท์สถานที่และกิจกรรม** — ชื่อสถานที่ (ห้างสรรพสินค้า ซูเปอร์มาร์เก็ต ที่ทำการไปรษณีย์ ฯลฯ) และกิจกรรม (งาน ประชุม ภาพยนตร์)
-3. **ตัวเลขภาษาญี่ปุ่น 1-100** — พื้นฐานสำหรับบอกเวลาและจำนวน
-4. **การบอกเวลา** — ถามกี่โมง ตอบด้วยลักษณนามชั่วโมง/นาที (มีข้อยกเว้นการออกเสียงหลายจุด) รวมถึง gozen/gogo, chōdo, daitai, sugi, mō sugu
-5. **โครงสร้าง kara...made** — บอกช่วงเวลาเปิด-ปิดของสถานที่/กิจกรรม พร้อมบทสนทนาตัวอย่างจริง 2 บท
+2. **คำศัพท์สถานที่** — ชื่อสถานที่ (ห้างสรรพสินค้า ซูเปอร์มาร์เก็ต ที่ทำการไปรษณีย์ ฯลฯ)
+3. **คำศัพท์เวลาและกิจกรรม** — พักเที่ยง ปาร์ตี้ ภาพยนตร์ งาน ประชุม, gozen/gogo
+4. **ตัวเลขภาษาญี่ปุ่น 1-100** — พื้นฐานสำหรับบอกเวลาและจำนวน
+5. **การบอกเวลา** — ถามกี่โมง ตอบด้วยลักษณนามชั่วโมง/นาที (มีข้อยกเว้นการออกเสียงหลายจุด) รวมถึง chōdo, daitai, sugi, mō sugu
+6. **โครงสร้าง kara...made** — บอกช่วงเวลาเปิด-ปิดของสถานที่/กิจกรรม พร้อมบทสนทนาตัวอย่างจริง 2 บท
 
 ## 🗺️ แผนที่หัวข้อบทที่ 3
 
@@ -34,6 +35,7 @@ source: "บทที่ 3 การคุยเรื่องเวลา JN60
 graph TD
     MOC[บทที่ 3: Talking About Time] --> A[[Demonstratives-Kore-Sore-Are]]
     MOC --> B[[Places-Vocabulary]]
+    MOC --> T[[Time-Vocabulary]]
     MOC --> C[[Japanese-Numbers]]
     MOC --> D[[Telling-Time-Hours-Minutes]]
     MOC --> E[[Kara-Made-Grammar]]
@@ -50,6 +52,7 @@ graph TD
     style MOC fill:#c0392b,color:#fff
     style A fill:#38a169,color:#fff
     style B fill:#dd6b20,color:#fff
+    style T fill:#dd6b20,color:#fff
     style C fill:#2b6cb0,color:#fff
     style D fill:#805ad5,color:#fff
     style E fill:#d69e2e,color:#fff
@@ -60,7 +63,8 @@ graph TD
 | หัวข้อ | เนื้อหาหลัก | หน้าสไลด์ |
 | --- | --- | --- |
 | [[Demonstratives-Kore-Sore-Are]] | ระบบคำชี้เฉพาะ こそあど 4 ชุด | 1-6 |
-| [[Places-Vocabulary]] | คำศัพท์สถานที่และกิจกรรม 19 คำ | 7-18 |
+| [[Places-Vocabulary]] | คำศัพท์สถานที่ 12 คำ | 7-13 |
+| [[Time-Vocabulary]] | คำศัพท์เวลา/กิจกรรม, gozen/gogo | 14-18 |
 | [[Japanese-Numbers]] | ตัวเลข 1-100 | 41-43 |
 | [[Telling-Time-Hours-Minutes]] | ~ji, ~fun/pun, gozen/gogo, chōdo, daitai, sugi, mō sugu | 19-40, 44-49 |
 | [[Kara-Made-Grammar]] | kara...made + บทสนทนาตัวอย่าง 2 บท | 50-60 |

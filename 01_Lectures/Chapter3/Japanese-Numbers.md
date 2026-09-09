@@ -7,7 +7,7 @@ date: 2026-09-30
 
 # ตัวเลขภาษาญี่ปุ่น (Japanese Numbers)
 
-⬅️ กลับไปที่ [[Chapter3-MOC|MOC บทที่ 3]] | ก่อนหน้า: [[Places-Vocabulary]]
+⬅️ กลับไปที่ [[Chapter3-MOC|MOC บทที่ 3]] | ก่อนหน้า: [[Time-Vocabulary]]
 
 ## 🔑 Vocabulary (คำศัพท์)
 

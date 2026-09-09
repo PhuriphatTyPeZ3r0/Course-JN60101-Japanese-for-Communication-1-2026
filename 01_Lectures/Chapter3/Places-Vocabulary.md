@@ -5,18 +5,15 @@ chapter: 3
 date: 2026-09-30
 ---
 
-# คำศัพท์สถานที่และคำชี้สถานที่ (Places & Location Words)
+# คำศัพท์สถานที่ (Places Vocabulary)
 
-⬅️ กลับไปที่ [[Chapter3-MOC|MOC บทที่ 3]]
+⬅️ กลับไปที่ [[Chapter3-MOC|MOC บทที่ 3]] | ก่อนหน้า: [[Demonstratives-Kore-Sore-Are]]
 
 ## 🔑 Vocabulary (คำศัพท์)
 
-- **koko (ここ)** — ที่นี่
-- **soko (そこ)** — ที่นั่น
-- **asoko (あそこ)** — ที่โน่น
-- **kochira (こちら)** — ทางนี้ (สุภาพ, ใช้บอกทิศทาง)
-- **sochira (そちら)** — ทางนั้น
-- **achira (あちら)** — ทางโน้น
+> [!note] คำชี้สถานที่ koko/soko/asoko/kochira/sochira/achira
+> ดูที่ [[Demonstratives-Kore-Sore-Are]] (อยู่ในระบบ こそあど ชุดเดียวกับ kore/sore/are)
+
 - **kyōshitsu (教室)** — ห้องเรียน
 - **kaigishitsu (会議室)** — ห้องประชุม
 - **shokudō (食堂)** — โรงอาหาร
@@ -32,9 +29,7 @@ date: 2026-09-30
 
 ## 🗣️ Grammar Pattern (โครงสร้างประโยค)
 
-**koko/soko/asoko** (ที่นี่/นั่น/โน่น) ใช้หลักระยะห่างแบบเดียวกับ kore/sore/are — ko- ใกล้ผู้พูด, so- ใกล้ผู้ฟัง, a- ไกลทั้งคู่
-
-**kochira/sochira/achira** เป็นรูปสุภาพกว่า ใช้บอกทิศทาง/เชื้อเชิญ (เช่น พนักงานต้อนรับชี้ทางห้องน้ำ) แทนที่จะระบุตำแหน่งตรง ๆ แบบ koko/soko/asoko
+โครงสร้าง **[สถานที่] wa [koko/soko/asoko/kochira/...] desu** ใช้บอกตำแหน่งของสถานที่/สิ่งของ — นำคำศัพท์สถานที่ในหัวข้อนี้มาประกอบกับระบบคำชี้ตำแหน่งจาก [[Demonstratives-Kore-Sore-Are]]
 
 > [!example] ตัวอย่างประโยค
 > Uketsuke wa asoko desu. = แผนกต้อนรับอยู่ที่โน่น
@@ -43,7 +38,7 @@ date: 2026-09-30
 ## 📝 Notes (ข้อควรระวัง)
 
 > [!tip] เคล็ดลับ
-> ห้ามสับสน koko/soko/asoko (ระบุตำแหน่ง แบบตรงไปตรงมา) กับ kochira/sochira/achira (บอกทิศทางแบบสุภาพ) — พนักงานบริการมักใช้ kochira/sochira/achira กับลูกค้าเสมอ
+> คำสุภาพอย่าง kochira มักใช้คู่กับสถานที่ที่ให้บริการลูกค้า (uketsuke, otearai, furonto) ส่วน koko/soko/asoko ใช้ได้ทั่วไปในบทสนทนาไม่เป็นทางการ
 
 ---
 ➡️ ต่อไป: [[Time-Vocabulary]]
