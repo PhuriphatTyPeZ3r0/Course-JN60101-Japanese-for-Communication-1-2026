@@ -7,9 +7,9 @@ date: 2026-09-30
 
 # คำชี้เฉพาะ こそあど (Kore/Sore/Are)
 
-⬅️ กลับไปที่ [[Chapter3-MOC|MOC บทที่ 3]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[Chapter3-MOC|MOC บทที่ 3]]
 
-## 🔑 Vocabulary (คำศัพท์)
+## <span class="material-symbols-outlined">key</span> Vocabulary (คำศัพท์)
 
 - **kore (これ)** — นี่ (สิ่งของอยู่ใกล้ผู้พูด)
 - **sore (それ)** — นั่น (สิ่งของอยู่ใกล้คู่สนทนา)
@@ -24,7 +24,7 @@ date: 2026-09-30
 - **sochira (そちら)** — ทางนั้น (สุภาพ, ฝั่งคู่สนทนา)
 - **achira (あちら)** — ทางโน้น (สุภาพ, ฝั่งไกลทั้งสอง)
 
-## 🗣️ Grammar Pattern (โครงสร้างประโยค)
+## <span class="material-symbols-outlined">record_voice_over</span> Grammar Pattern (โครงสร้างประโยค)
 
 ระบบ **こそあど (ko-so-a-do)** มี 4 ชุดคำ แบ่งตาม "ระยะห่างจากผู้พูด/คู่สนทนา" และ "ใช้กับอะไร":
 
@@ -37,7 +37,7 @@ date: 2026-09-30
 > [!example] ตัวอย่างประโยค
 > Kono ringo wa oishii desu. = แอปเปิ้ลลูกนี้อร่อย
 
-## 📝 Notes (ข้อควรระวัง)
+## <span class="material-symbols-outlined">edit_note</span> Notes (ข้อควรระวัง)
 
 > [!tip] เคล็ดลับ
 > จำเป็นตาราง 4 คอลัมน์ x 3 แถวแทนการท่องแยกทีละคำ — สังเกตว่าตัวอักษรแรกของทุกชุด (ko-/so-/a-) เหมือนกันหมด ต่างกันแค่ส่วนท้าย (-re, -no, -ko, -chira)
@@ -46,4 +46,4 @@ date: 2026-09-30
 > `kore/sore/are` ใช้แทนคำนามได้เลย (ไม่ต้องตามด้วยคำนามอื่น) แต่ `kono/sono/ano` **ต้องตามด้วยคำนามเสมอ** ใช้เดี่ยว ๆ ไม่ได้
 
 ---
-➡️ ต่อไป: [[Places-Vocabulary]]
+<span class="material-symbols-outlined">arrow_forward</span> ต่อไป: [[Places-Vocabulary]]

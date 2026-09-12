@@ -7,9 +7,9 @@ date: 2026-10-07
 
 # Kore / Sore / Are และ Kono / Sono / Ano — การถามราคา
 
-⬅️ กลับไปที่ [[Chapter4-MOC|MOC บทที่ 4]] | ก่อนหน้า: [[Shopping-Vocabulary]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[Chapter4-MOC|MOC บทที่ 4]] | ก่อนหน้า: [[Shopping-Vocabulary]]
 
-## 🔑 Vocabulary (คำศัพท์)
+## <span class="material-symbols-outlined">key</span> Vocabulary (คำศัพท์)
 
 - **kore** — นี่ (ของใกล้ผู้พูด)
 - **sore** — นั่น (ของใกล้ผู้ฟัง)
@@ -17,7 +17,7 @@ date: 2026-10-07
 - **ikura** — เท่าไหร่ (ถามราคา)
 - **kono / sono / ano + คำนาม** — คำนามนี้/นั้น/โน้น (ใช้แทน kore/sore/are เมื่อระบุคำนามด้วย เช่น kono kaban, sono jisho)
 
-## 🗣️ Grammar Pattern (โครงสร้างประโยค)
+## <span class="material-symbols-outlined">record_voice_over</span> Grammar Pattern (โครงสร้างประโยค)
 
 **รูปแบบถามราคา:** `Kore/Sore/Are wa ikura desu ka?` — นี่/นั่น/โน่น ราคาเท่าไหร่
 
@@ -30,10 +30,10 @@ date: 2026-10-07
 > Kaban wa 3,000-en desu. = กระเป๋าราคา 3,000 เยน
 > Sono kaban wa ikura desu ka? = กระเป๋าใบนั้นราคาเท่าไหร่
 
-## 📝 Notes (ข้อควรระวัง)
+## <span class="material-symbols-outlined">edit_note</span> Notes (ข้อควรระวัง)
 
 > [!important] ข้อควรระวัง
 > ระยะห่างของ kore/sore/are วัดจาก**ตำแหน่งของผู้พูด** ไม่ใช่ระยะทางจริงเสมอไป — kore คือของที่อยู่ในมือ/ใกล้ตัวผู้พูด, sore คือของใกล้ผู้ฟัง (อีกฝั่งเคาน์เตอร์), are คือของที่ไกลทั้งสองฝ่าย (เช่น ของในตู้โชว์)
 
 ---
-➡️ ต่อไป: [[Numbers-Hyaku-Sen]]
+<span class="material-symbols-outlined">arrow_forward</span> ต่อไป: [[Numbers-Hyaku-Sen]]

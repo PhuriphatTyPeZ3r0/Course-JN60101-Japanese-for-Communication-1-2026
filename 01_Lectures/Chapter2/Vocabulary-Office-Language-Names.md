@@ -7,9 +7,9 @@ date: 2026-09-16
 
 # คำศัพท์สำนักงานและชื่อภาษา (Office Items & Language Names)
 
-⬅️ กลับไปที่ [[Chapter2-MOC|MOC บทที่ 2]] | ก่อนหน้า: [[Vocabulary-Personal-Items]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[Chapter2-MOC|MOC บทที่ 2]] | ก่อนหน้า: [[Vocabulary-Personal-Items]]
 
-## 🔑 Vocabulary (คำศัพท์)
+## <span class="material-symbols-outlined">key</span> Vocabulary (คำศัพท์)
 
 **ของใช้ในสำนักงาน**
 - **kaban (かばん)** — กระเป๋า
@@ -39,7 +39,7 @@ date: 2026-09-16
 - **Kōhī (コーヒー)** — กาแฟ
 - **mēru adoresu (メールアドレス)** — ที่อยู่อีเมล
 
-## 🗣️ Grammar Pattern (โครงสร้างประโยค)
+## <span class="material-symbols-outlined">record_voice_over</span> Grammar Pattern (โครงสร้างประโยค)
 
 **jidōsha** และ **kuruma** เป็นคำพ้องความหมาย ใช้แทนกันได้ — ในสไลด์เขียนคู่กันแบบ "jidōsha = kuruma"
 
@@ -47,10 +47,10 @@ date: 2026-09-16
 > Kore wa watashi no kaban desu. = นี่คือกระเป๋าของฉัน
 > Shumi wa eiga desu. = งานอดิเรกคือดูหนัง (ตัวอย่างใช้ Eigo/eiga ในบริบทงานอดิเรก)
 
-## 📝 Notes (ข้อควรระวัง)
+## <span class="material-symbols-outlined">edit_note</span> Notes (ข้อควรระวัง)
 
 > [!tip] เคล็ดลับ
 > คำทับศัพท์ (katakana loanwords) ส่วนใหญ่มาจากภาษาอังกฤษและออกเสียงใกล้เคียงต้นฉบับ (เช่น Konpyūtā = Computer, Terebi = Television) ช่วยจำได้ง่ายกว่าคำศัพท์ดั้งเดิม
 
 ---
-➡️ ต่อไป: [[Demonstratives-Kore-Sore-Are]]
+<span class="material-symbols-outlined">arrow_forward</span> ต่อไป: [[Demonstratives-Kore-Sore-Are]]

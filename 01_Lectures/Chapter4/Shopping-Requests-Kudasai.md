@@ -7,9 +7,9 @@ date: 2026-10-07
 
 # การขอให้แสดงของ / การขอซื้อของ (Misete Kudasai / Kudasai)
 
-⬅️ กลับไปที่ [[Chapter4-MOC|MOC บทที่ 4]] | ก่อนหน้า: [[Numbers-Man-Oku]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[Chapter4-MOC|MOC บทที่ 4]] | ก่อนหน้า: [[Numbers-Man-Oku]]
 
-## 🔑 Vocabulary (คำศัพท์)
+## <span class="material-symbols-outlined">key</span> Vocabulary (คำศัพท์)
 
 - **...o misete kudasai** — กรุณาให้ดู.../ขอดู...หน่อย
 - **...o kudasai** — ขอ...หน่อย (ใช้ตอนจะซื้อ)
@@ -19,7 +19,7 @@ date: 2026-10-07
 - **kādo demo ii desu ka** — ใช้บัตร (เครดิต) ได้ไหม
 - **hai, kekkō desu** — ได้ครับ/ค่ะ ไม่มีปัญหา (ตอบรับคำขออนุญาต)
 
-## 🗣️ Grammar Pattern (โครงสร้างประโยค)
+## <span class="material-symbols-outlined">record_voice_over</span> Grammar Pattern (โครงสร้างประโยค)
 
 **ขอดูของ:** `Sore o misete kudasai.` = กรุณาให้ดูอันนั้นหน่อย
 
@@ -32,7 +32,7 @@ date: 2026-10-07
 
 **ถามเรื่องการชำระเงิน:** `Kādo demo ii desu ka?` → `Hai, kekkō desu.` = "demo ii desu ka" เป็นสำนวนถามขออนุญาต แปลว่า "...ได้ไหม"
 
-## 💬 Example Dialogue (บทสนทนาตัวอย่าง)
+## <span class="material-symbols-outlined">forum</span> Example Dialogue (บทสนทนาตัวอย่าง)
 
 **บทสนทนาที่ 1 — ขอดูของก่อนซื้อ:**
 
@@ -53,10 +53,10 @@ date: 2026-10-07
 **Sumisu:** Kādo demo ii desu ka.
 **mise no hito:** Hai, kekkō desu.
 
-## 📝 Notes (ข้อควรระวัง)
+## <span class="material-symbols-outlined">edit_note</span> Notes (ข้อควรระวัง)
 
 > [!tip] เคล็ดลับ
 > ลำดับประโยคซื้อของแบบครบวงจร: **Irasshaimase** (ทักทาย) → **...o misete kudasai** (ขอดู) → **...wa ikura desu ka** (ถามราคา) → **...-en desu** (บอกราคา) → **...o kudasai** (ตัดสินใจซื้อ) → **Arigatō gozaimasu** (ขอบคุณปิดท้าย) — จำลำดับนี้ไว้ใช้สอบพูด/ทำ Role-play ได้เลย
 
 ---
-➡️ กลับไปที่ [[Chapter4-MOC|MOC บทที่ 4]]
+<span class="material-symbols-outlined">arrow_forward</span> กลับไปที่ [[Chapter4-MOC|MOC บทที่ 4]]

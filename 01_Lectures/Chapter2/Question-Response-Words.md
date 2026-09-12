@@ -7,9 +7,9 @@ date: 2026-09-16
 
 # คำถามและคำตอบพื้นฐาน (Question & Response Words)
 
-⬅️ กลับไปที่ [[Chapter2-MOC|MOC บทที่ 2]] | ก่อนหน้า: [[Possessive-No-Particle]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[Chapter2-MOC|MOC บทที่ 2]] | ก่อนหน้า: [[Possessive-No-Particle]]
 
-## 🔑 Vocabulary (คำศัพท์)
+## <span class="material-symbols-outlined">key</span> Vocabulary (คำศัพท์)
 
 - **nan (何)** — อะไร (คำถาม)
 - **hai (はい) / ē (ええ)** — ใช่ (ē เป็นทางการน้อยกว่า hai)
@@ -17,7 +17,7 @@ date: 2026-09-16
 - **chigaimasu (違います)** — ไม่ใช่/ผิด
 - **anō (あのう)** — เอ่อ... (คำเติมเวลาคิด/ลังเล)
 
-## 🗣️ Grammar Pattern (โครงสร้างประโยค)
+## <span class="material-symbols-outlined">record_voice_over</span> Grammar Pattern (โครงสร้างประโยค)
 
 **Sō desu.** = เป็นเช่นนั้น (ตอบยืนยัน)
 **Sō dewa arimasen.** = ไม่เป็นเช่นนั้น (ตอบปฏิเสธแบบสุภาพ) = **Chigaimasu.** (ปฏิเสธแบบสั้น ตรงไปตรงมา)
@@ -29,7 +29,7 @@ date: 2026-09-16
 > A: Sono hon wa anata no desuka. B: Iie, Chigaimasu. = B: ไม่ ไม่ใช่ (ตอบสั้นกว่า)
 > A: Ano hito wa nihon-jin desuka. B: Iie, Chigaimasu. Tai-jin desu. A: Sō desuka? = A: อ๋อ อย่างนั้นเหรอ
 
-## 📝 Notes (ข้อควรระวัง)
+## <span class="material-symbols-outlined">edit_note</span> Notes (ข้อควรระวัง)
 
 > [!tip] เคล็ดลับ
 > **Sō desuka** ที่ลงท้ายด้วย **?** (โทนเสียงสูง) = ถามยืนยัน ("ใช่ไหม") ส่วน **Sō desuka** ที่ลงท้ายแบบไม่มีเครื่องหมายคำถามชัดเจน (โทนเสียงลง) = ใช้รับทราบข้อมูล ("อ๋อ เหรอ") ฟังโทนเสียงให้ดี
@@ -38,4 +38,4 @@ date: 2026-09-16
 > **hai** และ **ē** แปลว่า "ใช่" ทั้งคู่ แต่ **ē** เป็นคำที่เป็นกันเองกว่า ใช้ในบทสนทนาที่ไม่ต้องเป็นทางการมาก (เช่นในบท Target Dialogue: "Ee, sō desu")
 
 ---
-➡️ ต่อไป: [[Numbers-1-10]]
+<span class="material-symbols-outlined">arrow_forward</span> ต่อไป: [[Numbers-1-10]]

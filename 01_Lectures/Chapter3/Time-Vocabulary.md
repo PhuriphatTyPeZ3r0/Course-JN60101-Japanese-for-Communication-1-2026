@@ -7,9 +7,9 @@ date: 2026-09-30
 
 # คำศัพท์เกี่ยวกับเวลาและกิจกรรม
 
-⬅️ กลับไปที่ [[Chapter3-MOC|MOC บทที่ 3]] | ก่อนหน้า: [[Places-Vocabulary]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[Chapter3-MOC|MOC บทที่ 3]] | ก่อนหน้า: [[Places-Vocabulary]]
 
-## 🔑 Vocabulary (คำศัพท์)
+## <span class="material-symbols-outlined">key</span> Vocabulary (คำศัพท์)
 
 - **hiru-yasumi (昼休み)** — พักเที่ยง
 - **pātī (パーティー)** — ปาร์ตี้
@@ -24,7 +24,7 @@ date: 2026-09-30
 - **gozen (午前)** — ช่วงเช้า/ก่อนเที่ยง (AM)
 - **gogo (午後)** — ช่วงบ่าย/หลังเที่ยง (PM)
 
-## 🗣️ Grammar Pattern (โครงสร้างประโยค)
+## <span class="material-symbols-outlined">record_voice_over</span> Grammar Pattern (โครงสร้างประโยค)
 
 **...kara...made** — จาก...ถึง... (บอกช่วงเวลาเริ่ม-สิ้นสุด) ใช้กับทั้งเวลาและสถานที่
 
@@ -37,10 +37,10 @@ date: 2026-09-30
 > Gozen 8-ji han desu. = 8 โมงครึ่ง ตอนเช้า (08:30)
 > Gogo 9-ji desu. = 3 ทุ่ม (21:00)
 
-## 📝 Notes (ข้อควรระวัง)
+## <span class="material-symbols-outlined">edit_note</span> Notes (ข้อควรระวัง)
 
 > [!tip] เคล็ดลับ
 > ปกติภาษาญี่ปุ่นในชีวิตประจำวันไม่ต้องระบุ gozen/gogo ทุกครั้ง (เดาจากบริบทได้) แต่ใช้เมื่อคุยข้ามโซนเวลา (เช่น โทรศัพท์ไปสาขาต่างประเทศ) หรือกันสับสนบ่าย/เย็น
 
 ---
-➡️ ต่อไป: [[Japanese-Numbers]]
+<span class="material-symbols-outlined">arrow_forward</span> ต่อไป: [[Japanese-Numbers]]

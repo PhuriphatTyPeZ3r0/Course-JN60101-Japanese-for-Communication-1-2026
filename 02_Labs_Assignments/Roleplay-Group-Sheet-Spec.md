@@ -6,11 +6,11 @@ date: 2026-09-10
 
 # Antigravity Task — Build the JN60101 Role Play Group Management Sheet
 
-⬅️ กลับไปที่ [[../README|README]] | เกี่ยวข้องกับ [[Assignment2-Roleplay|Assignment2-Roleplay]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[../README|README]] | เกี่ยวข้องกับ [[Assignment2-Roleplay|Assignment2-Roleplay]]
 
 > [!success] Google Sheet ที่สร้างสำเร็จแล้ว
-> 🔗 **Google Sheet:** [JN60101 Role Play - Group Management](https://docs.google.com/spreadsheets/d/1hxdqQc7HwPmwbaCQOhHeyL4ujdrpnbZL32d5z8Qxntg/edit)
-> 👤 **Owner Account:** `phuriphathem@gmail.com`
+> <span class="material-symbols-outlined">link</span> **Google Sheet:** [JN60101 Role Play - Group Management](https://docs.google.com/spreadsheets/d/1hxdqQc7HwPmwbaCQOhHeyL4ujdrpnbZL32d5z8Qxntg/edit)
+> <span class="material-symbols-outlined">person</span> **Owner Account:** `phuriphathem@gmail.com`
 
 ## Task Instruction
 
@@ -96,4 +96,4 @@ date: 2026-09-10
 - เมื่อสร้างเสร็จ ให้รายงานกลับมาเป็นลิงก์ Google Sheet ที่สร้างสำเร็จ
 
 ---
-➡️ กลับไปที่ [[Assignment2-Roleplay|Assignment2-Roleplay]]
+<span class="material-symbols-outlined">arrow_forward</span> กลับไปที่ [[Assignment2-Roleplay|Assignment2-Roleplay]]

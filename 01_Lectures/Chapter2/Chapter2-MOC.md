@@ -10,19 +10,19 @@ source: "บทที่ 2 การแลกนามบัตร JN60101.pdf"
 
 # บทที่ 2 — Exchanging Business Cards (MOC)
 
-⬅️ บทก่อนหน้า: [[../Chapter1/Chapter1-MOC|MOC บทที่ 1]]
+<span class="material-symbols-outlined">arrow_back</span> บทก่อนหน้า: [[../Chapter1/Chapter1-MOC|MOC บทที่ 1]]
 
-## ✅ เช็คลิสต์ก่อนเข้าเรียน
+## <span class="material-symbols-outlined">check_circle</span> เช็คลิสต์ก่อนเข้าเรียน
 
 - [ ] ทบทวนคำศัพท์สิ่งของส่วนตัวและสำนักงาน (รวมคำทับศัพท์คาตาคานะ) — ดู [[Vocabulary-Personal-Items]], [[Vocabulary-Office-Language-Names]]
 - [ ] ทบทวน kore/sore/are และ kono/sono/ano ให้คล่อง — ดู [[Demonstratives-Kore-Sore-Are]]
 - [ ] ท่องตัวเลข 1–10 และรูปแบบอ่านเบอร์โทรศัพท์ — ดู [[Numbers-1-10]]
 
-## 📋 ภาพรวมบทที่ 2 (สรุปย่อ)
+## <span class="material-symbols-outlined">assignment</span> ภาพรวมบทที่ 2 (สรุปย่อ)
 
 บทนี้สอนการแนะนำตัวเชิงธุรกิจและการแลกนามบัตร: 1) คำศัพท์สิ่งของส่วนตัวและสิ่งของสำนักงาน รวมถึงชื่อภาษาและคำทับศัพท์คาตาคานะที่พบบ่อย 2) คำชี้เฉพาะ kore/sore/are และ kono/sono/ano ซึ่งเป็นแกนไวยากรณ์ที่ใช้ต่อเนื่องไปถึงบทที่ 4 3) โครงสร้าง N1 no N2 ทั้งแบบแสดงความเป็นเจ้าของและบอกรายละเอียด 4) คำถาม-คำตอบพื้นฐาน (nan, sō desu/chigaimasu) 5) ตัวเลข 1-10 และการอ่านเบอร์โทรศัพท์ และ 6) คำทักทายสุภาพ การแนะนำตัวเชิงธุรกิจ (Jiko Shōkai) และบทสนทนาแลกนามบัตรจริง
 
-## 🗺️ แผนที่หัวข้อบทที่ 2
+## <span class="material-symbols-outlined">map</span> แผนที่หัวข้อบทที่ 2
 
 ```mermaid
 graph TD
@@ -56,7 +56,7 @@ graph TD
     style G fill:#2b6cb0,color:#fff
 ```
 
-## 📚 โน้ตรายหัวข้อ
+## <span class="material-symbols-outlined">collections_bookmark</span> โน้ตรายหัวข้อ
 
 | หัวข้อ | เนื้อหาหลัก | หน้าสไลด์ |
 | --- | --- | --- |
@@ -74,4 +74,4 @@ graph TD
 > [!tip] จุดที่มักสับสนที่สุดในบทนี้
 > โครงสร้าง N1 no N2 อ่านลำดับกลับกับภาษาไทย (N1 ผู้เป็นเจ้าของ/รายละเอียด มาก่อนเสมอ) และ kore/sore/are ต้องแยกจาก kono/sono/ano ให้ชัด — kono/sono/ano ต้องมีคำนามตามหลังเสมอ ไม่พูดลอย ๆ ส่วน Sō desu / Chigaimasu ต่างจาก Sō desuka ที่ใช้ตอบรับข้อมูลใหม่ ไม่ใช่คำถาม
 
-➡️ บทถัดไป: [[../Chapter3/Chapter3-MOC|MOC บทที่ 3]]
+<span class="material-symbols-outlined">arrow_forward</span> บทถัดไป: [[../Chapter3/Chapter3-MOC|MOC บทที่ 3]]

@@ -7,15 +7,15 @@ date: 2026-09-09
 
 # ระบบตัวอักษรภาษาญี่ปุ่น (Japanese Writing System)
 
-⬅️ กลับไปที่ [[Chapter1-MOC|MOC บทที่ 1]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[Chapter1-MOC|MOC บทที่ 1]]
 
-## 🔑 Vocabulary (คำศัพท์)
+## <span class="material-symbols-outlined">key</span> Vocabulary (คำศัพท์)
 
 - **hiragana (ひらがな)** — ตัวอักษรพื้นฐานที่สุด ใช้เขียนคำศัพท์ดั้งเดิมและไวยากรณ์
 - **katakana (カタカナ)** — ตัวอักษรรูปทรงเหลี่ยม ใช้เขียนคำทับศัพท์ภาษาต่างประเทศ/ชื่อแบรนด์
 - **kanji (漢字)** — ตัวอักษรจีนที่ยืมมาใช้ แต่ละตัวมีความหมายในตัวเอง (เช่น 一 二 三 = 1 2 3)
 
-## 🗣️ Grammar Pattern (โครงสร้างประโยค)
+## <span class="material-symbols-outlined">record_voice_over</span> Grammar Pattern (โครงสร้างประโยค)
 
 ภาษาญี่ปุ่นมีตัวอักษร **3 แบบ** ใช้ผสมกันในประโยคเดียว:
 
@@ -29,10 +29,10 @@ date: 2026-09-09
 > こんにちは**私は**ジョン**と申します**。 = สวัสดีค่ะ ฉันชื่อจอห์นค่ะ
 > (こんにちは=hiragana, 私=kanji, は=hiragana เป็นคำช่วย, ジョン=katakana ชื่อทับศัพท์)
 
-## 📝 Notes (ข้อควรระวัง)
+## <span class="material-symbols-outlined">edit_note</span> Notes (ข้อควรระวัง)
 
 > [!tip] เคล็ดลับ
 > เจอคำในกรอบสี่เหลี่ยม/วงเล็บพิเศษในสไลด์ (เช่น こんにちは, 私, ジョン) มักเป็นตัวอย่างแสดงตัวอักษรผสม 3 แบบในประโยคเดียวกัน — ให้สังเกตว่าคำไหนเป็นอักษรแบบไหนเพื่อจำการใช้งานของแต่ละแบบ
 
 ---
-➡️ ต่อไป: [[Pronunciation-Rules]]
+<span class="material-symbols-outlined">arrow_forward</span> ต่อไป: [[Pronunciation-Rules]]

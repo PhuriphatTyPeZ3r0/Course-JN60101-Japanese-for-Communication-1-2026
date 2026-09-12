@@ -7,9 +7,9 @@ date: 2026-09-09
 
 # อาชีพ สัญชาติ และคำช่วย no (Occupations, Nationality & the "no" Particle)
 
-⬅️ กลับไปที่ [[Chapter1-MOC|MOC บทที่ 1]] | ก่อนหน้า: [[Pronouns-Honorifics]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[Chapter1-MOC|MOC บทที่ 1]] | ก่อนหน้า: [[Pronouns-Honorifics]]
 
-## 🔑 Vocabulary (คำศัพท์)
+## <span class="material-symbols-outlined">key</span> Vocabulary (คำศัพท์)
 
 **อาชีพ (Occupations)**
 
@@ -32,7 +32,7 @@ date: 2026-09-09
 
 **ประเทศ:** Nihon (ญี่ปุ่น), Chūgoku (จีน), Doitsu (เยอรมนี), Igirisu (อังกฤษ), Amerika (อเมริกา), Ōsutoraria (ออสเตรเลีย), Tai (ไทย)
 
-## 🗣️ Grammar Pattern (โครงสร้างประโยค)
+## <span class="material-symbols-outlined">record_voice_over</span> Grammar Pattern (โครงสร้างประโยค)
 
 **คำช่วย no (の) — แสดงความเป็นเจ้าของ/สังกัด:** โครงสร้าง **N1 no N2** แปลว่า "N2 ของ N1" (ตรงข้ามลำดับกับภาษาไทย)
 
@@ -53,7 +53,7 @@ date: 2026-09-09
 > [!example] ตัวอย่างประโยค
 > Watashi wa Amerika kara kimashita. = ฉันมาจากอเมริกา
 
-## 📝 Notes (ข้อควรระวัง)
+## <span class="material-symbols-outlined">edit_note</span> Notes (ข้อควรระวัง)
 
 > [!tip] เคล็ดลับ
 > คำช่วย no ใช้ได้ทั้งความเป็นเจ้าของจริง ๆ (watashi no sensei) และการบอกสังกัดองค์กร/บริษัท (ABC Fūzu no bengoshi = ทนายของบริษัท ABC) — สังเกตบริบทว่ากำลังพูดถึงความสัมพันธ์แบบไหน
@@ -62,4 +62,4 @@ date: 2026-09-09
 > ลำดับคำของ "N1 no N2" ตรงข้ามกับภาษาไทย: ภาษาไทยพูด "มหาวิทยาลัยของเขา" (มหาวิทยาลัยมาก่อน) แต่ภาษาญี่ปุ่นพูด "anohito no daigaku" (เจ้าของมาก่อน)
 
 ---
-➡️ ต่อไป: [[Self-Introduction-Dialogue]]
+<span class="material-symbols-outlined">arrow_forward</span> ต่อไป: [[Self-Introduction-Dialogue]]

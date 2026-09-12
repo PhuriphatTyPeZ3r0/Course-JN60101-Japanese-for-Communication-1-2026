@@ -7,9 +7,9 @@ date: 2026-09-09
 
 # สรรพนามและคำต่อท้ายยศ (Pronouns & Honorific Suffixes)
 
-⬅️ กลับไปที่ [[Chapter1-MOC|MOC บทที่ 1]] | ก่อนหน้า: [[Sentence-Structure-Wa-Desu]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[Chapter1-MOC|MOC บทที่ 1]] | ก่อนหน้า: [[Sentence-Structure-Wa-Desu]]
 
-## 🔑 Vocabulary (คำศัพท์)
+## <span class="material-symbols-outlined">key</span> Vocabulary (คำศัพท์)
 
 - **watashi (私)** — ฉัน/ผม (สรรพนามบุรุษที่ 1 แบบสุภาพ ใช้ได้ทั้งชาย-หญิง)
 - **watashi-tachi (私たち)** — พวกเรา (-tachi ทำให้เป็นพหูพจน์)
@@ -21,7 +21,7 @@ date: 2026-09-09
 - **-chan (ちゃん)** — ต่อท้ายชื่อเด็ก/คนสนิท (น่ารัก/กันเอง)
 - **-kun (くん)** — ต่อท้ายชื่อเด็กผู้ชาย/รุ่นน้องผู้ชาย
 
-## 🗣️ Grammar Pattern (โครงสร้างประโยค)
+## <span class="material-symbols-outlined">record_voice_over</span> Grammar Pattern (โครงสร้างประโยค)
 
 สรรพนามบุรุษที่ 1-2-3 ในภาษาญี่ปุ่นใช้น้อยกว่าภาษาไทย/อังกฤษมาก เพราะบริบทมักชัดเจนอยู่แล้ว (สังเกตจากตัวอย่างบทสนทนาจริงที่มักละประธานทิ้งเมื่อพูดคุยกันต่อเนื่อง)
 
@@ -37,7 +37,7 @@ date: 2026-09-09
 > Anata wa gakusei desu. = คุณเป็นนักเรียน
 > Anohito wa dare desu ka? = คนนั้นคือใคร
 
-## 📝 Notes (ข้อควรระวัง)
+## <span class="material-symbols-outlined">edit_note</span> Notes (ข้อควรระวัง)
 
 > [!important] ข้อควรระวัง
 > **ห้ามใช้ -san (หรือ -chan/-kun) ต่อท้ายชื่อตัวเอง** เด็ดขาด — ใช้ได้เฉพาะเวลาเรียกหรือพูดถึงคนอื่นเท่านั้น เช่น แนะนำตัวเองต้องพูดแค่ "Watashi wa [ชื่อ] desu" ห้ามพูด "Watashi wa [ชื่อ]-san desu"
@@ -46,4 +46,4 @@ date: 2026-09-09
 > donata และ anokata สุภาพกว่า dare และ anohito ตามลำดับ — ใช้ donata/anokata เมื่อพูดถึงผู้ใหญ่หรือคนที่ควรให้เกียรติ
 
 ---
-➡️ ต่อไป: [[Occupations-Nationality]]
+<span class="material-symbols-outlined">arrow_forward</span> ต่อไป: [[Occupations-Nationality]]

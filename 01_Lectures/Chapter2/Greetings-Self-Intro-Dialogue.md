@@ -7,9 +7,9 @@ date: 2026-09-16
 
 # คำทักทายสุภาพและการแลกนามบัตร (Polite Greetings & Business Card Exchange)
 
-⬅️ กลับไปที่ [[Chapter2-MOC|MOC บทที่ 2]] | ก่อนหน้า: [[Numbers-1-10]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[Chapter2-MOC|MOC บทที่ 2]] | ก่อนหน้า: [[Numbers-1-10]]
 
-## 🔑 Vocabulary (คำศัพท์)
+## <span class="material-symbols-outlined">key</span> Vocabulary (คำศัพท์)
 
 - **Dōmo arigatō gozaimasu (どうもありがとうございます)** — ขอบคุณมาก
 - **Dōmo sumimasen (どうもすみません)** — ขอโทษเป็นอย่างสูง
@@ -20,7 +20,7 @@ date: 2026-09-16
 - **Hajimemashite (はじめまして)** — ยินดีที่ได้รู้จัก (พูดครั้งแรกที่เจอกัน)
 - **shumi (趣味)** — งานอดิเรก
 
-## 🗣️ Grammar Pattern (โครงสร้างประโยค)
+## <span class="material-symbols-outlined">record_voice_over</span> Grammar Pattern (โครงสร้างประโยค)
 
 **โครงสร้างการแนะนำตนเอง (Jiko Shōkai):**
 1. Hajimemashite. = ยินดีที่ได้รู้จัก
@@ -32,7 +32,7 @@ date: 2026-09-16
 > [!example] ตัวอย่างประโยค
 > Hajimemashite. Watashi wa Boy desu. Panyapiwatto keiei daigaku no gakusei desu. Shumi wa manga desu. Dōzo, yoroshiku onegaishimasu.
 
-## 💬 Example Dialogue (บทสนทนาตัวอย่าง — การแลกนามบัตร)
+## <span class="material-symbols-outlined">forum</span> Example Dialogue (บทสนทนาตัวอย่าง — การแลกนามบัตร)
 
 Takahashi มอบนามบัตรให้ Smith ซึ่งอ่านคันจิไม่ออก:
 
@@ -55,7 +55,7 @@ Chan: Matsui-san no denwa-bangō wa nan-ban desu ka.
 Matsui: 03-3459-9630 desu. Keitai wa 090-1234-5678 desu.
 Chan: Sumimasen. Mō ichi-do onegaishimasu. (ขอโทษค่ะ ขอพูดอีกครั้งได้ไหมคะ)
 
-## 📝 Notes (ข้อควรระวัง)
+## <span class="material-symbols-outlined">edit_note</span> Notes (ข้อควรระวัง)
 
 > [!tip] เคล็ดลับ
 > "**Mō ichi-do onegaishimasu**" (ขออีกครั้ง) เป็นวลีสำคัญเวลาฟังไม่ทัน โดยเฉพาะตอนฟังหมายเลขโทรศัพท์ — ใช้คู่กับ "Sumimasen" นำหน้าเสมอเพื่อความสุภาพ
@@ -64,4 +64,4 @@ Chan: Sumimasen. Mō ichi-do onegaishimasu. (ขอโทษค่ะ ขอพ�
 > ในวัฒนธรรมธุรกิจญี่ปุ่น การแลกนามบัตร (meishi kōkan) มีมารยาทเฉพาะ — ยื่นด้วยสองมือ กล่าว "Dōzo" และรับนามบัตรของอีกฝ่ายด้วยความเคารพ (ในบทสนทนาจะเห็น Sumisu พลิกดูนามบัตรทั้งสองด้านเพื่อทำความเข้าใจ ไม่ใช่แค่รับแล้วเก็บทันที)
 
 ---
-➡️ กลับไปที่ [[Chapter2-MOC|MOC บทที่ 2]]
+<span class="material-symbols-outlined">arrow_forward</span> กลับไปที่ [[Chapter2-MOC|MOC บทที่ 2]]

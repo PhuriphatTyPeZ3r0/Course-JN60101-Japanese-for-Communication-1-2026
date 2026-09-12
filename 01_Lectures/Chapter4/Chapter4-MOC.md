@@ -10,19 +10,19 @@ source: "บทที่ 4 การซื้อของ 1 JN60101.pdf"
 
 # บทที่ 4 — Buying Things 1 (MOC)
 
-⬅️ บทก่อนหน้า: [[../Chapter3/Chapter3-MOC|MOC บทที่ 3]]
+<span class="material-symbols-outlined">arrow_back</span> บทก่อนหน้า: [[../Chapter3/Chapter3-MOC|MOC บทที่ 3]]
 
-## ✅ เช็คลิสต์ก่อนเข้าเรียน
+## <span class="material-symbols-outlined">check_circle</span> เช็คลิสต์ก่อนเข้าเรียน
 
 - [ ] ทบทวนคำศัพท์เครื่องใช้ไฟฟ้า/สิ่งของในร้าน — ดู [[Shopping-Vocabulary]]
 - [ ] ท่องตัวเลข 100–9,000 พร้อมจุดกลายเสียง (300/600/800/3,000/8,000) — ดู [[Numbers-Hyaku-Sen]]
 - [ ] ท่องตัวเลขหลักหมื่นขึ้นไป (man/oku) — ดู [[Numbers-Man-Oku]]
 
-## 📋 ภาพรวมบทที่ 4 (สรุปย่อ)
+## <span class="material-symbols-outlined">assignment</span> ภาพรวมบทที่ 4 (สรุปย่อ)
 
 บทนี้สอนการซื้อของในร้านค้า: 1) คำศัพท์สิ่งของ/เครื่องใช้ไฟฟ้าที่ซื้อขายกันทั่วไป 2) การถามและตอบราคาด้วย kore/sore/are wa ikura desu ka และการระบุของด้วย kono/sono/ano + คำนาม 3) ระบบตัวเลขญี่ปุ่นแบบเต็ม ตั้งแต่หลักร้อยถึงล้าน รวมทั้งทศนิยมและเศษส่วน (จุดสำคัญที่สุดของบทคือระบบนับหลัก 4 หลัก — man ที่หลักหมื่น ต่างจากระบบไทย/อังกฤษที่นับหลัก 3 หลัก) และ 4) สำนวนที่ใช้จริงในร้านค้า ทั้งขอดูของ (misete kudasai) ขอซื้อ (kudasai) คำช่วย mo (ก็เหมือนกัน) และการถามเรื่องบัตรเครดิต
 
-## 🗺️ แผนที่หัวข้อบทที่ 4
+## <span class="material-symbols-outlined">map</span> แผนที่หัวข้อบทที่ 4
 
 ```mermaid
 graph TD
@@ -51,7 +51,7 @@ graph TD
     style E fill:#2b6cb0,color:#fff
 ```
 
-## 📚 โน้ตรายหัวข้อ
+## <span class="material-symbols-outlined">collections_bookmark</span> โน้ตรายหัวข้อ
 
 | หัวข้อ | เนื้อหาหลัก | หน้าสไลด์ |
 | --- | --- | --- |
@@ -67,4 +67,4 @@ graph TD
 > [!tip] จุดที่มักสับสนที่สุดในบทนี้
 > ระบบนับเลขหลักหมื่น (man) ต่างจากภาษาไทย/อังกฤษที่นับหลักพัน — 100,000 คือ "jū-man" ไม่ใช่ "hyaku-sen" ต้องฝึกแยกระบบให้คล่องก่อนสอบ
 
-➡️ บทถัดไป: [[../Chapter5/Chapter5-MOC|MOC บทที่ 5]]
+<span class="material-symbols-outlined">arrow_forward</span> บทถัดไป: [[../Chapter5/Chapter5-MOC|MOC บทที่ 5]]

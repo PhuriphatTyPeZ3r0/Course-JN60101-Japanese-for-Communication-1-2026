@@ -7,9 +7,9 @@ date: 2026-10-21
 
 # คำคุณศัพท์ขนาดและสี (Size & Color Adjectives)
 
-⬅️ กลับไปที่ [[Chapter5-MOC|MOC บทที่ 5]] | ก่อนหน้า: [[Countries-Made-In]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[Chapter5-MOC|MOC บทที่ 5]] | ก่อนหน้า: [[Countries-Made-In]]
 
-## 🔑 Vocabulary (คำศัพท์)
+## <span class="material-symbols-outlined">key</span> Vocabulary (คำศัพท์)
 
 - **ōkii (大きい)** — ใหญ่
 - **chiisai (小さい)** — เล็ก
@@ -19,7 +19,7 @@ date: 2026-10-21
 - **kiiroi (黄色い)** — สีเหลือง
 - **aoi (青い)** — สีฟ้า/สีน้ำเงิน
 
-## 🗣️ Grammar Pattern (โครงสร้างประโยค)
+## <span class="material-symbols-outlined">record_voice_over</span> Grammar Pattern (โครงสร้างประโยค)
 
 คำคุณศัพท์กลุ่มนี้ (i-adjectives) วางไว้หน้าคำนามได้เลยเพื่อขยายความ ไม่ต้องมีคำช่วยคั่น: **[คำคุณศัพท์] + [คำนาม]**
 
@@ -32,10 +32,10 @@ date: 2026-10-21
 > Ano chiisai kamera wa 8,000-en desu. = กล้องเล็กตัวนั้นราคา 8,000 เยน
 > Ano akai kamera wa ikura desu ka. = กล้องสีแดงตัวนั้นราคาเท่าไหร่
 
-## 📝 Notes (ข้อควรระวัง)
+## <span class="material-symbols-outlined">edit_note</span> Notes (ข้อควรระวัง)
 
 > [!tip] เคล็ดลับ
 > คำคุณศัพท์ทั้งหมดนี้ลงท้ายด้วย "い (i)" — เป็นกลุ่ม i-adjective ที่วางขยายหน้าคำนามได้โดยตรง ต่างจากคำนามที่ต้องใช้ "no" คั่น (เช่น "Suisu no tokei" ต้องมี no แต่ "akai tokei" ไม่ต้องมี no)
 
 ---
-➡️ ต่อไป: [[Counters-Japanese]]
+<span class="material-symbols-outlined">arrow_forward</span> ต่อไป: [[Counters-Japanese]]

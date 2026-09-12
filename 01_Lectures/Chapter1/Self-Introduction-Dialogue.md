@@ -7,9 +7,9 @@ date: 2026-09-09
 
 # บทสนทนาการแนะนำตัว (Self-Introduction Dialogue)
 
-⬅️ กลับไปที่ [[Chapter1-MOC|MOC บทที่ 1]] | ก่อนหน้า: [[Occupations-Nationality]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[Chapter1-MOC|MOC บทที่ 1]] | ก่อนหน้า: [[Occupations-Nationality]]
 
-## 🔑 Vocabulary (คำศัพท์)
+## <span class="material-symbols-outlined">key</span> Vocabulary (คำศัพท์)
 
 - **shitsurei desuga (失礼ですが)** — ขอโทษนะคะ/ครับ (ใช้ก่อนถามคำถามที่อาจล่วงล้ำเล็กน้อย เช่น ถามชื่อ)
 - **o-namae wa? (お名前は？)** — คุณชื่ออะไร (สุภาพ)
@@ -19,7 +19,7 @@ date: 2026-09-09
 - **donata desu ka (どなたですか)** — ท่านคือใคร (สุภาพ, ถามคนที่กดออดหรือโทรมา)
 - **arigatō gozaimasu (ありがとうございます)** — ขอบคุณค่ะ/ครับ
 
-## 🗣️ Grammar Pattern (โครงสร้างประโยค)
+## <span class="material-symbols-outlined">record_voice_over</span> Grammar Pattern (โครงสร้างประโยค)
 
 **ลำดับขั้นตอนการแนะนำตัวเอง (Jiko Shōkai):**
 1. Hajimemashite. (ทักทายครั้งแรก)
@@ -29,7 +29,7 @@ date: 2026-09-09
 
 **ลำดับขั้นตอนการแนะนำคนอื่นให้รู้จักกัน:** ผู้แนะนำพูด "[ชื่อคน B]-san, kochira wa [ชื่อคน A]-san desu. [ชื่อคน A]-san wa [บริษัท] no [อาชีพ] desu." จากนั้นทั้งสองฝ่ายทักทายกันด้วย hajimemashite + dōzo yoroshiku onegaishimasu
 
-## 💬 Example Dialogue (บทสนทนาตัวอย่าง)
+## <span class="material-symbols-outlined">forum</span> Example Dialogue (บทสนทนาตัวอย่าง)
 
 **บทสนทนาหลัก — คุณซาซากิแนะนำคุณสมิธให้รู้จักคุณทาคาฮาชิ:**
 
@@ -48,7 +48,7 @@ date: 2026-09-09
 **Nakamura:** Nakamura desu.
 **Chan:** Hai, dōzo. (เชิญเข้ามา)
 
-## 📝 Notes (ข้อควรระวัง)
+## <span class="material-symbols-outlined">edit_note</span> Notes (ข้อควรระวัง)
 
 > [!tip] เคล็ดลับ
 > "hajimemashite" พูดได้แค่ครั้งแรกที่เจอกันเท่านั้น ครั้งต่อไปใช้คำทักทายอื่น (เช่น konnichiwa) แทน
@@ -57,4 +57,4 @@ date: 2026-09-09
 > เวลาแนะนำตัวเอง (jiko shōkai) ห้ามพูด "Watashi wa [ชื่อ]-**san** desu" — -san ใช้กับคนอื่นเท่านั้น (ดู [[Pronouns-Honorifics]])
 
 ---
-➡️ กลับไปที่ [[Chapter1-MOC|MOC บทที่ 1]]
+<span class="material-symbols-outlined">arrow_forward</span> กลับไปที่ [[Chapter1-MOC|MOC บทที่ 1]]

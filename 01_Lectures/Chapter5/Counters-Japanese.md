@@ -7,9 +7,9 @@ date: 2026-10-21
 
 # ลักษณนามในภาษาญี่ปุ่น (Japanese Counters)
 
-⬅️ กลับไปที่ [[Chapter5-MOC|MOC บทที่ 5]] | ก่อนหน้า: [[Adjectives-Size-Color]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[Chapter5-MOC|MOC บทที่ 5]] | ก่อนหน้า: [[Adjectives-Size-Color]]
 
-## 🔑 Vocabulary (คำศัพท์)
+## <span class="material-symbols-outlined">key</span> Vocabulary (คำศัพท์)
 
 **อัน/ชิ้น — ลักษณนามทั่วไป (つ)** ใช้กับของทั่วไปที่ไม่มีลักษณนามเฉพาะ เช่น ผลไม้ ขนม
 
@@ -56,7 +56,7 @@ date: 2026-10-21
 | 9 | kyū-hon |
 | 10 | **juppon** |
 
-## 🗣️ Grammar Pattern (โครงสร้างประโยค)
+## <span class="material-symbols-outlined">record_voice_over</span> Grammar Pattern (โครงสร้างประโยค)
 
 ขอซื้อของหลายชิ้นด้วย **[สิ่งของ] o [จำนวน+ลักษณนาม] kudasai** (ขอ X จำนวน N ชิ้น)
 
@@ -67,7 +67,7 @@ date: 2026-10-21
 > Kasa o ni-hon kudasai. = ขอร่ม 2 คัน
 > Shūkurīmu o mittsu kudasai. = ขอครีมพัฟ 3 ชิ้น
 
-## 📝 Notes (ข้อควรระวัง)
+## <span class="material-symbols-outlined">edit_note</span> Notes (ข้อควรระวัง)
 
 > [!important] ข้อควรระวัง
 > ลักษณนาม 本 (hon) มีการเปลี่ยนเสียง (sound change) แบบไม่ปกติที่เลข 1, 3, 6, 8, 10 — **ippon** (ไม่ใช่ ichi-hon), **sam-bon** (ไม่ใช่ san-hon), **roppon** (ไม่ใช่ roku-hon), **happon** (ไม่ใช่ hachi-hon), **juppon** (ไม่ใช่ jū-hon) ต้องท่องจำแยกทั้ง 4 ตัวนี้เป็นพิเศษ
@@ -76,4 +76,4 @@ date: 2026-10-21
 > ลักษณนาม つ (hitotsu-tō) ใช้ได้กับเกือบทุกอย่างเมื่อไม่แน่ใจว่าต้องใช้ลักษณนามเฉพาะอะไร ปลอดภัยที่สุดสำหรับผู้เริ่มเรียน
 
 ---
-➡️ ต่อไป: [[Shopping-Dialogue-Practice]]
+<span class="material-symbols-outlined">arrow_forward</span> ต่อไป: [[Shopping-Dialogue-Practice]]

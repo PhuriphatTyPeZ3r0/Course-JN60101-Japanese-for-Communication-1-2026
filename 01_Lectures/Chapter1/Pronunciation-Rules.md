@@ -7,14 +7,14 @@ date: 2026-09-09
 
 # กฎการออกเสียงภาษาญี่ปุ่น (Pronunciation Rules)
 
-⬅️ กลับไปที่ [[Chapter1-MOC|MOC บทที่ 1]] | ก่อนหน้า: [[Japanese-Writing-System]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[Chapter1-MOC|MOC บทที่ 1]] | ก่อนหน้า: [[Japanese-Writing-System]]
 
-## 🔑 Vocabulary (คำศัพท์)
+## <span class="material-symbols-outlined">key</span> Vocabulary (คำศัพท์)
 
 - **ก (K), ส (S), ท (T), น (N), ห (H), ม (M), ย (Y), ร (R), ว (W), ก (G), จ (Z), ด (D), บ (B), พ (P)** — กลุ่มพยัญชนะหลักที่ผสมกับสระ a/i/u/e/o
 - **shi (し), chi (ち), tsu (つ), fu (ふ)** — 4 พยางค์ที่ออกเสียงไม่ตรงตามรูปแบบ K-S-T ปกติ (ไม่ใช่ si/ti/tu/hu)
 
-## 🗣️ Grammar Pattern (โครงสร้างประโยค)
+## <span class="material-symbols-outlined">record_voice_over</span> Grammar Pattern (โครงสร้างประโยค)
 
 ภาษาญี่ปุ่นมีเสียงพยัญชนะน้อยแต่มีเสียงซ้ำเยอะ โครงสร้างเสียงหลักคือ **พยัญชนะ + สระ (a/i/u/e/o)** เกือบทั้งหมด ยกเว้น 4 จุดที่ต้องจำพิเศษ: **shi, chi, tsu, fu**
 
@@ -44,7 +44,7 @@ date: 2026-09-09
 > - kita (มาแล้ว) vs kiita (ได้ยินแล้ว — เสียงยาว) vs kitta (ตัดแล้ว — ตัวสะกดซ้ำ)
 > - koko (ที่นี่) vs kōkō (โรงเรียนมัธยมปลาย)
 
-## 📝 Notes (ข้อควรระวัง)
+## <span class="material-symbols-outlined">edit_note</span> Notes (ข้อควรระวัง)
 
 > [!tip] เคล็ดลับ
 > ฝึกอ่านตัวเลขภาษาญี่ปุ่น (ichi, ni, san, yon/shi, go, roku, shichi/nana, hachi, kyū, jū) เป็นวิธีฝึกเสียงพื้นฐานที่ดี — เลข 4 และ 7 มีสองแบบให้เลือกใช้ (yon/shi และ shichi/nana)
@@ -53,4 +53,4 @@ date: 2026-09-09
 > ตัวสะกด -n (ん) ไม่ใช่แค่เสียง "ง" เสมอไป — ต้องดูพยัญชนะตัวถัดไปเพื่อเลือกออกเสียง ม/น/ง ให้ถูก
 
 ---
-➡️ ต่อไป: [[Sentence-Structure-Wa-Desu]]
+<span class="material-symbols-outlined">arrow_forward</span> ต่อไป: [[Sentence-Structure-Wa-Desu]]

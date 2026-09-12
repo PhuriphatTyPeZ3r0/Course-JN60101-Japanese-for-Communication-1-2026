@@ -6,9 +6,9 @@ date: 2026-09-08
 
 # สอบปลายภาค — การฟังและการพูด (Final Listening & Speaking Exam)
 
-⬅️ กลับไปที่ [[../README|README]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[../README|README]]
 
-## 📋 ขอบเขตสอบ
+## <span class="material-symbols-outlined">assignment</span> ขอบเขตสอบ
 
 ครอบคลุมเนื้อหาทั้ง 6 บท:
 
@@ -19,21 +19,21 @@ date: 2026-09-08
 - [[../01_Lectures/Chapter5/Chapter5-MOC|บทที่ 5 — การซื้อของ 2]]
 - [[../01_Lectures/Chapter6/Chapter6-MOC|บทที่ 6 — การยืนยันตารางงาน]]
 
-## 🗓️ กำหนดการ
+## <span class="material-symbols-outlined">calendar_today</span> กำหนดการ
 
 - **วันสอบ:** พุธ 11 พฤศจิกายน 2569, 8.00–12.30 น. (สัปดาห์ที่ 10 — สัปดาห์สุดท้าย)
 - **คะแนน:** การทดสอบความรู้รวบยอด 25 คะแนน (จากคะแนนรวม 100)
 - **รูปแบบ:** ฟังและพูด — ครอบคลุมคำศัพท์ ไวยากรณ์ และบทสนทนาทั้ง 6 บท
 
-## ✅ เช็คลิสต์ทบทวนรวบยอด
+## <span class="material-symbols-outlined">check_circle</span> เช็คลิสต์ทบทวนรวบยอด
 
-- [ ] ทบทวนคำศัพท์ (🔑) ทุกบท — ไล่จาก Chapter1-MOC ถึง Chapter6-MOC
-- [ ] ทบทวนโครงสร้างประโยค (🗣️) ทุกบท โดยเฉพาะจุดที่เคยผิดในสอบย่อยครั้งที่ 1-3
-- [ ] ฝึกฟัง-พูดบทสนทนาตัวอย่าง (💬) ของแต่ละบทซ้ำจนคล่อง
-- [ ] ทบทวนจุดที่มักสับสน (📝 Notes) ที่บันทึกไว้ในแต่ละโน้ต
+- [ ] ทบทวนคำศัพท์ (<span class="material-symbols-outlined">key</span>) ทุกบท — ไล่จาก Chapter1-MOC ถึง Chapter6-MOC
+- [ ] ทบทวนโครงสร้างประโยค (<span class="material-symbols-outlined">record_voice_over</span>) ทุกบท โดยเฉพาะจุดที่เคยผิดในสอบย่อยครั้งที่ 1-3
+- [ ] ฝึกฟัง-พูดบทสนทนาตัวอย่าง (<span class="material-symbols-outlined">forum</span>) ของแต่ละบทซ้ำจนคล่อง
+- [ ] ทบทวนจุดที่มักสับสน (<span class="material-symbols-outlined">edit_note</span> Notes) ที่บันทึกไว้ในแต่ละโน้ต
 
 > [!tip] กลยุทธ์การทบทวน
 > เกณฑ์ประเมินอิงเกณฑ์ (80-100 = A) และคะแนนสอบย่อย 45% เป็นสัดส่วนใหญ่ที่สุดของเกรด — ให้ความสำคัญกับการฟัง-พูดจริง มากกว่าท่องจำเฉย ๆ เหมือนที่ใช้เตรียมสอบย่อยที่ผ่านมา
 
 ---
-➡️ ดูสถานะรวมที่ [[../Deadline-Tracker|Deadline Tracker]]
+<span class="material-symbols-outlined">arrow_forward</span> ดูสถานะรวมที่ [[../Deadline-Tracker|Deadline Tracker]]

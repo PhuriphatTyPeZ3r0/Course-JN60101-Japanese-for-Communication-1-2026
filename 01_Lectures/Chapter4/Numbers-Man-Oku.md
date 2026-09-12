@@ -7,9 +7,9 @@ date: 2026-10-07
 
 # ตัวเลขหลักหมื่นขึ้นไป, ทศนิยม, เศษส่วน
 
-⬅️ กลับไปที่ [[Chapter4-MOC|MOC บทที่ 4]] | ก่อนหน้า: [[Numbers-Hyaku-Sen]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[Chapter4-MOC|MOC บทที่ 4]] | ก่อนหน้า: [[Numbers-Hyaku-Sen]]
 
-## 🔑 Vocabulary (คำศัพท์)
+## <span class="material-symbols-outlined">key</span> Vocabulary (คำศัพท์)
 
 **หลักหมื่น (man):**
 
@@ -27,7 +27,7 @@ date: 2026-10-07
 | 100,000,000 | ichi-oku |
 | 1,000,000,000,000 | it-chō |
 
-## 🗣️ Grammar Pattern (โครงสร้างประโยค)
+## <span class="material-symbols-outlined">record_voice_over</span> Grammar Pattern (โครงสร้างประโยค)
 
 **ระบบนับเลขญี่ปุ่นยึดหลัก 4 หลัก** (ไม่ใช่ 3 หลักแบบภาษาอังกฤษ) — หน่วยจะเปลี่ยนทุก ๆ 10,000 (man) ไม่ใช่ทุก 1,000 เหมือนภาษาไทย/อังกฤษ นี่คือจุดที่มักสับสนที่สุดของบทนี้
 
@@ -44,10 +44,10 @@ date: 2026-10-07
 > 1/4 = yon-bun no ichi
 > 2/3 = san-bun no ni
 
-## 📝 Notes (ข้อควรระวัง)
+## <span class="material-symbols-outlined">edit_note</span> Notes (ข้อควรระวัง)
 
 > [!important] ข้อควรระวัง
 > อย่าพยายามแปลจากภาษาไทย/อังกฤษแบบคำต่อคำ — ตัวเลข 100,000 ไม่ใช่ "hyaku-sen" (ร้อย-พัน) แต่คือ "jū-man" (สิบ-หมื่น) เพราะญี่ปุ่นนับเป็นหน่วยหมื่นตั้งแต่ 10,000 เป็นต้นไป ต้องท่องตารางหลักหมื่น-แสน-ล้าน-สิบล้าน-ร้อยล้าน (man-oku) แยกจากระบบไทย/อังกฤษ
 
 ---
-➡️ ต่อไป: [[Shopping-Requests-Kudasai]]
+<span class="material-symbols-outlined">arrow_forward</span> ต่อไป: [[Shopping-Requests-Kudasai]]

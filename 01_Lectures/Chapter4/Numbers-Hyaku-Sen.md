@@ -7,9 +7,9 @@ date: 2026-10-07
 
 # ตัวเลขหลักร้อยและหลักพัน (100–9,000)
 
-⬅️ กลับไปที่ [[Chapter4-MOC|MOC บทที่ 4]] | ก่อนหน้า: [[Kore-Sore-Are-Kono-Sono-Ano]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[Chapter4-MOC|MOC บทที่ 4]] | ก่อนหน้า: [[Kore-Sore-Are-Kono-Sono-Ano]]
 
-## 🔑 Vocabulary (คำศัพท์)
+## <span class="material-symbols-outlined">key</span> Vocabulary (คำศัพท์)
 
 **หลักร้อย (hyaku):**
 
@@ -23,7 +23,7 @@ date: 2026-10-07
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | sen | ni-sen | **san-zen** | yon-sen | go-sen | roku-sen | nana-sen | **has-sen** | kyū-sen |
 
-## 🗣️ Grammar Pattern (โครงสร้างประโยค)
+## <span class="material-symbols-outlined">record_voice_over</span> Grammar Pattern (โครงสร้างประโยค)
 
 ตัวเลขที่มี **\*** คือจุดที่เกิดการกลายเสียง (sound change) เมื่อเลขฐานมาต่อกับ hyaku/sen — ไม่ได้อ่านตรงตัวแบบ san+hyaku, roku+hyaku, hachi+hyaku
 
@@ -38,10 +38,10 @@ date: 2026-10-07
 > [!example] ตัวอย่างประโยค
 > Kaban wa 3,000-en desu. = กระเป๋าราคา 3,000 เยน (san-zen-en desu)
 
-## 📝 Notes (ข้อควรระวัง)
+## <span class="material-symbols-outlined">edit_note</span> Notes (ข้อควรระวัง)
 
 > [!important] ข้อควรระวัง
 > จุดกลายเสียงมีแค่ 300, 600, 800 (หลักร้อย) และ 3,000, 8,000 (หลักพัน) เท่านั้น — เลขหลักอื่น (100, 200, 400, 500, 700, 900, 1000, 2000, 4000-7000, 9000) อ่านตรงตัวปกติ (เลขฐาน + hyaku/sen) ห้ามจำผิดว่าทุกหลักกลายเสียงหมด
 
 ---
-➡️ ต่อไป: [[Numbers-Man-Oku]]
+<span class="material-symbols-outlined">arrow_forward</span> ต่อไป: [[Numbers-Man-Oku]]

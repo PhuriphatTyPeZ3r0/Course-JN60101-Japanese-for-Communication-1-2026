@@ -7,9 +7,9 @@ date: 2026-09-09
 
 # โครงสร้างประโยค N wa N desu (Basic Sentence Pattern)
 
-⬅️ กลับไปที่ [[Chapter1-MOC|MOC บทที่ 1]] | ก่อนหน้า: [[Pronunciation-Rules]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[Chapter1-MOC|MOC บทที่ 1]] | ก่อนหน้า: [[Pronunciation-Rules]]
 
-## 🔑 Vocabulary (คำศัพท์)
+## <span class="material-symbols-outlined">key</span> Vocabulary (คำศัพท์)
 
 - **wa (は)** — คำช่วยบอกประธานของประโยค (หลัง N1)
 - **desu (です)** — คำลงท้ายสุภาพ แปลว่า "คือ/เป็น" (is/am/are)
@@ -17,7 +17,7 @@ date: 2026-09-09
 - **mo (も)** — คำช่วยแปลว่า "ด้วย" (also) ใช้แทนที่ wa เมื่อพูดถึงสิ่งเดียวกันซ้ำ
 - **dewa arimasen (ではありません)** — รูปปฏิเสธของ desu แปลว่า "ไม่ใช่"
 
-## 🗣️ Grammar Pattern (โครงสร้างประโยค)
+## <span class="material-symbols-outlined">record_voice_over</span> Grammar Pattern (โครงสร้างประโยค)
 
 โครงสร้างประโยคภาษาญี่ปุ่นพื้นฐานคือ **ประธาน + กรรม/ส่วนขยาย + กริยา** (ตรงข้ามกับภาษาไทย/อังกฤษที่กริยามาก่อน) และหลังคำนามแต่ละตัวจะมี **คำช่วย (particle)** บอกหน้าที่ของคำนามนั้นเสมอ
 
@@ -34,7 +34,7 @@ date: 2026-09-09
 > Kore wa nan desu ka? = นี่คืออะไร → Kore wa ... desu. (ตอบแทนที่ nan ด้วยคำนามจริง)
 > Anohito wa dare desu ka? = คนนั้นคือใคร (dare ใช้กับคนทั่วไป, donata สุภาพกว่า ใช้ถามชื่อคนสำคัญ/ผู้ใหญ่)
 
-## 💬 Example Dialogue (บทสนทนาตัวอย่าง)
+## <span class="material-symbols-outlined">forum</span> Example Dialogue (บทสนทนาตัวอย่าง)
 
 **A:** Kore wa nan desu ka?
 **B:** Sore wa sushi desu.
@@ -42,7 +42,7 @@ date: 2026-09-09
 **A:** Anohito wa dare desu ka?
 **B:** Anohito wa Sumisu-san desu.
 
-## 📝 Notes (ข้อควรระวัง)
+## <span class="material-symbols-outlined">edit_note</span> Notes (ข้อควรระวัง)
 
 > [!tip] เคล็ดลับ
 > desu แปลตรงตัวว่า is/am/are — จำง่าย ๆ ว่า "N1 **เป็น/คือ** N2" และจบประโยคแบบสุภาพเสมอด้วย desu
@@ -51,4 +51,4 @@ date: 2026-09-09
 > คำถามที่ใช้ **nan** (อะไร) กับสิ่งของ vs **dare/donata** (ใคร) กับคน — เลือกใช้ให้ถูกตามประเภทของคำตอบที่ต้องการ
 
 ---
-➡️ ต่อไป: [[Pronouns-Honorifics]]
+<span class="material-symbols-outlined">arrow_forward</span> ต่อไป: [[Pronouns-Honorifics]]

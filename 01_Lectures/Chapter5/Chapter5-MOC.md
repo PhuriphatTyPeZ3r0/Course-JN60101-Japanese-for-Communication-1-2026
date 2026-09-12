@@ -10,16 +10,16 @@ source: "บทที่ 5 การซื้อของ 2 JN60101.pdf"
 
 # บทที่ 5 — Buying Things 2 (MOC)
 
-⬅️ บทก่อนหน้า: [[../Chapter4/Chapter4-MOC|MOC บทที่ 4]]
+<span class="material-symbols-outlined">arrow_back</span> บทก่อนหน้า: [[../Chapter4/Chapter4-MOC|MOC บทที่ 4]]
 
-## ✅ เช็คลิสต์ก่อนเข้าเรียน
+## <span class="material-symbols-outlined">check_circle</span> เช็คลิสต์ก่อนเข้าเรียน
 
 - [ ] ทบทวนคำศัพท์สิ่งของที่ซื้อขาย — ดู [[Shopping-Items-Vocabulary]]
 - [ ] ทบทวนวิธีถามแหล่งผลิตสินค้า — ดู [[Countries-Made-In]]
 - [ ] ทบทวนคำคุณศัพท์บอกขนาด/สี — ดู [[Adjectives-Size-Color]]
 - [ ] ทบทวนลักษณนามทั้ง 3 แบบ (tsu/mai/hon) — ดู [[Counters-Japanese]]
 
-## 📋 ภาพรวมบทที่ 5 (สรุปย่อ)
+## <span class="material-symbols-outlined">assignment</span> ภาพรวมบทที่ 5 (สรุปย่อ)
 
 บทที่ 5 ต่อยอดจากบทที่ 4 (การซื้อของ 1) โดยเพิ่มความสามารถในการ:
 
@@ -28,7 +28,7 @@ source: "บทที่ 5 การซื้อของ 2 JN60101.pdf"
 3. ระบุจำนวนสินค้าที่ต้องการซื้อด้วยลักษณนามที่ถูกต้องตามชนิดของสิ่งของ 3 แบบ (つ ทั่วไป, 枚 ของแบน, 本 ของทรงยาว) รวมถึงจำการเปลี่ยนเสียงที่ผิดปกติของ 本 (ippon, roppon, happon, juppon)
 4. ผสมทุกโครงสร้างเข้าด้วยกันเป็นบทสนทนาซื้อของแบบเต็มที่ร้านค้า
 
-## 🗺️ แผนที่หัวข้อบทที่ 5
+## <span class="material-symbols-outlined">map</span> แผนที่หัวข้อบทที่ 5
 
 ```mermaid
 graph TD
@@ -52,7 +52,7 @@ graph TD
     style E fill:#d53f8c,color:#fff
 ```
 
-## 📚 โน้ตรายหัวข้อ
+## <span class="material-symbols-outlined">collections_bookmark</span> โน้ตรายหัวข้อ
 
 | หัวข้อ | เนื้อหาหลัก | หน้าสไลด์ |
 | --- | --- | --- |
@@ -65,4 +65,4 @@ graph TD
 > [!info] สอบย่อยที่เกี่ยวข้อง
 > เนื้อหาบทที่ 5 นี้อยู่ใน **สอบย่อยครั้งที่ 3 (บทที่ 5-6), วันพุธ 4 พฤศจิกายน 2569** — ดู [[../../Deadline-Tracker|Deadline Tracker]] นอกจากนี้ยังเป็นเนื้อหาหลักที่ใช้ในงานกลุ่ม Role Play (คำศัพท์ตัวเลข ราคา คำคุณศัพท์)
 
-➡️ บทถัดไป: [[../Chapter6/Chapter6-MOC|MOC บทที่ 6]]
+<span class="material-symbols-outlined">arrow_forward</span> บทถัดไป: [[../Chapter6/Chapter6-MOC|MOC บทที่ 6]]

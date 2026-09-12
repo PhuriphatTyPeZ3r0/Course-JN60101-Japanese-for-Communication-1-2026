@@ -7,9 +7,9 @@ date: 2026-09-16
 
 # คำศัพท์สิ่งของส่วนตัว (Personal Items Vocabulary)
 
-⬅️ กลับไปที่ [[Chapter2-MOC|MOC บทที่ 2]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[Chapter2-MOC|MOC บทที่ 2]]
 
-## 🔑 Vocabulary (คำศัพท์)
+## <span class="material-symbols-outlined">key</span> Vocabulary (คำศัพท์)
 
 - **hon (本)** — หนังสือ
 - **jisho (辞書)** — พจนานุกรม
@@ -22,7 +22,7 @@ date: 2026-09-16
 - **kasa (傘)** — ร่ม
 - **meishi (名刺)** — นามบัตร
 
-## 🗣️ Grammar Pattern (โครงสร้างประโยค)
+## <span class="material-symbols-outlined">record_voice_over</span> Grammar Pattern (โครงสร้างประโยค)
 
 คำศัพท์กลุ่มนี้เป็นคำนามสิ่งของที่ใช้กับโครงสร้าง "Kore/Sore/Are wa ___ desu" (ดู [[Demonstratives-Kore-Sore-Are]]) และ "N1 no N2" แสดงความเป็นเจ้าของ (ดู [[Possessive-No-Particle]])
 
@@ -30,10 +30,10 @@ date: 2026-09-16
 > Kore wa jisho desu. = นี่คือพจนานุกรม
 > Sore wa hon dewa arimasen. = นั่นไม่ใช่หนังสือ
 
-## 📝 Notes (ข้อควรระวัง)
+## <span class="material-symbols-outlined">edit_note</span> Notes (ข้อควรระวัง)
 
 > [!tip] เคล็ดลับ
 > คำเหล่านี้ทั้งหมดเป็นคำนามธรรมดา (ไม่ใช่คำสรรพนาม) — ต่างจาก kore/sore/are ที่เป็นคำสรรพนามชี้เฉพาะ อย่าสับสนสองกลุ่มนี้เวลาแต่งประโยค
 
 ---
-➡️ ต่อไป: [[Vocabulary-Office-Language-Names]]
+<span class="material-symbols-outlined">arrow_forward</span> ต่อไป: [[Vocabulary-Office-Language-Names]]

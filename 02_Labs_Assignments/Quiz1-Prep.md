@@ -6,14 +6,14 @@ date: 2026-09-08
 
 # สอบย่อยครั้งที่ 1 — บทที่ 1-2
 
-⬅️ กลับไปที่ [[../README|README]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[../README|README]]
 
-## 📋 ขอบเขตสอบ
+## <span class="material-symbols-outlined">assignment</span> ขอบเขตสอบ
 
 - [[../01_Lectures/Chapter1/Chapter1-MOC|บทที่ 1 — การแนะนำตนเอง]]
 - [[../01_Lectures/Chapter2/Chapter2-MOC|บทที่ 2 — การแลกนามบัตร]]
 
-## 🗓️ กำหนดการ
+## <span class="material-symbols-outlined">calendar_today</span> กำหนดการ
 
 - **วันสอบ:** พุธ 23 กันยายน 2569, 8.00–12.30 น.
 - **เวลาในการสอบ:** คนละ 3 นาที
@@ -23,11 +23,11 @@ date: 2026-09-08
 > [!tip] เตรียมตัว
 > ใช้เวลาในการเตรียมสอบมากกว่า 1 คืน — ทบทวนคำศัพท์และไวยากรณ์ทุกหัวข้อใน MOC บทที่ 1 และ 2 ก่อนวันสอบ
 
-## ✅ เช็คลิสต์ทบทวนก่อนสอบ
+## <span class="material-symbols-outlined">check_circle</span> เช็คลิสต์ทบทวนก่อนสอบ
 
 - [ ] คำศัพท์บทที่ 1 (การแนะนำตนเอง) — ดู [[../01_Lectures/Chapter1/Chapter1-MOC]]
 - [ ] คำศัพท์บทที่ 2 (การแลกนามบัตร) — ดู [[../01_Lectures/Chapter2/Chapter2-MOC]]
 - [ ] ฝึกพูดโครงสร้างประโยคหลักของทั้งสองบทให้คล่อง (ไม่ใช่แค่ท่องจำ เพราะเป็นการสอบพูด)
 
 ---
-➡️ ดูสถานะรวมที่ [[../Deadline-Tracker|Deadline Tracker]]
+<span class="material-symbols-outlined">arrow_forward</span> ดูสถานะรวมที่ [[../Deadline-Tracker|Deadline Tracker]]

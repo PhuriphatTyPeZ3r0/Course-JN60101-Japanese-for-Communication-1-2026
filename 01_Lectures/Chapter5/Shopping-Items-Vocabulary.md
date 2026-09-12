@@ -7,9 +7,9 @@ date: 2026-10-21
 
 # คำศัพท์สิ่งของที่ซื้อขาย (Shopping Items)
 
-⬅️ กลับไปที่ [[Chapter5-MOC|MOC บทที่ 5]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[Chapter5-MOC|MOC บทที่ 5]]
 
-## 🔑 Vocabulary (คำศัพท์)
+## <span class="material-symbols-outlined">key</span> Vocabulary (คำศัพท์)
 
 - **T-shatsu (Tシャツ)** — เสื้อยืด
 - **bīru (ビール)** — เบียร์
@@ -24,7 +24,7 @@ date: 2026-10-21
 - **pasokon (パソコン)** — คอมพิวเตอร์
 - **shūkurīmu (シュークリーム)** — ครีมพัฟ (ขนม)
 
-## 🗣️ Grammar Pattern (โครงสร้างประโยค)
+## <span class="material-symbols-outlined">record_voice_over</span> Grammar Pattern (โครงสร้างประโยค)
 
 ใช้ **kono / sono / ano + [สิ่งของ] wa [ราคา]-en desu** เพื่อบอกราคาของสิ่งของ (ทบทวน kono/sono/ano จากบทก่อนหน้า — ใกล้ผู้พูด / ใกล้ผู้ฟัง / ไกลทั้งคู่)
 
@@ -37,10 +37,10 @@ date: 2026-10-21
 > [!example] ตัวอย่างประโยค
 > Kono T-shatsu wa 3,000-en desu. = เสื้อยืดตัวนี้ราคา 3,000 เยน
 
-## 📝 Notes (ข้อควรระวัง)
+## <span class="material-symbols-outlined">edit_note</span> Notes (ข้อควรระวัง)
 
 > [!tip] เคล็ดลับ
 > คำศัพท์กลุ่มนี้ส่วนใหญ่เป็นคำทับศัพท์ภาษาอังกฤษ (katakana loanwords) — ออกเสียงคล้ายภาษาอังกฤษต้นฉบับแต่ปรับให้เข้ากับพยางค์ภาษาญี่ปุ่น เช่น T-shatsu (T-shirt), terebi (television), pasokon (ย่อจาก "personal computer")
 
 ---
-➡️ ต่อไป: [[Countries-Made-In]]
+<span class="material-symbols-outlined">arrow_forward</span> ต่อไป: [[Countries-Made-In]]

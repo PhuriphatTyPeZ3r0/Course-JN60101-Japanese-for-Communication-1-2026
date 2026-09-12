@@ -5,14 +5,14 @@
 
 ---
 
-## 📌 ข้อมูลรายวิชาเบื้องต้น
+## <span class="material-symbols-outlined">push_pin</span> ข้อมูลรายวิชาเบื้องต้น
 
 - **อาจารย์ผู้สอน:** อาจารย์ ดร.เอกนรินทร์ จิรชีวีวงศ์ (กลุ่มวิชาภาษาเพื่อการสื่อสาร สำนักการศึกษาทั่วไป)
 - **รูปแบบการเรียน:** Onsite 100%
 - **ช่องทางหลัก:** LINE กลุ่ม (ติดต่อสื่อสาร) และ PIM e-Learning (ส่งงานทุกชิ้น)
 - **วัตถุประสงค์:** (1) ฟังภาษาญี่ปุ่นเบื้องต้นออก (2) สื่อสารภาษาญี่ปุ่นพื้นฐานได้ (3) มีความสุขในการเรียน
 
-### 🎯 เกณฑ์การประเมินผล (อิงเกณฑ์)
+### <span class="material-symbols-outlined">ads_click</span> เกณฑ์การประเมินผล (อิงเกณฑ์)
 
 | สัดส่วนคะแนน | รายละเอียด |
 |---|---|
@@ -23,7 +23,7 @@
 
 **เกณฑ์เกรด:** 80-100=A · 75-79=B+ · 70-74=B · 65-69=C+ · 60-64=C · 55-59=D+ · 50-54=D · 0-49=F
 
-### 🗓️ ตารางเรียนกลุ่ม 1.2-1
+### <span class="material-symbols-outlined">calendar_today</span> ตารางเรียนกลุ่ม 1.2-1
 
 | สัปดาห์ | วัน | เนื้อหา |
 |---|---|---|
@@ -42,7 +42,7 @@
 
 ---
 
-## 🗂️ โครงสร้าง Repository (Project Structure)
+## <span class="material-symbols-outlined">folder_copy</span> โครงสร้าง Repository (Project Structure)
 
 ```text
 04_JN60101_Japanese-1/
@@ -60,7 +60,7 @@
 
 ---
 
-## 📖 สารบัญสรุปเนื้อหา (Chapter Index)
+## <span class="material-symbols-outlined">menu_book</span> สารบัญสรุปเนื้อหา (Chapter Index)
 
 - [Chapter 1 — Self-Introduction](01_Lectures/Chapter1/Chapter1-MOC.md) — ระบบตัวอักษร, กฎการออกเสียง, N wa N desu, สรรพนาม, การแนะนำตัว
 - [Chapter 2 — Exchanging Business Cards](01_Lectures/Chapter2/Chapter2-MOC.md) — คำศัพท์สิ่งของ, kore/sore/are, N1 no N2, การแลกนามบัตร
@@ -69,7 +69,7 @@
 - [Chapter 5 — Buying Things 2](01_Lectures/Chapter5/Chapter5-MOC.md) — คำคุณศัพท์ขนาด/สี, ลักษณนาม, ประเทศผู้ผลิต, บทสนทนาซื้อของ
 - [Chapter 6 — Confirming Schedule](01_Lectures/Chapter6/Chapter6-MOC.md) — คำบอกเวลาสัมพัทธ์, ikimasu/kimasu/kaerimasu, การบอกวันเดือนปี
 
-## 📝 งานและการสอบ (Assignments & Exams)
+## <span class="material-symbols-outlined">edit_note</span> งานและการสอบ (Assignments & Exams)
 
 - [Quiz 1 Prep](02_Labs_Assignments/Quiz1-Prep.md) (บทที่ 1-2) · [Quiz 2 Prep](02_Labs_Assignments/Quiz2-Prep.md) (บทที่ 3-4) · [Quiz 3 Prep](02_Labs_Assignments/Quiz3-Prep.md) (บทที่ 5-6)
 - [Assignment 1 — Grammar Video](02_Labs_Assignments/Assignment1-Grammar-Video.md) (งานเดี่ยว, 10 คะแนน)
@@ -78,7 +78,7 @@
 
 ---
 
-## 💡 วิธีการใช้งาน (How to Use)
+## <span class="material-symbols-outlined">lightbulb</span> วิธีการใช้งาน (How to Use)
 
 - **เปิดอ่านผ่าน GitHub:** สามารถคลิกลิงก์ Markdown ด้านบนเพื่ออ่านเนื้อหาผ่าน GitHub ได้ทันที
 - **เปิดผ่าน Obsidian:** สามารถเปิดโฟลเดอร์นี้เป็น Obsidian Vault ได้ทันที รองรับ Wikilinks, Callouts (`> [!info]`), และ Mermaid Diagrams

@@ -7,16 +7,16 @@ date: 2026-09-30
 
 # ตัวเลขภาษาญี่ปุ่น (Japanese Numbers)
 
-⬅️ กลับไปที่ [[Chapter3-MOC|MOC บทที่ 3]] | ก่อนหน้า: [[Time-Vocabulary]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[Chapter3-MOC|MOC บทที่ 3]] | ก่อนหน้า: [[Time-Vocabulary]]
 
-## 🔑 Vocabulary (คำศัพท์)
+## <span class="material-symbols-outlined">key</span> Vocabulary (คำศัพท์)
 
 - **1-10:** ichi, ni, san, yon/shi, go, roku, shichi/nana, hachi, kyū, jū
 - **11-19:** jū + เลขหลักหน่วย เช่น jū ichi (11), jū go (15), jū nana/jū shichi (17), jū kyū (19)
 - **20-90 (หลักสิบ):** เลขหลักสิบ + jū เช่น ni jū (20), san jū (30), yon jū (40), go jū (50), roku jū (60), shichi jū/nana jū (70), hachi jū (80), kyū jū (90)
 - **100:** hyaku
 
-## 🗣️ Grammar Pattern (โครงสร้างประโยค)
+## <span class="material-symbols-outlined">record_voice_over</span> Grammar Pattern (โครงสร้างประโยค)
 
 โครงสร้างตัวเลขภาษาญี่ปุ่นเป็นระบบ **ฐาน 10 แบบต่อคำ** ไม่มีคำเฉพาะสำหรับ 20-90 เหมือนภาษาอังกฤษ:
 
@@ -29,7 +29,7 @@ date: 2026-09-30
 > [!example] ตัวอย่างประโยค
 > 25 = ni jū go
 
-## 📝 Notes (ข้อควรระวัง)
+## <span class="material-symbols-outlined">edit_note</span> Notes (ข้อควรระวัง)
 
 > [!important] ข้อควรระวัง
 > เลข 4 และ 7 มีอ่านได้ 2 แบบ: **4 = yon หรือ shi**, **7 = shichi หรือ nana** — ตัวเลือกที่ใช้ขึ้นกับบริบท (เช่นตอนบอกเวลา นาฬิกาใช้ **yo-ji** ไม่ใช่ shi-ji เพราะ shi พ้องเสียงกับคำว่า "ตาย" — ดูรายละเอียดใน [[Telling-Time-Hours-Minutes]])
@@ -38,4 +38,4 @@ date: 2026-09-30
 > ท่องเป็นชุด 1-10 ให้คล่องก่อน เพราะเลข 11 ขึ้นไปคือการเอาชุด 1-10 มาต่อกับ jū (สิบ) ทั้งหมด ไม่มีคำใหม่ต้องจำเพิ่ม
 
 ---
-➡️ ต่อไป: [[Telling-Time-Hours-Minutes]]
+<span class="material-symbols-outlined">arrow_forward</span> ต่อไป: [[Telling-Time-Hours-Minutes]]

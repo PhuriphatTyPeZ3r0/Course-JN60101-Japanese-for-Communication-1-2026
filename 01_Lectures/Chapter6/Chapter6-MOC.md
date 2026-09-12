@@ -10,15 +10,15 @@ source: "บทที่ 6 การยืนยันตารางงาน J
 
 # บทที่ 6 — Confirming Schedule (MOC)
 
-⬅️ บทก่อนหน้า: [[../Chapter5/Chapter5-MOC|MOC บทที่ 5]]
+<span class="material-symbols-outlined">arrow_back</span> บทก่อนหน้า: [[../Chapter5/Chapter5-MOC|MOC บทที่ 5]]
 
-## ✅ เช็คลิสต์ก่อนเข้าเรียน
+## <span class="material-symbols-outlined">check_circle</span> เช็คลิสต์ก่อนเข้าเรียน
 
 - [ ] ทบทวนคำบอกเวลาสัมพัทธ์ (เมื่อวาน/วันนี้/พรุ่งนี้ ฯลฯ) — ดู [[Time-Expressions-Kinou-Ashita]]
 - [ ] ทบทวนการผันคำกริยารูป masu จากบทก่อนหน้า ก่อนต่อยอดกับ ikimasu/kimasu/kaerimasu — ดู [[Ikimasu-Kimasu-Kaerimasu-Grammar]]
 - [ ] ทบทวนคำศัพท์สถานที่ (ธนาคาร ห้าง สถานี สนามบิน) — ดู [[Places-Vocabulary]]
 
-## 📋 ภาพรวมบทที่ 6 (สรุปย่อ)
+## <span class="material-symbols-outlined">assignment</span> ภาพรวมบทที่ 6 (สรุปย่อ)
 
 บทนี้สอนวิธียืนยันตารางงาน/นัดหมาย โดยครอบคลุม 4 ส่วนหลัก:
 
@@ -27,7 +27,7 @@ source: "บทที่ 6 การยืนยันตารางงาน J
 3. **คำศัพท์สถานที่และการเดินทาง** (สนามบิน สถานี สาขาบริษัท รถบัส คนขับรถ) พร้อมคำถามเลือก "dono + N" (อันไหน)
 4. **การบอกวันเดือนปีแบบเต็ม** (ปี-เดือน-วันที่-วัน) ซึ่งเป็นหัวใจของ "การยืนยันตารางงาน" ตามชื่อบท — ใช้ตอบคำถาม nan gatsu / nan nichi / nan yōbi desu ka
 
-## 🗺️ แผนที่หัวข้อบทที่ 6
+## <span class="material-symbols-outlined">map</span> แผนที่หัวข้อบทที่ 6
 
 ```mermaid
 graph TD
@@ -52,7 +52,7 @@ graph TD
     style D fill:#805ad5,color:#fff
 ```
 
-## 📚 โน้ตรายหัวข้อ
+## <span class="material-symbols-outlined">collections_bookmark</span> โน้ตรายหัวข้อ
 
 | หัวข้อ | เนื้อหาหลัก | หน้าสไลด์ |
 | --- | --- | --- |

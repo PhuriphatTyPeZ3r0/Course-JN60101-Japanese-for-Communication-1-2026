@@ -7,9 +7,9 @@ date: 2026-10-28
 
 # สถานที่และการเดินทาง (Places & Travel)
 
-⬅️ กลับไปที่ [[Chapter6-MOC|MOC บทที่ 6]] | ก่อนหน้า: [[Ikimasu-Kimasu-Kaerimasu-Grammar]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[Chapter6-MOC|MOC บทที่ 6]] | ก่อนหน้า: [[Ikimasu-Kimasu-Kaerimasu-Grammar]]
 
-## 🔑 Vocabulary (คำศัพท์)
+## <span class="material-symbols-outlined">key</span> Vocabulary (คำศัพท์)
 
 - **kūkō (空港)** — สนามบิน
 - **eki (駅)** — สถานี (รถไฟ)
@@ -27,7 +27,7 @@ date: 2026-10-28
 - **tomodachi (友達)** — เพื่อน
 - **kaisha no hito (会社の人)** — คนจากบริษัท/เพื่อนร่วมงาน
 
-## 🗣️ Grammar Pattern (โครงสร้างประโยค)
+## <span class="material-symbols-outlined">record_voice_over</span> Grammar Pattern (โครงสร้างประโยค)
 
 **dono + คำนาม + ka?** = ...อันไหน/คันไหน/ตัวไหน? (ใช้ถามเลือกจากหลายตัวเลือก)
 
@@ -39,7 +39,7 @@ date: 2026-10-28
 > [!example] ตัวอย่างประโยค
 > Kaisha no hito to ikimasu. = ไปกับคนจากบริษัท (เพื่อนร่วมงาน)
 
-## 💬 Example Dialogue (บทสนทนาตัวอย่าง)
+## <span class="material-symbols-outlined">forum</span> Example Dialogue (บทสนทนาตัวอย่าง)
 
 **ที่ป้ายรถเมล์ ก่อนขึ้นรถ:**
 
@@ -49,7 +49,7 @@ date: 2026-10-28
 **Basu no untenshu:** 88-ban no basu ga ikimasu.
 **Sumisu:** Arigatō gozaimasu.
 
-## 📝 Notes (ข้อควรระวัง)
+## <span class="material-symbols-outlined">edit_note</span> Notes (ข้อควรระวัง)
 
 > [!tip] เคล็ดลับ
 > "Kono basu wa Shibuya ni ikimasu ka" ใช้ **kono** (คันนี้) เมื่อถามถึงของที่อยู่ตรงหน้า ส่วน "Dono basu ga ikimasu ka" ใช้ **dono** เมื่อยังไม่รู้ว่าอันไหนคือคำตอบ — สังเกตคำช่วยเปลี่ยนจาก **wa** (kono basu) เป็น **ga** (dono basu) ด้วย
@@ -58,4 +58,4 @@ date: 2026-10-28
 > "Itterasshai" (ไปดีมาดีนะ) เป็นคำที่พูดกับคนที่กำลังจะออกเดินทาง/ไปทำธุระ เช่นในบทสนทนา "Ee, Ōsaka-shisha ni ikimasu. Asatte Tōkyō ni kaerimasu." → "Sō desu ka. Itterasshai."
 
 ---
-➡️ ต่อไป: [[Date-Time-Expressions]]
+<span class="material-symbols-outlined">arrow_forward</span> ต่อไป: [[Date-Time-Expressions]]

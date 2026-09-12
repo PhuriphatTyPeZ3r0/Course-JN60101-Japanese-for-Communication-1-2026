@@ -7,9 +7,9 @@ date: 2026-10-28
 
 # การบอกวัน เดือน ปี (Date Expressions)
 
-⬅️ กลับไปที่ [[Chapter6-MOC|MOC บทที่ 6]] | ก่อนหน้า: [[Places-Vocabulary]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[Chapter6-MOC|MOC บทที่ 6]] | ก่อนหน้า: [[Places-Vocabulary]]
 
-## 🔑 Vocabulary (คำศัพท์)
+## <span class="material-symbols-outlined">key</span> Vocabulary (คำศัพท์)
 
 - **nen (年)** — ปี (คริสต์ศักราช) — เช่น 2023 = ni sen nijū san **nen**
 - **gatsu (月)** — เดือน — เอาเลข 1-12 นำหน้า
@@ -18,7 +18,7 @@ date: 2026-10-28
 - **itsu (いつ)** — เมื่อไหร่
 - **otanjōbi (お誕生日)** — วันเกิด
 
-## 🗣️ Grammar Pattern (โครงสร้างประโยค)
+## <span class="material-symbols-outlined">record_voice_over</span> Grammar Pattern (โครงสร้างประโยค)
 
 ### ลำดับการบอกวันที่: ไทย vs ญี่ปุ่น
 
@@ -90,7 +90,7 @@ date: 2026-10-28
 > [!example] ตัวอย่างประโยครวมวันที่เต็ม
 > วันจันทร์ที่ 6 เมษายน 2566 → **ni sen nijū san nen** (ปี) **shi gatsu** (เดือน) **mui-ka** (วันที่) **getsu-yōbi** (วัน)
 
-## 📝 Notes (ข้อควรระวัง)
+## <span class="material-symbols-outlined">edit_note</span> Notes (ข้อควรระวัง)
 
 > [!tip] เคล็ดลับจำลำดับ
 > ญี่ปุ่นเรียงจากหน่วยใหญ่ไปเล็ก (ปี→เดือน→วันที่→วัน) ตรงข้ามกับไทยที่เรียงจากวันไปปี — เวลาผันจากประโยคไทยเป็นญี่ปุ่น ให้ "กลับลำดับ" ก่อนแปลทีละคำ
@@ -99,4 +99,4 @@ date: 2026-10-28
 > "Otanjōbi wa **itsu** desu ka" = วันเกิดคุณคือเมื่อไหร่ — ตอบด้วยรูปแบบ เดือน+วันที่ เช่น "Shi gatsu mui-ka desu."
 
 ---
-➡️ กลับไปที่ [[Chapter6-MOC|MOC บทที่ 6]]
+<span class="material-symbols-outlined">arrow_forward</span> กลับไปที่ [[Chapter6-MOC|MOC บทที่ 6]]

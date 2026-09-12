@@ -10,15 +10,15 @@ source: "บทที่ 3 การคุยเรื่องเวลา JN60
 
 # บทที่ 3 — Talking About Time (MOC)
 
-⬅️ บทก่อนหน้า: [[../Chapter2/Chapter2-MOC|MOC บทที่ 2]]
+<span class="material-symbols-outlined">arrow_back</span> บทก่อนหน้า: [[../Chapter2/Chapter2-MOC|MOC บทที่ 2]]
 
-## ✅ เช็คลิสต์ก่อนเข้าเรียน
+## <span class="material-symbols-outlined">check_circle</span> เช็คลิสต์ก่อนเข้าเรียน
 
 - [ ] ทบทวนระบบคำชี้เฉพาะ こそあど (kore/kono/koko/kochira) — ดู [[Demonstratives-Kore-Sore-Are]]
 - [ ] ท่องคำศัพท์สถานที่/เวลาและตัวเลข 1-100 ให้คล่อง — ดู [[Places-Vocabulary]], [[Time-Vocabulary]], [[Japanese-Numbers]]
 - [ ] ฝึกอ่านเลขโมง/นาทีที่มีข้อยกเว้นการออกเสียง (4=yo-ji, 7=shichi-ji, 9=ku-ji, 1/3/4/6/8/10/100 นาที) — ดู [[Telling-Time-Hours-Minutes]]
 
-## 📋 ภาพรวมบทที่ 3 (สรุปย่อ)
+## <span class="material-symbols-outlined">assignment</span> ภาพรวมบทที่ 3 (สรุปย่อ)
 
 บทนี้สอนการพูดคุยเรื่องเวลาเป็นหลัก แบ่งเป็น 5 ส่วน:
 
@@ -29,7 +29,7 @@ source: "บทที่ 3 การคุยเรื่องเวลา JN60
 5. **การบอกเวลา** — ถามกี่โมง ตอบด้วยลักษณนามชั่วโมง/นาที (มีข้อยกเว้นการออกเสียงหลายจุด) รวมถึง chōdo, daitai, sugi, mō sugu
 6. **โครงสร้าง kara...made** — บอกช่วงเวลาเปิด-ปิดของสถานที่/กิจกรรม พร้อมบทสนทนาตัวอย่างจริง 2 บท
 
-## 🗺️ แผนที่หัวข้อบทที่ 3
+## <span class="material-symbols-outlined">map</span> แผนที่หัวข้อบทที่ 3
 
 ```mermaid
 graph TD
@@ -58,7 +58,7 @@ graph TD
     style E fill:#d69e2e,color:#fff
 ```
 
-## 📚 โน้ตรายหัวข้อ
+## <span class="material-symbols-outlined">collections_bookmark</span> โน้ตรายหัวข้อ
 
 | หัวข้อ | เนื้อหาหลัก | หน้าสไลด์ |
 | --- | --- | --- |
@@ -72,4 +72,4 @@ graph TD
 > [!info] สอบย่อยที่เกี่ยวข้อง
 > เนื้อหาบทที่ 3 อยู่ใน **สอบย่อยครั้งที่ 2 (บทที่ 3-4), วันพุธ 14 ตุลาคม 2569** — ดู [[../../02_Labs_Assignments/Quiz2-Prep|Quiz2-Prep]] และ [[../../Deadline-Tracker|Deadline Tracker]]
 
-➡️ บทถัดไป: [[../Chapter4/Chapter4-MOC|MOC บทที่ 4]]
+<span class="material-symbols-outlined">arrow_forward</span> บทถัดไป: [[../Chapter4/Chapter4-MOC|MOC บทที่ 4]]

@@ -10,13 +10,13 @@ source: "บทที่ 1 การแนะนำตนเอง JN60101.pdf"
 
 # บทที่ 1 — Self-Introduction (MOC)
 
-## ✅ เช็คลิสต์ก่อนเข้าเรียน
+## <span class="material-symbols-outlined">check_circle</span> เช็คลิสต์ก่อนเข้าเรียน
 
 - [ ] ทบทวนตัวอักษร 3 แบบของภาษาญี่ปุ่น (hiragana/katakana/kanji) — ดู [[Japanese-Writing-System]]
 - [ ] ฝึกออกเสียงพยัญชนะแถว K-S-T-N-H-M-Y-R-W และจุดยกเว้น shi/chi/tsu/fu — ดู [[Pronunciation-Rules]]
 - [ ] ทบทวนโครงสร้างประโยค N wa N desu ให้คล่อง — ดู [[Sentence-Structure-Wa-Desu]]
 
-## 📋 ภาพรวมบทที่ 1 (สรุปย่อ)
+## <span class="material-symbols-outlined">assignment</span> ภาพรวมบทที่ 1 (สรุปย่อ)
 
 บทเปิดเทอมนี้ปูพื้นฐานภาษาญี่ปุ่นตั้งแต่ระบบการเขียน ไปจนถึงการแนะนำตัวจริงในบทสนทนา แบ่งเป็น 6 ส่วน:
 
@@ -29,7 +29,7 @@ source: "บทที่ 1 การแนะนำตนเอง JN60101.pdf"
 
 บทนี้เป็นพื้นฐานที่ทุกบทถัดไปอ้างอิงกลับมาใช้ (โครงสร้าง wa/desu และคำช่วย no โดยเฉพาะ)
 
-## 🗺️ แผนที่หัวข้อบทที่ 1
+## <span class="material-symbols-outlined">map</span> แผนที่หัวข้อบทที่ 1
 
 ```mermaid
 graph TD
@@ -59,7 +59,7 @@ graph TD
     style F fill:#805ad5,color:#fff
 ```
 
-## 📚 โน้ตรายหัวข้อ
+## <span class="material-symbols-outlined">collections_bookmark</span> โน้ตรายหัวข้อ
 
 | หัวข้อ | เนื้อหาหลัก | หน้าสไลด์ |
 | --- | --- | --- |
@@ -76,4 +76,4 @@ graph TD
 > [!tip] บทเปิดเทอม
 > วันแรก (พุธ 9 กย 2569) สอนแค่แนะนำรายวิชา + เริ่มบทที่ 1 — เนื้อหาเต็มของบทนี้ต่อเนื่องไปถึงสัปดาห์ที่ 2 (พุธ 16 กย) ซึ่งเรียนคู่กับบทที่ 2
 
-➡️ บทถัดไป: [[../Chapter2/Chapter2-MOC|MOC บทที่ 2]]
+<span class="material-symbols-outlined">arrow_forward</span> บทถัดไป: [[../Chapter2/Chapter2-MOC|MOC บทที่ 2]]

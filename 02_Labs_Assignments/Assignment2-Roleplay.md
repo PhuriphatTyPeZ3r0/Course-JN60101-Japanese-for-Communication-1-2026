@@ -6,9 +6,9 @@ date: 2026-09-08
 
 # งานกลุ่ม — Role Play บทสนทนา
 
-⬅️ กลับไปที่ [[../README|README]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[../README|README]]
 
-## 📋 รายละเอียดงาน
+## <span class="material-symbols-outlined">assignment</span> รายละเอียดงาน
 
 - กลุ่มละ 4-6 คน นักศึกษาเลือกสมาชิกกลุ่มด้วยตนเอง
 - ใช้เนื้อหา**บทที่ 1-6** ในการแต่งสคริปต์บทสนทนา
@@ -17,7 +17,7 @@ date: 2026-09-08
 - ส่งเป็นลิงก์แบบเปิดการมองเห็น หรือไฟล์วีดีโอก็ได้ — หากส่งเป็นลิงก์ ให้แปะลงในไฟล์ Word แล้วส่งไฟล์เวิร์ดในกล่องส่งงาน ไม่จำกัดเวลาในวีดีโอ
 - คะแนนเต็ม **15 คะแนน** (จาก 25 คะแนนของ "งานที่ได้รับมอบหมาย")
 
-## 🧮 เกณฑ์การให้คะแนน (Roleplay)
+## <span class="material-symbols-outlined">calculate</span> เกณฑ์การให้คะแนน (Roleplay)
 
 **คะแนนกลุ่ม**
 
@@ -35,7 +35,7 @@ date: 2026-09-08
 | การออกเสียง | ถูกทุกคำ | ผิด 1 จุด | ผิด 2-3 จุด | ผิด 4-5 จุด | ผิด 6 จุดขึ้นไป |
 | ความคล่องแคล่วและความเป็นธรรมชาติ | ไม่ดูบทพูด คล่องแคล่ว | ติดขัดเล็กน้อย | ดูบทพูด 1-2 บท ติดขัดเล็กน้อย | ดูบทพูด 3-4 บท ติดขัด | ดูบทพูด 5 บทขึ้นไป ติดขัด |
 
-## 🗓️ กำหนดการ
+## <span class="material-symbols-outlined">calendar_today</span> กำหนดการ
 
 - **ส่งรายชื่อกลุ่ม:** ในไลน์กลุ่ม ภายในวันศุกร์ที่ 25 กันยายน 2569
 - **ส่งวิดีโอ/ลิงก์:** ภายในวันศุกร์ที่ 13 พฤศจิกายน 2569 เวลา 17.00 น. ทางกล่องส่งงานใน e-learning — **ตัวแทนกลุ่มส่งแค่คนเดียว**
@@ -47,4 +47,4 @@ date: 2026-09-08
 > มี Google Sheet สำหรับจัดการกลุ่มสร้างเสร็จแล้ว: [JN60101 Role Play - Group Management](https://docs.google.com/spreadsheets/d/1hxdqQc7HwPmwbaCQOhHeyL4ujdrpnbZL32d5z8Qxntg/edit) — ดูรายละเอียดโครงสร้างและสเปกที่ [[Roleplay-Group-Sheet-Spec|Roleplay-Group-Sheet-Spec]]
 
 ---
-➡️ ดูสถานะรวมที่ [[../Deadline-Tracker|Deadline Tracker]]
+<span class="material-symbols-outlined">arrow_forward</span> ดูสถานะรวมที่ [[../Deadline-Tracker|Deadline Tracker]]

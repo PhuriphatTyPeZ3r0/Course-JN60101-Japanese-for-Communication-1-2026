@@ -7,9 +7,9 @@ date: 2026-09-30
 
 # การบอกเวลาในภาษาญี่ปุ่น (Telling Time)
 
-⬅️ กลับไปที่ [[Chapter3-MOC|MOC บทที่ 3]] | ก่อนหน้า: [[Japanese-Numbers]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[Chapter3-MOC|MOC บทที่ 3]] | ก่อนหน้า: [[Japanese-Numbers]]
 
-## 🔑 Vocabulary (คำศัพท์)
+## <span class="material-symbols-outlined">key</span> Vocabulary (คำศัพท์)
 
 - **ima (今)** — ตอนนี้
 - **nanji (何時)** — กี่โมง
@@ -24,7 +24,7 @@ date: 2026-09-30
 - **rei-ji (0時)** — เที่ยงคืน/เวลา 0 นาฬิกา
 - **Dō itashimashite (どういたしまして)** — ไม่เป็นไร (ตอบรับคำขอบคุณ)
 
-## 🗣️ Grammar Pattern (โครงสร้างประโยค)
+## <span class="material-symbols-outlined">record_voice_over</span> Grammar Pattern (โครงสร้างประโยค)
 
 ### ลักษณนามชั่วโมง (~ji)
 
@@ -67,7 +67,7 @@ date: 2026-09-30
 > Ni-ji sugi / Go-ji sugi = เลย 2 โมงไปแล้ว / เลย 5 โมงไปแล้ว
 > Mō sugu san-ji / Mō sugu hachi-ji = อีกไม่นานจะ 3 โมง / อีกไม่นานจะ 2 ทุ่ม
 
-## 📝 Notes (ข้อควรระวัง)
+## <span class="material-symbols-outlined">edit_note</span> Notes (ข้อควรระวัง)
 
 > [!important] ข้อควรระวัง
 > `gozen`/`gogo` วางไว้**หน้า**ตัวเวลา (gozen 8-ji han = 8 โมงครึ่งเช้า) ในขณะที่ `sugi` วางไว้**หลัง**ตัวเวลา (ni-ji sugi) — ตำแหน่งคำสลับกันคนละแบบ อย่าสับสน
@@ -76,4 +76,4 @@ date: 2026-09-30
 > เลขนาที (~fun/~pun) มีข้อยกเว้นเยอะกว่าเลขโมงมาก (1, 3, 4, 6, 8, 10, 100) — จำง่าย ๆ คือเลขที่ลงท้ายด้วยพยัญชนะกัก (1, 6, 8, 10, 100) มักกลายเป็นเสียง **p** ส่วน 3, 4 กลายเป็นเสียง **p** เช่นกันแบบผิดปกติ (ข้อยกเว้นล้วน ๆ ต้องท่องจำ)
 
 ---
-➡️ ต่อไป: [[Kara-Made-Grammar]]
+<span class="material-symbols-outlined">arrow_forward</span> ต่อไป: [[Kara-Made-Grammar]]

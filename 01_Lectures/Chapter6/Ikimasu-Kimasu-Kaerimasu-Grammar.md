@@ -7,9 +7,9 @@ date: 2026-10-28
 
 # ไป-มา-กลับ (Ikimasu / Kimasu / Kaerimasu)
 
-⬅️ กลับไปที่ [[Chapter6-MOC|MOC บทที่ 6]] | ก่อนหน้า: [[Time-Expressions-Kinou-Ashita]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[Chapter6-MOC|MOC บทที่ 6]] | ก่อนหน้า: [[Time-Expressions-Kinou-Ashita]]
 
-## 🔑 Vocabulary (คำศัพท์)
+## <span class="material-symbols-outlined">key</span> Vocabulary (คำศัพท์)
 
 - **iki(masu) (行きます)** — ไป
 - **ki(masu) (来ます)** — มา
@@ -18,7 +18,7 @@ date: 2026-10-28
 - **N + to (と)** — กับ N (ไปด้วยกันกับใคร)
 - **N (สถานที่) + ni (に)** — ไปยัง/มายัง N (บอกจุดหมายปลายทาง)
 
-## 🗣️ Grammar Pattern (โครงสร้างประโยค)
+## <span class="material-symbols-outlined">record_voice_over</span> Grammar Pattern (โครงสร้างประโยค)
 
 **สถานที่ + ni ikimasu** = ไปที่...
 **สถานที่ + ni kimasu** = มาที่...
@@ -56,7 +56,7 @@ date: 2026-10-28
 4. Chan-san wa **kyonen** Nihon ni **kimashita**. — คุณจันมาญี่ปุ่นเมื่อปีที่แล้ว
 5. Sumisu-san wa **rainen** Amerika ni **kaerimasu**. — คุณสมิธจะกลับอเมริกาปีหน้า
 
-## 💬 Example Dialogue (บทสนทนาตัวอย่าง)
+## <span class="material-symbols-outlined">forum</span> Example Dialogue (บทสนทนาตัวอย่าง)
 
 **บทสนทนาทางโทรศัพท์ (นัดประชุม):**
 
@@ -76,7 +76,7 @@ date: 2026-10-28
 **Suzuki:** Ee, Ōsaka-shisha ni ikimasu. Asatte Tōkyō ni kaerimasu.
 **Chan:** Sō desu ka. Itterasshai.
 
-## 📝 Notes (ข้อควรระวัง)
+## <span class="material-symbols-outlined">edit_note</span> Notes (ข้อควรระวัง)
 
 > [!tip] เคล็ดลับ
 > คำถาม "Hitori de kimasu ka" (มาคนเดียวเหรอ) กับคำตอบปฏิเสธ "Iie, kaisha no hito to ikimasu" (ไม่ใช่ค่ะ ไปกับเพื่อนร่วมงาน) แสดงให้เห็นว่า **hitori de** กับ **N+to** ใช้แทนที่กันไม่ได้ในประโยคเดียว — เลือกอย่างใดอย่างหนึ่ง
@@ -85,4 +85,4 @@ date: 2026-10-28
 > 1) พูดตอนวางสายโทรศัพท์ (แทนคำว่า "ลาก่อน") 2) พูดตอนเข้าไปในห้อง/สถานที่ที่มีคนอยู่ (แทนคำว่า "ขอโทษที่รบกวน") — ดูเพิ่มเติมที่ [[Time-Expressions-Kinou-Ashita]] สำหรับคำบอกเวลาที่ใช้คู่กับ ikimasu/kimasu/kaerimasu
 
 ---
-➡️ ต่อไป: [[Places-Vocabulary]]
+<span class="material-symbols-outlined">arrow_forward</span> ต่อไป: [[Places-Vocabulary]]
