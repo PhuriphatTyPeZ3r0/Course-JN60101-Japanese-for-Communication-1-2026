@@ -46,10 +46,11 @@
 
 ```text
 04_JN60101_Japanese-1/
-├── 00_Templates/              # Template โน้ตและคู่มือ format
+├── 00_Templates/               # Template โน้ตและคู่มือ format
 ├── 01_Lectures/
-│   ├── 01_Teaching_Slides/    # สไลด์ประกอบการสอนต้นฉบับ (Ignored in Git)
-│   └── Chapter1-6/            # โน้ตสรุปเนื้อหาแต่ละบท (Markdown / Obsidian)
+│   ├── 01_Docs/                # เอกสารและตำราประกอบการสอน (Ignored in Git)
+│   ├── 02_Teaching_Slides/     # สไลด์ประกอบการสอนต้นฉบับ (Ignored in Git)
+│   └── Chapter1-6/              # โน้ตสรุปเนื้อหาแต่ละบท (Markdown / Obsidian)
 ├── 02_Labs_Assignments/       # ใบงาน, เตรียมสอบย่อย, งานที่ได้รับมอบหมาย
 ├── 03_Projects/               # (ไม่ใช้งานในวิชานี้)
 ├── 04_Exams_Review/           # สรุปทบทวนก่อนสอบปลายภาค
