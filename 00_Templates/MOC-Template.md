@@ -10,20 +10,20 @@ source: "<ชื่อไฟล์สไลด์ต้นฉบับ.pdf>"
 
 # บทที่ <N> — <ชื่อหัวข้อบทภาษาอังกฤษสั้น ๆ> (MOC)
 
-⬅️ บทก่อนหน้า: [[Chapter<N-1>-MOC|MOC บทที่ <N-1>]]
+<span class="material-symbols-outlined">arrow_back</span> บทก่อนหน้า: [[Chapter<N-1>-MOC|MOC บทที่ <N-1>]]
 
 <!-- ถ้าเป็นบทแรกของวิชา (ไม่มีบทก่อนหน้า) ให้ลบบรรทัดนี้ทิ้ง -->
 
-## ✅ เช็คลิสต์ก่อนเข้าเรียน
+## <span class="material-symbols-outlined">check_circle</span> เช็คลิสต์ก่อนเข้าเรียน
 
 - [ ] <รายการเตรียมตัวก่อนเข้าเรียน> — ดู [[<ชื่อโน้ตหัวข้อ>]]
 - [ ] <รายการเตรียมตัวก่อนเข้าเรียน>
 
-## 📋 ภาพรวมบทที่ <N> (สรุปย่อ)
+## <span class="material-symbols-outlined">assignment</span> ภาพรวมบทที่ <N> (สรุปย่อ)
 
 <ย่อหน้าสรุปภาพรวมเนื้อหาของบทนี้ อาจแบ่งเป็นข้อย่อย 1. 2. 3. ตามหัวข้อหลักได้ถ้าเนื้อหามีหลายส่วน>
 
-## 🗺️ แผนที่หัวข้อบทที่ <N>
+## <span class="material-symbols-outlined">map</span> แผนที่หัวข้อบทที่ <N>
 
 ```mermaid
 graph TD
@@ -38,7 +38,7 @@ graph TD
     style B fill:#dd6b20,color:#fff
 ```
 
-## 📚 โน้ตรายหัวข้อ
+## <span class="material-symbols-outlined">collections_bookmark</span> โน้ตรายหัวข้อ
 
 | หัวข้อ | เนื้อหาหลัก | หน้าสไลด์ |
 | --- | --- | --- |
@@ -48,6 +48,6 @@ graph TD
 > [!info] สอบย่อยที่เกี่ยวข้อง
 > <ระบุว่าเนื้อหาบทนี้อยู่ในสอบย่อยครั้งที่เท่าไหร่ วันที่เท่าไหร่ — ดู [[../../Deadline-Tracker|Deadline Tracker]]>
 
-➡️ บทถัดไป: [[Chapter<N+1>-MOC|MOC บทที่ <N+1>]]
+<span class="material-symbols-outlined">arrow_forward</span> บทถัดไป: [[Chapter<N+1>-MOC|MOC บทที่ <N+1>]]
 
 <!-- ถ้ายังไม่มีโน้ตของบทถัดไป ให้ลบบรรทัดนี้ก่อน แล้วค่อยเติมทีหลังตอนสร้าง MOC บทถัดไป -->

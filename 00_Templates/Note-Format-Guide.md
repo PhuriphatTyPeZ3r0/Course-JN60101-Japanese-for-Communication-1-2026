@@ -5,7 +5,7 @@ tags: [jn, meta, guide]
 # คู่มือ Format การสรุปโน้ตวิชา Japanese for Communication 1 (JN60101)
 
 โน้ตทุกไฟล์ในวิชานี้ใช้ format เดียวกัน เพื่อให้:
-- สแกนข้ามโน้ตของแต่ละบทได้เร็ว (emoji หัวข้อเดียวกันหมด อยู่ตำแหน่งเดิมเสมอ)
+- สแกนข้ามโน้ตของแต่ละบทได้เร็ว (icon หัวข้อเดียวกันหมด อยู่ตำแหน่งเดิมเสมอ)
 - backlink ระหว่างโน้ต ↔ MOC ทำงานได้จริง ไม่ขาดตอน
 - ใช้ทบทวนก่อนสอบย่อย/สอบปลายภาคได้เร็ว โดยไม่ต้องเปิดสไลด์ต้นฉบับซ้ำ
 
@@ -38,16 +38,16 @@ Template 2 ไฟล์ในโฟลเดอร์นี้ (`Lecture-Note-Te
 ## กฎโครงสร้างโน้ตรายหัวข้อ (`Lecture-Note-Template.md`)
 
 1. **H1** — ชื่อหัวข้อภาษาไทย (ใส่ภาษาอังกฤษกำกับในวงเล็บถ้าเป็นหัวข้อไวยากรณ์ที่ควรจำ)
-2. **บรรทัด nav บนสุด** — `⬅️ กลับไปที่ [[Chapter<N>-MOC]] | ก่อนหน้า: [[...]]`
+2. **บรรทัด nav บนสุด** — `<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[Chapter<N>-MOC]] | ก่อนหน้า: [[...]]`
    - โน้ตแรกของบท: ตัดส่วน "ก่อนหน้า" ออก เหลือแค่ลิงก์กลับ MOC
-3. **🔑 Vocabulary** (บังคับ) — list คำศัพท์ภาษาญี่ปุ่น (โรมาจิ + ตัวอักษรญี่ปุ่นถ้ามีในสไลด์) พร้อมคำแปลไทย 1 บรรทัดต่อคำ
-4. **🗣️ Grammar Pattern** (บังคับ) — โครงสร้างประโยค/ไวยากรณ์หลัก พร้อม callout `[!example]` อย่างน้อย 1 ตัวอย่างที่มีทั้งประโยคญี่ปุ่นและคำแปล
-5. **💬 Example Dialogue** (มีเงื่อนไข — ดูหัวข้อถัดไป)
-6. **📝 Notes** (บังคับ) — callout `[!tip]` เทคนิคช่วยจำหรือจุดที่มักสับสน (อย่างน้อย 1 ข้อ)
-7. **บรรทัดปิดท้าย** — `---` แล้วตามด้วย `➡️ ต่อไป: [[...]]`
+3. **<span class="material-symbols-outlined">key</span> Vocabulary** (บังคับ) — list คำศัพท์ภาษาญี่ปุ่น (โรมาจิ + ตัวอักษรญี่ปุ่นถ้ามีในสไลด์) พร้อมคำแปลไทย 1 บรรทัดต่อคำ
+4. **<span class="material-symbols-outlined">record_voice_over</span> Grammar Pattern** (บังคับ) — โครงสร้างประโยค/ไวยากรณ์หลัก พร้อม callout `[!example]` อย่างน้อย 1 ตัวอย่างที่มีทั้งประโยคญี่ปุ่นและคำแปล
+5. **<span class="material-symbols-outlined">forum</span> Example Dialogue** (มีเงื่อนไข — ดูหัวข้อถัดไป)
+6. **<span class="material-symbols-outlined">edit_note</span> Notes** (บังคับ) — callout `[!tip]` เทคนิคช่วยจำหรือจุดที่มักสับสน (อย่างน้อย 1 ข้อ)
+7. **บรรทัดปิดท้าย** — `---` แล้วตามด้วย `<span class="material-symbols-outlined">arrow_forward</span> ต่อไป: [[...]]`
    - โน้ตสุดท้ายของบท: เปลี่ยนเป็นลิงก์กลับ MOC แทน
 
-### เมื่อไหร่ต้องมี 💬 Example Dialogue และเมื่อไหร่ไม่ต้องมี
+### เมื่อไหร่ต้องมี <span class="material-symbols-outlined">forum</span> Example Dialogue และเมื่อไหร่ไม่ต้องมี
 
 ใส่เฉพาะเมื่อสไลด์ต้นฉบับมีตัวอย่างบทสนทนา A/B จริง ๆ (เช่น การแนะนำตัว, การถามราคา) ถ้าหัวข้อเป็นคำศัพท์/ไวยากรณ์ล้วน ๆ ไม่มีบทสนทนาประกอบในสไลด์ **ให้ลบ section นี้ทิ้งทั้งหมด** แทนที่จะแต่งบทสนทนาขึ้นมาเอง
 
@@ -55,26 +55,26 @@ Template 2 ไฟล์ในโฟลเดอร์นี้ (`Lecture-Note-Te
 
 1. **H1** — `บทที่ N — <ชื่อหัวข้อบทภาษาอังกฤษ> (MOC)`
 2. **บรรทัด nav บนสุด** — ลิงก์บทก่อนหน้า (ไม่มีในบทแรกของวิชา)
-3. **✅ เช็คลิสต์ก่อนเข้าเรียน** (บังคับ) — checkbox list สิ่งที่ควรทบทวน/เตรียมก่อนเข้าเรียน แต่ละข้อลิงก์ไปโน้ตที่เกี่ยวข้อง
-4. **📋 ภาพรวมบทที่ N** (บังคับ) — ย่อหน้าสรุปเนื้อหาทั้งบท ทุกบทมี section นี้เสมอ
-5. **🗺️ แผนที่หัวข้อบทที่ N** (บังคับ) — mermaid `graph TD` แสดงหัวข้อหลัก → หัวข้อย่อย ของบทนั้น
-6. **📚 โน้ตรายหัวข้อ** (บังคับ) — ตาราง หัวข้อ / เนื้อหาหลัก / หน้าสไลด์
+3. **<span class="material-symbols-outlined">check_circle</span> เช็คลิสต์ก่อนเข้าเรียน** (บังคับ) — checkbox list สิ่งที่ควรทบทวน/เตรียมก่อนเข้าเรียน แต่ละข้อลิงก์ไปโน้ตที่เกี่ยวข้อง
+4. **<span class="material-symbols-outlined">assignment</span> ภาพรวมบทที่ N** (บังคับ) — ย่อหน้าสรุปเนื้อหาทั้งบท ทุกบทมี section นี้เสมอ
+5. **<span class="material-symbols-outlined">map</span> แผนที่หัวข้อบทที่ N** (บังคับ) — mermaid `graph TD` แสดงหัวข้อหลัก → หัวข้อย่อย ของบทนั้น
+6. **<span class="material-symbols-outlined">collections_bookmark</span> โน้ตรายหัวข้อ** (บังคับ) — ตาราง หัวข้อ / เนื้อหาหลัก / หน้าสไลด์
 7. **callout `[!info]` สอบย่อยที่เกี่ยวข้อง** (บังคับ) — ระบุว่าบทนี้อยู่ในสอบย่อยครั้งไหน วันที่เท่าไหร่ อ้างอิง [[../../Deadline-Tracker]]
 8. **บรรทัดปิดท้าย** — ลิงก์บทถัดไป (ใส่ทีหลังตอนสร้าง MOC บทถัดไปแล้ว ถ้ายังไม่มีให้ลบบรรทัดนี้ก่อน)
 
-## ชุด Emoji หัวข้อ (ตายตัว ห้ามเปลี่ยน)
+## ชุด Icon หัวข้อ (ตายตัว ห้ามเปลี่ยน)
 
-| Emoji | ใช้กับ | ความหมาย |
-| --- | --- | --- |
-| ⬅️ ➡️ | ทุกโน้ต | นำทางไปก่อนหน้า/ถัดไป |
-| 🔑 | โน้ตหัวข้อ | Vocabulary |
-| 🗣️ | โน้ตหัวข้อ | Grammar Pattern |
-| 💬 | โน้ตหัวข้อ | Example Dialogue |
-| 📝 | โน้ตหัวข้อ | Notes |
-| ✅ | MOC | เช็คลิสต์ก่อนเข้าเรียน |
-| 📋 | MOC | ภาพรวมบท |
-| 🗺️ | MOC | แผนที่หัวข้อ (mermaid) |
-| 📚 | MOC | ตารางโน้ตรายหัวข้อ |
+| Icon (Material Symbols) | รหัส HTML | ใช้กับ | ความหมาย |
+| --- | --- | --- | --- |
+| arrow_back / arrow_forward | `<span class="material-symbols-outlined">arrow_back</span>` / `<span class="material-symbols-outlined">arrow_forward</span>` | ทุกโน้ต | นำทางไปก่อนหน้า/ถัดไป |
+| key | `<span class="material-symbols-outlined">key</span>` | โน้ตหัวข้อ | Vocabulary |
+| record_voice_over | `<span class="material-symbols-outlined">record_voice_over</span>` | โน้ตหัวข้อ | Grammar Pattern |
+| forum | `<span class="material-symbols-outlined">forum</span>` | โน้ตหัวข้อ | Example Dialogue |
+| edit_note | `<span class="material-symbols-outlined">edit_note</span>` | โน้ตหัวข้อ | Notes |
+| check_circle | `<span class="material-symbols-outlined">check_circle</span>` | MOC | เช็คลิสต์ก่อนเข้าเรียน |
+| assignment | `<span class="material-symbols-outlined">assignment</span>` | MOC | ภาพรวมบท |
+| map | `<span class="material-symbols-outlined">map</span>` | MOC | แผนที่หัวข้อ (mermaid) |
+| collections_bookmark | `<span class="material-symbols-outlined">collections_bookmark</span>` | MOC | ตารางโน้ตรายหัวข้อ |
 
 ## Callout ที่ใช้ได้
 
@@ -91,5 +91,5 @@ Template 2 ไฟล์ในโฟลเดอร์นี้ (`Lecture-Note-Te
 - [ ] `chapter` ใน frontmatter ตรงกับ `tags`
 - [ ] ลิงก์ `[[...]]` ทั้งหมดชี้ไปโน้ตที่มีอยู่จริง (ไม่ใช่ placeholder)
 - [ ] ถ้าไม่มี Example Dialogue section ต้องเป็นเพราะสไลด์ไม่มีบทสนทนาจริง ๆ ไม่ใช่ขี้เกียจแต่ง
-- [ ] เพิ่มแถวของโน้ตนี้ใน MOC (ตาราง 📚 + แผนที่ 🗺️) ของบทนั้นแล้ว
+- [ ] เพิ่มแถวของโน้ตนี้ใน MOC (ตาราง <span class="material-symbols-outlined">collections_bookmark</span> + แผนที่ <span class="material-symbols-outlined">map</span>) ของบทนั้นแล้ว
 - [ ] คำศัพท์/ไวยากรณ์ทุกจุดอ้างอิงจากสไลด์จริง ไม่ใช่แต่งขึ้นเอง

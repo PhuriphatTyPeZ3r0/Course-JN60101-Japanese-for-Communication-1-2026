@@ -7,21 +7,21 @@ date: {{date}}
 
 # {{title}}
 
-⬅️ กลับไปที่ [[Chapter<N>-MOC|MOC บทที่ <N>]] | ก่อนหน้า: [[<ชื่อโน้ตก่อนหน้า>]]
+<span class="material-symbols-outlined">arrow_back</span> กลับไปที่ [[Chapter<N>-MOC|MOC บทที่ <N>]] | ก่อนหน้า: [[<ชื่อโน้ตก่อนหน้า>]]
 
-## 🔑 Vocabulary (คำศัพท์)
+## <span class="material-symbols-outlined">key</span> Vocabulary (คำศัพท์)
 
 - **<คำศัพท์ภาษาญี่ปุ่น (โรมาจิ)>** — <ความหมายภาษาไทย>
 - **<คำศัพท์ภาษาญี่ปุ่น (โรมาจิ)>** — <ความหมายภาษาไทย>
 
-## 🗣️ Grammar Pattern (โครงสร้างประโยค)
+## <span class="material-symbols-outlined">record_voice_over</span> Grammar Pattern (โครงสร้างประโยค)
 
 <อธิบายโครงสร้างประโยค/ไวยากรณ์หลักของหัวข้อนี้ด้วยภาษาที่เข้าใจง่าย ใช้ตารางประกอบได้ถ้าเหมาะสม>
 
 > [!example] ตัวอย่างประโยค
 > <ประโยคภาษาญี่ปุ่น (โรมาจิ)> = <คำแปลไทย>
 
-## 💬 Example Dialogue (บทสนทนาตัวอย่าง)
+## <span class="material-symbols-outlined">forum</span> Example Dialogue (บทสนทนาตัวอย่าง)
 
 <!--
 ใส่ section นี้เฉพาะเมื่อหัวข้อมีบทสนทนาตัวอย่างอยู่ในสไลด์จริง ๆ เท่านั้น
@@ -31,10 +31,10 @@ date: {{date}}
 **A:** <ประโยค>
 **B:** <ประโยค>
 
-## 📝 Notes (ข้อควรระวัง)
+## <span class="material-symbols-outlined">edit_note</span> Notes (ข้อควรระวัง)
 
 > [!tip] เคล็ดลับ
 > <เทคนิคช่วยจำ คำเตือนเรื่องการผันรูป หรือจุดที่มักสับสน>
 
 ---
-➡️ ต่อไป: [[<ชื่อโน้ตถัดไป>]]
+<span class="material-symbols-outlined">arrow_forward</span> ต่อไป: [[<ชื่อโน้ตถัดไป>]]
