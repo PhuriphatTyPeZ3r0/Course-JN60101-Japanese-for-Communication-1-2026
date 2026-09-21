@@ -19,6 +19,7 @@ import {
 } from "@/lib/speech";
 import { VocabItem, UserConfig, SEIYUU_ROSTER, SeiyuuProfile, ImageQuestion, ChapterDialogue } from "@/lib/types";
 import { calculateConfidence } from "@/lib/phonetics";
+import { resolveHobby } from "@/lib/hobbies";
 
 interface SectionDrillProps {
   userConfig: UserConfig;
@@ -179,11 +180,9 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
         expectedJa = `わたしは ${name} です`;
         expectedRomaji = `Watashi wa ${name} desu`;
       } else if (selectedChapterP1 === 1 && p1Step === 3) {
-        const hobby = userConfig.selectedHobby && !userConfig.selectedHobby.includes("งานอดิเรก")
-          ? userConfig.selectedHobby
-          : "まんが";
-        expectedJa = `しゅみは ${hobby} です`;
-        expectedRomaji = `Shumi wa ${hobby} desu`;
+        const resolvedHobby = resolveHobby(userConfig.selectedHobby);
+        expectedJa = `しゅみは ${resolvedHobby.ja} です`;
+        expectedRomaji = `Shumi wa ${resolvedHobby.romaji} desu`;
       }
       return [
         expectedJa,
@@ -410,11 +409,9 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
                 lineJa = `わたしは ${name} です`;
                 lineRomaji = `Watashi wa ${name} desu`;
               } else if (selectedChapterP1 === 1 && idx === 3) {
-                const hobby = userConfig.selectedHobby && !userConfig.selectedHobby.includes("งานอดิเรก")
-                  ? userConfig.selectedHobby
-                  : "まんが";
-                lineJa = `しゅみは ${hobby} です`;
-                lineRomaji = `Shumi wa ${hobby} desu`;
+                const resolvedHobby = resolveHobby(userConfig.selectedHobby);
+                lineJa = `しゅみは ${resolvedHobby.ja} です`;
+                lineRomaji = `Shumi wa ${resolvedHobby.romaji} desu`;
               }
 
               return (
@@ -488,7 +485,9 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
 
                   {userConfig.showThaiHints && (
                     <p className="text-xs text-slate-600 mt-0.5">
-                      ({line.th})
+                      ({selectedChapterP1 === 1 && idx === 3
+                        ? `งานอดิเรกคือ ${resolveHobby(userConfig.selectedHobby).th}`
+                        : line.th})
                     </p>
                   )}
                 </div>

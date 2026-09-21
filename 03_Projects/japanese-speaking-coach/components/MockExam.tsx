@@ -10,6 +10,7 @@ import {
   VOCABULARY_LIST,
   IMAGE_QUESTIONS,
 } from "@/lib/dataset";
+import { resolveHobby } from "@/lib/hobbies";
 import {
   speak,
   speakWithSeiyuuVoice,
@@ -658,31 +659,38 @@ export const MockExam: React.FC<MockExamProps> = ({
             </span>
           </div>
 
-          <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border-2 border-slate-900 space-y-2">
-            <h3 className="text-xl sm:text-2xl font-black text-slate-900 font-jp break-words py-1">
-              {selectedExam === "EXAM_1" && stepIndex === 1
-                ? `わたしは ${userConfig.studentNameJa || "[ชื่อ]"} です`
-                : selectedExam === "EXAM_1" && stepIndex === 3
-                ? `しゅみは ${userConfig.selectedHobby || "[งานอดิเรก]"} です`
-                : currentP1Line.ja}
-            </h3>
+          {(() => {
+            const resolvedHobby = resolveHobby(userConfig.selectedHobby);
+            return (
+              <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border-2 border-slate-900 space-y-2">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900 font-jp break-words py-1">
+                  {selectedExam === "EXAM_1" && stepIndex === 1
+                    ? `わたしは ${userConfig.studentNameJa || "[ชื่อ]"} です`
+                    : selectedExam === "EXAM_1" && stepIndex === 3
+                    ? `しゅみは ${resolvedHobby.ja} です`
+                    : currentP1Line.ja}
+                </h3>
 
-            {userConfig.showRomaji && (
-              <p className="text-xs text-slate-500 font-mono">
-                {selectedExam === "EXAM_1" && stepIndex === 1
-                  ? `Watashi wa ${userConfig.studentNameJa || "[Name]"} desu`
-                  : selectedExam === "EXAM_1" && stepIndex === 3
-                  ? `Shumi wa ${userConfig.selectedHobby || "[Hobby]"} desu`
-                  : currentP1Line.romaji}
-              </p>
-            )}
+                {userConfig.showRomaji && (
+                  <p className="text-xs text-slate-500 font-mono">
+                    {selectedExam === "EXAM_1" && stepIndex === 1
+                      ? `Watashi wa ${userConfig.studentNameJa || "[Name]"} desu`
+                      : selectedExam === "EXAM_1" && stepIndex === 3
+                      ? `Shumi wa ${resolvedHobby.romaji} desu`
+                      : currentP1Line.romaji}
+                  </p>
+                )}
 
-            {userConfig.showThaiHints && (
-              <p className="text-xs text-slate-600 font-medium">
-                ({currentP1Line.th})
-              </p>
-            )}
-          </div>
+                {userConfig.showThaiHints && (
+                  <p className="text-xs text-slate-600 font-medium">
+                    {selectedExam === "EXAM_1" && stepIndex === 3
+                      ? `(งานอดิเรกคือ ${resolvedHobby.th})`
+                      : `(${currentP1Line.th})`}
+                  </p>
+                )}
+              </div>
+            );
+          })()}
         </div>
       )}
 

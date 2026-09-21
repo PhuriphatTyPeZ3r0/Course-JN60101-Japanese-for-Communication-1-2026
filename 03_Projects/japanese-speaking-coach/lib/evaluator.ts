@@ -1,6 +1,7 @@
 // lib/evaluator.ts - Dynamic Evaluator logic for JN60101 Speaking Exams (Exams 1-3 & Final)
 import { EvaluationPayload, EvaluationResult, EXAM_DEFINITIONS, ExamType } from "./types";
 import { calculateConfidence } from "./phonetics";
+import { resolveHobby } from "./hobbies";
 
 export function getSystemPrompt(examType: ExamType = "EXAM_1"): string {
   const meta = EXAM_DEFINITIONS[examType] || EXAM_DEFINITIONS.EXAM_1;
@@ -162,10 +163,24 @@ export function ruleBasedEvaluation(payload: EvaluationPayload): EvaluationResul
       p1Notes.push("ขาดประโยคบอกสังกัด Panyapiwatto no gakusei desu");
     }
 
-    const mShumi = calculateConfidence(p1Text, ["shumi wa", "しゅみは"]);
+    const userHobby = payload.userConfig?.selectedHobby;
+    const resolvedHobby = resolveHobby(userHobby || "manga");
+    const mShumi = calculateConfidence(p1Text, [
+      "shumi wa",
+      "しゅみは",
+      `shumi wa ${resolvedHobby.romaji}`,
+      `しゅみは ${resolvedHobby.ja}`,
+      resolvedHobby.romaji,
+      resolvedHobby.ja,
+    ]);
     if (!mShumi.isMatch && mShumi.scorePercent < 60) {
       p1Score -= 1;
       p1Notes.push("ขาดประโยคบอกงานอดิเรก Shumi wa ... desu");
+    } else if (
+      p1Text.toLowerCase().includes(resolvedHobby.romaji.toLowerCase()) ||
+      p1Text.includes(resolvedHobby.ja)
+    ) {
+      p1Notes.push(`ระบุงานอดิเรก (${resolvedHobby.th}: ${resolvedHobby.romaji}) ชัดเจน`);
     }
 
     const mYoroshiku = calculateConfidence(p1Text, ["douzo yoroshiku", "どうぞ よろしく", "yoroshiku onegai itashimasu"]);
