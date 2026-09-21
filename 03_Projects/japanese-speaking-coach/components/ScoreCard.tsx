@@ -17,11 +17,10 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({
   onGoToDrill,
 }) => {
   const isPass = result.totalScore >= 9;
-  const isAiMode = result.evaluationMode === "AI";
   const progressPercent = Math.min(100, Math.max(0, Math.round((result.totalScore / 15) * 100)));
 
   return (
-    <div className="manga-box p-4 sm:p-8 animate-in fade-in zoom-in-95 duration-200 shadow-[4px_4px_0px_#0f172a]">
+    <div className="manga-box p-3.5 sm:p-6 md:p-8 animate-in fade-in zoom-in-95 duration-200 shadow-[4px_4px_0px_#0f172a]">
       {/* Header Result Banner */}
       <div className="text-center pb-5 border-b-2 border-slate-900 relative">
         {/* Pass / Try Again Stamp */}
@@ -42,13 +41,13 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({
 
         <div>
           <span
-            className={`manga-badge text-[11px] sm:text-xs font-black uppercase tracking-wider mb-2 ${
+            className={`manga-badge text-[10px] sm:text-xs font-black uppercase tracking-wider mb-2 ${
               isPass
                 ? "bg-emerald-400 text-slate-900"
                 : "bg-rose-500 text-white"
             }`}
           >
-            {isPass ? "合格! PASS (ผ่านเกณฑ์ PIM)" : "再挑戦! NEEDS PRACTICE (ฝึกเพิ่มเติม)"}
+            {isPass ? "合格! PASS (ผ่านเกณฑ์ PIM)" : "再挑戦! NEEDS IMPROVEMENT (ฝึกเพิ่มเติม)"}
           </span>
         </div>
 
@@ -60,8 +59,8 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({
         </h2>
 
         {/* Visual Score Progress Bar with Passing Threshold at 9 pts (60%) */}
-        <div className="max-w-md mx-auto mt-3 px-2">
-          <div className="flex items-center justify-between text-[10px] font-mono font-bold text-slate-500 mb-1">
+        <div className="max-w-md mx-auto mt-3 px-1 sm:px-2">
+          <div className="flex items-center justify-between text-[9px] sm:text-[10px] font-mono font-bold text-slate-500 mb-1">
             <span>0 PTS</span>
             <span className="text-rose-600 font-extrabold">เกณฑ์ผ่าน: 9 PTS (60%)</span>
             <span>15 PTS</span>
@@ -93,21 +92,6 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({
               </p>
             </div>
           </div>
-        </div>
-
-        {/* Evaluation Engine Mode Badge */}
-        <div className="mt-3">
-          {isAiMode ? (
-            <div className="inline-flex items-center space-x-1.5 text-xs text-indigo-900 bg-indigo-100 border-2 border-slate-900 rounded-xl px-3 py-1 shadow-[2px_2px_0px_#0f172a] font-bold">
-              <Icon name="psychology" className="text-sm text-indigo-700" />
-              <span>ประเมินผลด้วย AI Sensei (Gemini Flash Engine)</span>
-            </div>
-          ) : (
-            <div className="inline-flex items-center space-x-1.5 text-xs text-slate-800 bg-amber-100 border-2 border-slate-900 rounded-xl px-3 py-1 shadow-[2px_2px_0px_#0f172a] font-bold">
-              <Icon name="gavel" className="text-sm text-amber-700" />
-              <span>ประเมินผลตามเกณฑ์มาตรฐาน PIM (Standard Rule-based Engine)</span>
-            </div>
-          )}
         </div>
       </div>
 
@@ -145,8 +129,8 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({
               {result.part1Feedback}
             </p>
           </div>
-          <div className="mt-3 pt-2 border-t border-slate-200 flex items-center text-[10px] font-bold text-slate-400">
-            <Icon name="badge" className="text-xs mr-1 text-slate-500" />
+          <div className="mt-3 pt-2 border-t border-slate-200 flex items-center text-[10px] font-bold text-slate-500">
+            <Icon name="badge" className="text-xs mr-1 text-slate-500 shrink-0" />
             <span>เกณฑ์ 5 ประโยคตามฟอร์ม</span>
           </div>
         </div>
@@ -183,8 +167,8 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({
               {result.part2Feedback}
             </p>
           </div>
-          <div className="mt-3 pt-2 border-t border-slate-200 flex items-center text-[10px] font-bold text-slate-400">
-            <Icon name="menu_book" className="text-xs mr-1 text-slate-500" />
+          <div className="mt-3 pt-2 border-t border-slate-200 flex items-center text-[10px] font-bold text-slate-500">
+            <Icon name="menu_book" className="text-xs mr-1 text-slate-500 shrink-0" />
             <span>คำศัพท์ประจำชุดข้อสอบ</span>
           </div>
         </div>
@@ -221,8 +205,8 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({
               {result.part3Feedback}
             </p>
           </div>
-          <div className="mt-3 pt-2 border-t border-slate-200 flex items-center text-[10px] font-bold text-slate-400">
-            <Icon name="image" className="text-xs mr-1 text-slate-500" />
+          <div className="mt-3 pt-2 border-t border-slate-200 flex items-center text-[10px] font-bold text-slate-500">
+            <Icon name="image" className="text-xs mr-1 text-slate-500 shrink-0" />
             <span>ถาม-ตอบสถานการณ์และภาพประกอบ</span>
           </div>
         </div>
@@ -234,7 +218,7 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({
           onClick={onRetake}
           className="manga-btn w-full sm:w-auto px-6 py-3 bg-rose-500 hover:bg-rose-600 text-white text-sm font-black flex items-center justify-center space-x-2 shadow-[3px_3px_0px_#0f172a]"
         >
-          <Icon name="replay" className="text-base" />
+          <Icon name="replay" className="text-base shrink-0" />
           <span>จำลองสอบใหม่อีกครั้ง</span>
         </button>
 
@@ -242,7 +226,7 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({
           onClick={onGoToDrill}
           className="manga-btn w-full sm:w-auto px-6 py-3 bg-amber-400 hover:bg-amber-500 text-slate-900 text-sm font-black flex items-center justify-center space-x-2 shadow-[3px_3px_0px_#0f172a]"
         >
-          <Icon name="school" className="text-base" />
+          <Icon name="school" className="text-base shrink-0" />
           <span>ไปที่โหมดฝึกซ้อมอิสระ</span>
         </button>
       </div>

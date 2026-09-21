@@ -368,8 +368,9 @@ export const IMAGE_QUESTIONS: ImageQuestion[] = [
     questionTh: "นี่คืออะไร?",
     expectedAnswerJa: "Kore wa isu desu.",
     expectedAnswerRomaji: "Kore wa isu desu.",
-    keywords: ["isu", "kore wa isu desu", "いす", "椅子"],
-    imageType: "svg",
+    keywords: ["isu", "kore wa isu desu", "いす", "椅子", "hon", "hon desu", "kore wa hon desu", "ほん", "本"],
+    imageType: "url",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/5/54/Wikipe-tan_Currently_reading_the_book.png",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#F8FAFC"/>
       <rect x="70" y="30" width="60" height="75" rx="8" fill="#1E293B"/>
@@ -414,8 +415,9 @@ export const IMAGE_QUESTIONS: ImageQuestion[] = [
     questionTh: "คนนั้นคือใคร?",
     expectedAnswerJa: "Anohito wa ginkō-in desu.",
     expectedAnswerRomaji: "Anohito wa ginkō-in desu.",
-    keywords: ["anohito wa ginkoin desu", "ginkoin desu", "ginko-in", "ぎんこういんです", "銀行員です"],
-    imageType: "svg",
+    keywords: ["anohito wa ginkoin desu", "ginkoin desu", "ginko-in", "ぎんこういんです", "銀行員です", "sensei", "sensei desu", "anohito wa sensei desu", "せんせい", "先生"],
+    imageType: "url",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/75/Adult_Commons-tan.png",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#EFF6FF"/>
       <rect x="35" y="30" width="130" height="70" rx="4" fill="#3B82F6"/>
@@ -437,8 +439,9 @@ export const IMAGE_QUESTIONS: ImageQuestion[] = [
     questionTh: "นี่คือนิตยสารเกี่ยวกับอะไร?",
     expectedAnswerJa: "Kore wa nihongo no zasshi desu.",
     expectedAnswerRomaji: "Kore wa nihongo no zasshi desu.",
-    keywords: ["kore wa nihongo no zasshi desu", "nihongo no zasshi desu", "nihongo no zasshi", "にほんごの ざっしです", "日本語の雑誌です"],
-    imageType: "svg",
+    keywords: ["kore wa nihongo no zasshi desu", "nihongo no zasshi desu", "nihongo no zasshi", "にほんごの ざっしです", "日本語の雑誌です", "kuruma no zasshi", "kuruma no zasshi desu", "zasshi", "くるまの ざっし", "雑誌"],
+    imageType: "url",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Comic-book.png",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#FDF4FF"/>
       <rect x="45" y="25" width="110" height="150" rx="6" fill="#EC4899" stroke="#BE185D" stroke-width="3"/>
@@ -459,8 +462,9 @@ export const IMAGE_QUESTIONS: ImageQuestion[] = [
     questionTh: "ที่นี่/ตรงนี้คืออะไร? (เคาน์เตอร์ประชาสัมพันธ์)",
     expectedAnswerJa: "Kochira wa uketsuke desu.",
     expectedAnswerRomaji: "Kochira wa uketsuke desu.",
-    keywords: ["kochira wa uketsuke desu", "uketsuke desu", "uketsuke", "うけつけです", "受付です"],
-    imageType: "svg",
+    keywords: ["kochira wa uketsuke desu", "uketsuke desu", "uketsuke", "うけつけです", "受付です", "pen", "pen desu", "nooto", "nooto desu", "enpitsu", "ペン", "ノート", "えんぴつ"],
+    imageType: "url",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/0/0d/Wikipe-tan_wearing_Hotel_Maid_attire_02.png",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#F0FDF4"/>
       <ellipse cx="100" cy="140" rx="75" ry="30" fill="#10B981"/>
@@ -480,8 +484,9 @@ export const IMAGE_QUESTIONS: ImageQuestion[] = [
     questionTh: "นี่คือร่มของใคร? (สมมติว่าเป็นร่มของคุณ)",
     expectedAnswerJa: "Watashi no kasa desu.",
     expectedAnswerRomaji: "Watashi no kasa desu.",
-    keywords: ["watashi no kasa desu", "watashi no kasa", "わたしの かさです", "私の傘です"],
-    imageType: "svg",
+    keywords: ["watashi no kasa desu", "watashi no kasa", "kasa", "kasa desu", "わたしの かさです", "私の傘です", "かさ"],
+    imageType: "url",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c6/Karakasa.jpg",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#EFF6FF"/>
       <path d="M40 100 Q100 30 160 100 Z" fill="#3B82F6"/>
@@ -501,7 +506,8 @@ export const IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerJa: "Kore wa tokei desu.",
     expectedAnswerRomaji: "Kore wa tokei desu.",
     keywords: ["kore wa tokei desu", "tokei desu", "tokei", "とけいです", "時計です"],
-    imageType: "svg",
+    imageType: "url",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/4/45/MontreGousset001.jpg",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#FFFBEB"/>
       <rect x="80" y="20" width="40" height="160" rx="6" fill="#D97706"/>
@@ -522,8 +528,9 @@ export const IMAGE_QUESTIONS: ImageQuestion[] = [
     questionTh: "นี่คือหนังสือเกี่ยวกับอะไร? (หนังสือรถยนต์)",
     expectedAnswerJa: "Kore wa kuruma no hon desu.",
     expectedAnswerRomaji: "Kore wa kuruma no hon desu.",
-    keywords: ["kore wa kuruma no hon desu", "kuruma no hon desu", "jidousha no hon desu", "くるまの ほんです", "車の本です"],
-    imageType: "svg",
+    keywords: ["kore wa kuruma no hon desu", "kuruma no hon desu", "jidousha no hon desu", "くるまの ほんです", "車の本です", "nihongo no hon", "hon", "にほんごの ほん", "日本語の本"],
+    imageType: "url",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Chibi_Mirai_Suenaga_itasha.png/500px-Chibi_Mirai_Suenaga_itasha.png",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#F8FAFC"/>
       <rect x="45" y="25" width="110" height="150" rx="6" fill="#2563EB" stroke="#1D4ED8" stroke-width="3"/>
@@ -547,7 +554,8 @@ export const IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerJa: "Ima san-ji desu.",
     expectedAnswerRomaji: "Ima san-ji desu.",
     keywords: ["ima sanji desu", "sanji desu", "choudo sanji", "いま さんじです", "3時です"],
-    imageType: "svg",
+    imageType: "url",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Clock_03-00.svg",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#F0F9FF"/>
       <circle cx="100" cy="100" r="75" fill="#FFFFFF" stroke="#0284C7" stroke-width="8"/>
@@ -574,7 +582,8 @@ export const IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerJa: "Ku-ji kara go-ji made desu.",
     expectedAnswerRomaji: "Ku-ji kara go-ji made desu.",
     keywords: ["kuji kara goji made desu", "kuji kara goji made", "9-ji kara 5-ji made", "くじから ごじまでです", "9時から5時まで"],
-    imageType: "svg",
+    imageType: "url",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c6/Anime_calendar_-_8502402804.jpg",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#F8FAFC"/>
       <rect x="25" y="35" width="150" height="120" rx="8" fill="#1E293B" stroke="#0F172A" stroke-width="4"/>
@@ -596,7 +605,8 @@ export const IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerJa: "Koko wa shokudō desu.",
     expectedAnswerRomaji: "Koko wa shokudō desu.",
     keywords: ["koko wa shokudo desu", "shokudou desu", "shokudo", "しょくどうです", "食堂です"],
-    imageType: "svg",
+    imageType: "url",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Hina_Matsuri.jpg/500px-Hina_Matsuri.jpg",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#FFFBEB"/>
       <circle cx="100" cy="85" r="50" fill="#F59E0B"/>
@@ -621,7 +631,8 @@ export const IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerJa: "Kaban wa san-zen-en desu.",
     expectedAnswerRomaji: "Kaban wa san-zen-en desu.",
     keywords: ["sanzen en desu", "san-zen-en", "sanzenen", "さんぜんえんです", "3000円です"],
-    imageType: "svg",
+    imageType: "url",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Cosplay_of_Wikipe-tan_%28in_school_uniform_dress%29_at_NOiZUcon_2023.jpg/500px-Cosplay_of_Wikipe-tan_%28in_school_uniform_dress%29_at_NOiZUcon_2023.jpg",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#F8FAFC"/>
       <!-- Bag Body -->
@@ -646,7 +657,8 @@ export const IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerJa: "Kore wa pasokon desu.",
     expectedAnswerRomaji: "Kore wa pasokon desu.",
     keywords: ["pasokon desu", "konpyuta desu", "konpyuutaa", "パソコンです", "コンピューターです"],
-    imageType: "svg",
+    imageType: "url",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/1/16/Wikipe-tan_at_her_computer.png",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#F1F5F9"/>
       <!-- Laptop Screen -->
@@ -672,7 +684,8 @@ export const IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerJa: "Kono aoi T-shatsu desu.",
     expectedAnswerRomaji: "Kono aoi T-shatsu desu.",
     keywords: ["aoi t-shatsu desu", "aoi tshatsu", "kono aoi", "あおい Tシャツです", "青いTシャツです"],
-    imageType: "svg",
+    imageType: "url",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b5/Blue_Admin_T-shirt.svg",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#F0F9FF"/>
       <!-- Blue T-shirt -->
@@ -692,7 +705,8 @@ export const IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerJa: "Ringo o futatsu kudasai.",
     expectedAnswerRomaji: "Ringo o futatsu kudasai.",
     keywords: ["ringo o futatsu kudasai", "futatsu kudasai", "futatsu", "ふたつ ください", "2つください"],
-    imageType: "svg",
+    imageType: "url",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/fe/Apple_%28PSF%29.png",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#FEF2F2"/>
       <!-- Apple 1 -->
@@ -717,7 +731,8 @@ export const IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerJa: "Kore wa Suisu no tokei desu.",
     expectedAnswerRomaji: "Kore wa Suisu no tokei desu.",
     keywords: ["suisu no tokei desu", "suisu no tokei", "suisu", "スイスの とけいです", "スイスの時計です"],
-    imageType: "svg",
+    imageType: "url",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/3/33/BwcOmega911a.jpg",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#FFFBEB"/>
       <!-- Watch -->
@@ -742,7 +757,8 @@ export const IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerJa: "Kyō wa getsu-yōbi desu.",
     expectedAnswerRomaji: "Kyō wa getsu-yōbi desu.",
     keywords: ["getsuyoubi desu", "getsuyobi desu", "getsu-yobi", "げつようびです", "月曜日です"],
-    imageType: "svg",
+    imageType: "url",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c6/Anime_calendar_-_8502402804.jpg",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#F8FAFC"/>
       <!-- Calendar Header -->
@@ -769,7 +785,8 @@ export const IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerJa: "Ashita kūkō e ikimasu.",
     expectedAnswerRomaji: "Ashita kūkō e ikimasu.",
     keywords: ["ashita kuukou e ikimasu", "kuukou e ikimasu", "kuko e ikimasu", "くうこうへ いきます", "空港へ行きます"],
-    imageType: "svg",
+    imageType: "url",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/JC_Staff%E8%A3%BD%E4%BD%9CMirai_Millennium.jpg/500px-JC_Staff%E8%A3%BD%E4%BD%9CMirai_Millennium.jpg",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#EFF6FF"/>
       <!-- Control Tower -->
@@ -792,7 +809,8 @@ export const IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerJa: "Koko wa eki desu.",
     expectedAnswerRomaji: "Koko wa eki desu.",
     keywords: ["koko wa eki desu", "eki desu", "eki", "えきです", "駅です"],
-    imageType: "svg",
+    imageType: "url",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Culture_Japan_booth_at_Anime_Expo_20130703.jpg/500px-Culture_Japan_booth_at_Anime_Expo_20130703.jpg",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#F0FDF4"/>
       <!-- Train / Station front -->

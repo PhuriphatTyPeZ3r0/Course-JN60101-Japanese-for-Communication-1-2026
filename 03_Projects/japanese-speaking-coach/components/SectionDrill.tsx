@@ -309,13 +309,13 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
             setFeedback(null);
             setCurrentInput("");
           }}
-          className={`flex-1 py-1.5 sm:py-2 px-1 sm:px-2 rounded-xl text-xs font-black transition flex items-center justify-center space-x-1 ${
+          className={`flex-1 py-1.5 sm:py-2 px-1 sm:px-2 rounded-xl text-[11px] sm:text-xs font-black transition flex items-center justify-center space-x-1 min-w-0 ${
             activePart === 1
               ? "bg-rose-500 text-white shadow-[1px_1px_0px_#0f172a]"
               : "text-slate-700 hover:text-slate-900"
           }`}
         >
-          <Icon name="record_voice_over" className="text-sm sm:text-base" />
+          <Icon name="record_voice_over" className="text-sm sm:text-base shrink-0" />
           <span className="truncate">1. บทสนทนา & ประโยค</span>
         </button>
 
@@ -325,13 +325,13 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
             setFeedback(null);
             setCurrentInput("");
           }}
-          className={`flex-1 py-1.5 sm:py-2 px-1 sm:px-2 rounded-xl text-xs font-black transition flex items-center justify-center space-x-1 ${
+          className={`flex-1 py-1.5 sm:py-2 px-1 sm:px-2 rounded-xl text-[11px] sm:text-xs font-black transition flex items-center justify-center space-x-1 min-w-0 ${
             activePart === 2
               ? "bg-blue-500 text-white shadow-[1px_1px_0px_#0f172a]"
               : "text-slate-700 hover:text-slate-900"
           }`}
         >
-          <Icon name="translate" className="text-sm sm:text-base" />
+          <Icon name="translate" className="text-sm sm:text-base shrink-0" />
           <span className="truncate">2. คลังคำศัพท์</span>
         </button>
 
@@ -341,14 +341,14 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
             setFeedback(null);
             setCurrentInput("");
           }}
-          className={`flex-1 py-1.5 sm:py-2 px-1 sm:px-2 rounded-xl text-xs font-black transition flex items-center justify-center space-x-1 ${
+          className={`flex-1 py-1.5 sm:py-2 px-1 sm:px-2 rounded-xl text-[11px] sm:text-xs font-black transition flex items-center justify-center space-x-1 min-w-0 ${
             activePart === 3
               ? "bg-emerald-500 text-white shadow-[1px_1px_0px_#0f172a]"
               : "text-slate-700 hover:text-slate-900"
           }`}
         >
-          <Icon name="image" className="text-sm sm:text-base" />
-          <span className="truncate">3. ถามตอบภาพ SVG</span>
+          <Icon name="image" className="text-sm sm:text-base shrink-0" />
+          <span className="truncate">3. ถามตอบจากภาพ</span>
         </button>
       </div>
 
