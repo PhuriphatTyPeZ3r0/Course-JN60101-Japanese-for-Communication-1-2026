@@ -349,6 +349,7 @@ export const MockExam: React.FC<MockExamProps> = ({
       part2Answers: p2,
       part3Answers: p3,
       userConfig: userConfig,
+      clientApiKey: userConfig.geminiApiKey,
     };
 
     try {
@@ -740,6 +741,8 @@ export const MockExam: React.FC<MockExamProps> = ({
           <div className="manga-box-sm overflow-hidden p-1.5 bg-white max-w-[120px] sm:max-w-[150px] mx-auto">
             <SvgImage
               svgContent={currentImgItem.imageSvg}
+              imageUrl={currentImgItem.imageUrl}
+              alt={currentImgItem.title}
               className="w-24 h-24 sm:w-32 sm:h-32 mx-auto"
             />
           </div>

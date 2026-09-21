@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect, useMemo } from "react";
 import { Icon } from "./Icon";
-import { UserConfig, SeiyuuVoiceId } from "@/lib/types";
+import { UserConfig, SeiyuuVoiceId, DEFAULT_USER_CONFIG } from "@/lib/types";
 import { playSeiyuuGreeting } from "@/lib/speech";
 import {
   HOBBY_DICTIONARY,
@@ -600,6 +600,46 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 <span className="w-4 h-4 rounded-full bg-slate-900 border border-slate-900" />
               </button>
             </div>
+          </div>
+
+          {/* 6. Gemini AI Engine Configuration */}
+          <div className="p-3 rounded-2xl bg-slate-50 border-2 border-slate-900 space-y-1.5">
+            <div className="flex items-center justify-between">
+              <label className="flex items-center text-xs font-black text-slate-900">
+                <Icon name="psychology" className="text-sm text-indigo-600 mr-1" />
+                AI Sensei Evaluator (Gemini Flash Engine)
+              </label>
+              <span className="manga-badge bg-indigo-600 text-white text-[9px] flex items-center space-x-0.5">
+                <Icon name="verified" className="text-[10px] mr-0.5" />
+                <span>ONLINE AI</span>
+              </span>
+            </div>
+            <div className="flex items-center space-x-1.5">
+              <input
+                type="password"
+                value={formConfig.geminiApiKey || ""}
+                onChange={(e) =>
+                  setFormConfig({ ...formConfig, geminiApiKey: e.target.value })
+                }
+                placeholder="ใส่ Gemini API Key (AQ... หรือ AIza...)"
+                className="flex-1 px-3 py-1.5 rounded-xl border-2 border-slate-900 text-xs font-mono font-bold bg-white focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              />
+              <button
+                type="button"
+                onClick={() =>
+                  setFormConfig({
+                    ...formConfig,
+                    geminiApiKey: DEFAULT_USER_CONFIG.geminiApiKey || "",
+                  })
+                }
+                className="px-2 py-1.5 bg-slate-100 hover:bg-slate-200 border-2 border-slate-900 rounded-xl text-[10px] font-bold text-slate-800 shrink-0"
+              >
+                คืนค่าเริ่มต้น
+              </button>
+            </div>
+            <p className="text-[10px] text-slate-500">
+              *ระบบเชื่อมต่อกับ Gemini Flash Lite API ล่าสุดเพื่อตรวจประเมินคะแนนเชิงลึก
+            </p>
           </div>
         </div>
 

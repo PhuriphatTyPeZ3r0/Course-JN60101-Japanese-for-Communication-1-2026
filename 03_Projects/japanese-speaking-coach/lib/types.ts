@@ -73,6 +73,7 @@ export interface UserConfig {
   fishAudioApiKey?: string;
   animeVoice?: AnimeVoiceId;
   email?: string;
+  geminiApiKey?: string;
 }
 
 export const DEFAULT_USER_CONFIG: UserConfig = {
@@ -84,7 +85,7 @@ export const DEFAULT_USER_CONFIG: UserConfig = {
   enableSfx: true,
   seiyuuVoice: "web_speech", // Only Default System Voice
   voiceProvider: "web_speech",
-  animeVoice: "web_speech",
+  geminiApiKey: typeof process !== "undefined" && process.env ? process.env.NEXT_PUBLIC_GEMINI_API_KEY || "" : "",
 };
 
 export type ExamType = "EXAM_1" | "EXAM_2" | "EXAM_3" | "FINAL";
@@ -231,8 +232,9 @@ export interface ImageQuestion {
   expectedAnswerJa: string;
   expectedAnswerRomaji: string;
   keywords: string[];
-  imageType: "svg";
-  imageSvg: string;
+  imageType: "svg" | "url";
+  imageSvg?: string;
+  imageUrl?: string;
   title: string;
   note: string;
 }
@@ -281,4 +283,5 @@ export interface EvaluationResult {
   part3Feedback: string;
   overallSummary: string;
   warning?: string;
+  evaluationMode?: "AI" | "RULE_BASED";
 }

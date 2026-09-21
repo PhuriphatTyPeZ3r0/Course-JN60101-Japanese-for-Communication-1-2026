@@ -123,7 +123,7 @@ export const onRequestPost = async (context: {
       }
     }
 
-    // 4. API Key Resolution (Server Secret Priority)
+    // 4. API Key Resolution (Server Secret Priority or Client Key)
     const apiKey = context.env.GEMINI_API_KEY || body.clientApiKey;
 
     let result: EvaluationResult;
@@ -133,7 +133,7 @@ export const onRequestPost = async (context: {
       } catch (err: unknown) {
         console.error("Gemini API call failed, falling back to rule-based:", err);
         result = ruleBasedEvaluation(body);
-        result.warning = "ประมวลผลด้วยระบบประเมินภายใน (AI Server ไม่สามารถติดต่อได้ชั่วคราว)";
+        result.warning = "ประเมินผลด้วยระบบตรวจมาตรฐาน PIM (Standard Rule-based Engine)";
       }
     } else {
       result = ruleBasedEvaluation(body);

@@ -85,7 +85,7 @@ ${part1Rubric}
 export async function callGemini(payload: EvaluationPayload, apiKey: string): Promise<EvaluationResult> {
   const examType = payload.examType || "EXAM_1";
   const systemPrompt = getSystemPrompt(examType);
-  const models = ["gemini-1.5-flash", "gemini-2.0-flash", "gemini-1.5-flash-8b"];
+  const models = ["gemini-flash-lite-latest", "gemini-3.5-flash-lite", "gemini-flash-latest", "gemini-3.6-flash"];
   let lastError: Error | null = null;
 
   for (const model of models) {
@@ -126,6 +126,8 @@ export async function callGemini(payload: EvaluationPayload, apiKey: string): Pr
 
       const parsed: EvaluationResult = JSON.parse(text);
       parsed.examType = examType;
+      parsed.evaluationMode = "AI";
+      parsed.warning = undefined;
       return parsed;
     } catch (err: unknown) {
       lastError = err instanceof Error ? err : new Error(String(err));
@@ -322,6 +324,8 @@ export function ruleBasedEvaluation(payload: EvaluationPayload): EvaluationResul
   const total = p1Score + p2Score + p3Score;
   return {
     examType: examType,
+    evaluationMode: "RULE_BASED",
+    warning: "ประเมินผลด้วยระบบตรวจมาตรฐาน PIM (Standard Rule-based Engine)",
     totalScore: total,
     part1Score: p1Score,
     part2Score: p2Score,

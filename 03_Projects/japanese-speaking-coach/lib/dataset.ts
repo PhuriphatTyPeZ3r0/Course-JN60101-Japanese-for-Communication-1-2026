@@ -393,7 +393,8 @@ export const IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerJa: "Anohito wa Nihon kara kimashita.",
     expectedAnswerRomaji: "Anohito wa Nihon kara kimashita.",
     keywords: ["anohito wa nihon kara kimashita", "nihon kara kimashita", "にほんから きました", "日本から来ました"],
-    imageType: "svg",
+    imageType: "url",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Wikipe-tan_kimono.png",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#FEF2F2"/>
       <circle cx="100" cy="65" r="32" fill="#DC2626"/>

@@ -810,6 +810,8 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
           <div className="manga-box-sm overflow-hidden p-1.5 bg-white max-w-[130px] sm:max-w-[160px] mx-auto">
             <SvgImage
               svgContent={currentImageQ.imageSvg}
+              imageUrl={currentImageQ.imageUrl}
+              alt={currentImageQ.title}
               className="w-28 h-28 sm:w-36 sm:h-36 mx-auto"
             />
           </div>
