@@ -1,4 +1,4 @@
-// components/SectionDrill.tsx - Mobile-First Neo-Brutalism Manga Section Drill (Chapters 1-6 Full Integration)
+// components/SectionDrill.tsx - Mobile-First Neo-Brutalism Manga Section Drill (Finetuned UX/UI)
 "use client";
 
 import React, { useState, useRef, useEffect, useMemo } from "react";
@@ -49,6 +49,7 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
   const [vocabSearch, setVocabSearch] = useState<string>("");
   const [vocabIndex, setVocabIndex] = useState<number>(0);
   const [showVocabAnswer, setShowVocabAnswer] = useState<boolean>(false);
+  const [vocabViewMode, setVocabViewMode] = useState<"CARD" | "LIST">("CARD");
 
   // Filtered Vocabularies
   const filteredVocabList = useMemo(() => {
@@ -300,16 +301,16 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
   }, [isRecording, currentInput, activePart, p1Step, vocabIndex, imageIndex]);
 
   return (
-    <div className="space-y-4 pb-36 sm:pb-40 max-w-xl mx-auto">
-      {/* Sub-Header Navigation (3 Tabs) */}
-      <div className="manga-box-sm p-1 sm:p-1.5 bg-slate-100 flex items-center justify-between gap-1">
+    <div className="space-y-3.5 pb-28 sm:pb-32 max-w-2xl mx-auto">
+      {/* Sub-Header Navigation (Segmented 3 Tabs) */}
+      <div className="manga-box-sm p-1 sm:p-1.5 bg-slate-100 flex items-center justify-between gap-1 shadow-[2px_2px_0px_#0f172a]">
         <button
           onClick={() => {
             setActivePart(1);
             setFeedback(null);
             setCurrentInput("");
           }}
-          className={`flex-1 py-2 px-1 sm:px-2 rounded-xl text-xs font-black transition flex items-center justify-center space-x-1 ${
+          className={`flex-1 py-1.5 sm:py-2 px-1 sm:px-2 rounded-xl text-xs font-black transition flex items-center justify-center space-x-1 ${
             activePart === 1
               ? "bg-rose-500 text-white shadow-[1px_1px_0px_#0f172a]"
               : "text-slate-700 hover:text-slate-900"
@@ -325,7 +326,7 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
             setFeedback(null);
             setCurrentInput("");
           }}
-          className={`flex-1 py-2 px-1 sm:px-2 rounded-xl text-xs font-black transition flex items-center justify-center space-x-1 ${
+          className={`flex-1 py-1.5 sm:py-2 px-1 sm:px-2 rounded-xl text-xs font-black transition flex items-center justify-center space-x-1 ${
             activePart === 2
               ? "bg-blue-500 text-white shadow-[1px_1px_0px_#0f172a]"
               : "text-slate-700 hover:text-slate-900"
@@ -341,7 +342,7 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
             setFeedback(null);
             setCurrentInput("");
           }}
-          className={`flex-1 py-2 px-1 sm:px-2 rounded-xl text-xs font-black transition flex items-center justify-center space-x-1 ${
+          className={`flex-1 py-1.5 sm:py-2 px-1 sm:px-2 rounded-xl text-xs font-black transition flex items-center justify-center space-x-1 ${
             activePart === 3
               ? "bg-emerald-500 text-white shadow-[1px_1px_0px_#0f172a]"
               : "text-slate-700 hover:text-slate-900"
@@ -352,44 +353,40 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
         </button>
       </div>
 
-      {/* ================= PART 1 DRILL: DIALOGUES & SENTENCES ================= */}
+      {/* ================= PART 1 DRILL: INTERACTIVE CHAT TIMELINE ================= */}
       {activePart === 1 && (
-        <div className="manga-box p-3.5 sm:p-5 space-y-4 text-center">
-          {/* Chapter Selector */}
-          <div className="flex flex-col gap-1.5 text-left">
-            <span className="text-[11px] font-black text-slate-700 uppercase tracking-wider">
-              เลือกบทสนทนาประจำบท (บทที่ 1 ถึง 6):
-            </span>
-            <div className="grid grid-cols-3 sm:grid-cols-6 gap-1 bg-slate-100 p-1 rounded-xl border-2 border-slate-900">
-              {CHAPTER_DIALOGUES.map((cd) => (
-                <button
-                  key={cd.chapter}
-                  onClick={() => {
-                    setSelectedChapterP1(cd.chapter);
-                    setP1Step(0);
-                    setFeedback(null);
-                    setCurrentInput("");
-                  }}
-                  className={`py-1 px-1.5 rounded-lg text-xs font-black transition ${
-                    selectedChapterP1 === cd.chapter
-                      ? "bg-rose-500 text-white shadow-[1px_1px_0px_#0f172a]"
-                      : "text-slate-700 hover:bg-white/60"
-                  }`}
-                >
-                  บทที่ {cd.chapter}
-                </button>
-              ))}
-            </div>
+        <div className="manga-box p-3.5 sm:p-5 space-y-3.5 text-center shadow-[3px_3px_0px_#0f172a]">
+          {/* Chapter Selector (Scrollable Pill Chips) */}
+          <div className="flex items-center space-x-1.5 overflow-x-auto no-scrollbar pb-1 text-left">
+            <span className="text-[11px] font-black text-slate-700 shrink-0">บทเรียน:</span>
+            {CHAPTER_DIALOGUES.map((cd) => (
+              <button
+                key={cd.chapter}
+                onClick={() => {
+                  setSelectedChapterP1(cd.chapter);
+                  setP1Step(0);
+                  setFeedback(null);
+                  setCurrentInput("");
+                }}
+                className={`py-1 px-2.5 rounded-xl text-xs font-black shrink-0 transition ${
+                  selectedChapterP1 === cd.chapter
+                    ? "bg-rose-500 text-white shadow-[1px_1px_0px_#0f172a]"
+                    : "bg-white text-slate-700 border border-slate-300 hover:border-slate-900"
+                }`}
+              >
+                บทที่ {cd.chapter}
+              </button>
+            ))}
           </div>
 
           {/* Dialogue Header & Situation */}
-          <div className="bg-rose-50 border-2 border-rose-200 rounded-xl p-2.5 text-left space-y-1">
+          <div className="bg-rose-50 border-2 border-rose-200 rounded-2xl p-3 text-left space-y-1">
             <div className="flex items-center justify-between">
-              <h4 className="text-xs font-black text-rose-900">
-                {currentDialogue.titleTh}
+              <h4 className="text-xs sm:text-sm font-black text-rose-900">
+                {currentDialogue.titleTh} ({currentDialogue.titleJa})
               </h4>
               <span className="manga-badge bg-rose-500 text-white text-[10px]">
-                สเต็ป {p1Step + 1} / {currentDialogue.lines.length}
+                {currentDialogue.lines.length} ประโยค
               </span>
             </div>
             <p className="text-[11px] text-rose-800 font-medium leading-relaxed">
@@ -397,74 +394,108 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
             </p>
           </div>
 
-          {/* Current Step Card */}
-          <div className="p-3.5 sm:p-5 rounded-2xl bg-white border-2 border-slate-900 space-y-2.5 shadow-[2px_2px_0px_#0f172a]">
-            <div className="flex items-center justify-between text-xs font-bold text-slate-500">
-              <span className="inline-flex items-center space-x-1 px-2 py-0.5 rounded-md bg-slate-100 border border-slate-300 text-slate-800 font-black">
-                <span>{currentLine.speakerNameJa}</span>
-                <span>({currentLine.speakerNameTh})</span>
-              </span>
-              {currentLine.moraCount && (
-                <span className="text-[10px] text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-300">
-                  🎯 {currentLine.moraCount} พยางค์ (ผ่านเกณฑ์ Roleplay ≥5)
-                </span>
-              )}
-            </div>
+          {/* Interactive Chat Timeline */}
+          <div className="space-y-2.5 text-left max-h-[360px] overflow-y-auto pr-1">
+            {currentDialogue.lines.map((line, idx) => {
+              const isActive = p1Step === idx;
+              const isStudent = line.speaker === "Student" || line.speaker === "B";
 
-            <h3 className="text-xl sm:text-2xl font-black text-slate-900 font-jp break-words py-1">
-              {selectedChapterP1 === 1 && p1Step === 1
-                ? `わたしは ${userConfig.studentNameJa || "[ชื่อ]"} です`
-                : selectedChapterP1 === 1 && p1Step === 3
-                ? `しゅみは ${userConfig.selectedHobby || "[งานอดิเรก]"} です`
-                : currentLine.ja}
-            </h3>
+              let lineJa = line.ja;
+              let lineRomaji = line.romaji;
+              if (selectedChapterP1 === 1 && idx === 1) {
+                const name = userConfig.studentNameJa && !userConfig.studentNameJa.includes("ชื่อ")
+                  ? userConfig.studentNameJa
+                  : "たなか";
+                lineJa = `わたしは ${name} です`;
+                lineRomaji = `Watashi wa ${name} desu`;
+              } else if (selectedChapterP1 === 1 && idx === 3) {
+                const hobby = userConfig.selectedHobby && !userConfig.selectedHobby.includes("งานอดิเรก")
+                  ? userConfig.selectedHobby
+                  : "まんが";
+                lineJa = `しゅみは ${hobby} です`;
+                lineRomaji = `Shumi wa ${hobby} desu`;
+              }
 
-            {userConfig.showRomaji && (
-              <p className="text-xs text-slate-500 font-mono">
-                {selectedChapterP1 === 1 && p1Step === 1
-                  ? `Watashi wa ${userConfig.studentNameJa || "[Name]"} desu`
-                  : selectedChapterP1 === 1 && p1Step === 3
-                  ? `Shumi wa ${userConfig.selectedHobby || "[Hobby]"} desu`
-                  : currentLine.romaji}
-              </p>
-            )}
+              return (
+                <div
+                  key={idx}
+                  onClick={() => {
+                    setP1Step(idx);
+                    setFeedback(null);
+                    setCurrentInput("");
+                  }}
+                  className={`p-3 rounded-2xl border-2 transition-all cursor-pointer ${
+                    isActive
+                      ? "bg-white border-slate-900 shadow-[3px_3px_0px_#0f172a] ring-2 ring-rose-400"
+                      : isStudent
+                      ? "bg-sky-50/70 border-slate-300 hover:border-slate-800"
+                      : "bg-slate-50 border-slate-300 hover:border-slate-800"
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-1">
+                    <div className="flex items-center space-x-1.5">
+                      <span
+                        className={`text-[10px] font-black px-2 py-0.5 rounded-md border ${
+                          isStudent
+                            ? "bg-sky-200 border-sky-900 text-sky-900"
+                            : "bg-amber-200 border-amber-900 text-amber-900"
+                        }`}
+                      >
+                        {line.speakerNameJa} ({line.speakerNameTh})
+                      </span>
+                      {isActive && (
+                        <span className="manga-badge bg-rose-500 text-white text-[9px]">
+                          กำลังซ้อมสเต็ปนี้
+                        </span>
+                      )}
+                    </div>
 
-            {userConfig.showThaiHints && (
-              <p className="text-xs text-slate-700 font-medium">
-                ({currentLine.th})
-              </p>
-            )}
+                    <div className="flex items-center space-x-1.5">
+                      {line.moraCount && (
+                        <span className="text-[10px] text-emerald-700 font-bold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-300">
+                          🎯 {line.moraCount} พยางค์ (≥5)
+                        </span>
+                      )}
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          speakWithSeiyuuVoice(
+                            lineJa,
+                            "web_speech",
+                            userConfig.speechRate,
+                            "ja-JP"
+                          );
+                        }}
+                        className="w-7 h-7 rounded-lg bg-white border border-slate-400 flex items-center justify-center hover:bg-slate-100 text-rose-600"
+                      >
+                        <Icon name="volume_up" className="text-sm" />
+                      </button>
+                    </div>
+                  </div>
 
-            <button
-              onClick={() => {
-                let textToSpeak = currentLine.ja;
-                if (selectedChapterP1 === 1 && p1Step === 1) {
-                  const name = userConfig.studentNameJa && !userConfig.studentNameJa.includes("ชื่อ")
-                    ? userConfig.studentNameJa
-                    : "たなか";
-                  textToSpeak = `わたしは ${name} です`;
-                } else if (selectedChapterP1 === 1 && p1Step === 3) {
-                  const hobby = userConfig.selectedHobby && !userConfig.selectedHobby.includes("งานอดิเรก")
-                    ? userConfig.selectedHobby
-                    : "まんが";
-                  textToSpeak = `しゅみは ${hobby} です`;
-                }
-                speakWithSeiyuuVoice(
-                  textToSpeak,
-                  "web_speech",
-                  userConfig.speechRate,
-                  "ja-JP"
-                );
-              }}
-              className="manga-btn mt-2 inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-white text-slate-900 text-xs"
-            >
-              <Icon name="volume_up" className="text-base text-rose-600" />
-              <span>ฟังเสียงอ่าน (標準音声)</span>
-            </button>
+                  <p className="text-base sm:text-lg font-black text-slate-900 font-jp leading-snug">
+                    {lineJa}
+                  </p>
+
+                  {userConfig.showRomaji && (
+                    <p className="text-xs text-slate-500 font-mono mt-0.5">
+                      {lineRomaji}
+                    </p>
+                  )}
+
+                  {userConfig.showThaiHints && (
+                    <p className="text-xs text-slate-600 mt-0.5">
+                      ({line.th})
+                    </p>
+                  )}
+                </div>
+              );
+            })}
           </div>
 
-          {/* Step Nav */}
-          <div className="flex items-center justify-between pt-1">
+          {/* Stepper Navigation */}
+          <div className="flex items-center justify-between pt-1 border-t border-slate-200">
             <button
               onClick={() => {
                 setP1Step((prev) => Math.max(0, prev - 1));
@@ -514,37 +545,61 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
         </div>
       )}
 
-      {/* ================= PART 2 DRILL: VOCABULARY ================= */}
+      {/* ================= PART 2 DRILL: VOCABULARY DUAL VIEW ================= */}
       {activePart === 2 && (
-        <div className="manga-box p-3.5 sm:p-5 space-y-3.5 text-center">
-          {/* Chapter & Search Filter Bar */}
-          <div className="space-y-2 text-left">
-            {/* Chapter Buttons */}
-            <div className="flex items-center space-x-1 overflow-x-auto pb-1">
-              {(["ALL", 1, 2, 3, 4, 5, 6] as const).map((ch) => (
+        <div className="manga-box p-3.5 sm:p-5 space-y-3 text-center shadow-[3px_3px_0px_#0f172a]">
+          {/* Chapter Chips (Horizontal Scrollable) */}
+          <div className="flex items-center space-x-1.5 overflow-x-auto no-scrollbar pb-0.5 text-left">
+            <span className="text-[11px] font-black text-slate-700 shrink-0">บท:</span>
+            {(["ALL", 1, 2, 3, 4, 5, 6] as const).map((ch) => (
+              <button
+                key={ch}
+                onClick={() => {
+                  setChapterFilter(ch);
+                  setCategoryFilter("ALL");
+                }}
+                className={`px-2.5 py-1 rounded-xl text-xs font-black shrink-0 transition ${
+                  chapterFilter === ch
+                    ? "bg-slate-900 text-white shadow-[1px_1px_0px_#0f172a]"
+                    : "bg-white text-slate-700 border border-slate-300 hover:border-slate-900"
+                }`}
+              >
+                {ch === "ALL" ? "ทุกบท (1-6)" : `บทที่ ${ch}`}
+              </button>
+            ))}
+          </div>
+
+          {/* Search, Category, & View Toggle Row */}
+          <div className="grid grid-cols-1 sm:grid-cols-12 gap-2 text-left">
+            {/* Search Input */}
+            <div className="relative sm:col-span-6">
+              <input
+                type="text"
+                value={vocabSearch}
+                onChange={(e) => setVocabSearch(e.target.value)}
+                placeholder="ค้นหาคำศัพท์ ไทย / 日本語 / Romaji..."
+                className="w-full pl-8 pr-7 py-1.5 rounded-xl border-2 border-slate-900 bg-white text-xs font-semibold focus:outline-none"
+              />
+              <Icon
+                name="search"
+                className="absolute left-2.5 top-2 text-sm text-slate-400"
+              />
+              {vocabSearch && (
                 <button
-                  key={ch}
-                  onClick={() => {
-                    setChapterFilter(ch);
-                    setCategoryFilter("ALL");
-                  }}
-                  className={`px-2.5 py-1 rounded-xl text-xs font-black shrink-0 transition ${
-                    chapterFilter === ch
-                      ? "bg-slate-900 text-white shadow-[1px_1px_0px_#0f172a]"
-                      : "bg-white text-slate-700 border border-slate-300 hover:border-slate-900"
-                  }`}
+                  onClick={() => setVocabSearch("")}
+                  className="absolute right-2 top-2 text-xs font-bold text-slate-400 hover:text-slate-700"
                 >
-                  {ch === "ALL" ? "ทุกบท (1-6)" : `บทที่ ${ch}`}
+                  ✕
                 </button>
-              ))}
+              )}
             </div>
 
-            {/* Category Dropdown & Search Bar */}
-            <div className="flex items-center gap-1.5">
+            {/* Category Select */}
+            <div className="sm:col-span-4">
               <select
                 value={categoryFilter}
                 onChange={(e) => setCategoryFilter(e.target.value)}
-                className="px-2 py-1.5 rounded-xl border-2 border-slate-900 bg-white text-xs font-bold text-slate-800 focus:outline-none shrink-0"
+                className="w-full px-2.5 py-1.5 rounded-xl border-2 border-slate-900 bg-white text-xs font-bold text-slate-800 focus:outline-none"
               >
                 {availableCategories.map((c) => (
                   <option key={c} value={c}>
@@ -552,125 +607,169 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
                   </option>
                 ))}
               </select>
+            </div>
 
-              <div className="relative flex-1">
-                <input
-                  type="text"
-                  value={vocabSearch}
-                  onChange={(e) => setVocabSearch(e.target.value)}
-                  placeholder="ค้นหาคำศัพท์ ไทย / 日本語 / Romaji..."
-                  className="w-full pl-7 pr-3 py-1.5 rounded-xl border-2 border-slate-900 bg-white text-xs font-semibold focus:outline-none"
-                />
-                <Icon
-                  name="search"
-                  className="absolute left-2 top-2 text-sm text-slate-400"
-                />
-              </div>
+            {/* Mode & Shuffle Button */}
+            <div className="flex items-center space-x-1.5 sm:col-span-2 justify-end">
+              <button
+                onClick={() => setVocabViewMode(vocabViewMode === "CARD" ? "LIST" : "CARD")}
+                title={vocabViewMode === "CARD" ? "สลับไปดูตารางรายการ" : "สลับไปโหมดการ์ดท่องจำ"}
+                className="manga-btn p-1.5 rounded-xl bg-white text-slate-900 text-xs flex items-center"
+              >
+                <Icon name={vocabViewMode === "CARD" ? "list" : "view_carousel"} className="text-base" />
+              </button>
 
               <button
                 onClick={handleShuffleVocab}
-                className="manga-btn inline-flex items-center space-x-1 px-2.5 py-1.5 rounded-xl bg-amber-400 text-slate-900 text-xs shrink-0"
+                title="สุ่มคำศัพท์"
+                className="manga-btn p-1.5 rounded-xl bg-amber-400 text-slate-900 text-xs flex items-center"
               >
-                <Icon name="shuffle" className="text-sm" />
-                <span>สุ่ม</span>
+                <Icon name="shuffle" className="text-base" />
               </button>
             </div>
           </div>
 
-          {/* Flashcard Box */}
-          {filteredVocabList.length > 0 && filteredVocabList[vocabIndex] ? (
-            <div className="p-4 sm:p-6 rounded-2xl bg-white border-2 border-slate-900 space-y-3 shadow-[2px_2px_0px_#0f172a]">
-              <div className="flex items-center justify-between text-xs font-bold text-slate-500">
-                <span className="manga-badge bg-blue-500 text-white text-[10px]">
-                  บทที่ {filteredVocabList[vocabIndex].chapter} • {filteredVocabList[vocabIndex].category}
-                </span>
-                <span className="font-mono text-slate-600 font-bold">
-                  {vocabIndex + 1} / {filteredVocabList.length}
-                </span>
-              </div>
+          {/* View 1: Flashcard Mode */}
+          {vocabViewMode === "CARD" && (
+            <>
+              {filteredVocabList.length > 0 && filteredVocabList[vocabIndex] ? (
+                <div className="p-4 sm:p-6 rounded-2xl bg-white border-2 border-slate-900 space-y-3 shadow-[2px_2px_0px_#0f172a]">
+                  <div className="flex items-center justify-between text-xs font-bold text-slate-500">
+                    <span className="manga-badge bg-blue-500 text-white text-[10px]">
+                      บทที่ {filteredVocabList[vocabIndex].chapter} • {filteredVocabList[vocabIndex].category}
+                    </span>
+                    <span className="font-mono text-slate-600 font-bold">
+                      {vocabIndex + 1} / {filteredVocabList.length}
+                    </span>
+                  </div>
 
-              <h3 className="text-2xl sm:text-3xl font-black text-slate-900 break-words py-1">
-                {filteredVocabList[vocabIndex].th}
-              </h3>
+                  <h3 className="text-2xl sm:text-3xl font-black text-slate-900 break-words py-1">
+                    {filteredVocabList[vocabIndex].th}
+                  </h3>
 
-              {showVocabAnswer ? (
-                <div className="space-y-1.5 pt-1 animate-in fade-in duration-150">
-                  <p className="text-2xl sm:text-3xl font-black text-rose-600 font-jp">
-                    {filteredVocabList[vocabIndex].ja}
-                  </p>
-                  {userConfig.showRomaji && (
-                    <p className="text-xs font-mono text-slate-500">
-                      {filteredVocabList[vocabIndex].romaji}
-                    </p>
+                  {showVocabAnswer ? (
+                    <div className="space-y-1.5 pt-1 animate-in fade-in duration-150">
+                      <p className="text-2xl sm:text-3xl font-black text-rose-600 font-jp">
+                        {filteredVocabList[vocabIndex].ja}
+                      </p>
+                      {userConfig.showRomaji && (
+                        <p className="text-xs font-mono text-slate-500">
+                          {filteredVocabList[vocabIndex].romaji}
+                        </p>
+                      )}
+                      <button
+                        onClick={() =>
+                          speakWithSeiyuuVoice(
+                            filteredVocabList[vocabIndex].ja,
+                            "web_speech",
+                            userConfig.speechRate,
+                            "ja-JP"
+                          )
+                        }
+                        className="manga-btn mt-2 inline-flex items-center space-x-1 px-3 py-1 rounded-xl bg-slate-50 text-slate-900 text-xs border border-slate-300"
+                      >
+                        <Icon name="volume_up" className="text-sm text-rose-600" />
+                        <span>ฟังเสียงอ่าน (標準音声)</span>
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() => setShowVocabAnswer(true)}
+                      className="manga-btn inline-flex items-center space-x-1 px-3.5 py-2 rounded-xl bg-slate-100 text-slate-800 text-xs"
+                    >
+                      <Icon name="visibility" className="text-sm" />
+                      <span>แตะเพื่อดูเฉลยคำศัพท์</span>
+                    </button>
                   )}
+                </div>
+              ) : (
+                <div className="p-8 bg-slate-100 rounded-2xl border-2 border-slate-900 text-center text-slate-500 text-xs font-bold">
+                  ไม่พบคำศัพท์ที่ตรงกับเงื่อนไขการค้นหา
+                </div>
+              )}
+
+              {/* Vocab Nav */}
+              {filteredVocabList.length > 0 && (
+                <div className="flex items-center justify-between pt-1">
+                  <button
+                    onClick={() => {
+                      setVocabIndex((prev) => Math.max(0, prev - 1));
+                      setShowVocabAnswer(false);
+                      setFeedback(null);
+                      setCurrentInput("");
+                    }}
+                    disabled={vocabIndex === 0}
+                    className="manga-btn px-3 py-1.5 rounded-xl bg-white text-xs disabled:opacity-40 disabled:cursor-not-allowed flex items-center space-x-1"
+                  >
+                    <Icon name="arrow_back" className="text-sm" />
+                    <span>ก่อนหน้า</span>
+                  </button>
+
+                  <button
+                    onClick={() => setShowVocabAnswer(!showVocabAnswer)}
+                    className="text-xs font-bold text-slate-600 hover:text-slate-900"
+                  >
+                    {showVocabAnswer ? "ซ่อนเฉลย" : "แสดงเฉลย"}
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      setVocabIndex((prev) => Math.min(filteredVocabList.length - 1, prev + 1));
+                      setShowVocabAnswer(false);
+                      setFeedback(null);
+                      setCurrentInput("");
+                    }}
+                    disabled={vocabIndex === filteredVocabList.length - 1}
+                    className="manga-btn px-3 py-1.5 rounded-xl bg-white text-xs disabled:opacity-40 disabled:cursor-not-allowed flex items-center space-x-1"
+                  >
+                    <span>ถัดไป</span>
+                    <Icon name="arrow_forward" className="text-sm" />
+                  </button>
+                </div>
+              )}
+            </>
+          )}
+
+          {/* View 2: List / Grid Overview Mode */}
+          {vocabViewMode === "LIST" && (
+            <div className="max-h-[380px] overflow-y-auto pr-1 space-y-2 text-left">
+              {filteredVocabList.map((v, idx) => (
+                <div
+                  key={v.id}
+                  className="p-2.5 rounded-xl bg-white border border-slate-300 hover:border-slate-900 flex items-center justify-between gap-2 transition"
+                >
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center space-x-1.5">
+                      <span className="text-[9px] font-black px-1.5 py-0.2 rounded bg-slate-100 border border-slate-300 text-slate-700">
+                        บท {v.chapter}
+                      </span>
+                      <span className="text-[10px] text-slate-400 font-bold truncate">
+                        {v.category}
+                      </span>
+                    </div>
+                    <p className="text-xs font-black text-slate-900 truncate mt-0.5">
+                      {v.th}
+                    </p>
+                    <p className="text-sm font-black text-rose-600 font-jp truncate">
+                      {v.ja} <span className="text-[10px] font-mono text-slate-400 font-normal">({v.romaji})</span>
+                    </p>
+                  </div>
+
                   <button
                     onClick={() =>
                       speakWithSeiyuuVoice(
-                        filteredVocabList[vocabIndex].ja,
+                        v.ja,
                         "web_speech",
                         userConfig.speechRate,
                         "ja-JP"
                       )
                     }
-                    className="manga-btn mt-2 inline-flex items-center space-x-1 px-3 py-1 rounded-xl bg-slate-50 text-slate-900 text-xs border border-slate-300"
+                    className="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 border border-slate-400 flex items-center justify-center text-rose-600 shrink-0"
                   >
-                    <Icon name="volume_up" className="text-sm text-rose-600" />
-                    <span>ฟังเสียงอ่าน (標準音声)</span>
+                    <Icon name="volume_up" className="text-base" />
                   </button>
                 </div>
-              ) : (
-                <button
-                  onClick={() => setShowVocabAnswer(true)}
-                  className="manga-btn inline-flex items-center space-x-1 px-3.5 py-2 rounded-xl bg-slate-100 text-slate-800 text-xs"
-                >
-                  <Icon name="visibility" className="text-sm" />
-                  <span>แตะเพื่อดูเฉลยคำศัพท์</span>
-                </button>
-              )}
-            </div>
-          ) : (
-            <div className="p-8 bg-slate-100 rounded-2xl border-2 border-slate-900 text-center text-slate-500 text-xs font-bold">
-              ไม่พบคำศัพท์ที่ตรงกับเงื่อนไขการค้นหา
-            </div>
-          )}
-
-          {/* Vocab Nav */}
-          {filteredVocabList.length > 0 && (
-            <div className="flex items-center justify-between pt-1">
-              <button
-                onClick={() => {
-                  setVocabIndex((prev) => Math.max(0, prev - 1));
-                  setShowVocabAnswer(false);
-                  setFeedback(null);
-                  setCurrentInput("");
-                }}
-                disabled={vocabIndex === 0}
-                className="manga-btn px-3 py-1.5 rounded-xl bg-white text-xs disabled:opacity-40 disabled:cursor-not-allowed flex items-center space-x-1"
-              >
-                <Icon name="arrow_back" className="text-sm" />
-                <span>ก่อนหน้า</span>
-              </button>
-
-              <button
-                onClick={() => setShowVocabAnswer(!showVocabAnswer)}
-                className="text-xs font-bold text-slate-600 hover:text-slate-900"
-              >
-                {showVocabAnswer ? "ซ่อนเฉลย" : "แสดงเฉลย"}
-              </button>
-
-              <button
-                onClick={() => {
-                  setVocabIndex((prev) => Math.min(filteredVocabList.length - 1, prev + 1));
-                  setShowVocabAnswer(false);
-                  setFeedback(null);
-                  setCurrentInput("");
-                }}
-                disabled={vocabIndex === filteredVocabList.length - 1}
-                className="manga-btn px-3 py-1.5 rounded-xl bg-white text-xs disabled:opacity-40 disabled:cursor-not-allowed flex items-center space-x-1"
-              >
-                <span>ถัดไป</span>
-                <Icon name="arrow_forward" className="text-sm" />
-              </button>
+              ))}
             </div>
           )}
         </div>
@@ -678,38 +777,36 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
 
       {/* ================= PART 3 DRILL: SITUATIONAL SVG Q&A ================= */}
       {activePart === 3 && currentImageQ && (
-        <div className="manga-box p-3.5 sm:p-5 space-y-3.5 text-center">
-          {/* Chapter Filter */}
-          <div className="flex items-center justify-between gap-1 overflow-x-auto pb-1 text-left">
+        <div className="manga-box p-3.5 sm:p-5 space-y-3.5 text-center shadow-[3px_3px_0px_#0f172a]">
+          {/* Chapter Filter Chips */}
+          <div className="flex items-center space-x-1.5 overflow-x-auto no-scrollbar pb-0.5 text-left">
             <span className="text-[11px] font-black text-slate-700 shrink-0">กรองบท:</span>
-            <div className="flex items-center space-x-1">
-              {(["ALL", 1, 2, 3, 4, 5, 6] as const).map((ch) => (
-                <button
-                  key={ch}
-                  onClick={() => setImageChapterFilter(ch)}
-                  className={`px-2 py-0.5 rounded-lg text-xs font-black shrink-0 transition ${
-                    imageChapterFilter === ch
-                      ? "bg-emerald-600 text-white shadow-[1px_1px_0px_#0f172a]"
-                      : "bg-white text-slate-700 border border-slate-300 hover:border-slate-900"
-                  }`}
-                >
-                  {ch === "ALL" ? "ทุกบท" : `บท ${ch}`}
-                </button>
-              ))}
-            </div>
+            {(["ALL", 1, 2, 3, 4, 5, 6] as const).map((ch) => (
+              <button
+                key={ch}
+                onClick={() => setImageChapterFilter(ch)}
+                className={`px-2.5 py-1 rounded-xl text-xs font-black shrink-0 transition ${
+                  imageChapterFilter === ch
+                    ? "bg-emerald-600 text-white shadow-[1px_1px_0px_#0f172a]"
+                    : "bg-white text-slate-700 border border-slate-300 hover:border-slate-900"
+                }`}
+              >
+                {ch === "ALL" ? "ทุกบท (1-6)" : `บทที่ ${ch}`}
+              </button>
+            ))}
           </div>
 
           <div className="flex items-center justify-between text-xs font-bold text-slate-500">
-            <span className="manga-badge bg-emerald-500 text-white">
+            <span className="manga-badge bg-emerald-500 text-white text-[10px]">
               บทที่ {currentImageQ.chapter} • ภาพที่ {imageIndex + 1} / {filteredImageQuestions.length}
             </span>
-            <span className="text-xs font-bold text-slate-600">
+            <span className="text-xs font-bold text-slate-700">
               {currentImageQ.title}
             </span>
           </div>
 
           {/* SVG Box */}
-          <div className="manga-box-sm overflow-hidden p-1.5 sm:p-2 bg-white max-w-[130px] sm:max-w-[170px] mx-auto">
+          <div className="manga-box-sm overflow-hidden p-1.5 bg-white max-w-[130px] sm:max-w-[160px] mx-auto">
             <SvgImage
               svgContent={currentImageQ.imageSvg}
               className="w-28 h-28 sm:w-36 sm:h-36 mx-auto"
@@ -817,7 +914,7 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
       )}
 
       {/* Input Box for Speaking Practice */}
-      <div className="manga-box p-3.5 sm:p-4 text-left">
+      <div className="manga-box p-3 sm:p-4 text-left shadow-[2px_2px_0px_#0f172a]">
         <div className="flex items-center justify-between mb-1">
           <label className="block text-[11px] font-bold text-slate-700">
             คำตอบของคุณ (กดปุ่มไมค์ด้านล่างเพื่อพูด หรือพิมพ์ตอบ):
@@ -929,51 +1026,35 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
         </div>
       )}
 
-      {/* MOBILE-FIRST THUMB BOTTOM BAR */}
-      <div
-        className={`fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t-2 border-slate-900 px-2.5 sm:px-3 pt-2 pb-[max(0.75rem,calc(env(safe-area-inset-bottom)+0.5rem))] shadow-[0_-3px_0px_#0f172a] transition-all duration-200 ${
-          isInputFocused ? "translate-y-full opacity-0 pointer-events-none" : "translate-y-0 opacity-100"
-        }`}
-      >
-        <div className="max-w-xl mx-auto flex flex-col gap-1.5">
-          {/* Desktop Keyboard Hints Badge */}
-          <div className="hidden sm:flex items-center justify-center space-x-2 text-[10px] font-mono text-slate-500">
-            <span>⌨️ คีย์ลัด:</span>
-            <kbd className="bg-slate-100 border border-slate-400 px-1.5 py-0.5 rounded text-slate-900 font-bold">Space</kbd>
-            <span>ซ้อมพูด</span>
-            <span>•</span>
-            <kbd className="bg-slate-100 border border-slate-400 px-1.5 py-0.5 rounded text-slate-900 font-bold">Enter</kbd>
-            <span>ตรวจคำตอบ</span>
-          </div>
+      {/* Compact Floating Bottom Action Bar */}
+      <div className="manga-floating-bar fixed bottom-0 left-0 right-0 z-40 px-3 sm:px-4 py-2 sm:py-2.5 pb-[max(0.75rem,calc(env(safe-area-inset-bottom)+0.5rem))]">
+        <div className="max-w-2xl mx-auto flex items-center justify-between gap-2.5">
+          <button
+            onClick={toggleRecording}
+            className={`manga-btn flex-1 py-2.5 sm:py-3 px-3 sm:px-4 rounded-2xl flex items-center justify-center space-x-1.5 text-xs sm:text-sm text-white min-w-0 ${
+              isRecording
+                ? "bg-red-600 manga-recording-pulse"
+                : "bg-rose-600 hover:bg-rose-500"
+            }`}
+          >
+            <Icon
+              name={isRecording ? "mic_off" : "mic"}
+              className="text-xl sm:text-2xl shrink-0"
+              filled
+            />
+            <span className="font-black tracking-tight truncate">
+              {isRecording ? "กำลังฟัง... (แตะหยุด)" : "ซ้อมพูดคำตอบ"}
+            </span>
+          </button>
 
-          <div className="flex items-center justify-between gap-2">
-            <button
-              onClick={toggleRecording}
-              className={`manga-btn flex-1 py-2.5 sm:py-3 px-3 sm:px-4 rounded-2xl flex items-center justify-center space-x-1.5 text-xs sm:text-sm text-white min-w-0 ${
-                isRecording
-                  ? "bg-red-600 manga-recording-pulse"
-                  : "bg-rose-600 hover:bg-rose-500"
-              }`}
-            >
-              <Icon
-                name={isRecording ? "mic_off" : "mic"}
-                className="text-xl sm:text-2xl shrink-0"
-                filled
-              />
-              <span className="font-black tracking-tight truncate">
-                {isRecording ? "กำลังฟัง... (แตะหยุด)" : "ซ้อมพูดคำตอบ"}
-              </span>
-            </button>
-
-            <button
-              onClick={() => evaluateInput(currentInput)}
-              disabled={!currentInput.trim()}
-              className="manga-btn px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-900 text-xs sm:text-sm font-black disabled:opacity-40 disabled:cursor-not-allowed flex items-center space-x-1 shrink-0"
-            >
-              <Icon name="auto_awesome" className="text-sm sm:text-base" />
-              <span>ตรวจ</span>
-            </button>
-          </div>
+          <button
+            onClick={() => evaluateInput(currentInput)}
+            disabled={!currentInput.trim()}
+            className="manga-btn px-4 sm:px-6 py-2.5 sm:py-3 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-900 text-xs sm:text-sm font-black disabled:opacity-40 disabled:cursor-not-allowed flex items-center space-x-1 shrink-0 shadow-[2px_2px_0px_#0f172a]"
+          >
+            <Icon name="auto_awesome" className="text-sm sm:text-base" />
+            <span>ตรวจ</span>
+          </button>
         </div>
       </div>
     </div>

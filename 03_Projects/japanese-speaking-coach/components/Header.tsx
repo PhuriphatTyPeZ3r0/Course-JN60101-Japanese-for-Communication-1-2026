@@ -21,7 +21,7 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   return (
     <header className="bg-white border-b-2 border-slate-900 sticky top-0 z-30 shadow-[0_3px_0px_#0f172a]">
-      <div className="max-w-4xl mx-auto px-2 sm:px-4 py-2 flex items-center justify-between">
+      <div className="max-w-3xl mx-auto px-3 sm:px-4 py-2 flex items-center justify-between">
         {/* Manga Branding */}
         <div className="flex items-center space-x-1.5 sm:space-x-2.5">
           <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-2xl bg-rose-600 border-2 border-slate-900 flex items-center justify-center text-white font-black text-sm sm:text-xl shadow-[2px_2px_0px_#0f172a] rotate-[-2deg]">
