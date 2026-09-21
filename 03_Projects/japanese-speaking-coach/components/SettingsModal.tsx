@@ -150,14 +150,17 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 <Icon name="record_voice_over" className="text-sm text-emerald-600 mr-1" />
                 เสียงอาจารย์ผู้คุมสอบ (Voice Engine)
               </label>
-              <span className="manga-badge bg-emerald-600 text-white text-[9px]">
-                ⚡ 0ms OFFLINE
+              <span className="manga-badge bg-emerald-600 text-white text-[9px] flex items-center space-x-0.5">
+                <Icon name="bolt" className="text-xs mr-0.5" />
+                <span>0ms OFFLINE</span>
               </span>
             </div>
 
             <div className="p-3 rounded-xl bg-white border-2 border-slate-900 flex items-center justify-between">
               <div className="flex items-center space-x-2.5 min-w-0">
-                <span className="text-2xl shrink-0">📱</span>
+                <div className="w-8 h-8 rounded-xl bg-emerald-100 border border-emerald-900 flex items-center justify-center shrink-0">
+                  <Icon name="smart_toy" className="text-xl text-emerald-900" />
+                </div>
                 <div className="min-w-0">
                   <div className="flex items-center space-x-1.5">
                     <span className="text-xs font-black text-slate-900">

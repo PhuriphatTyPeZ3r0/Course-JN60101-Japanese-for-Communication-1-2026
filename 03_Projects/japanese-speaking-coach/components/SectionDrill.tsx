@@ -389,8 +389,9 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
                 {currentDialogue.lines.length} ประโยค
               </span>
             </div>
-            <p className="text-[11px] text-rose-800 font-medium leading-relaxed">
-              📌 {currentDialogue.situationTh}
+            <p className="text-[11px] text-rose-800 font-medium leading-relaxed flex items-center space-x-1">
+              <Icon name="push_pin" className="text-xs text-rose-600 shrink-0" />
+              <span>{currentDialogue.situationTh}</span>
             </p>
           </div>
 
@@ -452,8 +453,9 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
 
                     <div className="flex items-center space-x-1.5">
                       {line.moraCount && (
-                        <span className="text-[10px] text-emerald-700 font-bold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-300">
-                          🎯 {line.moraCount} พยางค์ (≥5)
+                        <span className="text-[10px] text-emerald-700 font-bold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-300 flex items-center space-x-1">
+                          <Icon name="crisis_alert" className="text-xs shrink-0" />
+                          <span>{line.moraCount} พยางค์ (≥5)</span>
                         </span>
                       )}
                       <button
@@ -603,7 +605,7 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
               >
                 {availableCategories.map((c) => (
                   <option key={c} value={c}>
-                    {c === "ALL" ? "📂 ทุกหมวดหมู่" : `📂 ${c}`}
+                    {c === "ALL" ? "ทุกหมวดหมู่ (All Categories)" : c}
                   </option>
                 ))}
               </select>
@@ -817,7 +819,7 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
           <div className="speech-bubble p-3.5 text-left bg-emerald-50/70 border-2 border-emerald-900">
             <div className="flex items-center justify-between mb-1 pb-1 border-b border-emerald-200">
               <div className="flex items-center space-x-1.5">
-                <span className="text-base">{examiner.avatarIcon}</span>
+                <Icon name={examiner.avatarIcon} className="text-base text-emerald-800" />
                 <span className="text-[11px] font-black text-slate-900">
                   อาจารย์ AI ({examiner.characterNameJa})
                 </span>
@@ -873,8 +875,9 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
                     {currentImageQ.expectedAnswerRomaji}
                   </p>
                 )}
-                <p className="text-[10px] text-slate-600 mt-1 font-medium">
-                  💡 {currentImageQ.note}
+                <p className="text-[10px] text-slate-600 mt-1 font-medium flex items-center space-x-1">
+                  <Icon name="lightbulb" className="text-xs text-amber-500 shrink-0" />
+                  <span>{currentImageQ.note}</span>
                 </p>
               </div>
             )}
@@ -961,7 +964,7 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
                   Phonetic Match:
                 </span>
                 <span
-                  className={`px-2 py-0.5 rounded-md text-[10px] font-black ${
+                  className={`px-2 py-0.5 rounded-md text-[10px] font-black flex items-center space-x-1 ${
                     confidence.rating === "EXCELLENT"
                       ? "bg-emerald-500 text-white"
                       : confidence.rating === "GOOD"
@@ -969,11 +972,23 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
                       : "bg-rose-500 text-white"
                   }`}
                 >
-                  {confidence.rating === "EXCELLENT"
-                    ? "🎯 ยอดเยี่ยม (ตรงเป๊ะ)"
-                    : confidence.rating === "GOOD"
-                    ? "👍 ผ่านเกณฑ์ (ฟังเข้าใจ)"
-                    : "⚠️ ยังไม่ตรงเกณฑ์"}
+                  <Icon
+                    name={
+                      confidence.rating === "EXCELLENT"
+                        ? "verified"
+                        : confidence.rating === "GOOD"
+                        ? "thumb_up"
+                        : "error_outline"
+                    }
+                    className="text-xs"
+                  />
+                  <span>
+                    {confidence.rating === "EXCELLENT"
+                      ? "ยอดเยี่ยม (ตรงเป๊ะ)"
+                      : confidence.rating === "GOOD"
+                      ? "ผ่านเกณฑ์ (ฟังเข้าใจ)"
+                      : "ยังไม่ตรงเกณฑ์"}
+                  </span>
                 </span>
               </div>
               <span className="font-mono font-black text-slate-900">

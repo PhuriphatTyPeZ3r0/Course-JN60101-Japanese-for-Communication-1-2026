@@ -49,7 +49,7 @@ export const SEIYUU_ROSTER: SeiyuuProfile[] = [
     seiyuuNameJa: "システム音声",
     seiyuuNameTh: "Device Web Speech",
     animeTitle: "Web Speech API (0ms Offline)",
-    avatarIcon: "📱",
+    avatarIcon: "smart_toy",
     badgeBg: "bg-emerald-100 border-emerald-900 text-emerald-900",
     badgeText: "標準音声 (Default System Voice)",
     greetingJa: "試験を開始します。準備はよろしいですか？",

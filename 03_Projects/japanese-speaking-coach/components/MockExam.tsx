@@ -400,8 +400,9 @@ export const MockExam: React.FC<MockExamProps> = ({
         {/* Stage Select Grid */}
         <div className="text-left space-y-1.5">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-black text-slate-700 uppercase tracking-wider">
-              🎮 เลือกด่านการสอบ (STAGE SELECT):
+            <span className="text-[11px] font-black text-slate-700 uppercase tracking-wider flex items-center space-x-1">
+              <Icon name="sports_esports" className="text-sm text-rose-600" />
+              <span>เลือกด่านการสอบ (STAGE SELECT):</span>
             </span>
             <span className="text-[10px] font-bold text-slate-500">
               ข้อสอบ 3 ส่วน • 15 คะแนน • 3:00 นาที
@@ -471,11 +472,13 @@ export const MockExam: React.FC<MockExamProps> = ({
               </h3>
             </div>
             <div className="flex items-center space-x-1.5">
-              <span className="manga-badge bg-rose-500 text-white text-[10px]">
-                ⏱️ 3:00 นาที
+              <span className="manga-badge bg-rose-500 text-white text-[10px] flex items-center space-x-1">
+                <Icon name="timer" className="text-xs" />
+                <span>3:00 นาที</span>
               </span>
-              <span className="manga-badge bg-amber-400 text-slate-900 text-[10px]">
-                ⭐ 15 คะแนน
+              <span className="manga-badge bg-amber-400 text-slate-900 text-[10px] flex items-center space-x-1">
+                <Icon name="grade" className="text-xs" />
+                <span>15 คะแนน</span>
               </span>
             </div>
           </div>
@@ -737,7 +740,7 @@ export const MockExam: React.FC<MockExamProps> = ({
           <div className="speech-bubble p-3 text-left bg-emerald-50/70 border-2 border-emerald-900">
             <div className="flex items-center justify-between mb-1 pb-1 border-b border-emerald-200">
               <div className="flex items-center space-x-1.5">
-                <span className="text-base">{examiner.avatarIcon}</span>
+                <Icon name={examiner.avatarIcon} className="text-base text-emerald-800" />
                 <span className="text-[11px] font-black text-slate-900">
                   อาจารย์ AI ({examiner.characterNameJa})
                 </span>

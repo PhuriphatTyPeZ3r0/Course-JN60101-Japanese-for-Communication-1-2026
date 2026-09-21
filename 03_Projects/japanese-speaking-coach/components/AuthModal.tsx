@@ -220,9 +220,10 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 <button
                   type="button"
                   onClick={() => setShowConfig(true)}
-                  className="text-[10px] text-slate-500 hover:text-slate-800 font-bold underline"
+                  className="text-[10px] text-slate-500 hover:text-slate-800 font-bold underline flex items-center justify-center mx-auto space-x-1"
                 >
-                  ⚙️ ตั้งค่า Google Client ID ด้วยตนเอง
+                  <Icon name="settings" className="text-xs" />
+                  <span>ตั้งค่า Google Client ID ด้วยตนเอง</span>
                 </button>
               </div>
             )}

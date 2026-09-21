@@ -465,7 +465,7 @@ export const IMAGE_QUESTIONS: ImageQuestion[] = [
       <ellipse cx="100" cy="140" rx="75" ry="30" fill="#10B981"/>
       <rect x="25" y="125" width="150" height="40" rx="10" fill="#059669"/>
       <circle cx="100" cy="70" r="22" fill="#047857"/>
-      <text x="100" y="78" font-family="sans-serif" font-size="24" font-weight="bold" fill="#FFFFFF" text-anchor="middle">ℹ</text>
+      <text x="100" y="78" font-family="sans-serif" font-size="24" font-weight="bold" fill="#FFFFFF" text-anchor="middle">i</text>
       <text x="100" y="152" font-family="sans-serif" font-size="14" font-weight="bold" fill="#ECFDF5" text-anchor="middle">RECEPTION / 受付</text>
     </svg>`,
     title: "เคาน์เตอร์ประชาสัมพันธ์ (Uketsuke)",
