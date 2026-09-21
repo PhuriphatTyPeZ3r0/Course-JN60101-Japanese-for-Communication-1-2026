@@ -7,9 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "pages:build": "npx @cloudflare/next-on-pages",
-    "pages:deploy": "npm run pages:build && npx wrangler pages deploy .vercel/output/static",
-    "pages:dev": "npx wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat"
+    "pages:build": "next build",
+    "pages:deploy": "npm run build && npx wrangler pages deploy out --project-name=jn60101-speaking-coach",
+    "pages:dev": "npx wrangler pages dev out --compatibility-flag=nodejs_compat"
   },
   "dependencies": {
     "lucide-react": "^1.16.0",
