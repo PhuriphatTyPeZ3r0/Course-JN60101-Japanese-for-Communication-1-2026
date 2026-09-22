@@ -1,0 +1,154 @@
+[
+  {
+    "id": "q1",
+    "chapter": 2,
+    "title": "เก้าอี้ (Isu)",
+    "questionTh": "นี่คืออะไร?",
+    "imageUrl": "https://www.sarakadeelite.com/wp-content/uploads/2023/04/Suzume2.jpg",
+    "alt": "เก้าอี้ (Isu)"
+  },
+  {
+    "id": "q2",
+    "chapter": 1,
+    "title": "ประเทศญี่ปุ่น (Nihon)",
+    "questionTh": "คนนั้นมาจากที่ไหน? (ต้องพูดเต็มประโยค)",
+    "imageUrl": "https://images7.alphacoders.com/861/thumb-1920-861959.png",
+    "alt": "ประเทศญี่ปุ่น (Nihon)"
+  },
+  {
+    "id": "q3",
+    "chapter": 1,
+    "title": "พนักงานธนาคาร (Ginkō-in)",
+    "questionTh": "คนนั้นคือใคร?",
+    "imageUrl": "https://static.wikia.nocookie.net/yaoiboyslove/images/5/51/Kondou_Seiichirou_profile_-_The_Affairs_of_the_Other_World_Depend_on_the_Corporate_Slave.jpeg/revision/latest?cb=20210818184429",
+    "alt": "พนักงานธนาคาร (Ginkō-in)"
+  },
+  {
+    "id": "q4",
+    "chapter": 2,
+    "title": "นิตยสารภาษาญี่ปุ่น (Nihongo no zasshi)",
+    "questionTh": "นี่คือนิตยสารเกี่ยวกับอะไร?",
+    "imageUrl": "https://a.storyblok.com/f/178900/836x1200/4cdd29d0eb/f2a502f7fe01bb37eba51a25fdc957631678862718_main.jpg/m/filters:quality(95)format(webp)",
+    "alt": "นิตยสารภาษาญี่ปุ่น (Nihongo no zasshi)"
+  },
+  {
+    "id": "q5",
+    "chapter": 2,
+    "title": "เคาน์เตอร์ประชาสัมพันธ์ (Uketsuke)",
+    "questionTh": "ที่นี่/ตรงนี้คืออะไร? (เคาน์เตอร์ประชาสัมพันธ์)",
+    "imageUrl": "https://us.oricon-group.com/upimg/detail/1000/1334/img660/c70881525e92f782abcb643430dd2546.jpg",
+    "alt": "เคาน์เตอร์ประชาสัมพันธ์ (Uketsuke)"
+  },
+  {
+    "id": "q6",
+    "chapter": 2,
+    "title": "ร่ม (Kasa)",
+    "questionTh": "นี่คือร่มของใคร? (สมมติว่าเป็นร่มของคุณ)",
+    "imageUrl": "https://kiji.life/kiji2025/wp-content/uploads/2019/08/WWY02_2.png",
+    "alt": "ร่ม (Kasa)"
+  },
+  {
+    "id": "q7",
+    "chapter": 2,
+    "title": "นาฬิกา (Tokei)",
+    "questionTh": "นี่คืออะไร? (นาฬิกา)",
+    "imageUrl": "https://static.wikia.nocookie.net/fanfics/images/6/6d/Stopwatch.jpg/revision/latest/scale-to-width-down/1200?cb=20211018151143",
+    "alt": "นาฬิกา (Tokei)"
+  },
+  {
+    "id": "q8",
+    "chapter": 2,
+    "title": "หนังสือรถยนต์ (Kuruma no hon)",
+    "questionTh": "นี่คือหนังสือเกี่ยวกับอะไร? (หนังสือรถยนต์)",
+    "imageUrl": "https://cdn2.penguin.com.au/covers/original/9798888771037.jpg",
+    "alt": "หนังสือรถยนต์ (Kuruma no hon)"
+  },
+  {
+    "id": "q_ch3_1",
+    "chapter": 3,
+    "title": "เวลา 3 โมงตรง (San-ji)",
+    "questionTh": "ตอนนี้กี่โมงแล้ว? (ดูจากหน้าปัดนาฬิกา: 3 โมงตรง)",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Clock_03-00.svg",
+    "alt": "เวลา 3 โมงตรง (San-ji)"
+  },
+  {
+    "id": "q_ch3_2",
+    "chapter": 3,
+    "title": "เวลาทำงาน 9:00 - 17:00",
+    "questionTh": "เวลาทำงานเริ่มกี่โมงถึงกี่โมง? (ดูจากป้าย: 9:00 - 17:00)",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Anime_calendar_-_8502402804.jpg",
+    "alt": "เวลาทำงาน 9:00 - 17:00"
+  },
+  {
+    "id": "q_ch3_3",
+    "chapter": 3,
+    "title": "โรงอาหาร (Shokudō)",
+    "questionTh": "ที่นี่คือที่ไหน? (โรงอาหาร / ห้องอาหาร)",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Hina_Matsuri.jpg/500px-Hina_Matsuri.jpg",
+    "alt": "โรงอาหาร (Shokudō)"
+  },
+  {
+    "id": "q_ch4_1",
+    "chapter": 4,
+    "title": "กระเป๋า 3,000 เยน (San-zen-en)",
+    "questionTh": "กระเป๋าใบนี้ราคาเท่าไหร่? (ดูจากป้าย: 3,000 เยน)",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Cosplay_of_Wikipe-tan_%28in_school_uniform_dress%29_at_NOiZUcon_2023.jpg/500px-Cosplay_of_Wikipe-tan_%28in_school_uniform_dress%29_at_NOiZUcon_2023.jpg",
+    "alt": "กระเป๋า 3,000 เยน (San-zen-en)"
+  },
+  {
+    "id": "q_ch4_2",
+    "chapter": 4,
+    "title": "คอมพิวเตอร์ / โน้ตบุ๊ก (Pasokon)",
+    "questionTh": "นี่คืออะไร? (คอมพิวเตอร์ / โน้ตบุ๊ก)",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/16/Wikipe-tan_at_her_computer.png",
+    "alt": "คอมพิวเตอร์ / โน้ตบุ๊ก (Pasokon)"
+  },
+  {
+    "id": "q_ch5_1",
+    "chapter": 5,
+    "title": "เสื้อยืดสีฟ้า (Aoi T-shatsu)",
+    "questionTh": "เสื้อยืดตัวไหน? (เสื้อยืดสีฟ้า)",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Blue_Admin_T-shirt.svg",
+    "alt": "เสื้อยืดสีฟ้า (Aoi T-shatsu)"
+  },
+  {
+    "id": "q_ch5_2",
+    "chapter": 5,
+    "title": "แอปเปิ้ล 2 ผล (Futatsu)",
+    "questionTh": "ขอแอปเปิ้ลจำนวนเท่าไหร่? (ดูจากรูป: แอปเปิ้ล 2 ผล)",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Apple_%28PSF%29.png",
+    "alt": "แอปเปิ้ล 2 ผล (Futatsu)"
+  },
+  {
+    "id": "q_ch5_3",
+    "chapter": 5,
+    "title": "นาฬิกาสวิส (Suisu no tokei)",
+    "questionTh": "นี่คือนาฬิกาของประเทศไหน? (สวิตเซอร์แลนด์)",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/33/BwcOmega911a.jpg",
+    "alt": "นาฬิกาสวิส (Suisu no tokei)"
+  },
+  {
+    "id": "q_ch6_1",
+    "chapter": 6,
+    "title": "วันจันทร์ (Getsu-yōbi)",
+    "questionTh": "วันนี้วันอะไร? (ดูจากปฏิทิน: วันจันทร์)",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Anime_calendar_-_8502402804.jpg",
+    "alt": "วันจันทร์ (Getsu-yōbi)"
+  },
+  {
+    "id": "q_ch6_2",
+    "chapter": 6,
+    "title": "สนามบิน (Kūkō)",
+    "questionTh": "พรุ่งนี้จะไปที่ไหน? (สนามบิน)",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/JC_Staff%E8%A3%BD%E4%BD%9CMirai_Millennium.jpg/500px-JC_Staff%E8%A3%BD%E4%BD%9CMirai_Millennium.jpg",
+    "alt": "สนามบิน (Kūkō)"
+  },
+  {
+    "id": "q_ch6_3",
+    "chapter": 6,
+    "title": "สถานีรถไฟ (Eki)",
+    "questionTh": "ที่นี่คือที่ไหน? (สถานีรถไฟ)",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Culture_Japan_booth_at_Anime_Expo_20130703.jpg/500px-Culture_Japan_booth_at_Anime_Expo_20130703.jpg",
+    "alt": "สถานีรถไฟ (Eki)"
+  }
+]

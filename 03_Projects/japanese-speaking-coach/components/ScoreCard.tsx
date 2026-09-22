@@ -11,6 +11,23 @@ interface ScoreCardProps {
   onGoToDrill: () => void;
 }
 
+// Helpers for responsive and clean title formatting
+const cleanTitle = (raw?: string, fallback = "บทสนทนาสถานการณ์"): string => {
+  if (!raw) return fallback;
+  return (
+    raw
+      .replace(/\s*\(\s*\d+\s*คะแนน\s*\)/gi, "")
+      .replace(/^ส่วนที่\s*\d+\s*[:•\-]?\s*/i, "")
+      .trim() || fallback
+  );
+};
+
+const getScoreBadgeClass = (score: number): string => {
+  if (score >= 4.5) return "bg-emerald-300 text-slate-900";
+  if (score >= 3) return "bg-amber-300 text-slate-900";
+  return "bg-rose-200 text-rose-900";
+};
+
 export const ScoreCard: React.FC<ScoreCardProps> = ({
   result,
   onRetake,
@@ -96,22 +113,22 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({
       </div>
 
       {/* Breakdown Cards (3 Parts) */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 my-4 sm:my-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-4 my-4 sm:my-6 items-stretch">
         {/* Part 1 */}
-        <div className="p-3.5 sm:p-4 rounded-2xl bg-white border-2 border-slate-900 shadow-[3px_3px_0px_#0f172a] flex flex-col justify-between">
+        <div className="p-3.5 sm:p-4 rounded-2xl bg-white border-2 border-slate-900 shadow-[3px_3px_0px_#0f172a] flex flex-col justify-between h-full">
           <div>
-            <div className="flex items-center justify-between mb-2">
-              <span className="manga-badge bg-sky-300 text-slate-900 text-[10px] sm:text-[11px]">
-                {result.part1Title || "ส่วนที่ 1: บทสนทนา"}
+            {/* Header: Title Badge & Score */}
+            <div className="flex items-center justify-between gap-1.5 mb-2.5">
+              <span
+                className="manga-badge bg-sky-300 text-slate-900 text-[10px] sm:text-[11px] whitespace-nowrap truncate max-w-[calc(100%-3.5rem)]"
+                title={cleanTitle(result.part1Title, "การแนะนำตนเอง")}
+              >
+                {cleanTitle(result.part1Title, "การแนะนำตนเอง")}
               </span>
               <span
-                className={`text-xs sm:text-sm font-black px-2 py-0.5 rounded-lg border border-slate-900 ${
-                  result.part1Score >= 4.5
-                    ? "bg-emerald-300 text-slate-900"
-                    : result.part1Score >= 3
-                    ? "bg-amber-300 text-slate-900"
-                    : "bg-rose-200 text-rose-900"
-                }`}
+                className={`text-xs sm:text-sm font-black px-2 py-0.5 rounded-lg border border-slate-900 shrink-0 whitespace-nowrap ${getScoreBadgeClass(
+                  result.part1Score
+                )}`}
               >
                 {result.part1Score} / 5
               </span>
@@ -136,20 +153,20 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({
         </div>
 
         {/* Part 2 */}
-        <div className="p-3.5 sm:p-4 rounded-2xl bg-white border-2 border-slate-900 shadow-[3px_3px_0px_#0f172a] flex flex-col justify-between">
+        <div className="p-3.5 sm:p-4 rounded-2xl bg-white border-2 border-slate-900 shadow-[3px_3px_0px_#0f172a] flex flex-col justify-between h-full">
           <div>
-            <div className="flex items-center justify-between mb-2">
-              <span className="manga-badge bg-amber-300 text-slate-900 text-[10px] sm:text-[11px]">
+            {/* Header: Title Badge & Score */}
+            <div className="flex items-center justify-between gap-1.5 mb-2.5">
+              <span
+                className="manga-badge bg-amber-300 text-slate-900 text-[10px] sm:text-[11px] whitespace-nowrap truncate max-w-[calc(100%-3.5rem)]"
+                title="ส่วนที่ 2: คำศัพท์ 5 คำ"
+              >
                 ส่วนที่ 2: คำศัพท์ 5 คำ
               </span>
               <span
-                className={`text-xs sm:text-sm font-black px-2 py-0.5 rounded-lg border border-slate-900 ${
-                  result.part2Score >= 4.5
-                    ? "bg-emerald-300 text-slate-900"
-                    : result.part2Score >= 3
-                    ? "bg-amber-300 text-slate-900"
-                    : "bg-rose-200 text-rose-900"
-                }`}
+                className={`text-xs sm:text-sm font-black px-2 py-0.5 rounded-lg border border-slate-900 shrink-0 whitespace-nowrap ${getScoreBadgeClass(
+                  result.part2Score
+                )}`}
               >
                 {result.part2Score} / 5
               </span>
@@ -174,20 +191,20 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({
         </div>
 
         {/* Part 3 */}
-        <div className="p-3.5 sm:p-4 rounded-2xl bg-white border-2 border-slate-900 shadow-[3px_3px_0px_#0f172a] flex flex-col justify-between">
+        <div className="p-3.5 sm:p-4 rounded-2xl bg-white border-2 border-slate-900 shadow-[3px_3px_0px_#0f172a] flex flex-col justify-between h-full">
           <div>
-            <div className="flex items-center justify-between mb-2">
-              <span className="manga-badge bg-rose-400 text-white text-[10px] sm:text-[11px]">
+            {/* Header: Title Badge & Score */}
+            <div className="flex items-center justify-between gap-1.5 mb-2.5">
+              <span
+                className="manga-badge bg-rose-400 text-white text-[10px] sm:text-[11px] whitespace-nowrap truncate max-w-[calc(100%-3.5rem)]"
+                title="ส่วนที่ 3: ตอบจากภาพ"
+              >
                 ส่วนที่ 3: ตอบจากภาพ
               </span>
               <span
-                className={`text-xs sm:text-sm font-black px-2 py-0.5 rounded-lg border border-slate-900 ${
-                  result.part3Score >= 4.5
-                    ? "bg-emerald-300 text-slate-900"
-                    : result.part3Score >= 3
-                    ? "bg-amber-300 text-slate-900"
-                    : "bg-rose-200 text-rose-900"
-                }`}
+                className={`text-xs sm:text-sm font-black px-2 py-0.5 rounded-lg border border-slate-900 shrink-0 whitespace-nowrap ${getScoreBadgeClass(
+                  result.part3Score
+                )}`}
               >
                 {result.part3Score} / 5
               </span>
@@ -207,7 +224,7 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({
           </div>
           <div className="mt-3 pt-2 border-t border-slate-200 flex items-center text-[10px] font-bold text-slate-500">
             <Icon name="image" className="text-xs mr-1 text-slate-500 shrink-0" />
-            <span>ถาม-ตอบสถานการณ์และภาพประกอบ</span>
+            <span>ถาม-ตอบจากภาพประกอบ</span>
           </div>
         </div>
       </div>

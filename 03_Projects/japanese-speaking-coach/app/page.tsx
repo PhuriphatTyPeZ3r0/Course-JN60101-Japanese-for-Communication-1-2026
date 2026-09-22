@@ -123,7 +123,7 @@ export default function HomePage() {
       />
 
       {/* Main Content Area (Responsive padding for all screen sizes + safe bottom space) */}
-      <main className="max-w-3xl mx-auto px-2.5 sm:px-4 py-3 sm:py-5 w-full flex-grow pb-24 sm:pb-28">
+      <main className="max-w-4xl mx-auto px-2.5 sm:px-4 py-3 sm:py-5 w-full flex-grow pb-24 sm:pb-28">
         {currentMode === "MOCK" ? (
           <MockExam
             userConfig={userConfig}

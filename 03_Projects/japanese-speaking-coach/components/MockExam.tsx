@@ -556,7 +556,7 @@ export const MockExam: React.FC<MockExamProps> = ({
   // 3. Finished State
   if (status === "FINISHED" && evaluationResult) {
     return (
-      <div className="max-w-2xl mx-auto">
+      <div className="w-full max-w-4xl mx-auto">
         <ScoreCard
           result={evaluationResult}
           onRetake={startExam}

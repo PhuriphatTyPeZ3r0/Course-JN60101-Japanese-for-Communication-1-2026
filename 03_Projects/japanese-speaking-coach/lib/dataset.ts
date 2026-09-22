@@ -7,6 +7,7 @@ import {
   DialogueLine,
   ExamType,
 } from './types';
+import part3ImagesConfig from '../data/part3-images.json';
 
 // ==========================================
 // 1. เกณฑ์การแนะนำตนเอง (บทที่ 1)
@@ -354,11 +355,12 @@ export const VOCABULARY_LIST: VocabItem[] = [
   { id: "v181", th: "เดือนอะไร?", ja: "なんがつ", romaji: "nan-gatsu", altRomaji: ["nangatsu"], chapter: 6, category: "วันที่และเดือน" }
 ];
 
-// ==========================================
-// 5. ชุดคำถามตอบจากรูปภาพ SVG (Part 3) บทที่ 1-6
-// ออกแบบเวกเตอร์ Neo-Brutalism Manga 100% Offline
-// ==========================================
-export const IMAGE_QUESTIONS: ImageQuestion[] = [
+// Lookup map from data/part3-images.json for easy user configuration of image URLs
+const imageConfigMap = new Map<string, { imageUrl?: string; alt?: string; title?: string }>(
+  part3ImagesConfig.map((item) => [item.id, item])
+);
+
+const RAW_IMAGE_QUESTIONS: ImageQuestion[] = [
   // --- บทที่ 1 & 2 ---
   {
     id: "q1",
@@ -829,3 +831,15 @@ export const IMAGE_QUESTIONS: ImageQuestion[] = [
     note: "ฝึกคำศัพท์สถานที่ในการเดินทาง"
   }
 ];
+
+// Export merged Image Questions with user-configured URLs from data/part3-images.json
+export const IMAGE_QUESTIONS: ImageQuestion[] = RAW_IMAGE_QUESTIONS.map((q) => {
+  const custom = imageConfigMap.get(q.id);
+  const resolvedUrl = custom?.imageUrl !== undefined ? custom.imageUrl : q.imageUrl;
+  return {
+    ...q,
+    imageUrl: resolvedUrl,
+    imageType: resolvedUrl ? "url" : "svg",
+  };
+});
+
