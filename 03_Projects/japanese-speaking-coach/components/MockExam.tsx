@@ -737,13 +737,15 @@ export const MockExam: React.FC<MockExamProps> = ({
             </span>
           </div>
 
-          {/* SVG Preview */}
-          <div className="manga-box-sm overflow-hidden p-1.5 bg-white max-w-[120px] sm:max-w-[150px] mx-auto">
+          {/* Manga Image Frame - 4:3 Aspect Ratio */}
+          <div className="w-full max-w-[260px] sm:max-w-[320px] md:max-w-[360px] aspect-[4/3] mx-auto rounded-2xl border-2 border-slate-900 shadow-[3px_3px_0px_#0f172a] overflow-hidden bg-slate-100 flex items-center justify-center">
             <SvgImage
               svgContent={currentImgItem.imageSvg}
               imageUrl={currentImgItem.imageUrl}
               alt={currentImgItem.title}
-              className="w-24 h-24 sm:w-32 sm:h-32 mx-auto"
+              fit={currentImgItem.fit || "cover"}
+              position={currentImgItem.position || "center"}
+              className="w-full h-full"
             />
           </div>
 

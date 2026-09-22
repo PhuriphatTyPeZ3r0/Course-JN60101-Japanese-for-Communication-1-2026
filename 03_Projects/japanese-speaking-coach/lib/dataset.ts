@@ -474,9 +474,16 @@ export const VOCABULARY_LIST: VocabItem[] = [
 ];
 
 // Lookup map from data/part3-images.json for easy user configuration of image URLs
-const imageConfigMap = new Map<string, { imageUrl?: string; alt?: string; title?: string }>(
-  part3ImagesConfig.map((item) => [item.id, item])
-);
+const imageConfigMap = new Map<
+  string,
+  {
+    imageUrl?: string;
+    alt?: string;
+    title?: string;
+    fit?: "cover" | "contain" | "fill";
+    position?: string;
+  }
+>(part3ImagesConfig.map((item) => [item.id, item as any]));
 
 const RAW_IMAGE_QUESTIONS: ImageQuestion[] = [
   // --- บทที่ 1 & 2 ---
@@ -958,6 +965,8 @@ export const IMAGE_QUESTIONS: ImageQuestion[] = RAW_IMAGE_QUESTIONS.map((q) => {
     ...q,
     imageUrl: resolvedUrl,
     imageType: resolvedUrl ? "url" : "svg",
+    fit: custom?.fit || "cover",
+    position: custom?.position || "center",
   };
 });
 

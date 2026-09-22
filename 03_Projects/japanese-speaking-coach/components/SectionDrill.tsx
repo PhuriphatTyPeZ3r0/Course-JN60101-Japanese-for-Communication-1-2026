@@ -806,13 +806,15 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
             </span>
           </div>
 
-          {/* SVG Box */}
-          <div className="manga-box-sm overflow-hidden p-1.5 bg-white max-w-[130px] sm:max-w-[160px] mx-auto">
+          {/* Manga Image Frame - 4:3 Aspect Ratio */}
+          <div className="w-full max-w-[260px] sm:max-w-[320px] md:max-w-[360px] aspect-[4/3] mx-auto rounded-2xl border-2 border-slate-900 shadow-[3px_3px_0px_#0f172a] overflow-hidden bg-slate-100 flex items-center justify-center">
             <SvgImage
               svgContent={currentImageQ.imageSvg}
               imageUrl={currentImageQ.imageUrl}
               alt={currentImageQ.title}
-              className="w-28 h-28 sm:w-36 sm:h-36 mx-auto"
+              fit={currentImageQ.fit || "cover"}
+              position={currentImageQ.position || "center"}
+              className="w-full h-full"
             />
           </div>
 

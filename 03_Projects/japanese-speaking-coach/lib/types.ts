@@ -236,6 +236,8 @@ export interface ImageQuestion {
   imageUrl?: string;
   title: string;
   note: string;
+  fit?: "cover" | "contain" | "fill";
+  position?: string;
 }
 
 export interface Part2AnswerItem {

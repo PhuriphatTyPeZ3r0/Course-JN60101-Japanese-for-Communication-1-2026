@@ -4,64 +4,88 @@
     "chapter": 2,
     "title": "เก้าอี้ (Isu)",
     "questionTh": "นี่คืออะไร?",
-    "imageUrl": "https://www.sarakadeelite.com/wp-content/uploads/2023/04/Suzume2.jpg",
-    "alt": "เก้าอี้ (Isu)"
+    "imageUrl": "/images/part3/q1_isu.jpg",
+    "originalUrl": "https://www.sarakadeelite.com/wp-content/uploads/2023/04/Suzume2.jpg",
+    "alt": "เก้าอี้ (Isu)",
+    "fit": "cover",
+    "position": "center"
   },
   {
     "id": "q2",
     "chapter": 1,
     "title": "ประเทศญี่ปุ่น (Nihon)",
     "questionTh": "คนนั้นมาจากที่ไหน? (ต้องพูดเต็มประโยค)",
-    "imageUrl": "https://images7.alphacoders.com/861/thumb-1920-861959.png",
-    "alt": "ประเทศญี่ปุ่น (Nihon)"
+    "imageUrl": "/images/part3/q2_nihon.jpg",
+    "originalUrl": "https://images7.alphacoders.com/861/thumb-1920-861959.png",
+    "alt": "ประเทศญี่ปุ่น (Nihon)",
+    "fit": "cover",
+    "position": "center"
   },
   {
     "id": "q3",
     "chapter": 1,
     "title": "พนักงานธนาคาร (Ginkō-in)",
     "questionTh": "คนนั้นคือใคร?",
-    "imageUrl": "https://static.wikia.nocookie.net/yaoiboyslove/images/5/51/Kondou_Seiichirou_profile_-_The_Affairs_of_the_Other_World_Depend_on_the_Corporate_Slave.jpeg/revision/latest?cb=20210818184429",
-    "alt": "พนักงานธนาคาร (Ginkō-in)"
+    "imageUrl": "/images/part3/q3_ginkoin.jpg",
+    "originalUrl": "https://static.wikia.nocookie.net/yaoiboyslove/images/5/51/Kondou_Seiichirou_profile_-_The_Affairs_of_the_Other_World_Depend_on_the_Corporate_Slave.jpeg",
+    "alt": "พนักงานธนาคาร (Ginkō-in)",
+    "fit": "cover",
+    "position": "center"
   },
   {
     "id": "q4",
     "chapter": 2,
     "title": "นิตยสารภาษาญี่ปุ่น (Nihongo no zasshi)",
     "questionTh": "นี่คือนิตยสารเกี่ยวกับอะไร?",
-    "imageUrl": "https://a.storyblok.com/f/178900/836x1200/4cdd29d0eb/f2a502f7fe01bb37eba51a25fdc957631678862718_main.jpg/m/filters:quality(95)format(webp)",
-    "alt": "นิตยสารภาษาญี่ปุ่น (Nihongo no zasshi)"
+    "imageUrl": "/images/part3/q4_zasshi.jpg",
+    "originalUrl": "https://a.storyblok.com/f/178900/836x1200/4cdd29d0eb/f2a502f7fe01bb37eba51a25fdc957631678862718_main.jpg/m/filters:quality(95)format(webp)",
+    "alt": "นิตยสารภาษาญี่ปุ่น (Nihongo no zasshi)",
+    "fit": "cover",
+    "position": "center"
   },
   {
     "id": "q5",
     "chapter": 2,
     "title": "เคาน์เตอร์ประชาสัมพันธ์ (Uketsuke)",
     "questionTh": "ที่นี่/ตรงนี้คืออะไร? (เคาน์เตอร์ประชาสัมพันธ์)",
-    "imageUrl": "https://us.oricon-group.com/upimg/detail/1000/1334/img660/c70881525e92f782abcb643430dd2546.jpg",
-    "alt": "เคาน์เตอร์ประชาสัมพันธ์ (Uketsuke)"
+    "imageUrl": "/images/part3/q5_uketsuke.jpg",
+    "originalUrl": "https://us.oricon-group.com/upimg/detail/1000/1334/img660/c70881525e92f782abcb643430dd2546.jpg",
+    "alt": "เคาน์เตอร์ประชาสัมพันธ์ (Uketsuke)",
+    "fit": "cover",
+    "position": "center"
   },
   {
     "id": "q6",
     "chapter": 2,
     "title": "ร่ม (Kasa)",
     "questionTh": "นี่คือร่มของใคร? (สมมติว่าเป็นร่มของคุณ)",
-    "imageUrl": "https://kiji.life/kiji2025/wp-content/uploads/2019/08/WWY02_2.png",
-    "alt": "ร่ม (Kasa)"
+    "imageUrl": "/images/part3/q6_kasa.jpg",
+    "originalUrl": "https://kiji.life/kiji2025/wp-content/uploads/2019/08/WWY02_2.png",
+    "alt": "ร่ม (Kasa)",
+    "fit": "cover",
+    "position": "center"
   },
   {
     "id": "q7",
     "chapter": 2,
     "title": "นาฬิกา (Tokei)",
     "questionTh": "นี่คืออะไร? (นาฬิกา)",
-    "imageUrl": "https://static.wikia.nocookie.net/fanfics/images/6/6d/Stopwatch.jpg/revision/latest/scale-to-width-down/1200?cb=20211018151143",
-    "alt": "นาฬิกา (Tokei)"
+    "imageUrl": "/images/part3/q7_tokei.jpg",
+    "originalUrl": "https://static.wikia.nocookie.net/fanfics/images/6/6d/Stopwatch.jpg",
+    "alt": "นาฬิกา (Tokei)",
+    "fit": "cover",
+    "position": "center"
   },
   {
     "id": "q8",
     "chapter": 2,
     "title": "หนังสือรถยนต์ (Kuruma no hon)",
     "questionTh": "นี่คือหนังสือเกี่ยวกับอะไร? (หนังสือรถยนต์)",
-    "imageUrl": "https://cdn2.penguin.com.au/covers/original/9798888771037.jpg",
-    "alt": "หนังสือรถยนต์ (Kuruma no hon)"
+    "imageUrl": "/images/part3/q8_kuruma_no_hon.jpg",
+    "originalUrl": "https://cdn2.penguin.com.au/covers/original/9798888771037.jpg",
+    "alt": "หนังสือรถยนต์ (Kuruma no hon)",
+    "fit": "cover",
+    "position": "center"
   },
   {
     "id": "q_ch3_1",
