@@ -198,6 +198,11 @@ export const VOCABULARY_LIST: VocabItem[] = [
   { id: "v1_douzoyoroshiku", th: "ขอฝากเนื้อฝากตัวด้วยครับ/ค่ะ", ja: "どうぞよろしくおねがいします", romaji: "dōzo yoroshiku onegaishimasu", altRomaji: ["douzo yoroshiku onegaishimasu"], chapter: 1, category: "คำศัพท์ทั่วไป" },
   { id: "v1_kochirawa", th: "นี่คือคุณ... (แนะนำผู้อื่น)", ja: "こちらは", romaji: "kochira wa", altJa: "こちらは〜さんです", chapter: 1, category: "คำศัพท์ทั่วไป" },
   { id: "v1_arigatou", th: "ขอบคุณมากครับ/ค่ะ", ja: "ありがとうございます", romaji: "arigatō gozaimasu", altRomaji: ["arigatou gozaimasu"], chapter: 1, category: "คำศัพท์ทั่วไป" },
+  { id: "v1_chan", th: "คำลงท้ายชื่อเด็ก/คนสนิท (น่ารัก)", ja: "ちゃん", romaji: "-chan", chapter: 1, category: "คำสรรพนามและคำเรียก" },
+  { id: "v1_hiragana", th: "ตัวอักษรฮิรางานะ", ja: "ひらがな", romaji: "hiragana", chapter: 1, category: "คำศัพท์ทั่วไป" },
+  { id: "v1_katakana", th: "ตัวอักษรคาตาคานะ", ja: "カタカナ", romaji: "katakana", chapter: 1, category: "คำศัพท์ทั่วไป" },
+  { id: "v1_wa_particle", th: "คำช่วยชี้ประธาน/หัวเรื่องของประโยค", ja: "は", romaji: "wa", chapter: 1, category: "คำช่วย" },
+  { id: "v1_ka_particle", th: "คำช่วยลงท้ายประโยคคำถาม (ไหม/หรือ)", ja: "か", romaji: "ka", chapter: 1, category: "คำช่วย" },
 
   // --- บทที่ 2: สิ่งของส่วนตัว & ในสำนักงาน ---
   { id: "v13", th: "หนังสือ", ja: "ほん", romaji: "hon", chapter: 2, category: "สิ่งของ" },
@@ -264,6 +269,7 @@ export const VOCABULARY_LIST: VocabItem[] = [
   { id: "v2_num_8", th: "แปด (8)", ja: "はち", romaji: "hachi", chapter: 2, category: "ตัวเลข/ราคา" },
   { id: "v2_num_9", th: "เก้า (9)", ja: "きゅう", romaji: "kyū", altJa: "く", altRomaji: ["kyu", "ku"], chapter: 2, category: "ตัวเลข/ราคา" },
   { id: "v2_num_10", th: "สิบ (10)", ja: "じゅう", romaji: "jū", altRomaji: ["ju", "juu"], chapter: 2, category: "ตัวเลข/ราคา" },
+  { id: "v2_no_particle", th: "คำช่วยเชื่อมแสดงความเป็นเจ้าของ / สังกัด (ของ)", ja: "の", romaji: "no", chapter: 2, category: "คำช่วย" },
 
   // --- บทที่ 3: สถานที่ & เวลา & ตัวเลขบอกเวลา ---
   { id: "v36", th: "ห้องประชุม", ja: "かいぎしつ", romaji: "kaigishitsu", chapter: 3, category: "สถานที่" },
@@ -294,6 +300,18 @@ export const VOCABULARY_LIST: VocabItem[] = [
   { id: "v61", th: "กำลังจะ.. / ใกล้จะ..", ja: "もうすぐ", romaji: "mō sugu", altRomaji: ["mo sugu", "mousugu"], chapter: 3, category: "เวลา" },
   { id: "v62", th: "กว่า (เช่น บ่ายสองกว่า)", ja: "すぎ", romaji: "sugi", chapter: 3, category: "เวลา" },
   { id: "v63", th: "ไม่เป็นไร (ตอบรับขอบคุณ)", ja: "どういたしまして", romaji: "dōitashimashite", altRomaji: ["doitashimashite"], chapter: 3, category: "คำศัพท์ทั่วไป" },
+  { id: "v3_koko", th: "ที่นี่ (ตำแหน่งผู้พูด)", ja: "ここ", romaji: "koko", chapter: 3, category: "สถานที่" },
+  { id: "v3_soko", th: "ที่นั่น (ตำแหน่งคู่สนทนา)", ja: "そこ", romaji: "soko", chapter: 3, category: "สถานที่" },
+  { id: "v3_asoko", th: "ที่โน่น (ตำแหน่งไกลทั้งสองฝ่าย)", ja: "あそこ", romaji: "asoko", chapter: 3, category: "สถานที่" },
+  { id: "v3_doko", th: "ที่ไหน", ja: "どこ", romaji: "doko", chapter: 3, category: "สถานที่" },
+  { id: "v3_kochira", th: "ทางนี้ (สุภาพ / ทิศทาง)", ja: "こちら", romaji: "kochira", chapter: 3, category: "สถานที่" },
+  { id: "v3_sochira", th: "ทางนั้น (สุภาพ / ทิศทาง)", ja: "そちら", romaji: "sochira", chapter: 3, category: "สถานที่" },
+  { id: "v3_achira", th: "ทางโน้น (สุภาพ / ทิศทาง)", ja: "あちら", romaji: "achira", chapter: 3, category: "สถานที่" },
+  { id: "v3_dochira", th: "ทางไหน / ที่ไหน (สุภาพ)", ja: "どちら", romaji: "dochira", chapter: 3, category: "สถานที่" },
+  { id: "v3_rondon", th: "กรุงลอนดอน", ja: "ロンドン", romaji: "Rondon", chapter: 3, category: "สถานที่" },
+  { id: "v3_sou_desu_ka", th: "อย่างนั้นเหรอ / เข้าใจแล้ว", ja: "そうですか", romaji: "sō desu ka", altRomaji: ["so desu ka", "sou desu ka"], chapter: 3, category: "คำศัพท์ทั่วไป" },
+  { id: "v3_onnanohito", th: "ผู้หญิง", ja: "おんなのひと", romaji: "onna no hito", altJa: "女の人", chapter: 3, category: "คำศัพท์ทั่วไป" },
+  { id: "v3_otokonohito", th: "ผู้ชาย", ja: "おとこのひと", romaji: "otoko no hito", altJa: "男の人", chapter: 3, category: "คำศัพท์ทั่วไป" },
 
   // --- บทที่ 4: การซื้อของ 1 & ตัวเลข & ราคา ---
   { id: "v64", th: "ร้าน / ร้านค้า", ja: "みせ", romaji: "mise", chapter: 4, category: "สถานที่" },
@@ -321,6 +339,9 @@ export const VOCABULARY_LIST: VocabItem[] = [
   { id: "v86", th: "หนึ่งแสน (100,000)", ja: "じゅうまん", romaji: "jū-man", altRomaji: ["juman", "juuman"], chapter: 4, category: "ตัวเลข/ราคา" },
   { id: "v87", th: "หนึ่งล้าน (1,000,000)", ja: "ひゃくまん", romaji: "hyaku-man", altRomaji: ["hyakuman"], chapter: 4, category: "ตัวเลข/ราคา" },
   { id: "v88", th: "ด้วยเหมือนกัน (คำช่วย)", ja: "も", romaji: "mo", chapter: 4, category: "คำศัพท์ทั่วไป" },
+  { id: "v4_kado_demo_ii", th: "ใช้บัตรเครดิตได้ไหม", ja: "カードでもいいですか", romaji: "kādo demo ii desu ka", altRomaji: ["kado demo ii desu ka", "kaado demo ii desu ka"], chapter: 4, category: "คำศัพท์ทั่วไป" },
+  { id: "v4_hai_kekkou", th: "ได้ครับ/ค่ะ ไม่มีปัญหา (ตอบรับอนุญาต)", ja: "はい、けっこうです", romaji: "hai, kekkō desu", altRomaji: ["hai, kekko desu", "hai, kekkou desu"], chapter: 4, category: "คำศัพท์ทั่วไป" },
+  { id: "v4_ichi_oku", th: "หนึ่งร้อยล้าน (100,000,000)", ja: "いちおく", romaji: "ichi-oku", altRomaji: ["ichioku"], chapter: 4, category: "ตัวเลข/ราคา" },
 
   // --- บทที่ 5: การซื้อของ 2 & ลักษณนาม & สี & ขนาด ---
   { id: "v89", th: "เสื้อยืด", ja: "Tシャツ", romaji: "T-shatsu", altRomaji: ["tshatsu", "tiishatsu"], chapter: 5, category: "เสื้อผ้า/ของใช้" },
@@ -354,6 +375,18 @@ export const VOCABULARY_LIST: VocabItem[] = [
   { id: "v117", th: "กี่ชิ้น? / เท่าไหร่?", ja: "いくつ", romaji: "ikutsu", chapter: 5, category: "ลักษณนาม" },
   { id: "v118", th: "แผ่น / ตัว (ลักษณนามของแบน)", ja: "まい", romaji: "-mai", altRomaji: ["mai"], chapter: 5, category: "ลักษณนาม" },
   { id: "v119", th: "ขวด / ด้าม / แท่ง (ลักษณนามของยาว)", ja: "ほん / ぼん / ぽん", romaji: "-hon / -bon / -pon", altRomaji: ["hon", "bon", "pon"], chapter: 5, category: "ลักษณนาม" },
+  { id: "v5_furansu", th: "ประเทศฝรั่งเศส", ja: "フランス", romaji: "Furansu", chapter: 5, category: "สถานที่" },
+  { id: "v5_shukurimu", th: "ครีมพัฟ / ชูครีม", ja: "シュークリーム", romaji: "shūkurīmu", altRomaji: ["shukurimu", "shuukuriimu"], chapter: 5, category: "อาหาร/เครื่องดื่ม" },
+  { id: "v5_dore", th: "อันไหน (เลือกจากหลายชิ้น)", ja: "どれ", romaji: "dore", chapter: 5, category: "คำศัพท์ทั่วไป" },
+  { id: "v5_muttsu", th: "6 ชิ้น / 6 อัน", ja: "むっつ", romaji: "muttsu", chapter: 5, category: "ลักษณนาม" },
+  { id: "v5_nanatsu", th: "7 ชิ้น / 7 อัน", ja: "ななつ", romaji: "nanatsu", chapter: 5, category: "ลักษณนาม" },
+  { id: "v5_yattsu", th: "8 ชิ้น / 8 อัน", ja: "やっつ", romaji: "yattsu", chapter: 5, category: "ลักษณนาม" },
+  { id: "v5_kokonotsu", th: "9 ชิ้น / 9 อัน", ja: "ここのつ", romaji: "kokonotsu", chapter: 5, category: "ลักษณนาม" },
+  { id: "v5_tou", th: "10 ชิ้น / 10 อัน", ja: "とお", romaji: "tō", altRomaji: ["to", "too"], chapter: 5, category: "ลักษณนาม" },
+  { id: "v5_ippon", th: "1 ขวด / 1 แท่ง (ลักษณนามทรงยาว)", ja: "いっぽん", romaji: "ippon", chapter: 5, category: "ลักษณนาม" },
+  { id: "v5_roppon", th: "6 ขวด / 6 แท่ง", ja: "ろっぽん", romaji: "roppon", chapter: 5, category: "ลักษณนาม" },
+  { id: "v5_happon", th: "8 ขวด / 8 แท่ง", ja: "はっぽん", romaji: "happon", chapter: 5, category: "ลักษณนาม" },
+  { id: "v5_juppon", th: "10 ขวด / 10 แท่ง", ja: "じゅっぽん", romaji: "juppon", altRomaji: ["jippon"], chapter: 5, category: "ลักษณนาม" },
 
   // --- บทที่ 6: ตารางงาน & วันที่ & เดือน & การเดินทาง & กริยา ---
   { id: "v120", th: "ฮัลโหล (รับโทรศัพท์)", ja: "もしもし", romaji: "moshi moshi", chapter: 6, category: "คำศัพท์ทั่วไป" },
@@ -378,7 +411,7 @@ export const VOCABULARY_LIST: VocabItem[] = [
   { id: "v139", th: "เมืองโอซาก้า", ja: "おおさか", romaji: "Ōsaka", altRomaji: ["Osaka", "Oosaka"], chapter: 6, category: "สถานที่" },
   { id: "v140", th: "วันเกิด", ja: "おたんじょうび", romaji: "otanjōbi", altRomaji: ["otanjobi", "otanjoubi"], chapter: 6, category: "วันที่และเดือน" },
   { id: "v141", th: "เมื่อไหร่?", ja: "いつ", romaji: "itsu", chapter: 6, category: "เวลา" },
-  { id: "v142", th: "ไปทำงานนอกสถานที่ (출장)", ja: "しゅっちょう", romaji: "shutchō", altRomaji: ["shutcho", "shutchou"], chapter: 6, category: "คำศัพท์ทั่วไป" },
+  { id: "v142", th: "การไปปฏิบัติงานนอกสถานที่ / ไปต่างจังหวัด (business trip)", ja: "しゅっちょう", romaji: "shutchō", altJa: "出張", altRomaji: ["shutcho", "shutchou"], chapter: 6, category: "คำศัพท์ทั่วไป" },
   { id: "v143", th: "รถบัส / รถประจำทาง", ja: "バス", romaji: "basu", chapter: 6, category: "สิ่งของ" },
   { id: "v144", th: "คนขับรถ", ja: "うんてんしゅ", romaji: "untenshu", chapter: 6, category: "อาชีพ" },
   { id: "v145", th: "เพื่อน", ja: "ともだち", romaji: "tomodachi", chapter: 6, category: "คำศัพท์ทั่วไป" },
@@ -423,7 +456,21 @@ export const VOCABULARY_LIST: VocabItem[] = [
   { id: "v178", th: "เดือนตุลาคม", ja: "じゅうがつ", romaji: "jū-gatsu", altRomaji: ["jugatsu", "juugatsu"], chapter: 6, category: "วันที่และเดือน" },
   { id: "v179", th: "เดือนพฤศจิกายน", ja: "じゅういちがつ", romaji: "jūichi-gatsu", altRomaji: ["juichigatsu", "juuichigatsu"], chapter: 6, category: "วันที่และเดือน" },
   { id: "v180", th: "เดือนธันวาคม", ja: "じゅうにがつ", romaji: "jūni-gatsu", altRomaji: ["junigatsu", "juunigatsu"], chapter: 6, category: "วันที่และเดือน" },
-  { id: "v181", th: "เดือนอะไร?", ja: "なんがつ", romaji: "nan-gatsu", altRomaji: ["nangatsu"], chapter: 6, category: "วันที่และเดือน" }
+  { id: "v181", th: "เดือนอะไร?", ja: "なんがつ", romaji: "nan-gatsu", altRomaji: ["nangatsu"], chapter: 6, category: "วันที่และเดือน" },
+
+  // คำบอกเวลาสัมพัทธ์และกริยาเพิ่มเติม (Relative Time Words, Verbs & Expressions)
+  { id: "v6_asatte", th: "มะรืนนี้", ja: "あさって", romaji: "asatte", chapter: 6, category: "วันที่และเดือน" },
+  { id: "v6_konshu", th: "สัปดาห์นี้", ja: "こんしゅう", romaji: "konshū", altRomaji: ["konshu", "konshuu"], chapter: 6, category: "วันที่และเดือน" },
+  { id: "v6_raishu", th: "สัปดาห์หน้า", ja: "らいしゅう", romaji: "raishū", altRomaji: ["raishu", "raishuu"], chapter: 6, category: "วันที่และเดือน" },
+  { id: "v6_sengetsu", th: "เดือนที่แล้ว", ja: "せんげつ", romaji: "sengetsu", chapter: 6, category: "วันที่และเดือน" },
+  { id: "v6_kongetsu", th: "เดือนนี้", ja: "こんげつ", romaji: "kongetsu", chapter: 6, category: "วันที่และเดือน" },
+  { id: "v6_raigetsu", th: "เดือนหน้า", ja: "らいげつ", romaji: "raigetsu", chapter: 6, category: "วันที่และเดือน" },
+  { id: "v6_kotoshi", th: "ปีนี้", ja: "ことし", romaji: "kotoshi", chapter: 6, category: "วันที่และเดือน" },
+  { id: "v6_rainen", th: "ปีหน้า", ja: "らいねん", romaji: "rainen", chapter: 6, category: "วันที่และเดือน" },
+  { id: "v6_itterasshai", th: "ไปดีมาดีนะ (คำอวยพรเมื่อมีคนเดินทาง)", ja: "いってらっしゃい", romaji: "itterasshai", chapter: 6, category: "คำศัพท์ทั่วไป" },
+  { id: "v6_kaerimashita", th: "ได้กลับแล้ว (รูปอดีต)", ja: "かえりました", romaji: "kaerimashita", chapter: 6, category: "การเดินทางและกริยา" },
+  { id: "v6_kaerimasen", th: "ไม่กลับ (รูปปฏิเสธ)", ja: "かえりません", romaji: "kaerimasen", chapter: 6, category: "การเดินทางและกริยา" },
+  { id: "v6_kaisha_no_hito", th: "คนจากบริษัท / เพื่อนร่วมงาน", ja: "かいしゃのひと", romaji: "kaisha no hito", altJa: "会社の人", chapter: 6, category: "คำศัพท์ทั่วไป" }
 ];
 
 // Lookup map from data/part3-images.json for easy user configuration of image URLs
