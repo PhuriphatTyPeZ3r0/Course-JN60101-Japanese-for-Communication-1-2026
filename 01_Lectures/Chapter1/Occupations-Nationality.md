@@ -15,6 +15,7 @@ date: 2026-09-09
 
 - **sensei (先生)** — อาจารย์/ครู
 - **gakusei (学生)** — นักเรียน/นักศึกษา
+- **kaisha (会社)** — บริษัท
 - **kaisha-in (会社員)** — พนักงานบริษัท
 - **ginkō-in (銀行員)** — พนักงานธนาคาร
 - **isha (医者)** — หมอ
@@ -28,9 +29,15 @@ date: 2026-09-09
 - **daigaku (大学)** — มหาวิทยาลัย
 - **byō-in (病院)** — โรงพยาบาล
 - **uketsuke (受付)** — แผนกต้อนรับ/พนักงานต้อนรับ
+- **denki (電気)** — ไฟฟ้า
 - **-jin (人)** — ต่อท้ายชื่อประเทศ = สัญชาติ เช่น Nihon-jin (คนญี่ปุ่น), Amerika-jin (คนอเมริกัน)
 
-**ประเทศ:** Nihon (ญี่ปุ่น), Chūgoku (จีน), Doitsu (เยอรมนี), Igirisu (อังกฤษ), Amerika (อเมริกา), Ōsutoraria (ออสเตรเลีย), Tai (ไทย)
+**ประเทศ:** Nihon (ญี่ปุ่น), Chūgoku (จีน), Kankoku (เกาหลี), Doitsu (เยอรมนี), Igirisu (อังกฤษ), Amerika (อเมริกา), Ōsutoraria (ออสเตรเลีย), Tai (ไทย)
+
+**อายุ (Age)**
+
+- **-sai (歳)** — ลักษณนามบอกอายุ (...ปี)
+- **nansai (何歳) / o-ikutsu (おいくつ)** — อายุเท่าไหร่ (o-ikutsu สุภาพกว่า ใช้ถามผู้ใหญ่)
 
 ## <span class="material-symbols-outlined">record_voice_over</span> Grammar Pattern (โครงสร้างประโยค)
 
@@ -52,6 +59,11 @@ date: 2026-09-09
 
 > [!example] ตัวอย่างประโยค
 > Watashi wa Amerika kara kimashita. = ฉันมาจากอเมริกา
+
+**บอกอายุ:** N wa [ตัวเลข]-sai desu.
+
+> [!example] ตัวอย่างประโยค
+> A: O-ikutsu desu ka? B: Nijū-sai desu. = A: อายุเท่าไหร่คะ/ครับ B: อายุ 20 ปีครับ/ค่ะ
 
 ## <span class="material-symbols-outlined">edit_note</span> Notes (ข้อควรระวัง)
 
