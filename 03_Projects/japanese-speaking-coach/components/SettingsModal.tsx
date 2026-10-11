@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect, useMemo } from "react";
 import { Icon } from "./Icon";
-import { UserConfig, SeiyuuVoiceId } from "@/lib/types";
+import { UserConfig, SeiyuuVoiceId, SEIYUU_ROSTER } from "@/lib/types";
 import { playSeiyuuGreeting } from "@/lib/speech";
 import {
   HOBBY_DICTIONARY,
@@ -458,47 +458,85 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </div>
           </div>
 
-          {/* 3. Dedicated Standard Voice (Default System Voice / 標準音声) */}
-          <div className="p-3.5 rounded-2xl bg-emerald-50/80 border-2 border-slate-900 shadow-[2px_2px_0px_#0f172a]">
-            <div className="flex items-center justify-between mb-2 pb-1.5 border-b border-emerald-200">
+          {/* 3. Voice Engine Selection (Web Speech & Fish Audio) */}
+          <div className="p-3.5 rounded-2xl bg-emerald-50/80 border-2 border-slate-900 shadow-[2px_2px_0px_#0f172a] space-y-2">
+            <div className="flex items-center justify-between pb-1.5 border-b border-emerald-200">
               <label className="flex items-center text-xs font-black text-slate-900">
                 <Icon name="record_voice_over" className="text-sm text-emerald-600 mr-1" />
                 เสียงอาจารย์ผู้คุมสอบ (Voice Engine)
               </label>
-              <span className="manga-badge bg-emerald-600 text-white text-[9px] flex items-center space-x-0.5">
-                <Icon name="bolt" className="text-xs mr-0.5" />
-                <span>0ms OFFLINE</span>
+              <span className="manga-badge bg-rose-500 text-white text-[9px] flex items-center space-x-0.5">
+                <Icon name="auto_awesome" className="text-xs mr-0.5" />
+                <span>AI VOICE READY</span>
               </span>
             </div>
 
-            <div className="p-3 rounded-xl bg-white border-2 border-slate-900 flex items-center justify-between">
-              <div className="flex items-center space-x-2.5 min-w-0">
-                <div className="w-8 h-8 rounded-xl bg-emerald-100 border border-emerald-900 flex items-center justify-center shrink-0">
-                  <Icon name="smart_toy" className="text-xl text-emerald-900" />
-                </div>
-                <div className="min-w-0">
-                  <div className="flex items-center space-x-1.5">
-                    <span className="text-xs font-black text-slate-900">
-                      標準音声
-                    </span>
-                    <span className="text-[10px] text-slate-500 font-bold">
-                      (Default System Voice)
-                    </span>
-                  </div>
-                  <p className="text-[10px] text-slate-600 font-medium leading-tight mt-0.5">
-                    เสียงมาตรฐานระบบอุปกรณ์ เสถียร 100% ตอบสนองทันที ไม่ดีเลย์
-                  </p>
-                </div>
-              </div>
+            <div className="space-y-2">
+              {SEIYUU_ROSTER.map((seiyuu) => {
+                const isSelected = formConfig.seiyuuVoice === seiyuu.id;
+                const isFishAudio = Boolean(seiyuu.fishAudioReferenceId);
 
-              <button
-                type="button"
-                onClick={() => handlePreviewVoice("web_speech")}
-                className="manga-btn shrink-0 ml-2 px-2.5 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-900 rounded-xl text-xs font-black flex items-center space-x-1 border-2 border-slate-900 shadow-[1px_1px_0px_#0f172a]"
-              >
-                <Icon name="volume_up" className="text-sm text-rose-600" />
-                <span>{previewingId ? "กำลังเล่น..." : "ทดสอบเสียง"}</span>
-              </button>
+                return (
+                  <div
+                    key={seiyuu.id}
+                    onClick={() => setFormConfig({ ...formConfig, seiyuuVoice: seiyuu.id })}
+                    className={`p-3 rounded-xl border-2 transition cursor-pointer flex items-center justify-between ${
+                      isSelected
+                        ? "bg-amber-100 border-slate-900 shadow-[2px_2px_0px_#0f172a]"
+                        : "bg-white border-slate-300 hover:border-slate-800"
+                    }`}
+                  >
+                    <div className="flex items-center space-x-2.5 min-w-0">
+                      <div
+                        className={`w-9 h-9 rounded-xl border flex items-center justify-center shrink-0 ${
+                          isFishAudio
+                            ? "bg-rose-100 border-rose-900 text-rose-900"
+                            : "bg-emerald-100 border-emerald-900 text-emerald-900"
+                        }`}
+                      >
+                        <Icon name={seiyuu.avatarIcon} className="text-xl" />
+                      </div>
+                      <div className="min-w-0">
+                        <div className="flex items-center space-x-1.5">
+                          <span className="text-xs font-black text-slate-900">
+                            {seiyuu.characterNameJa}
+                          </span>
+                          <span className="text-[10px] text-slate-500 font-bold truncate">
+                            ({seiyuu.characterNameTh})
+                          </span>
+                        </div>
+                        <p className="text-[10px] text-slate-600 font-medium leading-tight mt-0.5">
+                          {seiyuu.id === "saori_hayami"
+                            ? "เสียงพากย์ฮายามิ ซาโอริ (Fish Audio AI) สำเนียงธรรมชาติ อ่อนหวาน สุภาพ"
+                            : seiyuu.id === "kirito"
+                            ? "เสียงพากย์คิริโตะ (SAO - Fish Audio AI) สดใส มั่นใจ คมชัด กระตือรือร้น"
+                            : "เสียงมาตรฐานประจำเครื่อง เสถียร 100% ตอบสนองทันที 0ms"}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center space-x-1.5 shrink-0 ml-2">
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handlePreviewVoice(seiyuu.id);
+                        }}
+                        className="manga-btn px-2 py-1 bg-white hover:bg-slate-50 text-slate-900 rounded-lg text-[10px] font-black flex items-center space-x-0.5 border border-slate-900"
+                      >
+                        <Icon name="volume_up" className="text-xs text-rose-600" />
+                        <span>{previewingId === seiyuu.id ? "กำลังเล่น..." : "ทดสอบ"}</span>
+                      </button>
+
+                      {isSelected && (
+                        <div className="w-5 h-5 rounded-full bg-slate-900 text-white flex items-center justify-center text-[10px] font-black shrink-0">
+                          ✓
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
 

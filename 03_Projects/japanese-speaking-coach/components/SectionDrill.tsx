@@ -461,7 +461,7 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
                           e.stopPropagation();
                           speakWithSeiyuuVoice(
                             lineJa,
-                            "web_speech",
+                            userConfig.seiyuuVoice,
                             userConfig.speechRate,
                             "ja-JP"
                           );
@@ -662,7 +662,7 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
                         onClick={() =>
                           speakWithSeiyuuVoice(
                             filteredVocabList[vocabIndex].ja,
-                            "web_speech",
+                            userConfig.seiyuuVoice,
                             userConfig.speechRate,
                             "ja-JP"
                           )
@@ -670,7 +670,7 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
                         className="manga-btn mt-2 inline-flex items-center space-x-1 px-3 py-1 rounded-xl bg-slate-50 text-slate-900 text-xs border border-slate-300"
                       >
                         <Icon name="volume_up" className="text-sm text-rose-600" />
-                        <span>ฟังเสียงอ่าน (標準音声)</span>
+                        <span>ฟังเสียงอ่าน ({examiner.characterNameJa})</span>
                       </button>
                     </div>
                   ) : (
@@ -760,7 +760,7 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
                     onClick={() =>
                       speakWithSeiyuuVoice(
                         v.ja,
-                        "web_speech",
+                        userConfig.seiyuuVoice,
                         userConfig.speechRate,
                         "ja-JP"
                       )
@@ -831,7 +831,7 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
                 onClick={() =>
                   speakWithSeiyuuVoice(
                     currentImageQ.questionJa,
-                    "web_speech",
+                    userConfig.seiyuuVoice,
                     userConfig.speechRate,
                     "ja-JP"
                   )

@@ -191,3 +191,95 @@ export const onRequestGet = async (context: {
     });
   }
 };
+
+export const onRequestPost = async (context: {
+  request: Request;
+  waitUntil: (promise: Promise<unknown>) => void;
+  env: {
+    FISH_AUDIO_API_KEY?: string;
+    FISH_API_KEY?: string;
+  };
+}): Promise<Response> => {
+  try {
+    const body: any = await context.request.json().catch(() => ({}));
+    const { text, speed = 0.9, referenceId = "dea86d7359194b668a34750b472ced71" } = body;
+
+    if (!text || typeof text !== "string") {
+      return new Response(JSON.stringify({ error: "Text is required" }), {
+        status: 400,
+        headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+      });
+    }
+
+    const apiKey = context.env?.FISH_AUDIO_API_KEY || context.env?.FISH_API_KEY;
+    if (!apiKey) {
+      return new Response(
+        JSON.stringify({ error: "FISH_AUDIO_API_KEY is not configured" }),
+        {
+          status: 500,
+          headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+        }
+      );
+    }
+
+    let sanitizedText = text
+      .replace(/\[ชื่อ\]/g, "たなか")
+      .replace(/\[งานอดิเรก\]/g, "まんが")
+      .replace(/\[Name\]/gi, "たなか")
+      .replace(/\[Hobby\]/gi, "まんが")
+      .replace(/[\u0E00-\u0E7F]+/g, "")
+      .trim();
+
+    if (!sanitizedText) sanitizedText = "こんにちは";
+
+    const fishRes = await fetch("https://api.fish.audio/v1/tts", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+        model: "s2.1-pro-free",
+      },
+      body: JSON.stringify({
+        text: sanitizedText,
+        reference_id: referenceId,
+        format: "mp3",
+        sample_rate: 44100,
+        mp3_bitrate: 128,
+        latency: "balanced",
+        prosody: {
+          speed: Number(speed) || 0.9,
+          volume: 0,
+        },
+      }),
+    });
+
+    if (!fishRes.ok) {
+      const errDetail = await fishRes.text().catch(() => "");
+      return new Response(
+        JSON.stringify({ error: `Fish Audio error: ${fishRes.status}`, details: errDetail }),
+        {
+          status: fishRes.status,
+          headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+        }
+      );
+    }
+
+    const audioBytes = await fishRes.arrayBuffer();
+
+    return new Response(audioBytes, {
+      status: 200,
+      headers: {
+        "Content-Type": "audio/mpeg",
+        "Cache-Control": "public, max-age=604800, s-maxage=2592000",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  } catch (err: unknown) {
+    const errorMsg = err instanceof Error ? err.message : "Internal Server Error";
+    return new Response(JSON.stringify({ error: errorMsg }), {
+      status: 500,
+      headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+    });
+  }
+};
+

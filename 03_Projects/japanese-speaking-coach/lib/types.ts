@@ -15,7 +15,7 @@ export const ANIME_VOICE_OPTIONS: AnimeVoiceOption[] = [
   { id: "web_speech", nameJa: "標準音声", nameTh: "เสียงมาตรฐานระบบ", character: "Web Speech API", speakerId: 0, description: "เสียงสังเคราะห์ประจำเครื่อง เสถียร 100% เร็วทันใจ 0ms (ไม่ต้องเชื่อมต่อเน็ต)" },
 ];
 
-export type SeiyuuVoiceId = "web_speech";
+export type SeiyuuVoiceId = "web_speech" | "saori_hayami" | "kirito";
 
 export interface SeiyuuProfile {
   id: SeiyuuVoiceId;
@@ -59,6 +59,46 @@ export const SEIYUU_ROSTER: SeiyuuProfile[] = [
     pitch: 1.0,
     rate: 0.9,
   },
+  {
+    id: "saori_hayami",
+    gender: "female",
+    characterNameJa: "早見沙織",
+    characterNameTh: "ฮายามิ ซาโอริ",
+    characterRomaji: "Saori Hayami",
+    seiyuuNameJa: "早見沙織 (CV)",
+    seiyuuNameTh: "อาจารย์ซาโอริ (Fish Audio AI)",
+    animeTitle: "Fish Audio S2.1 Pro",
+    avatarIcon: "face_3",
+    badgeBg: "bg-rose-100 border-rose-900 text-rose-900",
+    badgeText: "早見沙織 (Fish Audio AI)",
+    greetingJa: "こんにちは！試験を始めますね。準備はいいですか？",
+    greetingTh: "สวัสดีค่ะ เริ่มการทดสอบกันนะคะ พร้อมแล้วใช่ไหมคะ?",
+    praiseJa: "とても上手にできました！お疲れ様でした。",
+    praiseTh: "พูดได้ดีมากเลยค่ะ เก่งมากๆ เลย!",
+    pitch: 1.0,
+    rate: 0.9,
+    fishAudioReferenceId: "dea86d7359194b668a34750b472ced71",
+  },
+  {
+    id: "kirito",
+    gender: "male",
+    characterNameJa: "キリト",
+    characterNameTh: "คิริโตะ (桐谷和人)",
+    characterRomaji: "Kirito (Kirigaya Kazuto)",
+    seiyuuNameJa: "松岡禎丞 (CV)",
+    seiyuuNameTh: "เสียงคิริโตะ (Fish Audio AI)",
+    animeTitle: "Sword Art Online / Fish Audio",
+    avatarIcon: "face",
+    badgeBg: "bg-slate-900 border-slate-900 text-white",
+    badgeText: "キリト (Fish Audio AI)",
+    greetingJa: "よし、テストを始めようか。準備はいいか？",
+    greetingTh: "เอาล่ะ มาเริ่มการทดสอบกันเถอะ พร้อมแล้วใช่ไหม?",
+    praiseJa: "すげえな！よくやった、お疲れ様！",
+    praiseTh: "สุดยอดไปเลย! ทำได้ดีมาก ขอบใจที่พยายามนะ!",
+    pitch: 1.0,
+    rate: 0.9,
+    fishAudioReferenceId: "9577848080174beaae92baef50cee47d",
+  },
 ];
 
 export interface UserConfig {
@@ -69,7 +109,7 @@ export interface UserConfig {
   speechRate: number;
   enableSfx: boolean;
   seiyuuVoice: SeiyuuVoiceId;
-  voiceProvider?: "web_speech";
+  voiceProvider?: "web_speech" | "fish_audio";
   fishAudioApiKey?: string;
   animeVoice?: AnimeVoiceId;
   email?: string;

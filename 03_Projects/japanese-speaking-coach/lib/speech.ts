@@ -107,48 +107,113 @@ export function sanitizeJapaneseForTTS(text: string): string {
 }
 
 /**
- * Prefetch TTS audio (no-op since Web Speech API runs locally in 0ms)
+ * Prefetch TTS audio for smoother playback
  */
 export async function prefetchSeiyuuAudio(
-  _text: string,
-  _seiyuuId: SeiyuuVoiceId = "web_speech",
-  _rate: number = 0.9,
-  _provider?: "web_speech",
+  text: string,
+  seiyuuId: SeiyuuVoiceId = "web_speech",
+  rate: number = 0.9,
+  _provider?: "web_speech" | "fish_audio",
   _fishAudioApiKey?: string
 ): Promise<void> {
-  // Native Web Speech runs locally with 0ms latency
+  const seiyuu = SEIYUU_ROSTER.find((s) => s.id === seiyuuId);
+  if (!seiyuu?.fishAudioReferenceId) return;
+
+  const cleanText = sanitizeJapaneseForTTS(text);
+  const cacheKey = `${seiyuu.fishAudioReferenceId}_${cleanText}_${rate}`;
+  if (audioCache.has(cacheKey)) return;
+
+  try {
+    const res = await fetch("/api/tts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        text: cleanText,
+        speed: rate,
+        referenceId: seiyuu.fishAudioReferenceId,
+      }),
+    });
+    if (res.ok) {
+      const blob = await res.blob();
+      audioCache.set(cacheKey, blob);
+    }
+  } catch (_) {}
 }
 
 export async function speakWithSeiyuuVoice(
   text: string,
-  _seiyuuId: SeiyuuVoiceId = "web_speech",
+  seiyuuId: SeiyuuVoiceId = "web_speech",
   rate: number = 0.9,
   lang: string = "ja-JP",
-  _provider?: "web_speech",
+  _provider?: "web_speech" | "fish_audio",
   _fishAudioApiKey?: string
 ): Promise<void> {
   const cleanText = sanitizeJapaneseForTTS(text);
+  const seiyuu = SEIYUU_ROSTER.find((s) => s.id === seiyuuId);
+
+  // If using Fish Audio voice model
+  if (seiyuu?.fishAudioReferenceId) {
+    try {
+      stopSpeech();
+      const cacheKey = `${seiyuu.fishAudioReferenceId}_${cleanText}_${rate}`;
+      let audioBlob = audioCache.get(cacheKey);
+
+      if (!audioBlob) {
+        const res = await fetch("/api/tts", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            text: cleanText,
+            speed: rate,
+            referenceId: seiyuu.fishAudioReferenceId,
+          }),
+        });
+
+        if (res.ok) {
+          audioBlob = await res.blob();
+          audioCache.set(cacheKey, audioBlob);
+        } else {
+          console.warn("Fish Audio TTS API returned error, falling back to Web Speech:", await res.text());
+        }
+      }
+
+      if (audioBlob) {
+        const audioUrl = URL.createObjectURL(audioBlob);
+        const audio = new Audio(audioUrl);
+        currentAudio = audio;
+        audio.onended = () => {
+          if (currentAudio === audio) currentAudio = null;
+        };
+        await audio.play();
+        return;
+      }
+    } catch (err) {
+      console.warn("Failed to play Fish Audio, falling back to Web Speech:", err);
+    }
+  }
+
+  // Fallback to local native Web Speech API
   speak(cleanText, rate, lang);
 }
 
 export async function playSeiyuuGreeting(
-  _seiyuuId: SeiyuuVoiceId = "web_speech",
+  seiyuuId: SeiyuuVoiceId = "web_speech",
   rate: number = 0.9,
-  _provider?: "web_speech",
-  _fishAudioApiKey?: string
+  provider?: "web_speech" | "fish_audio",
+  fishAudioApiKey?: string
 ): Promise<void> {
-  const seiyuu = SEIYUU_ROSTER[0];
-  speak(seiyuu.greetingJa, rate, "ja-JP");
+  const seiyuu = SEIYUU_ROSTER.find((s) => s.id === seiyuuId) || SEIYUU_ROSTER[0];
+  await speakWithSeiyuuVoice(seiyuu.greetingJa, seiyuuId, rate, "ja-JP", provider, fishAudioApiKey);
 }
 
 export async function playSeiyuuPraise(
-  _seiyuuId: SeiyuuVoiceId = "web_speech",
+  seiyuuId: SeiyuuVoiceId = "web_speech",
   rate: number = 0.9,
-  _provider?: "web_speech",
-  _fishAudioApiKey?: string
+  provider?: "web_speech" | "fish_audio",
+  fishAudioApiKey?: string
 ): Promise<void> {
-  const seiyuu = SEIYUU_ROSTER[0];
-  speak(seiyuu.praiseJa, rate, "ja-JP");
+  const seiyuu = SEIYUU_ROSTER.find((s) => s.id === seiyuuId) || SEIYUU_ROSTER[0];
+  await speakWithSeiyuuVoice(seiyuu.praiseJa, seiyuuId, rate, "ja-JP", provider, fishAudioApiKey);
 }
 
 export function stopSpeech(): void {

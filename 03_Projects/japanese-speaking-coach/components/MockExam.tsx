@@ -320,7 +320,7 @@ export const MockExam: React.FC<MockExamProps> = ({
     if (!imgQ) return;
     speakWithSeiyuuVoice(
       imgQ.questionJa,
-      "web_speech",
+      userConfig.seiyuuVoice,
       userConfig.speechRate,
       "ja-JP"
     );
@@ -486,9 +486,12 @@ export const MockExam: React.FC<MockExamProps> = ({
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-slate-700">
-            <div className="p-2 bg-white rounded-xl border border-slate-300 space-y-0.5">
-              <span className="manga-badge bg-sky-300 text-slate-900 text-[9px]">
-                1. {activeMeta.part1TitleJa}
+            <div className="p-2 bg-white rounded-xl border border-slate-300 space-y-0.5 min-w-0">
+              <span
+                className="manga-badge bg-sky-300 text-slate-900 text-[9px] max-w-full truncate inline-flex items-center tracking-tight px-2 py-0.5"
+                title={`1. ${activeMeta.part1TitleJa}`}
+              >
+                <span className="truncate">1. {activeMeta.part1TitleJa}</span>
               </span>
               <p className="text-[11px] font-bold text-slate-900 leading-snug">
                 {activeMeta.part1TitleTh}
@@ -498,9 +501,9 @@ export const MockExam: React.FC<MockExamProps> = ({
               </p>
             </div>
 
-            <div className="p-2 bg-white rounded-xl border border-slate-300 space-y-0.5">
-              <span className="manga-badge bg-amber-300 text-slate-900 text-[9px]">
-                2. 語彙 VOCAB
+            <div className="p-2 bg-white rounded-xl border border-slate-300 space-y-0.5 min-w-0">
+              <span className="manga-badge bg-amber-300 text-slate-900 text-[9px] max-w-full truncate inline-flex items-center tracking-tight px-2 py-0.5">
+                <span className="truncate">2. 語彙 VOCAB</span>
               </span>
               <p className="text-[11px] font-bold text-slate-900 leading-snug">
                 แปลศัพท์ 5 คำ (5 คะแนน)
@@ -510,9 +513,9 @@ export const MockExam: React.FC<MockExamProps> = ({
               </p>
             </div>
 
-            <div className="p-2 bg-white rounded-xl border border-slate-300 space-y-0.5">
-              <span className="manga-badge bg-emerald-300 text-slate-900 text-[9px]">
-                3. 画像 Q&A
+            <div className="p-2 bg-white rounded-xl border border-slate-300 space-y-0.5 min-w-0">
+              <span className="manga-badge bg-emerald-300 text-slate-900 text-[9px] max-w-full truncate inline-flex items-center tracking-tight px-2 py-0.5">
+                <span className="truncate">3. 画像 Q&A</span>
               </span>
               <p className="text-[11px] font-bold text-slate-900 leading-snug">
                 ตอบจากภาพ 5 ข้อ (5 คะแนน)
@@ -609,11 +612,16 @@ export const MockExam: React.FC<MockExamProps> = ({
 
       {/* 3-Part Segmented Progress Bar */}
       <div className="manga-box-sm p-2 bg-slate-100 flex flex-col gap-1.5">
-        <div className="flex items-center justify-between text-[10px] font-black text-slate-600 uppercase">
-          <span className={currentPart === 1 ? "text-rose-600" : ""}>1. {activeMeta.part1TitleJa}</span>
-          <span className={currentPart === 2 ? "text-amber-600" : ""}>2. 語彙 (คำศัพท์)</span>
-          <span className={currentPart === 3 ? "text-emerald-600" : ""}>3. 画像 (ภาพ)</span>
-          <span className="font-mono text-slate-900">{progressPercent}%</span>
+        <div className="flex items-center justify-between text-[10px] font-black text-slate-600 uppercase gap-1">
+          <span
+            className={`truncate max-w-[140px] sm:max-w-none ${currentPart === 1 ? "text-rose-600" : ""}`}
+            title={`1. ${activeMeta.part1TitleJa}`}
+          >
+            1. {activeMeta.part1TitleJa}
+          </span>
+          <span className={`shrink-0 ${currentPart === 2 ? "text-amber-600" : ""}`}>2. 語彙 (คำศัพท์)</span>
+          <span className={`shrink-0 ${currentPart === 3 ? "text-emerald-600" : ""}`}>3. 画像 (ภาพ)</span>
+          <span className="font-mono text-slate-900 shrink-0">{progressPercent}%</span>
         </div>
 
         {/* 3-Bar Visual */}
