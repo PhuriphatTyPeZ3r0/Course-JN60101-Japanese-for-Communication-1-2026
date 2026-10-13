@@ -8,6 +8,7 @@ import {
   ExamType,
 } from './types';
 import part3ImagesConfig from '../data/part3-images.json';
+export * from './exam2-data';
 
 // ==========================================
 // 1. เกณฑ์การแนะนำตนเอง (บทที่ 1)

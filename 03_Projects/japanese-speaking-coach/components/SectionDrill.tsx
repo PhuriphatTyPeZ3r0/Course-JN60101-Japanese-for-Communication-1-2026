@@ -9,15 +9,27 @@ import {
   CHAPTER_DIALOGUES,
   VOCABULARY_LIST,
   IMAGE_QUESTIONS,
+  EXAM_2_CATEGORIES,
+  EXAM_2_QUESTIONS_POOL,
 } from "@/lib/dataset";
 import {
+  speak,
   speakWithSeiyuuVoice,
   stopSpeech,
   createSpeechRecognition,
   isSpeechRecognitionSupported,
   ISpeechRecognition,
 } from "@/lib/speech";
-import { VocabItem, UserConfig, SEIYUU_ROSTER, SeiyuuProfile, ImageQuestion, ChapterDialogue } from "@/lib/types";
+import {
+  VocabItem,
+  UserConfig,
+  SEIYUU_ROSTER,
+  SeiyuuProfile,
+  ImageQuestion,
+  ChapterDialogue,
+  Exam2Category,
+  Exam2Question,
+} from "@/lib/types";
 import { calculateConfidence } from "@/lib/phonetics";
 import { resolveHobby } from "@/lib/hobbies";
 
@@ -29,7 +41,7 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
   const examiner: SeiyuuProfile =
     SEIYUU_ROSTER.find((s) => s.id === userConfig.seiyuuVoice) || SEIYUU_ROSTER[0];
 
-  const [activePart, setActivePart] = useState<1 | 2 | 3>(1);
+  const [activePart, setActivePart] = useState<1 | 2 | 3 | 4>(1);
 
   // ================= Part 1 State =================
   const [selectedChapterP1, setSelectedChapterP1] = useState<number>(1);
@@ -99,6 +111,49 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
     setImageIndex(0);
     setShowImageAnswer(false);
   }, [imageChapterFilter]);
+
+  // ================= Part 4 State (Exam 2 Drill) =================
+  const [exam2CategoryFilter, setExam2CategoryFilter] = useState<Exam2Category | "ALL">("ALL");
+  const [exam2Index, setExam2Index] = useState<number>(0);
+  const [showExam2Answer, setShowExam2Answer] = useState<boolean>(false);
+
+  const filteredExam2Questions = useMemo(() => {
+    if (exam2CategoryFilter === "ALL") return EXAM_2_QUESTIONS_POOL;
+    return EXAM_2_QUESTIONS_POOL.filter((q) => q.category === exam2CategoryFilter);
+  }, [exam2CategoryFilter]);
+
+  const currentExam2DrillQ: Exam2Question | undefined =
+    filteredExam2Questions[exam2Index] || filteredExam2Questions[0];
+
+  useEffect(() => {
+    setExam2Index(0);
+    setShowExam2Answer(false);
+  }, [exam2CategoryFilter]);
+
+  const handleNextExam2Q = () => {
+    if (filteredExam2Questions.length === 0) return;
+    setExam2Index((prev) => (prev + 1) % filteredExam2Questions.length);
+    setShowExam2Answer(false);
+    setFeedback(null);
+    setCurrentInput("");
+  };
+
+  const handlePrevExam2Q = () => {
+    if (filteredExam2Questions.length === 0) return;
+    setExam2Index((prev) => (prev - 1 + filteredExam2Questions.length) % filteredExam2Questions.length);
+    setShowExam2Answer(false);
+    setFeedback(null);
+    setCurrentInput("");
+  };
+
+  const handleShuffleExam2Q = () => {
+    if (filteredExam2Questions.length === 0) return;
+    const randomIndex = Math.floor(Math.random() * filteredExam2Questions.length);
+    setExam2Index(randomIndex);
+    setShowExam2Answer(false);
+    setFeedback(null);
+    setCurrentInput("");
+  };
 
   // ================= Speech & Input =================
   const [currentInput, setCurrentInput] = useState<string>("");
@@ -206,6 +261,12 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
         currentImageQ.expectedAnswerRomaji,
         ...currentImageQ.keywords,
       ];
+    } else if (activePart === 4 && currentExam2DrillQ) {
+      return [
+        currentExam2DrillQ.expectedAnswerJa,
+        currentExam2DrillQ.expectedAnswerRomaji,
+        ...currentExam2DrillQ.keywords,
+      ];
     }
     return [];
   };
@@ -275,6 +336,28 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
           message: `ยังไม่สมบูรณ์ (ความแม่นยำ ${match.scorePercent}%) ควรถามตอบเต็มประโยค: "${currentImageQ.expectedAnswerJa}"`,
         });
       }
+    } else if (activePart === 4 && currentExam2DrillQ) {
+      const targets = [
+        currentExam2DrillQ.expectedAnswerJa,
+        currentExam2DrillQ.expectedAnswerRomaji,
+        ...currentExam2DrillQ.keywords,
+      ];
+      const match = calculateConfidence(cleaned, targets);
+      const hasKeywords =
+        currentExam2DrillQ.keywords.some((k) => cleaned.toLowerCase().includes(k.toLowerCase())) ||
+        match.scorePercent >= 65;
+
+      if (hasKeywords) {
+        setFeedback({
+          isCorrect: true,
+          message: `ตอบได้ดีมาก! (ความแม่นยำ ${match.scorePercent}%) ประโยคสมบูรณ์: "${currentExam2DrillQ.expectedAnswerJa}"`,
+        });
+      } else {
+        setFeedback({
+          isCorrect: false,
+          message: `ยังไม่สมบูรณ์ (ความแม่นยำ ${match.scorePercent}%) รูปประโยคที่ถูกต้อง: "${currentExam2DrillQ.expectedAnswerJa}" (${currentExam2DrillQ.expectedAnswerRomaji})`,
+        });
+      }
     }
   };
 
@@ -297,26 +380,26 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isRecording, currentInput, activePart, p1Step, vocabIndex, imageIndex]);
+  }, [isRecording, currentInput, activePart, p1Step, vocabIndex, imageIndex, exam2Index]);
 
   return (
     <div className="space-y-3.5 pb-28 sm:pb-32 max-w-2xl mx-auto">
-      {/* Sub-Header Navigation (Segmented 3 Tabs) */}
-      <div className="manga-box-sm p-1 sm:p-1.5 bg-slate-100 flex items-center justify-between gap-1 shadow-[2px_2px_0px_#0f172a]">
+      {/* Sub-Header Navigation (Segmented 4 Tabs) */}
+      <div className="manga-box-sm p-1 sm:p-1.5 bg-slate-100 grid grid-cols-2 sm:grid-cols-4 gap-1 shadow-[2px_2px_0px_#0f172a]">
         <button
           onClick={() => {
             setActivePart(1);
             setFeedback(null);
             setCurrentInput("");
           }}
-          className={`flex-1 py-1.5 sm:py-2 px-1 sm:px-2 rounded-xl text-[11px] sm:text-xs font-black transition flex items-center justify-center space-x-1 min-w-0 ${
+          className={`py-1.5 sm:py-2 px-1 sm:px-2 rounded-xl text-[11px] sm:text-xs font-black transition flex items-center justify-center space-x-1 min-w-0 ${
             activePart === 1
               ? "bg-rose-500 text-white shadow-[1px_1px_0px_#0f172a]"
               : "text-slate-700 hover:text-slate-900"
           }`}
         >
           <Icon name="record_voice_over" className="text-sm sm:text-base shrink-0" />
-          <span className="truncate">1. บทสนทนา & ประโยค</span>
+          <span className="truncate">1. บทสนทนา</span>
         </button>
 
         <button
@@ -325,14 +408,14 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
             setFeedback(null);
             setCurrentInput("");
           }}
-          className={`flex-1 py-1.5 sm:py-2 px-1 sm:px-2 rounded-xl text-[11px] sm:text-xs font-black transition flex items-center justify-center space-x-1 min-w-0 ${
+          className={`py-1.5 sm:py-2 px-1 sm:px-2 rounded-xl text-[11px] sm:text-xs font-black transition flex items-center justify-center space-x-1 min-w-0 ${
             activePart === 2
               ? "bg-blue-500 text-white shadow-[1px_1px_0px_#0f172a]"
               : "text-slate-700 hover:text-slate-900"
           }`}
         >
           <Icon name="translate" className="text-sm sm:text-base shrink-0" />
-          <span className="truncate">2. คลังคำศัพท์</span>
+          <span className="truncate">2. คำศัพท์</span>
         </button>
 
         <button
@@ -341,14 +424,30 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
             setFeedback(null);
             setCurrentInput("");
           }}
-          className={`flex-1 py-1.5 sm:py-2 px-1 sm:px-2 rounded-xl text-[11px] sm:text-xs font-black transition flex items-center justify-center space-x-1 min-w-0 ${
+          className={`py-1.5 sm:py-2 px-1 sm:px-2 rounded-xl text-[11px] sm:text-xs font-black transition flex items-center justify-center space-x-1 min-w-0 ${
             activePart === 3
               ? "bg-emerald-500 text-white shadow-[1px_1px_0px_#0f172a]"
               : "text-slate-700 hover:text-slate-900"
           }`}
         >
           <Icon name="image" className="text-sm sm:text-base shrink-0" />
-          <span className="truncate">3. ถามตอบจากภาพ</span>
+          <span className="truncate">3. ภาพสถานการณ์</span>
+        </button>
+
+        <button
+          onClick={() => {
+            setActivePart(4);
+            setFeedback(null);
+            setCurrentInput("");
+          }}
+          className={`py-1.5 sm:py-2 px-1 sm:px-2 rounded-xl text-[11px] sm:text-xs font-black transition flex items-center justify-center space-x-1 min-w-0 ${
+            activePart === 4
+              ? "bg-amber-400 text-slate-900 shadow-[1px_1px_0px_#0f172a]"
+              : "text-slate-700 hover:text-slate-900"
+          }`}
+        >
+          <Icon name="quiz" className="text-sm sm:text-base shrink-0" />
+          <span className="truncate">4. ตะลุยโจทย์สอบ 2</span>
         </button>
       </div>
 
@@ -910,6 +1009,226 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
                 setCurrentInput("");
               }}
               disabled={imageIndex === filteredImageQuestions.length - 1}
+              className="manga-btn px-3 py-1.5 rounded-xl bg-white text-xs disabled:opacity-40 disabled:cursor-not-allowed flex items-center space-x-1"
+            >
+              <span>ถัดไป</span>
+              <Icon name="arrow_forward" className="text-sm" />
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* ================= PART 4 DRILL: EXAM 2 SPECIFIC QUESTIONS (5 CATEGORIES) ================= */}
+      {activePart === 4 && currentExam2DrillQ && (
+        <div className="manga-box p-3.5 sm:p-5 space-y-3.5 text-center shadow-[3px_3px_0px_#0f172a]">
+          {/* Header & Category Filter Buttons */}
+          <div className="space-y-2 text-left">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-black text-slate-500 uppercase tracking-wider flex items-center space-x-1">
+                <Icon name="quiz" className="text-sm text-amber-600" />
+                <span>หมวดคำถามข้อสอบครั้งที่ 2 (5 รูปแบบตามประกาศ):</span>
+              </span>
+              <button
+                onClick={handleShuffleExam2Q}
+                className="text-[10px] font-black text-rose-600 hover:text-rose-700 inline-flex items-center space-x-0.5"
+              >
+                <Icon name="shuffle" className="text-xs" />
+                <span>สุ่มคำถาม</span>
+              </button>
+            </div>
+
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
+              <button
+                onClick={() => setExam2CategoryFilter("ALL")}
+                className={`px-2.5 py-1 rounded-xl text-[10px] font-black border border-slate-900 shrink-0 transition ${
+                  exam2CategoryFilter === "ALL"
+                    ? "bg-slate-900 text-white shadow-[1px_1px_0px_#0f172a]"
+                    : "bg-white text-slate-700 hover:bg-slate-100"
+                }`}
+              >
+                ทั้งหมด ({EXAM_2_QUESTIONS_POOL.length})
+              </button>
+              {EXAM_2_CATEGORIES.map((cat) => {
+                const isSelected = exam2CategoryFilter === cat.category;
+                const catCount = EXAM_2_QUESTIONS_POOL.filter((q) => q.category === cat.category).length;
+                const catIcon =
+                  cat.category === "PLACE"
+                    ? "location_on"
+                    : cat.category === "TIME"
+                    ? "schedule"
+                    : cat.category === "PHONE"
+                    ? "call"
+                    : cat.category === "PRICE"
+                    ? "payments"
+                    : "storefront";
+
+                return (
+                  <button
+                    key={cat.category}
+                    onClick={() => setExam2CategoryFilter(cat.category)}
+                    className={`px-2.5 py-1 rounded-xl text-[10px] font-black border border-slate-900 shrink-0 transition flex items-center space-x-1 ${
+                      isSelected
+                        ? "bg-amber-400 text-slate-900 shadow-[1px_1px_0px_#0f172a]"
+                        : "bg-white text-slate-700 hover:bg-slate-100"
+                    }`}
+                  >
+                    <Icon name={catIcon} className="text-xs" />
+                    <span>{cat.titleTh.split(":")[0]} ({catCount})</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Question Card Header */}
+          <div className="flex items-center justify-between text-xs font-bold text-slate-500 pt-1">
+            <span className="manga-badge bg-sky-500 text-white text-[10px] flex items-center space-x-1">
+              <Icon
+                name={
+                  currentExam2DrillQ.category === "PLACE"
+                    ? "location_on"
+                    : currentExam2DrillQ.category === "TIME"
+                    ? "schedule"
+                    : currentExam2DrillQ.category === "PHONE"
+                    ? "call"
+                    : currentExam2DrillQ.category === "PRICE"
+                    ? "payments"
+                    : "storefront"
+                }
+                className="text-xs"
+              />
+              <span>{currentExam2DrillQ.categoryTitleTh}</span>
+            </span>
+            <span className="text-xs font-bold text-slate-700">
+              ข้อ {exam2Index + 1} / {filteredExam2Questions.length}
+            </span>
+          </div>
+
+          {/* Visual Display Frame */}
+          <div className="w-full max-w-[280px] sm:max-w-[340px] md:max-w-[380px] aspect-[4/3] mx-auto rounded-2xl border-2 border-slate-900 shadow-[3px_3px_0px_#0f172a] overflow-hidden bg-slate-100 flex items-center justify-center relative">
+            <SvgImage
+              svgContent={currentExam2DrillQ.imageSvg}
+              alt={currentExam2DrillQ.categoryTitleTh}
+              fit="contain"
+              position="center"
+              className="w-full h-full p-2"
+            />
+            {currentExam2DrillQ.displayValue && (
+              <div className="absolute bottom-2 bg-slate-900/90 text-white text-[11px] sm:text-xs font-black px-2.5 py-1 rounded-xl border border-slate-700 shadow-md">
+                {currentExam2DrillQ.displayValue}
+              </div>
+            )}
+          </div>
+
+          {/* Examiner Question Bubble */}
+          <div className="speech-bubble p-3.5 text-left bg-sky-50/70 border-2 border-sky-900">
+            <div className="flex items-center justify-between mb-1 pb-1 border-b border-sky-200">
+              <div className="flex items-center space-x-1.5">
+                <Icon name={examiner.avatarIcon} className="text-base text-sky-800" />
+                <span className="text-[11px] font-black text-slate-900">
+                  อาจารย์ AI ({examiner.characterNameJa})
+                </span>
+              </div>
+              <button
+                onClick={() =>
+                  speakWithSeiyuuVoice(
+                    currentExam2DrillQ.questionJa,
+                    userConfig.seiyuuVoice,
+                    userConfig.speechRate,
+                    "ja-JP"
+                  )
+                }
+                className="inline-flex items-center space-x-1 text-xs text-rose-600 font-bold hover:underline"
+              >
+                <Icon name="volume_up" className="text-sm" />
+                <span>ฟังเสียงคำถาม</span>
+              </button>
+            </div>
+
+            <h4 className="text-base font-extrabold text-slate-900 font-jp">
+              {currentExam2DrillQ.questionJa}
+            </h4>
+            {userConfig.showRomaji && (
+              <p className="text-xs font-mono text-slate-500 mt-0.5">
+                {currentExam2DrillQ.questionRomaji}
+              </p>
+            )}
+
+            {/* Official Rule Note from PDF */}
+            <div className="mt-2 p-2 rounded-xl bg-amber-50 border border-amber-300 text-left flex items-start space-x-1.5 text-slate-800">
+              <Icon name="info" className="text-sm text-amber-700 shrink-0 mt-0.5" />
+              <div className="text-[11px] font-bold leading-snug">
+                <span className="text-amber-900 font-black">เกณฑ์สอบจริง: </span>
+                {currentExam2DrillQ.ruleNoteTh}
+              </div>
+            </div>
+
+            {/* Toggle Answer Button */}
+            <button
+              onClick={() => setShowExam2Answer(!showExam2Answer)}
+              className="manga-btn mt-2.5 px-3 py-1 bg-white text-[11px] rounded-xl flex items-center space-x-1"
+            >
+              <Icon name={showExam2Answer ? "visibility_off" : "visibility"} className="text-sm" />
+              <span>{showExam2Answer ? "ซ่อนเฉลยแนวคำตอบ" : "ดูเฉลยแนวคำตอบตามเกณฑ์"}</span>
+            </button>
+
+            {/* Revealed Answer Box */}
+            {showExam2Answer && (
+              <div className="mt-2.5 p-3 bg-white border-2 border-slate-900 rounded-xl animate-in fade-in duration-150 text-left">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-[10px] font-bold text-slate-500 uppercase">
+                    คำตอบที่ถูกต้อง (Model Answer):
+                  </span>
+                  <button
+                    onClick={() => speak(currentExam2DrillQ.expectedAnswerJa, userConfig.speechRate, "ja-JP")}
+                    className="inline-flex items-center space-x-1 text-xs text-emerald-700 font-bold hover:underline"
+                  >
+                    <Icon name="volume_up" className="text-xs" />
+                    <span>ฟังคำตอบเฉลย</span>
+                  </button>
+                </div>
+                <p className="text-base font-black text-emerald-800 font-jp">
+                  {currentExam2DrillQ.expectedAnswerJa}
+                </p>
+                {userConfig.showRomaji && (
+                  <p className="text-xs font-mono text-slate-500 mt-0.5">
+                    {currentExam2DrillQ.expectedAnswerRomaji}
+                  </p>
+                )}
+                <div className="mt-2 pt-2 border-t border-slate-100 flex flex-wrap gap-1 items-center">
+                  <span className="text-[10px] font-bold text-slate-500">คีย์เวิร์ดตรวจให้คะแนน:</span>
+                  {currentExam2DrillQ.keywords.map((kw, i) => (
+                    <span key={i} className="text-[10px] px-1.5 py-0.5 bg-slate-100 rounded border border-slate-300 font-mono text-slate-700">
+                      {kw}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Stepper Controls */}
+          <div className="flex items-center justify-between pt-1">
+            <button
+              onClick={handlePrevExam2Q}
+              disabled={exam2Index === 0}
+              className="manga-btn px-3 py-1.5 rounded-xl bg-white text-xs disabled:opacity-40 disabled:cursor-not-allowed flex items-center space-x-1"
+            >
+              <Icon name="arrow_back" className="text-sm" />
+              <span>ก่อนหน้า</span>
+            </button>
+
+            <button
+              onClick={handleShuffleExam2Q}
+              className="manga-btn px-3 py-1.5 rounded-xl bg-slate-100 text-xs flex items-center space-x-1"
+            >
+              <Icon name="shuffle" className="text-xs text-slate-700" />
+              <span>สุ่มข้อ</span>
+            </button>
+
+            <button
+              onClick={handleNextExam2Q}
+              disabled={exam2Index === filteredExam2Questions.length - 1}
               className="manga-btn px-3 py-1.5 rounded-xl bg-white text-xs disabled:opacity-40 disabled:cursor-not-allowed flex items-center space-x-1"
             >
               <span>ถัดไป</span>

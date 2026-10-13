@@ -159,11 +159,11 @@ export const EXAM_DEFINITIONS: Record<ExamType, ExamMeta> = {
     id: "EXAM_2",
     titleJa: "第2回小テスト (第3〜4課)",
     titleTh: "สอบย่อยครั้งที่ 2 (บทที่ 3-4)",
-    subtitleTh: "การคุยเรื่องเวลา, สถานที่ในบริษัท, การซื้อของและราคา",
+    subtitleTh: "คำศัพท์บทที่ 3-4 (5 คำ = 5 คะแนน) และตอบคำถาม 5 รูปแบบ (10 ข้อ = 10 คะแนน)",
     chapters: [3, 4],
-    part1TitleJa: "時間と買い物 (Jikan to Kaimono)",
-    part1TitleTh: "บทสนทนาเรื่องเวลาและการซื้อของ (5 คะแนน)",
-    part1InstructionsTh: "พูดบทสนทนาถามเวลาทำงานและซื้อของในร้านค้า 5 ประโยคตามลำดับ",
+    part1TitleJa: "語彙 (Goi)",
+    part1TitleTh: "ส่วนที่ 1: แปลคำศัพท์ 5 คำ (5 คะแนน)",
+    part1InstructionsTh: "พูดคำศัพท์ภาษาญี่ปุ่น 5 คำที่สุ่มจากเนื้อหาบทที่ 3 และ 4 (ไทย -> ญี่ปุ่น)",
     timeLimitSeconds: 180,
     totalScore: 15,
   },
@@ -300,11 +300,63 @@ export interface Part3AnswerItem {
   userAnswer: string;
 }
 
+export type Exam2Category =
+  | "PLACE"
+  | "TIME"
+  | "PHONE"
+  | "PRICE"
+  | "OFFICE_HOURS";
+
+export interface Exam2Question {
+  id: string;
+  category: Exam2Category;
+  categoryIndex: 1 | 2 | 3 | 4 | 5;
+  categoryTitleTh: string;
+  categoryTitleJa: string;
+  questionJa: string;
+  questionRomaji: string;
+  questionTh: string;
+  displayLabel: string;
+  displayValue: string;
+  displaySubtext?: string;
+  expectedAnswerJa: string;
+  expectedAnswerRomaji: string;
+  keywords: string[];
+  ruleNoteTh: string;
+  imageSvg?: string;
+  imageUrl?: string;
+}
+
+export interface Exam2AnswerItem {
+  id: string;
+  category: Exam2Category;
+  categoryIndex: 1 | 2 | 3 | 4 | 5;
+  categoryTitleTh: string;
+  questionJa: string;
+  questionRomaji: string;
+  displayValue: string;
+  expectedJa: string;
+  expectedRomaji: string;
+  keywords: string[];
+  userAnswer: string;
+}
+
+export interface Exam2CategoryScore {
+  category: Exam2Category;
+  categoryIndex: 1 | 2 | 3 | 4 | 5;
+  titleTh: string;
+  score: number;
+  maxScore: 2;
+  feedback: string;
+}
+
 export interface EvaluationPayload {
   examType?: ExamType;
-  part1Answers: string[];
-  part2Answers: Part2AnswerItem[];
-  part3Answers: Part3AnswerItem[];
+  part1Answers?: string[];
+  part2Answers?: Part2AnswerItem[];
+  part3Answers?: Part3AnswerItem[];
+  exam2VocabAnswers?: Part2AnswerItem[];
+  exam2Answers?: Exam2AnswerItem[];
   userConfig?: Partial<UserConfig>;
   turnstileToken?: string;
   clientApiKey?: string;
@@ -322,6 +374,7 @@ export interface EvaluationResult {
   part1Feedback: string;
   part2Feedback: string;
   part3Feedback: string;
+  exam2CategoryScores?: Exam2CategoryScore[];
   overallSummary: string;
   warning?: string;
   evaluationMode?: "AI" | "RULE_BASED";

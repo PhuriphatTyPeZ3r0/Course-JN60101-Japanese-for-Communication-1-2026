@@ -22,9 +22,10 @@ const cleanTitle = (raw?: string, fallback = "บทสนทนาสถาน�
   );
 };
 
-const getScoreBadgeClass = (score: number): string => {
-  if (score >= 4.5) return "bg-emerald-300 text-slate-900";
-  if (score >= 3) return "bg-amber-300 text-slate-900";
+const getScoreBadgeClass = (score: number, maxScore: number = 5): string => {
+  const ratio = maxScore > 0 ? score / maxScore : 0;
+  if (ratio >= 0.8) return "bg-emerald-300 text-slate-900";
+  if (ratio >= 0.6) return "bg-amber-300 text-slate-900";
   return "bg-rose-200 text-rose-900";
 };
 
@@ -112,122 +113,257 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({
         </div>
       </div>
 
-      {/* Breakdown Cards (3 Parts) */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-4 my-4 sm:my-6 items-stretch">
-        {/* Part 1 */}
-        <div className="p-3.5 sm:p-4 rounded-2xl bg-white border-2 border-slate-900 shadow-[3px_3px_0px_#0f172a] flex flex-col justify-between h-full">
-          <div>
-            {/* Header: Title Badge & Score */}
-            <div className="flex items-center justify-between gap-1.5 mb-2.5">
-              <span
-                className="manga-badge bg-sky-300 text-slate-900 text-[10px] sm:text-[11px] whitespace-nowrap truncate max-w-[calc(100%-3.5rem)]"
-                title={cleanTitle(result.part1Title, "การแนะนำตนเอง")}
-              >
-                {cleanTitle(result.part1Title, "การแนะนำตนเอง")}
-              </span>
-              <span
-                className={`text-xs sm:text-sm font-black px-2 py-0.5 rounded-lg border border-slate-900 shrink-0 whitespace-nowrap ${getScoreBadgeClass(
-                  result.part1Score
-                )}`}
-              >
-                {result.part1Score} / 5
-              </span>
+      {/* Breakdown Cards */}
+      {result.examType === "EXAM_2" ? (
+        <div className="space-y-4 my-4 sm:my-6">
+          {/* Top 2 Main Sections */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4 items-stretch">
+            {/* Part 1: Vocab 5 points */}
+            <div className="p-3.5 sm:p-4 rounded-2xl bg-white border-2 border-slate-900 shadow-[3px_3px_0px_#0f172a] flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between gap-1.5 mb-2.5">
+                  <span className="manga-badge bg-amber-300 text-slate-900 text-[10px] sm:text-[11px] truncate">
+                    ส่วนที่ 1: แปลคำศัพท์บทที่ 3-4 (5 คำ)
+                  </span>
+                  <span
+                    className={`text-xs sm:text-sm font-black px-2 py-0.5 rounded-lg border border-slate-900 shrink-0 ${getScoreBadgeClass(
+                      result.part1Score,
+                      5
+                    )}`}
+                  >
+                    {result.part1Score} / 5
+                  </span>
+                </div>
+
+                <div className="w-full h-1.5 rounded-full bg-slate-100 border border-slate-300 overflow-hidden mb-2">
+                  <div
+                    className="h-full bg-amber-500 rounded-full"
+                    style={{ width: `${(result.part1Score / 5) * 100}%` }}
+                  />
+                </div>
+
+                <p className="text-xs text-slate-700 font-medium leading-relaxed mt-1">
+                  {result.part1Feedback}
+                </p>
+              </div>
+
+              <div className="mt-3 pt-2 border-t border-slate-200 flex items-center text-[10px] font-bold text-slate-500">
+                <Icon name="menu_book" className="text-xs mr-1 text-slate-500 shrink-0" />
+                <span>คำศัพท์ไทย ➔ ญี่ปุ่น (บทที่ 3-4)</span>
+              </div>
             </div>
 
-            {/* Mini Progress Bar */}
-            <div className="w-full h-1.5 rounded-full bg-slate-100 border border-slate-300 overflow-hidden mb-2">
-              <div
-                className="h-full bg-sky-500 rounded-full"
-                style={{ width: `${(result.part1Score / 5) * 100}%` }}
-              />
-            </div>
+            {/* Part 2: 10 Q&A 10 points */}
+            <div className="p-3.5 sm:p-4 rounded-2xl bg-white border-2 border-slate-900 shadow-[3px_3px_0px_#0f172a] flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between gap-1.5 mb-2.5">
+                  <span className="manga-badge bg-rose-500 text-white text-[10px] sm:text-[11px] truncate">
+                    ส่วนที่ 2: ตอบคำถาม 5 รูปแบบ (10 ข้อ)
+                  </span>
+                  <span
+                    className={`text-xs sm:text-sm font-black px-2 py-0.5 rounded-lg border border-slate-900 shrink-0 ${getScoreBadgeClass(
+                      result.part2Score,
+                      10
+                    )}`}
+                  >
+                    {result.part2Score} / 10
+                  </span>
+                </div>
 
-            <p className="text-xs text-slate-700 font-medium leading-relaxed mt-1">
-              {result.part1Feedback}
-            </p>
+                <div className="w-full h-1.5 rounded-full bg-slate-100 border border-slate-300 overflow-hidden mb-2">
+                  <div
+                    className="h-full bg-rose-500 rounded-full"
+                    style={{ width: `${(result.part2Score / 10) * 100}%` }}
+                  />
+                </div>
+
+                <p className="text-xs text-slate-700 font-medium leading-relaxed mt-1">
+                  {result.part2Feedback}
+                </p>
+              </div>
+
+              <div className="mt-3 pt-2 border-t border-slate-200 flex items-center text-[10px] font-bold text-slate-500">
+                <Icon name="quiz" className="text-xs mr-1 text-slate-500 shrink-0" />
+                <span>5 รูปแบบคำถาม รูปแบบละ 2 ข้อ</span>
+              </div>
+            </div>
           </div>
-          <div className="mt-3 pt-2 border-t border-slate-200 flex items-center text-[10px] font-bold text-slate-500">
-            <Icon name="badge" className="text-xs mr-1 text-slate-500 shrink-0" />
-            <span>เกณฑ์ 5 ประโยคตามฟอร์ม</span>
+
+          {/* Sub-grid of 5 Question Categories */}
+          {result.exam2CategoryScores && result.exam2CategoryScores.length > 0 && (
+            <div className="p-3.5 sm:p-4 rounded-2xl bg-slate-50 border-2 border-slate-900 space-y-2.5">
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] font-black text-slate-800 uppercase flex items-center space-x-1">
+                  <Icon name="table_rows" className="text-sm text-slate-700" />
+                  <span>ผลคะแนนแจกแจงรายหมวดคำถาม (5 รูปแบบ x 2 ข้อ):</span>
+                </span>
+                <span className="text-[10px] font-bold text-slate-500">ข้อละ 1 คะแนน</span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+                {result.exam2CategoryScores.map((cat) => {
+                  const getCatIcon = (c: string) => {
+                    switch (c) {
+                      case "PLACE":
+                        return "location_on";
+                      case "TIME":
+                        return "schedule";
+                      case "PHONE":
+                        return "call";
+                      case "PRICE":
+                        return "payments";
+                      case "OFFICE_HOURS":
+                        return "work_history";
+                      default:
+                        return "help_outline";
+                    }
+                  };
+
+                  return (
+                    <div
+                      key={cat.category}
+                      className="p-2.5 rounded-xl bg-white border border-slate-300 flex flex-col justify-between"
+                    >
+                      <div>
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[11px] font-black text-slate-900 flex items-center space-x-1 truncate">
+                            <Icon name={getCatIcon(cat.category)} className="text-xs text-rose-600 shrink-0" />
+                            <span className="truncate">{cat.titleTh}</span>
+                          </span>
+                          <span
+                            className={`text-[10px] font-black px-1.5 py-0.2 rounded border border-slate-900 shrink-0 ${getScoreBadgeClass(
+                              cat.score,
+                              cat.maxScore
+                            )}`}
+                          >
+                            {cat.score} / {cat.maxScore}
+                          </span>
+                        </div>
+                        <p className="text-[10px] text-slate-600 font-medium leading-relaxed">
+                          {cat.feedback}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-4 my-4 sm:my-6 items-stretch">
+          {/* Part 1 */}
+          <div className="p-3.5 sm:p-4 rounded-2xl bg-white border-2 border-slate-900 shadow-[3px_3px_0px_#0f172a] flex flex-col justify-between h-full">
+            <div>
+              <div className="flex items-center justify-between gap-1.5 mb-2.5">
+                <span
+                  className="manga-badge bg-sky-300 text-slate-900 text-[10px] sm:text-[11px] whitespace-nowrap truncate max-w-[calc(100%-3.5rem)]"
+                  title={cleanTitle(result.part1Title, "การแนะนำตนเอง")}
+                >
+                  {cleanTitle(result.part1Title, "การแนะนำตนเอง")}
+                </span>
+                <span
+                  className={`text-xs sm:text-sm font-black px-2 py-0.5 rounded-lg border border-slate-900 shrink-0 whitespace-nowrap ${getScoreBadgeClass(
+                    result.part1Score,
+                    5
+                  )}`}
+                >
+                  {result.part1Score} / 5
+                </span>
+              </div>
+
+              <div className="w-full h-1.5 rounded-full bg-slate-100 border border-slate-300 overflow-hidden mb-2">
+                <div
+                  className="h-full bg-sky-500 rounded-full"
+                  style={{ width: `${(result.part1Score / 5) * 100}%` }}
+                />
+              </div>
+
+              <p className="text-xs text-slate-700 font-medium leading-relaxed mt-1">
+                {result.part1Feedback}
+              </p>
+            </div>
+            <div className="mt-3 pt-2 border-t border-slate-200 flex items-center text-[10px] font-bold text-slate-500">
+              <Icon name="badge" className="text-xs mr-1 text-slate-500 shrink-0" />
+              <span>เกณฑ์ 5 ประโยคตามฟอร์ม</span>
+            </div>
+          </div>
+
+          {/* Part 2 */}
+          <div className="p-3.5 sm:p-4 rounded-2xl bg-white border-2 border-slate-900 shadow-[3px_3px_0px_#0f172a] flex flex-col justify-between h-full">
+            <div>
+              <div className="flex items-center justify-between gap-1.5 mb-2.5">
+                <span
+                  className="manga-badge bg-amber-300 text-slate-900 text-[10px] sm:text-[11px] whitespace-nowrap truncate max-w-[calc(100%-3.5rem)]"
+                  title="ส่วนที่ 2: คำศัพท์ 5 คำ"
+                >
+                  ส่วนที่ 2: คำศัพท์ 5 คำ
+                </span>
+                <span
+                  className={`text-xs sm:text-sm font-black px-2 py-0.5 rounded-lg border border-slate-900 shrink-0 whitespace-nowrap ${getScoreBadgeClass(
+                    result.part2Score,
+                    5
+                  )}`}
+                >
+                  {result.part2Score} / 5
+                </span>
+              </div>
+
+              <div className="w-full h-1.5 rounded-full bg-slate-100 border border-slate-300 overflow-hidden mb-2">
+                <div
+                  className="h-full bg-amber-500 rounded-full"
+                  style={{ width: `${(result.part2Score / 5) * 100}%` }}
+                />
+              </div>
+
+              <p className="text-xs text-slate-700 font-medium leading-relaxed mt-1">
+                {result.part2Feedback}
+              </p>
+            </div>
+            <div className="mt-3 pt-2 border-t border-slate-200 flex items-center text-[10px] font-bold text-slate-500">
+              <Icon name="menu_book" className="text-xs mr-1 text-slate-500 shrink-0" />
+              <span>คำศัพท์ประจำชุดข้อสอบ</span>
+            </div>
+          </div>
+
+          {/* Part 3 */}
+          <div className="p-3.5 sm:p-4 rounded-2xl bg-white border-2 border-slate-900 shadow-[3px_3px_0px_#0f172a] flex flex-col justify-between h-full">
+            <div>
+              <div className="flex items-center justify-between gap-1.5 mb-2.5">
+                <span
+                  className="manga-badge bg-rose-400 text-white text-[10px] sm:text-[11px] whitespace-nowrap truncate max-w-[calc(100%-3.5rem)]"
+                  title="ส่วนที่ 3: ตอบจากภาพ"
+                >
+                  ส่วนที่ 3: ตอบจากภาพ
+                </span>
+                <span
+                  className={`text-xs sm:text-sm font-black px-2 py-0.5 rounded-lg border border-slate-900 shrink-0 whitespace-nowrap ${getScoreBadgeClass(
+                    result.part3Score,
+                    5
+                  )}`}
+                >
+                  {result.part3Score} / 5
+                </span>
+              </div>
+
+              <div className="w-full h-1.5 rounded-full bg-slate-100 border border-slate-300 overflow-hidden mb-2">
+                <div
+                  className="h-full bg-rose-500 rounded-full"
+                  style={{ width: `${(result.part3Score / 5) * 100}%` }}
+                />
+              </div>
+
+              <p className="text-xs text-slate-700 font-medium leading-relaxed mt-1">
+                {result.part3Feedback}
+              </p>
+            </div>
+            <div className="mt-3 pt-2 border-t border-slate-200 flex items-center text-[10px] font-bold text-slate-500">
+              <Icon name="image" className="text-xs mr-1 text-slate-500 shrink-0" />
+              <span>ถาม-ตอบจากภาพประกอบ</span>
+            </div>
           </div>
         </div>
-
-        {/* Part 2 */}
-        <div className="p-3.5 sm:p-4 rounded-2xl bg-white border-2 border-slate-900 shadow-[3px_3px_0px_#0f172a] flex flex-col justify-between h-full">
-          <div>
-            {/* Header: Title Badge & Score */}
-            <div className="flex items-center justify-between gap-1.5 mb-2.5">
-              <span
-                className="manga-badge bg-amber-300 text-slate-900 text-[10px] sm:text-[11px] whitespace-nowrap truncate max-w-[calc(100%-3.5rem)]"
-                title="ส่วนที่ 2: คำศัพท์ 5 คำ"
-              >
-                ส่วนที่ 2: คำศัพท์ 5 คำ
-              </span>
-              <span
-                className={`text-xs sm:text-sm font-black px-2 py-0.5 rounded-lg border border-slate-900 shrink-0 whitespace-nowrap ${getScoreBadgeClass(
-                  result.part2Score
-                )}`}
-              >
-                {result.part2Score} / 5
-              </span>
-            </div>
-
-            {/* Mini Progress Bar */}
-            <div className="w-full h-1.5 rounded-full bg-slate-100 border border-slate-300 overflow-hidden mb-2">
-              <div
-                className="h-full bg-amber-500 rounded-full"
-                style={{ width: `${(result.part2Score / 5) * 100}%` }}
-              />
-            </div>
-
-            <p className="text-xs text-slate-700 font-medium leading-relaxed mt-1">
-              {result.part2Feedback}
-            </p>
-          </div>
-          <div className="mt-3 pt-2 border-t border-slate-200 flex items-center text-[10px] font-bold text-slate-500">
-            <Icon name="menu_book" className="text-xs mr-1 text-slate-500 shrink-0" />
-            <span>คำศัพท์ประจำชุดข้อสอบ</span>
-          </div>
-        </div>
-
-        {/* Part 3 */}
-        <div className="p-3.5 sm:p-4 rounded-2xl bg-white border-2 border-slate-900 shadow-[3px_3px_0px_#0f172a] flex flex-col justify-between h-full">
-          <div>
-            {/* Header: Title Badge & Score */}
-            <div className="flex items-center justify-between gap-1.5 mb-2.5">
-              <span
-                className="manga-badge bg-rose-400 text-white text-[10px] sm:text-[11px] whitespace-nowrap truncate max-w-[calc(100%-3.5rem)]"
-                title="ส่วนที่ 3: ตอบจากภาพ"
-              >
-                ส่วนที่ 3: ตอบจากภาพ
-              </span>
-              <span
-                className={`text-xs sm:text-sm font-black px-2 py-0.5 rounded-lg border border-slate-900 shrink-0 whitespace-nowrap ${getScoreBadgeClass(
-                  result.part3Score
-                )}`}
-              >
-                {result.part3Score} / 5
-              </span>
-            </div>
-
-            {/* Mini Progress Bar */}
-            <div className="w-full h-1.5 rounded-full bg-slate-100 border border-slate-300 overflow-hidden mb-2">
-              <div
-                className="h-full bg-rose-500 rounded-full"
-                style={{ width: `${(result.part3Score / 5) * 100}%` }}
-              />
-            </div>
-
-            <p className="text-xs text-slate-700 font-medium leading-relaxed mt-1">
-              {result.part3Feedback}
-            </p>
-          </div>
-          <div className="mt-3 pt-2 border-t border-slate-200 flex items-center text-[10px] font-bold text-slate-500">
-            <Icon name="image" className="text-xs mr-1 text-slate-500 shrink-0" />
-            <span>ถาม-ตอบจากภาพประกอบ</span>
-          </div>
-        </div>
-      </div>
+      )}
 
       {/* Action Buttons (Mobile-first stack, row on desktop) */}
       <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4 border-t-2 border-slate-900">

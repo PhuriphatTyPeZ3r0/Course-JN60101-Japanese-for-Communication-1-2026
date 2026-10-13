@@ -43,13 +43,15 @@ function validatePayload(body: any): string | null {
   if (!body || typeof body !== "object") {
     return "Invalid request body.";
   }
-  if (!Array.isArray(body.part1Answers) || !Array.isArray(body.part2Answers) || !Array.isArray(body.part3Answers)) {
+  if (!Array.isArray(body.part1Answers) && !Array.isArray(body.exam2VocabAnswers)) {
     return "Malformed answers structure.";
   }
   // Check maximum input lengths to prevent token exhaustion / prompt injection
-  for (const ans of body.part1Answers) {
-    if (typeof ans === "string" && ans.length > 500) {
-      return "Answer exceeds maximum length.";
+  if (Array.isArray(body.part1Answers)) {
+    for (const ans of body.part1Answers) {
+      if (typeof ans === "string" && ans.length > 500) {
+        return "Answer exceeds maximum length.";
+      }
     }
   }
   return null;

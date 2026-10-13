@@ -9,6 +9,7 @@ import {
   EXAM_PART1_SCRIPTS,
   VOCABULARY_LIST,
   IMAGE_QUESTIONS,
+  generateExam2Questions,
 } from "@/lib/dataset";
 import { resolveHobby } from "@/lib/hobbies";
 import {
@@ -26,6 +27,8 @@ import {
   ImageQuestion,
   Part2AnswerItem,
   Part3AnswerItem,
+  Exam2Question,
+  Exam2AnswerItem,
   EvaluationPayload,
   EvaluationResult,
   UserConfig,
@@ -64,11 +67,14 @@ export const MockExam: React.FC<MockExamProps> = ({
   // Selected Random Questions
   const [selectedVocab, setSelectedVocab] = useState<VocabItem[]>([]);
   const [selectedImages, setSelectedImages] = useState<ImageQuestion[]>([]);
+  const [selectedExam2Questions, setSelectedExam2Questions] = useState<Exam2Question[]>([]);
 
   // Answers Collected
   const [part1Answers, setPart1Answers] = useState<string[]>([]);
   const [part2Answers, setPart2Answers] = useState<Part2AnswerItem[]>([]);
   const [part3Answers, setPart3Answers] = useState<Part3AnswerItem[]>([]);
+  const [exam2VocabAnswers, setExam2VocabAnswers] = useState<Part2AnswerItem[]>([]);
+  const [exam2Answers, setExam2Answers] = useState<Exam2AnswerItem[]>([]);
 
   // Speech & Input
   const [currentInput, setCurrentInput] = useState<string>("");
@@ -110,7 +116,7 @@ export const MockExam: React.FC<MockExamProps> = ({
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [status, part1Answers, part2Answers, part3Answers, currentInput]);
+  }, [status, part1Answers, part2Answers, part3Answers, exam2VocabAnswers, exam2Answers, currentInput]);
 
   const playSfx = (type: "start" | "next" | "finish") => {
     if (!userConfig.enableSfx || typeof window === "undefined") return;
@@ -152,6 +158,22 @@ export const MockExam: React.FC<MockExamProps> = ({
     setCurrentInput("");
     setSpeechStatus("");
     setEvaluationResult(null);
+
+    if (selectedExam === "EXAM_2") {
+      const eligibleVocab = VOCABULARY_LIST.filter((v) => meta.chapters.includes(v.chapter));
+      const shuffledVocab = [...eligibleVocab].sort(() => 0.5 - Math.random()).slice(0, 5);
+      const exam2Qs = generateExam2Questions();
+
+      setSelectedVocab(shuffledVocab);
+      setSelectedExam2Questions(exam2Qs);
+      setExam2VocabAnswers([]);
+      setExam2Answers([]);
+
+      setStatus("RUNNING");
+      playSeiyuuGreeting("web_speech", userConfig.speechRate);
+      promptVocab(shuffledVocab[0]);
+      return;
+    }
 
     // Filter vocab by chapters of selected exam
     const eligibleVocab = VOCABULARY_LIST.filter((v) => meta.chapters.includes(v.chapter));
@@ -225,6 +247,63 @@ export const MockExam: React.FC<MockExamProps> = ({
     }
 
     const answer = currentInput.trim();
+
+    if (selectedExam === "EXAM_2") {
+      if (currentPart === 1) {
+        const item = selectedVocab[stepIndex];
+        const answerObj: Part2AnswerItem = {
+          id: item.id,
+          th: item.th,
+          expectedJa: item.ja,
+          expectedRomaji: item.romaji,
+          altJa: item.altJa,
+          altRomaji: item.altRomaji,
+          userAnswer: answer,
+        };
+        const updatedVocab = [...exam2VocabAnswers, answerObj];
+        setExam2VocabAnswers(updatedVocab);
+        setCurrentInput("");
+        setSpeechStatus("");
+
+        if (stepIndex < 4) {
+          const nextIdx = stepIndex + 1;
+          setStepIndex(nextIdx);
+          promptVocab(selectedVocab[nextIdx]);
+        } else {
+          setCurrentPart(2);
+          setStepIndex(0);
+          promptExam2Question(selectedExam2Questions[0]);
+        }
+      } else if (currentPart === 2) {
+        const q = selectedExam2Questions[stepIndex];
+        const answerObj: Exam2AnswerItem = {
+          id: q.id,
+          category: q.category,
+          categoryIndex: q.categoryIndex,
+          categoryTitleTh: q.categoryTitleTh,
+          questionJa: q.questionJa,
+          questionRomaji: q.questionRomaji,
+          displayValue: q.displayValue,
+          expectedJa: q.expectedAnswerJa,
+          expectedRomaji: q.expectedAnswerRomaji,
+          keywords: q.keywords,
+          userAnswer: answer,
+        };
+        const updatedQ = [...exam2Answers, answerObj];
+        setExam2Answers(updatedQ);
+        setCurrentInput("");
+        setSpeechStatus("");
+
+        if (stepIndex < 9) {
+          const nextIdx = stepIndex + 1;
+          setStepIndex(nextIdx);
+          promptExam2Question(selectedExam2Questions[nextIdx]);
+        } else {
+          finishAndEvaluateExam2(exam2VocabAnswers, updatedQ);
+        }
+      }
+      return;
+    }
 
     if (currentPart === 1) {
       const updatedP1 = [...part1Answers, answer];
@@ -309,7 +388,19 @@ export const MockExam: React.FC<MockExamProps> = ({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [status, isRecording, currentInput, currentPart, stepIndex, part1Answers, part2Answers, part3Answers]);
+  }, [
+    status,
+    isRecording,
+    currentInput,
+    currentPart,
+    stepIndex,
+    part1Answers,
+    part2Answers,
+    part3Answers,
+    exam2VocabAnswers,
+    exam2Answers,
+    selectedExam,
+  ]);
 
   const promptVocab = (vocab: VocabItem) => {
     if (!vocab) return;
@@ -326,12 +417,93 @@ export const MockExam: React.FC<MockExamProps> = ({
     );
   };
 
+  const promptExam2Question = (q: Exam2Question) => {
+    if (!q) return;
+    speakWithSeiyuuVoice(
+      q.questionJa,
+      userConfig.seiyuuVoice,
+      userConfig.speechRate,
+      "ja-JP"
+    );
+  };
+
   const handleTimeOut = () => {
     if (isRecording && recognitionRef.current) {
       recognitionRef.current.stop();
       setIsRecording(false);
     }
-    finishAndEvaluate(part1Answers, part2Answers, part3Answers);
+    if (selectedExam === "EXAM_2") {
+      let currentV = [...exam2VocabAnswers];
+      let currentQ = [...exam2Answers];
+      const answer = currentInput.trim();
+      if (currentPart === 1 && selectedVocab[stepIndex]) {
+        const item = selectedVocab[stepIndex];
+        currentV.push({
+          id: item.id,
+          th: item.th,
+          expectedJa: item.ja,
+          expectedRomaji: item.romaji,
+          altJa: item.altJa,
+          altRomaji: item.altRomaji,
+          userAnswer: answer,
+        });
+      } else if (currentPart === 2 && selectedExam2Questions[stepIndex]) {
+        const q = selectedExam2Questions[stepIndex];
+        currentQ.push({
+          id: q.id,
+          category: q.category,
+          categoryIndex: q.categoryIndex,
+          categoryTitleTh: q.categoryTitleTh,
+          questionJa: q.questionJa,
+          questionRomaji: q.questionRomaji,
+          displayValue: q.displayValue,
+          expectedJa: q.expectedAnswerJa,
+          expectedRomaji: q.expectedAnswerRomaji,
+          keywords: q.keywords,
+          userAnswer: answer,
+        });
+      }
+      finishAndEvaluateExam2(currentV, currentQ);
+    } else {
+      finishAndEvaluate(part1Answers, part2Answers, part3Answers);
+    }
+  };
+
+  const finishAndEvaluateExam2 = async (
+    vocabAnswers: Part2AnswerItem[],
+    qAnswers: Exam2AnswerItem[]
+  ) => {
+    setStatus("EVALUATING");
+    stopSpeech();
+    playSfx("finish");
+
+    const payload: EvaluationPayload = {
+      examType: "EXAM_2",
+      exam2VocabAnswers: vocabAnswers,
+      exam2Answers: qAnswers,
+      userConfig: userConfig,
+      clientApiKey: userConfig.geminiApiKey,
+    };
+
+    try {
+      const res = await fetch("/api/evaluate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const result: EvaluationResult = await res.json();
+      setEvaluationResult(result);
+      setStatus("FINISHED");
+      playSeiyuuPraise("web_speech", userConfig.speechRate);
+    } catch (err: unknown) {
+      console.warn("API Evaluation failed, using rule-based fallback:", err);
+      const fallbackResult = ruleBasedEvaluation(payload);
+      setEvaluationResult(fallbackResult);
+      setStatus("FINISHED");
+      playSeiyuuPraise("web_speech", userConfig.speechRate);
+    }
   };
 
   const finishAndEvaluate = async (
@@ -407,7 +579,7 @@ export const MockExam: React.FC<MockExamProps> = ({
               <span>เลือกด่านการสอบ (STAGE SELECT):</span>
             </span>
             <span className="text-[10px] font-bold text-slate-500">
-              ข้อสอบ 3 ส่วน • 15 คะแนน • 3:00 นาที
+              {selectedExam === "EXAM_2" ? "ข้อสอบ 2 ส่วน • 15 คะแนน • 3:00 นาที" : "ข้อสอบ 3 ส่วน • 15 คะแนน • 3:00 นาที"}
             </span>
           </div>
 
@@ -485,46 +657,76 @@ export const MockExam: React.FC<MockExamProps> = ({
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-slate-700">
-            <div className="p-2 bg-white rounded-xl border border-slate-300 space-y-0.5 min-w-0">
-              <span
-                className="manga-badge bg-sky-300 text-slate-900 text-[9px] max-w-full truncate inline-flex items-center tracking-tight px-2 py-0.5"
-                title={`1. ${activeMeta.part1TitleJa}`}
-              >
-                <span className="truncate">1. {activeMeta.part1TitleJa}</span>
-              </span>
-              <p className="text-[11px] font-bold text-slate-900 leading-snug">
-                {activeMeta.part1TitleTh}
-              </p>
-              <p className="text-[10px] text-slate-500 line-clamp-2">
-                {activeMeta.part1InstructionsTh}
-              </p>
-            </div>
+          {selectedExam === "EXAM_2" ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700">
+              <div className="p-2.5 bg-white rounded-xl border border-slate-300 space-y-1 min-w-0">
+                <span className="manga-badge bg-amber-300 text-slate-900 text-[9px] max-w-full truncate inline-flex items-center tracking-tight px-2 py-0.5">
+                  <Icon name="translate" className="text-xs mr-1" />
+                  <span>1. 語彙 VOCAB (5 คะแนน)</span>
+                </span>
+                <p className="text-[11px] font-black text-slate-900 leading-snug">
+                  แปลคำศัพท์ 5 คำ (ไทย ➔ ญี่ปุ่น)
+                </p>
+                <p className="text-[10px] text-slate-500 leading-relaxed">
+                  สุ่มคำศัพท์จากเนื้อหาบทที่ 3 และ 4 (1 คำ / 1 คะแนน)
+                </p>
+              </div>
 
-            <div className="p-2 bg-white rounded-xl border border-slate-300 space-y-0.5 min-w-0">
-              <span className="manga-badge bg-amber-300 text-slate-900 text-[9px] max-w-full truncate inline-flex items-center tracking-tight px-2 py-0.5">
-                <span className="truncate">2. 語彙 VOCAB</span>
-              </span>
-              <p className="text-[11px] font-bold text-slate-900 leading-snug">
-                แปลศัพท์ 5 คำ (5 คะแนน)
-              </p>
-              <p className="text-[10px] text-slate-500 line-clamp-2">
-                สุ่มคำศัพท์บทที่ {activeMeta.chapters.join(", ")}
-              </p>
+              <div className="p-2.5 bg-white rounded-xl border border-slate-300 space-y-1 min-w-0">
+                <span className="manga-badge bg-sky-300 text-slate-900 text-[9px] max-w-full truncate inline-flex items-center tracking-tight px-2 py-0.5">
+                  <Icon name="question_answer" className="text-xs mr-1" />
+                  <span>2. 質疑応答 Q&A (10 คะแนน)</span>
+                </span>
+                <p className="text-[11px] font-black text-slate-900 leading-snug">
+                  ตอบคำถาม 5 รูปแบบ (รูปแบบละ 2 ข้อ)
+                </p>
+                <p className="text-[10px] text-slate-500 leading-relaxed">
+                  1) สถานที่ • 2) เวลา • 3) เบอร์โทร • 4) ราคา • 5) เวลาทำการ
+                </p>
+              </div>
             </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-slate-700">
+              <div className="p-2 bg-white rounded-xl border border-slate-300 space-y-0.5 min-w-0">
+                <span
+                  className="manga-badge bg-sky-300 text-slate-900 text-[9px] max-w-full truncate inline-flex items-center tracking-tight px-2 py-0.5"
+                  title={`1. ${activeMeta.part1TitleJa}`}
+                >
+                  <span className="truncate">1. {activeMeta.part1TitleJa}</span>
+                </span>
+                <p className="text-[11px] font-bold text-slate-900 leading-snug">
+                  {activeMeta.part1TitleTh}
+                </p>
+                <p className="text-[10px] text-slate-500 line-clamp-2">
+                  {activeMeta.part1InstructionsTh}
+                </p>
+              </div>
 
-            <div className="p-2 bg-white rounded-xl border border-slate-300 space-y-0.5 min-w-0">
-              <span className="manga-badge bg-emerald-300 text-slate-900 text-[9px] max-w-full truncate inline-flex items-center tracking-tight px-2 py-0.5">
-                <span className="truncate">3. 画像 Q&A</span>
-              </span>
-              <p className="text-[11px] font-bold text-slate-900 leading-snug">
-                ตอบจากภาพ 5 ข้อ (5 คะแนน)
-              </p>
-              <p className="text-[10px] text-slate-500 line-clamp-2">
-                ตอบคำถามจากภาพสถานการณ์เป็นประโยคเต็ม
-              </p>
+              <div className="p-2 bg-white rounded-xl border border-slate-300 space-y-0.5 min-w-0">
+                <span className="manga-badge bg-amber-300 text-slate-900 text-[9px] max-w-full truncate inline-flex items-center tracking-tight px-2 py-0.5">
+                  <span className="truncate">2. 語彙 VOCAB</span>
+                </span>
+                <p className="text-[11px] font-bold text-slate-900 leading-snug">
+                  แปลศัพท์ 5 คำ (5 คะแนน)
+                </p>
+                <p className="text-[10px] text-slate-500 line-clamp-2">
+                  สุ่มคำศัพท์บทที่ {activeMeta.chapters.join(", ")}
+                </p>
+              </div>
+
+              <div className="p-2 bg-white rounded-xl border border-slate-300 space-y-0.5 min-w-0">
+                <span className="manga-badge bg-emerald-300 text-slate-900 text-[9px] max-w-full truncate inline-flex items-center tracking-tight px-2 py-0.5">
+                  <span className="truncate">3. 画像 Q&A</span>
+                </span>
+                <p className="text-[11px] font-bold text-slate-900 leading-snug">
+                  ตอบจากภาพ 5 ข้อ (5 คะแนน)
+                </p>
+                <p className="text-[10px] text-slate-500 line-clamp-2">
+                  ตอบคำถามจากภาพสถานการณ์เป็นประโยคเต็ม
+                </p>
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* Start Button */}
@@ -570,12 +772,18 @@ export const MockExam: React.FC<MockExamProps> = ({
   }
 
   // 4. RUNNING State
+  const isExam2 = selectedExam === "EXAM_2";
   const currentP1Line: DialogueLine = activePart1Script[stepIndex] || activePart1Script[0];
   const currentVocabItem = selectedVocab[stepIndex];
   const currentImgItem = selectedImages[stepIndex];
+  const currentExam2Q = selectedExam2Questions[stepIndex];
 
-  // Overall Exam Progress Percentage: 15 questions total (Part 1: 0-4, Part 2: 5-9, Part 3: 10-14)
-  const currentTotalQuestionIndex = (currentPart - 1) * 5 + stepIndex + 1;
+  // Overall Exam Progress Percentage: 15 questions total
+  const currentTotalQuestionIndex = isExam2
+    ? currentPart === 1
+      ? stepIndex + 1
+      : 5 + stepIndex + 1
+    : (currentPart - 1) * 5 + stepIndex + 1;
   const progressPercent = Math.round((currentTotalQuestionIndex / 15) * 100);
 
   // Timer Color Urgency: Green > 60s, Amber 30-60s, Red < 30s
@@ -595,7 +803,9 @@ export const MockExam: React.FC<MockExamProps> = ({
             {activeMeta.titleTh}
           </span>
           <span className="manga-badge bg-rose-500 text-white text-[9px] sm:text-[10px]">
-            ส่วนที่ {currentPart}/3 • ข้อ {stepIndex + 1}/5
+            {isExam2
+              ? `ส่วนที่ ${currentPart}/2 • ข้อ ${stepIndex + 1}/${currentPart === 1 ? 5 : 10}`
+              : `ส่วนที่ ${currentPart}/3 • ข้อ ${stepIndex + 1}/5`}
           </span>
         </div>
 
@@ -610,54 +820,206 @@ export const MockExam: React.FC<MockExamProps> = ({
         </div>
       </div>
 
-      {/* 3-Part Segmented Progress Bar */}
-      <div className="manga-box-sm p-2 bg-slate-100 flex flex-col gap-1.5">
-        <div className="flex items-center justify-between text-[10px] font-black text-slate-600 uppercase gap-1">
-          <span
-            className={`truncate max-w-[140px] sm:max-w-none ${currentPart === 1 ? "text-rose-600" : ""}`}
-            title={`1. ${activeMeta.part1TitleJa}`}
-          >
-            1. {activeMeta.part1TitleJa}
-          </span>
-          <span className={`shrink-0 ${currentPart === 2 ? "text-amber-600" : ""}`}>2. 語彙 (คำศัพท์)</span>
-          <span className={`shrink-0 ${currentPart === 3 ? "text-emerald-600" : ""}`}>3. 画像 (ภาพ)</span>
-          <span className="font-mono text-slate-900 shrink-0">{progressPercent}%</span>
-        </div>
+      {/* Segmented Progress Bar */}
+      {isExam2 ? (
+        <div className="manga-box-sm p-2 bg-slate-100 flex flex-col gap-1.5">
+          <div className="flex items-center justify-between text-[10px] font-black text-slate-600 uppercase gap-1">
+            <span className={`shrink-0 ${currentPart === 1 ? "text-amber-600 font-black" : ""}`}>
+              1. 語彙 VOCAB (5 คำ)
+            </span>
+            <span className={`shrink-0 ${currentPart === 2 ? "text-sky-600 font-black" : ""}`}>
+              2. 質疑応答 Q&A (10 ข้อ)
+            </span>
+            <span className="font-mono text-slate-900 shrink-0">{progressPercent}%</span>
+          </div>
 
-        {/* 3-Bar Visual */}
-        <div className="grid grid-cols-3 gap-1 h-2">
-          {[1, 2, 3].map((p) => {
-            const isCompleted = currentPart > p;
-            const isCurrent = currentPart === p;
-            const fillWidth = isCompleted
-              ? 100
-              : isCurrent
-              ? ((stepIndex + 1) / 5) * 100
-              : 0;
+          <div className="grid grid-cols-2 gap-1.5 h-2">
+            {[1, 2].map((p) => {
+              const isCompleted = currentPart > p;
+              const isCurrent = currentPart === p;
+              const totalInPart = p === 1 ? 5 : 10;
+              const fillWidth = isCompleted
+                ? 100
+                : isCurrent
+                ? ((stepIndex + 1) / totalInPart) * 100
+                : 0;
 
-            return (
-              <div
-                key={p}
-                className="bg-slate-200 rounded-full border border-slate-900 overflow-hidden h-full"
-              >
+              return (
                 <div
-                  className={`h-full transition-all duration-300 ${
-                    p === 1
-                      ? "bg-rose-500"
-                      : p === 2
-                      ? "bg-amber-400"
-                      : "bg-emerald-500"
-                  }`}
-                  style={{ width: `${fillWidth}%` }}
-                />
-              </div>
-            );
-          })}
+                  key={p}
+                  className="bg-slate-200 rounded-full border border-slate-900 overflow-hidden h-full"
+                >
+                  <div
+                    className={`h-full transition-all duration-300 ${
+                      p === 1 ? "bg-amber-400" : "bg-sky-500"
+                    }`}
+                    style={{ width: `${fillWidth}%` }}
+                  />
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="manga-box-sm p-2 bg-slate-100 flex flex-col gap-1.5">
+          <div className="flex items-center justify-between text-[10px] font-black text-slate-600 uppercase gap-1">
+            <span
+              className={`truncate max-w-[140px] sm:max-w-none ${currentPart === 1 ? "text-rose-600" : ""}`}
+              title={`1. ${activeMeta.part1TitleJa}`}
+            >
+              1. {activeMeta.part1TitleJa}
+            </span>
+            <span className={`shrink-0 ${currentPart === 2 ? "text-amber-600" : ""}`}>2. 語彙 (คำศัพท์)</span>
+            <span className={`shrink-0 ${currentPart === 3 ? "text-emerald-600" : ""}`}>3. 画像 (ภาพ)</span>
+            <span className="font-mono text-slate-900 shrink-0">{progressPercent}%</span>
+          </div>
 
-      {/* ================= PART 1: PRESENTATION / DIALOGUE ================= */}
-      {currentPart === 1 && currentP1Line && (
+          {/* 3-Bar Visual */}
+          <div className="grid grid-cols-3 gap-1 h-2">
+            {[1, 2, 3].map((p) => {
+              const isCompleted = currentPart > p;
+              const isCurrent = currentPart === p;
+              const fillWidth = isCompleted
+                ? 100
+                : isCurrent
+                ? ((stepIndex + 1) / 5) * 100
+                : 0;
+
+              return (
+                <div
+                  key={p}
+                  className="bg-slate-200 rounded-full border border-slate-900 overflow-hidden h-full"
+                >
+                  <div
+                    className={`h-full transition-all duration-300 ${
+                      p === 1
+                        ? "bg-rose-500"
+                        : p === 2
+                        ? "bg-amber-400"
+                        : "bg-emerald-500"
+                    }`}
+                    style={{ width: `${fillWidth}%` }}
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* ================= EXAM 2 SPECIFIC QUESTION RENDERING ================= */}
+      {isExam2 && currentPart === 1 && currentVocabItem && (
+        <div className="manga-box p-4 sm:p-5 text-center space-y-3 shadow-[3px_3px_0px_#0f172a]">
+          <div className="flex items-center justify-between text-xs font-bold text-slate-500">
+            <span className="manga-badge bg-amber-400 text-slate-900 text-[10px] flex items-center space-x-1">
+              <Icon name="translate" className="text-xs" />
+              <span>ส่วนที่ 1: แปลคำศัพท์บทที่ 3-4 • คำที่ {stepIndex + 1} / 5</span>
+            </span>
+            <span className="text-[10px] text-slate-500 font-bold">
+              หมวด: {currentVocabItem.category}
+            </span>
+          </div>
+
+          <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 border-2 border-slate-900 space-y-2">
+            <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+              จงพูดคำศัพท์ภาษาญี่ปุ่นของคำว่า:
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-black text-slate-900 break-words py-1">
+              "{currentVocabItem.th}"
+            </h3>
+            <button
+              onClick={() => promptVocab(currentVocabItem)}
+              className="manga-btn inline-flex items-center space-x-1 px-3 py-1 rounded-xl bg-white text-slate-800 text-xs border border-slate-300 shadow-[1px_1px_0px_#0f172a]"
+            >
+              <Icon name="volume_up" className="text-sm text-amber-600" />
+              <span>ฟังคำแปลไทยอีกครั้ง</span>
+            </button>
+          </div>
+        </div>
+      )}
+
+      {isExam2 && currentPart === 2 && currentExam2Q && (
+        <div className="manga-box p-4 sm:p-5 text-center space-y-3 shadow-[3px_3px_0px_#0f172a]">
+          <div className="flex items-center justify-between text-xs font-bold text-slate-500">
+            <span className="manga-badge bg-sky-500 text-white text-[10px] flex items-center space-x-1">
+              <Icon
+                name={
+                  currentExam2Q.category === "PLACE"
+                    ? "location_on"
+                    : currentExam2Q.category === "TIME"
+                    ? "schedule"
+                    : currentExam2Q.category === "PHONE"
+                    ? "call"
+                    : currentExam2Q.category === "PRICE"
+                    ? "payments"
+                    : "storefront"
+                }
+                className="text-xs"
+              />
+              <span>{currentExam2Q.categoryTitleTh}</span>
+            </span>
+            <span className="text-xs font-black text-slate-700">
+              ข้อที่ {stepIndex + 1} / 10
+            </span>
+          </div>
+
+          {/* Visual Display Frame */}
+          <div className="w-full max-w-[280px] sm:max-w-[340px] md:max-w-[380px] aspect-[4/3] mx-auto rounded-2xl border-2 border-slate-900 shadow-[3px_3px_0px_#0f172a] overflow-hidden bg-slate-100 flex items-center justify-center relative">
+            <SvgImage
+              svgContent={currentExam2Q.imageSvg}
+              alt={currentExam2Q.categoryTitleTh}
+              fit="contain"
+              position="center"
+              className="w-full h-full p-2"
+            />
+            {currentExam2Q.displayValue && (
+              <div className="absolute bottom-2 bg-slate-900/90 text-white text-[11px] sm:text-xs font-black px-2.5 py-1 rounded-xl border border-slate-700 shadow-md">
+                {currentExam2Q.displayValue}
+              </div>
+            )}
+          </div>
+
+          {/* Examiner Speech Bubble */}
+          <div className="speech-bubble p-3 text-left bg-sky-50/70 border-2 border-sky-900">
+            <div className="flex items-center justify-between mb-1 pb-1 border-b border-sky-200">
+              <div className="flex items-center space-x-1.5">
+                <Icon name={examiner.avatarIcon} className="text-base text-sky-800" />
+                <span className="text-[11px] font-black text-slate-900">
+                  อาจารย์ AI ({examiner.characterNameJa})
+                </span>
+              </div>
+              <button
+                onClick={() => promptExam2Question(currentExam2Q)}
+                className="inline-flex items-center space-x-1 text-xs text-rose-600 font-bold hover:underline"
+              >
+                <Icon name="volume_up" className="text-sm" />
+                <span>ฟังเสียงคำถาม</span>
+              </button>
+            </div>
+
+            <h4 className="text-base font-extrabold text-slate-900 font-jp">
+              {currentExam2Q.questionJa}
+            </h4>
+            {userConfig.showRomaji && (
+              <p className="text-xs font-mono text-slate-500 mt-0.5">
+                {currentExam2Q.questionRomaji}
+              </p>
+            )}
+          </div>
+
+          {/* Official Rule Note from PDF */}
+          <div className="p-2.5 rounded-xl bg-amber-50 border-2 border-amber-300 text-left flex items-start space-x-2 text-slate-800 shadow-[2px_2px_0px_#0f172a]">
+            <Icon name="info" className="text-base text-amber-700 shrink-0 mt-0.5" />
+            <div className="text-[11px] sm:text-xs font-bold leading-relaxed">
+              <span className="text-amber-900 font-black">เกณฑ์ตอบสอบจริง: </span>
+              {currentExam2Q.ruleNoteTh}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ================= OTHER EXAMS PART 1: PRESENTATION / DIALOGUE ================= */}
+      {!isExam2 && currentPart === 1 && currentP1Line && (
         <div className="manga-box p-4 sm:p-5 text-center space-y-3 shadow-[3px_3px_0px_#0f172a]">
           <div className="flex items-center justify-between text-xs font-bold text-slate-500">
             <span className="manga-badge bg-rose-500 text-white text-[10px]">
@@ -703,8 +1065,8 @@ export const MockExam: React.FC<MockExamProps> = ({
         </div>
       )}
 
-      {/* ================= PART 2: VOCABULARY ================= */}
-      {currentPart === 2 && currentVocabItem && (
+      {/* ================= OTHER EXAMS PART 2: VOCABULARY ================= */}
+      {!isExam2 && currentPart === 2 && currentVocabItem && (
         <div className="manga-box p-4 sm:p-5 text-center space-y-3 shadow-[3px_3px_0px_#0f172a]">
           <div className="flex items-center justify-between text-xs font-bold text-slate-500">
             <span className="manga-badge bg-amber-400 text-slate-900 text-[10px]">
@@ -733,8 +1095,8 @@ export const MockExam: React.FC<MockExamProps> = ({
         </div>
       )}
 
-      {/* ================= PART 3: SITUATIONAL SVG ================= */}
-      {currentPart === 3 && currentImgItem && (
+      {/* ================= OTHER EXAMS PART 3: SITUATIONAL SVG ================= */}
+      {!isExam2 && currentPart === 3 && currentImgItem && (
         <div className="manga-box p-4 sm:p-5 text-center space-y-3 shadow-[3px_3px_0px_#0f172a]">
           <div className="flex items-center justify-between text-xs font-bold text-slate-500">
             <span className="manga-badge bg-emerald-500 text-white text-[10px]">
@@ -857,7 +1219,15 @@ export const MockExam: React.FC<MockExamProps> = ({
             onClick={handleNextStep}
             className="manga-btn px-4 sm:px-6 py-2.5 sm:py-3 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-900 text-xs sm:text-sm font-black flex items-center space-x-1 shrink-0 shadow-[2px_2px_0px_#0f172a]"
           >
-            <span>{currentPart === 3 && stepIndex === 4 ? "ส่งข้อสอบ" : "ข้อถัดไป"}</span>
+            <span>
+              {isExam2
+                ? currentPart === 2 && stepIndex === 9
+                  ? "ส่งข้อสอบ"
+                  : "ข้อถัดไป"
+                : currentPart === 3 && stepIndex === 4
+                ? "ส่งข้อสอบ"
+                : "ข้อถัดไป"}
+            </span>
             <Icon name="arrow_forward" className="text-sm sm:text-base" />
           </button>
         </div>
