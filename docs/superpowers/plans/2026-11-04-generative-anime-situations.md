@@ -34,13 +34,13 @@
 - Modify: `03_Projects/japanese-speaking-coach/components/SvgImage.tsx`
 - Modify: `03_Projects/japanese-speaking-coach/lib/exam3-data.ts:25-50`
 
-- [ ] **Step 1:** Extend `Exam3Question` interface in `lib/exam3-data.ts` to include optional `imagePath?: string`.
-- [ ] **Step 2:** Update `components/SvgImage.tsx` to accept optional `imagePath?: string` prop.
-- [ ] **Step 3:** Implement image rendering logic in `SvgImage.tsx`:
+- [x] **Step 1:** Extend `Exam3Question` interface in `lib/exam3-data.ts` to include optional `imagePath?: string`.
+- [x] **Step 2:** Update `components/SvgImage.tsx` to accept optional `imagePath?: string` prop.
+- [x] **Step 3:** Implement image rendering logic in `SvgImage.tsx`:
   - If `imagePath` is provided and hasn't errored: render `<img src={imagePath} alt={alt} onError={() => setImgError(true)} className="w-full h-full object-cover rounded-xl border border-slate-900 shadow-[1px_1px_0px_#0f172a]" />`.
   - If `imgError` is true or `imagePath` is undefined: render SVG fallback with `dangerouslySetInnerHTML`.
-- [ ] **Step 4:** Run TypeScript typecheck to verify interface compatibility.
-- [ ] **Step 5:** Commit changes to git.
+- [x] **Step 4:** Run TypeScript typecheck to verify interface compatibility.
+- [x] **Step 5:** Commit changes to git.
 
 ---
 
