@@ -11,6 +11,7 @@
 //   - รูปแบบที่ 6: Kyō wa nan gatsu nan nichi desuka? (ตอบตามความเป็นจริง) = 1 ข้อ
 
 import { Exam3Question, Exam3Category } from "./types";
+export type { Exam3Question, Exam3Category };
 
 export const EXAM_3_CATEGORIES: {
   category: Exam3Category;

@@ -333,6 +333,7 @@ export interface Exam2Question {
   ruleNoteTh: string;
   imageSvg?: string;
   imageUrl?: string;
+  imagePath?: string;
 }
 
 export interface Exam2AnswerItem {
@@ -384,6 +385,7 @@ export interface Exam3Question {
   ruleNoteTh: string;
   imageSvg?: string;
   imageUrl?: string;
+  imagePath?: string;
 }
 
 export interface Exam3AnswerItem {
