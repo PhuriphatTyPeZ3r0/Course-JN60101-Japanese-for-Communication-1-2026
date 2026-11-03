@@ -120,6 +120,8 @@ export default function HomePage() {
         onOpenSettings={() => setIsSettingsOpen(true)}
         onOpenAuth={() => setIsAuthOpen(true)}
         userEmail={user?.email}
+        userConfig={userConfig}
+        onSelectCoach={(voiceId) => handleSaveSettings({ ...userConfig, seiyuuVoice: voiceId })}
       />
 
       {/* Main Content Area (Responsive padding for all screen sizes + safe bottom space) */}

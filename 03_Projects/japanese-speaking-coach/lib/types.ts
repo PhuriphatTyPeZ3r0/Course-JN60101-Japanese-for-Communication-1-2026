@@ -12,7 +12,7 @@ export interface AnimeVoiceOption {
 }
 
 export const ANIME_VOICE_OPTIONS: AnimeVoiceOption[] = [
-  { id: "web_speech", nameJa: "標準音声", nameTh: "เสียงมาตรฐานระบบ", character: "Web Speech API", speakerId: 0, description: "เสียงสังเคราะห์ประจำเครื่อง เสถียร 100% เร็วทันใจ 0ms (ไม่ต้องเชื่อมต่อเน็ต)" },
+  { id: "web_speech", nameJa: "標準音声", nameTh: "เสียงมาตรฐานระบบ", character: "เสียงระบบ", speakerId: 0, description: "เสียงสังเคราะห์ประจำอุปกรณ์ เสถียรและตอบสนองทันใจ" },
 ];
 
 export type SeiyuuVoiceId = "web_speech" | "saori_hayami" | "kirito";
@@ -47,11 +47,11 @@ export const SEIYUU_ROSTER: SeiyuuProfile[] = [
     characterNameTh: "เสียงมาตรฐานระบบอุปกรณ์",
     characterRomaji: "Default System Voice",
     seiyuuNameJa: "システム音声",
-    seiyuuNameTh: "Device Web Speech",
-    animeTitle: "Web Speech API (0ms Offline)",
+    seiyuuNameTh: "เสียงมาตรฐานอุปกรณ์",
+    animeTitle: "เสียงมาตรฐานระบบอุปกรณ์",
     avatarIcon: "smart_toy",
     badgeBg: "bg-emerald-100 border-emerald-900 text-emerald-900",
-    badgeText: "標準音声 (Default System Voice)",
+    badgeText: "標準音声 (เสียงมาตรฐาน)",
     greetingJa: "試験を開始します。準備はよろしいですか？",
     greetingTh: "เริ่มการทดสอบ พร้อมแล้วใช่ไหมครับ/ค่ะ?",
     praiseJa: "大変よくできました。お疲れ様でした。",
@@ -66,11 +66,11 @@ export const SEIYUU_ROSTER: SeiyuuProfile[] = [
     characterNameTh: "ฮายามิ ซาโอริ",
     characterRomaji: "Saori Hayami",
     seiyuuNameJa: "早見沙織 (CV)",
-    seiyuuNameTh: "อาจารย์ซาโอริ (Fish Audio AI)",
-    animeTitle: "Fish Audio S2.1 Pro",
+    seiyuuNameTh: "อาจารย์ซาโอริ",
+    animeTitle: "อาจารย์สอนภาษาญี่ปุ่น (AI Coach)",
     avatarIcon: "face_3",
     badgeBg: "bg-rose-100 border-rose-900 text-rose-900",
-    badgeText: "早見沙織 (Fish Audio AI)",
+    badgeText: "早見沙織 (อาจารย์ซาโอริ)",
     greetingJa: "こんにちは！試験を始めますね。準備はいいですか？",
     greetingTh: "สวัสดีค่ะ เริ่มการทดสอบกันนะคะ พร้อมแล้วใช่ไหมคะ?",
     praiseJa: "とても上手にできました！お疲れ様でした。",
@@ -86,11 +86,11 @@ export const SEIYUU_ROSTER: SeiyuuProfile[] = [
     characterNameTh: "คิริโตะ (桐谷和人)",
     characterRomaji: "Kirito (Kirigaya Kazuto)",
     seiyuuNameJa: "松岡禎丞 (CV)",
-    seiyuuNameTh: "เสียงคิริโตะ (Fish Audio AI)",
-    animeTitle: "Sword Art Online / Fish Audio",
+    seiyuuNameTh: "คิริโตะ",
+    animeTitle: "รุ่นพี่ชมรมภาษาญี่ปุ่น (AI Coach)",
     avatarIcon: "face",
     badgeBg: "bg-slate-900 border-slate-900 text-white",
-    badgeText: "キリト (Fish Audio AI)",
+    badgeText: "キリト (คิริโตะ)",
     greetingJa: "よし、テストを始めようか。準備はいいか？",
     greetingTh: "เอาล่ะ มาเริ่มการทดสอบกันเถอะ พร้อมแล้วใช่ไหม?",
     praiseJa: "すげえな！よくやった、お疲れ様！",
@@ -104,6 +104,10 @@ export const SEIYUU_ROSTER: SeiyuuProfile[] = [
 export interface UserConfig {
   studentNameJa: string;
   selectedHobby: string;
+  birthdayMonth?: number; // 1-12 (default: 5 = May)
+  birthdayDay?: number;   // 1-31 (default: 15 = 15th)
+  exam3DateMonth?: number; // 1-12 (default: 11 = Nov)
+  exam3DateDay?: number;   // 1-31 (default: 4 = 4th)
   showRomaji: boolean;
   showThaiHints: boolean;
   speechRate: number;
@@ -119,12 +123,16 @@ export interface UserConfig {
 export const DEFAULT_USER_CONFIG: UserConfig = {
   studentNameJa: "たなか", // Japanese default name for practice
   selectedHobby: "まんが", // Japanese default hobby (manga)
+  birthdayMonth: 5,        // 15 May (5月15日 - Gogatsu jūgonichi)
+  birthdayDay: 15,
+  exam3DateMonth: 11,      // 4 Nov (11月4日 - Jūichigatsu yokka)
+  exam3DateDay: 4,
   showRomaji: true,
   showThaiHints: true,
   speechRate: 0.9,
   enableSfx: true,
-  seiyuuVoice: "web_speech", // Only Default System Voice
-  voiceProvider: "web_speech",
+  seiyuuVoice: "saori_hayami", // Default to Saori Hayami (Fish Audio AI Coach)
+  voiceProvider: "fish_audio",
 };
 
 export type ExamType = "EXAM_1" | "EXAM_2" | "EXAM_3" | "FINAL";
@@ -171,11 +179,11 @@ export const EXAM_DEFINITIONS: Record<ExamType, ExamMeta> = {
     id: "EXAM_3",
     titleJa: "第3回小テスト (第5〜6課)",
     titleTh: "สอบย่อยครั้งที่ 3 (บทที่ 5-6)",
-    subtitleTh: "การซื้อของระบุสี/จำนวน, วันที่/เดือน/ปี, การยืนยันตารางงาน",
+    subtitleTh: "คำศัพท์บทที่ 5-6 (5 คำ = 5 คะแนน) และตอบคำถาม 6 รูปแบบ (10 ข้อ = 10 คะแนน)",
     chapters: [5, 6],
-    part1TitleJa: "買い物と予定確認 (Kaimono to Yotei)",
-    part1TitleTh: "บทสนทนาซื้อของและยืนยันตารางงาน (5 คะแนน)",
-    part1InstructionsTh: "พูดบทสนทนาซื้อของระบุลักษณนาม/สี และยืนยันตารางงานการเดินทาง 5 ประโยคตามลำดับ",
+    part1TitleJa: "語彙 (Goi)",
+    part1TitleTh: "ส่วนที่ 1: แปลคำศัพท์ 5 คำ (5 คะแนน)",
+    part1InstructionsTh: "พูดคำศัพท์ภาษาญี่ปุ่น 5 คำที่สุ่มจากเนื้อหาบทที่ 5 และ 6 (ไทย -> ญี่ปุ่น)",
     timeLimitSeconds: 180,
     totalScore: 15,
   },
@@ -350,6 +358,57 @@ export interface Exam2CategoryScore {
   feedback: string;
 }
 
+export type Exam3Category =
+  | "ORIGIN"
+  | "ADJECTIVE"
+  | "ORDER"
+  | "DATE_READING"
+  | "BIRTHDAY"
+  | "TODAY_DATE";
+
+export interface Exam3Question {
+  id: string;
+  category: Exam3Category;
+  categoryIndex: 1 | 2 | 3 | 4 | 5 | 6;
+  categoryTitleTh: string;
+  categoryTitleJa: string;
+  questionJa: string;
+  questionRomaji: string;
+  questionTh: string;
+  displayLabel: string;
+  displayValue: string;
+  displaySubtext?: string;
+  expectedAnswerJa: string;
+  expectedAnswerRomaji: string;
+  keywords: string[];
+  ruleNoteTh: string;
+  imageSvg?: string;
+  imageUrl?: string;
+}
+
+export interface Exam3AnswerItem {
+  id: string;
+  category: Exam3Category;
+  categoryIndex: 1 | 2 | 3 | 4 | 5 | 6;
+  categoryTitleTh: string;
+  questionJa: string;
+  questionRomaji: string;
+  displayValue: string;
+  expectedJa: string;
+  expectedRomaji: string;
+  keywords: string[];
+  userAnswer: string;
+}
+
+export interface Exam3CategoryScore {
+  category: Exam3Category;
+  categoryIndex: 1 | 2 | 3 | 4 | 5 | 6;
+  titleTh: string;
+  score: number;
+  maxScore: number;
+  feedback: string;
+}
+
 export interface EvaluationPayload {
   examType?: ExamType;
   part1Answers?: string[];
@@ -357,6 +416,8 @@ export interface EvaluationPayload {
   part3Answers?: Part3AnswerItem[];
   exam2VocabAnswers?: Part2AnswerItem[];
   exam2Answers?: Exam2AnswerItem[];
+  exam3VocabAnswers?: Part2AnswerItem[];
+  exam3Answers?: Exam3AnswerItem[];
   userConfig?: Partial<UserConfig>;
   turnstileToken?: string;
   clientApiKey?: string;
@@ -375,6 +436,7 @@ export interface EvaluationResult {
   part2Feedback: string;
   part3Feedback: string;
   exam2CategoryScores?: Exam2CategoryScore[];
+  exam3CategoryScores?: Exam3CategoryScore[];
   overallSummary: string;
   warning?: string;
   evaluationMode?: "AI" | "RULE_BASED";

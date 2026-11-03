@@ -3,12 +3,26 @@
 
 import React from "react";
 import { Icon } from "./Icon";
-import { EvaluationResult } from "@/lib/types";
+import { EvaluationResult, UserConfig } from "@/lib/types";
+import { speakWithSeiyuuVoice } from "@/lib/speech";
+
+export interface ReviewItem {
+  id: string;
+  categoryTitleTh?: string;
+  questionJa: string;
+  questionRomaji?: string;
+  expectedJa: string;
+  expectedRomaji?: string;
+  userAnswer?: string;
+  isCorrect?: boolean;
+}
 
 interface ScoreCardProps {
   result: EvaluationResult;
   onRetake: () => void;
   onGoToDrill: () => void;
+  userConfig?: UserConfig;
+  reviewItems?: ReviewItem[];
 }
 
 // Helpers for responsive and clean title formatting
@@ -33,9 +47,12 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({
   result,
   onRetake,
   onGoToDrill,
+  userConfig,
+  reviewItems = [],
 }) => {
   const isPass = result.totalScore >= 9;
   const progressPercent = Math.min(100, Math.max(0, Math.round((result.totalScore / 15) * 100)));
+  const failedReviewItems = reviewItems.filter((item) => item.isCorrect === false);
 
   return (
     <div className="manga-box p-3.5 sm:p-6 md:p-8 animate-in fade-in zoom-in-95 duration-200 shadow-[4px_4px_0px_#0f172a]">
@@ -102,8 +119,8 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({
               <Icon name="record_voice_over" className="text-rose-600 text-lg" />
             </div>
             <div className="min-w-0">
-              <p className="text-[10px] font-mono font-bold text-slate-500 uppercase">
-                ความคิดเห็นจากอาจารย์ผู้คุมสอบ (Sensei Feedback):
+              <p className="text-[10px] font-bold text-slate-500">
+                ความคิดเห็นจากอาจารย์ผู้คุมสอบ:
               </p>
               <p className="text-xs sm:text-sm text-slate-800 font-bold leading-relaxed mt-0.5">
                 {result.overallSummary}
@@ -113,8 +130,90 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({
         </div>
       </div>
 
+      {/* Mistakes to Fix & Sensei Model Audio */}
+      {failedReviewItems.length > 0 && (
+        <div className="my-4 sm:my-5 p-3.5 sm:p-5 rounded-2xl bg-rose-50 border-2 border-rose-900 shadow-[3px_3px_0px_#0f172a] text-left animate-in fade-in duration-200">
+          <div className="flex items-center justify-between pb-2 mb-3 border-b-2 border-rose-200 gap-2">
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 rounded-xl bg-rose-600 text-white flex items-center justify-center font-black shrink-0 shadow-[1px_1px_0px_#0f172a]">
+                <Icon name="error_outline" className="text-lg" />
+              </div>
+              <div>
+                <h3 className="text-xs sm:text-sm font-black text-slate-900">
+                  จุดที่ควรทบทวนก่อนสอบจริง
+                </h3>
+                <p className="text-[10px] sm:text-[11px] text-slate-600 font-bold">
+                  พบข้อที่ควรปรับปรุง {failedReviewItems.length} ข้อ — กดฟังเสียงเฉลยของอาจารย์ AI ได้ทันที
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={onGoToDrill}
+              className="manga-btn px-2.5 sm:px-3 py-1 bg-amber-400 hover:bg-amber-300 text-slate-900 text-[10px] sm:text-xs font-black rounded-xl border border-slate-900 shrink-0 flex items-center space-x-1"
+            >
+              <span>ไปฝึกซ้อมต่อ</span>
+              <Icon name="arrow_forward" className="text-xs" />
+            </button>
+          </div>
+
+          <div className="space-y-2.5">
+            {failedReviewItems.map((item, idx) => (
+              <div
+                key={item.id || idx}
+                className="p-3 bg-white rounded-xl border-2 border-slate-900 shadow-[2px_2px_0px_#0f172a] flex flex-col sm:flex-row sm:items-center justify-between gap-2.5"
+              >
+                <div className="min-w-0 space-y-1">
+                  <div className="flex items-center space-x-1.5 flex-wrap">
+                    <span className="text-[9px] font-black px-1.5 py-0.5 bg-rose-100 text-rose-900 rounded border border-rose-300">
+                      {item.categoryTitleTh || `ข้อ ${idx + 1}`}
+                    </span>
+                    <span className="text-xs sm:text-sm font-black text-slate-900 font-jp">
+                      {item.questionJa}
+                    </span>
+                  </div>
+
+                  {item.userAnswer && (
+                    <p className="text-[11px] text-rose-700 font-medium">
+                      คุณตอบ: <span className="font-bold line-through">{item.userAnswer}</span>
+                    </p>
+                  )}
+
+                  <div className="text-xs font-black text-emerald-800 font-jp flex items-baseline space-x-1.5 flex-wrap">
+                    <span className="text-[10px] text-emerald-950 font-bold bg-emerald-100 px-1 py-0.2 rounded border border-emerald-300 uppercase">
+                      เฉลยที่ถูกต้อง:
+                    </span>
+                    <span className="text-sm font-extrabold text-emerald-900">{item.expectedJa}</span>
+                    {item.expectedRomaji && (
+                      <span className="text-[11px] text-slate-500 font-mono font-normal">
+                        ({item.expectedRomaji})
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    speakWithSeiyuuVoice(
+                      item.expectedJa,
+                      userConfig?.seiyuuVoice,
+                      userConfig?.speechRate || 0.9,
+                      "ja-JP"
+                    )
+                  }
+                  className="manga-btn px-3 py-1.5 bg-rose-100 hover:bg-rose-200 text-rose-900 rounded-xl text-xs font-black flex items-center justify-center space-x-1.5 border border-rose-900 shrink-0 self-start sm:self-center shadow-[1px_1px_0px_#0f172a]"
+                >
+                  <Icon name="volume_up" className="text-base text-rose-700" />
+                  <span>ฟังเฉลยเสียงอาจารย์</span>
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Breakdown Cards */}
-      {result.examType === "EXAM_2" ? (
+      {result.examType === "EXAM_2" || result.examType === "EXAM_3" ? (
         <div className="space-y-4 my-4 sm:my-6">
           {/* Top 2 Main Sections */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4 items-stretch">
@@ -123,7 +222,7 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({
               <div>
                 <div className="flex items-center justify-between gap-1.5 mb-2.5">
                   <span className="manga-badge bg-amber-300 text-slate-900 text-[10px] sm:text-[11px] truncate">
-                    ส่วนที่ 1: แปลคำศัพท์บทที่ 3-4 (5 คำ)
+                    ส่วนที่ 1: แปลคำศัพท์บทที่ {result.examType === "EXAM_2" ? "3-4" : "5-6"} (5 คำ)
                   </span>
                   <span
                     className={`text-xs sm:text-sm font-black px-2 py-0.5 rounded-lg border border-slate-900 shrink-0 ${getScoreBadgeClass(
@@ -149,7 +248,7 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({
 
               <div className="mt-3 pt-2 border-t border-slate-200 flex items-center text-[10px] font-bold text-slate-500">
                 <Icon name="menu_book" className="text-xs mr-1 text-slate-500 shrink-0" />
-                <span>คำศัพท์ไทย ➔ ญี่ปุ่น (บทที่ 3-4)</span>
+                <span>คำศัพท์ไทย ➔ ญี่ปุ่น (บทที่ {result.examType === "EXAM_2" ? "3-4" : "5-6"})</span>
               </div>
             </div>
 
@@ -158,7 +257,7 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({
               <div>
                 <div className="flex items-center justify-between gap-1.5 mb-2.5">
                   <span className="manga-badge bg-rose-500 text-white text-[10px] sm:text-[11px] truncate">
-                    ส่วนที่ 2: ตอบคำถาม 5 รูปแบบ (10 ข้อ)
+                    ส่วนที่ 2: ตอบคำถาม {result.examType === "EXAM_2" ? "5 รูปแบบ (10 ข้อ)" : "6 รูปแบบ (10 ข้อ)"}
                   </span>
                   <span
                     className={`text-xs sm:text-sm font-black px-2 py-0.5 rounded-lg border border-slate-900 shrink-0 ${getScoreBadgeClass(
@@ -184,13 +283,17 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({
 
               <div className="mt-3 pt-2 border-t border-slate-200 flex items-center text-[10px] font-bold text-slate-500">
                 <Icon name="quiz" className="text-xs mr-1 text-slate-500 shrink-0" />
-                <span>5 รูปแบบคำถาม รูปแบบละ 2 ข้อ</span>
+                <span>
+                  {result.examType === "EXAM_2"
+                    ? "5 รูปแบบคำถาม รูปแบบละ 2 ข้อ"
+                    : "6 รูปแบบคำถาม รวม 10 ข้อ"}
+                </span>
               </div>
             </div>
           </div>
 
-          {/* Sub-grid of 5 Question Categories */}
-          {result.exam2CategoryScores && result.exam2CategoryScores.length > 0 && (
+          {/* Sub-grid of Exam 2 Question Categories */}
+          {result.examType === "EXAM_2" && result.exam2CategoryScores && result.exam2CategoryScores.length > 0 && (
             <div className="p-3.5 sm:p-4 rounded-2xl bg-slate-50 border-2 border-slate-900 space-y-2.5">
               <div className="flex items-center justify-between">
                 <span className="text-[11px] font-black text-slate-800 uppercase flex items-center space-x-1">
@@ -214,6 +317,69 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({
                         return "payments";
                       case "OFFICE_HOURS":
                         return "work_history";
+                      default:
+                        return "help_outline";
+                    }
+                  };
+
+                  return (
+                    <div
+                      key={cat.category}
+                      className="p-2.5 rounded-xl bg-white border border-slate-300 flex flex-col justify-between"
+                    >
+                      <div>
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[11px] font-black text-slate-900 flex items-center space-x-1 truncate">
+                            <Icon name={getCatIcon(cat.category)} className="text-xs text-rose-600 shrink-0" />
+                            <span className="truncate">{cat.titleTh}</span>
+                          </span>
+                          <span
+                            className={`text-[10px] font-black px-1.5 py-0.2 rounded border border-slate-900 shrink-0 ${getScoreBadgeClass(
+                              cat.score,
+                              cat.maxScore
+                            )}`}
+                          >
+                            {cat.score} / {cat.maxScore}
+                          </span>
+                        </div>
+                        <p className="text-[10px] text-slate-600 font-medium leading-relaxed">
+                          {cat.feedback}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Sub-grid of Exam 3 Question Categories */}
+          {result.examType === "EXAM_3" && result.exam3CategoryScores && result.exam3CategoryScores.length > 0 && (
+            <div className="p-3.5 sm:p-4 rounded-2xl bg-slate-50 border-2 border-slate-900 space-y-2.5">
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] font-black text-slate-800 uppercase flex items-center space-x-1">
+                  <Icon name="table_rows" className="text-sm text-slate-700" />
+                  <span>ผลคะแนนแจกแจงรายหมวดคำถาม (6 รูปแบบ รวม 10 ข้อ):</span>
+                </span>
+                <span className="text-[10px] font-bold text-slate-500">รวม 10 คะแนน</span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+                {result.exam3CategoryScores.map((cat) => {
+                  const getCatIcon = (c: string) => {
+                    switch (c) {
+                      case "ORIGIN":
+                        return "public";
+                      case "ADJECTIVE":
+                        return "palette";
+                      case "ORDER":
+                        return "shopping_bag";
+                      case "DATE_READING":
+                        return "calendar_month";
+                      case "BIRTHDAY":
+                        return "cake";
+                      case "TODAY_DATE":
+                        return "today";
                       default:
                         return "help_outline";
                     }

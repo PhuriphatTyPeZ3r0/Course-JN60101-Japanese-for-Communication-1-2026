@@ -3,6 +3,8 @@
 
 import React from "react";
 import { Icon } from "./Icon";
+import { UserConfig, SeiyuuVoiceId, SEIYUU_ROSTER } from "@/lib/types";
+import { playSeiyuuGreeting } from "@/lib/speech";
 
 interface HeaderProps {
   currentMode: "MOCK" | "DRILL";
@@ -10,6 +12,8 @@ interface HeaderProps {
   onOpenSettings: () => void;
   onOpenAuth?: () => void;
   userEmail?: string | null;
+  userConfig?: UserConfig;
+  onSelectCoach?: (voiceId: SeiyuuVoiceId) => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -18,7 +22,23 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenSettings,
   onOpenAuth,
   userEmail,
+  userConfig,
+  onSelectCoach,
 }) => {
+  const currentVoiceId = userConfig?.seiyuuVoice || "saori_hayami";
+  const activeCoach =
+    SEIYUU_ROSTER.find((s) => s.id === currentVoiceId) || SEIYUU_ROSTER[1] || SEIYUU_ROSTER[0];
+
+  const handleCycleCoach = () => {
+    const order: SeiyuuVoiceId[] = ["saori_hayami", "kirito", "web_speech"];
+    const currentIdx = order.indexOf(currentVoiceId);
+    const nextVoice = order[(currentIdx + 1) % order.length];
+    if (onSelectCoach) {
+      onSelectCoach(nextVoice);
+      playSeiyuuGreeting(nextVoice, userConfig?.speechRate || 0.9);
+    }
+  };
+
   return (
     <header className="bg-white border-b-2 border-slate-900 sticky top-0 z-30 shadow-[0_3px_0px_#0f172a]">
       <div className="max-w-3xl mx-auto px-3 sm:px-4 py-2 flex items-center justify-between">
@@ -32,9 +52,17 @@ export const Header: React.FC<HeaderProps> = ({
               <h1 className="text-xs sm:text-base font-black text-slate-900 tracking-tight leading-none">
                 Hanase AI
               </h1>
-              <span className="manga-badge bg-amber-400 text-slate-900 text-[9px] sm:text-[10px] hidden min-[360px]:inline-flex">
-                COACH
-              </span>
+              {/* Interactive Coach Switcher Badge */}
+              <button
+                type="button"
+                onClick={handleCycleCoach}
+                title="คลิกเพื่อสลับเสียงอาจารย์ AI (早見沙織 / キリト / 標準音声)"
+                className="manga-badge bg-amber-400 hover:bg-amber-300 text-slate-900 text-[9px] sm:text-[10px] inline-flex items-center space-x-1 cursor-pointer transition active:scale-95 border border-slate-900 shadow-[1px_1px_0px_#0f172a]"
+              >
+                <Icon name={activeCoach.avatarIcon} className="text-xs text-slate-900" />
+                <span className="font-extrabold">{activeCoach.characterNameJa}</span>
+                <Icon name="sync" className="text-[10px] text-slate-700 opacity-60 ml-0.5" />
+              </button>
             </div>
           </div>
         </div>

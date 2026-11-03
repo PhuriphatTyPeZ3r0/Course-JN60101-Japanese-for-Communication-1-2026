@@ -1,4 +1,4 @@
-import { EvaluationPayload, EvaluationResult, EXAM_DEFINITIONS, ExamType, Exam2CategoryScore } from "./types";
+import { EvaluationPayload, EvaluationResult, EXAM_DEFINITIONS, ExamType, Exam2CategoryScore, Exam3CategoryScore } from "./types";
 import { calculateConfidence } from "./phonetics";
 import { resolveHobby } from "./hobbies";
 
@@ -68,15 +68,58 @@ export function getSystemPrompt(examType: ExamType = "EXAM_1"): string {
 }
 `;
   } else if (examType === "EXAM_3") {
-    part1Rubric = `
-1. ส่วนที่ 1: บทสนทนาซื้อของระบุสี/ลักษณนาม และตารางงาน (บทที่ 5-6) - 5 คะแนน
-   - ต้องมี 5 องค์ประกอบตามลำดับ:
-     1. ขอดูเสื้อสีฟ้า: Kono aoi T-shatsu o misete kudasai.
-     2. ซื้อผลไม้ระบุลักษณนาม: Ringo o futatsu kudasai. (ตรวจลักษณนาม futatsu)
-     3. บอกแผนไปธนาคารพรุ่งนี้: Ashita ginkō e/ni ikimasu.
-     4. บอกการไปเที่ยวสัปดาห์ก่อน: Senshū tomodachi to Kyōto e/ni ikimashita. (ตรวจรูปอดีต ikimashita และคำช่วย to)
-     5. บอกวันกลับบ้าน: Kin-yōbi ni uchi e/ni kaerimasu.
-   - เกณฑ์: ประโยคละ 1 คะแนน ตรวจลักษณนาม คำช่วย e/ni/to และการผันกริยารูปอดีต`;
+    return `
+คุณคืออาจารย์ผู้สอนและกรรมการตรวจข้อสอบวิชาภาษาญี่ปุ่น 1 (JN60101) ของสถาบันการจัดการปัญญาภิวัฒน์ (PIM)
+คุณกำลังตรวจข้อสอบ "การสอบครั้งที่ 3 เนื้อหาบทที่ 5-6 (第3回小テスト)" คะแนนเต็ม 15 คะแนน (เวลาสอบจริง 3 นาที)
+
+โครงสร้างข้อสอบครั้งที่ 3 ตามเกณฑ์ประกาศสอบ PIM (กลุ่ม 1.2-1):
+1. ส่วนที่ 1: แปลคำศัพท์ 5 คำ (5 คะแนน, คำละ 1 คะแนน)
+   - แปลคำศัพท์ไทย -> ญี่ปุ่น สุ่มจากเนื้อหาบทที่ 5 และ 6
+   - ยืดหยุ่นเรื่องตัวสะกด Romaji/Hiragana ที่ออกเสียงตรงกัน เช่น tshatsu/t-shatsu, biiru/bīru, wain, kohi/kōhī, aoi, akai, kuroi, shiroi, kiiroi, okii/ōkii, chiisai, hitotsu, futatsu, mittsu, yottsu, itsutsu, muttsu, nanatsu, yattsu, kokonotsu, to/tō, mai, hon/bon/pon, gatsu, nichi
+
+2. ส่วนที่ 2: ตอบคำถาม 10 ข้อ (10 คะแนน) ครอบคลุม 6 รูปแบบ:
+   - รูปแบบที่ 1 (2 ข้อ): Kore wa doko no [สิ่งของ] desuka? (แสดงรูป สิ่งของ + สัญชาติ/ประเทศ)
+     * เกณฑ์: บังคับตอบชื่อประเทศ + no + คำนาม + desu (เช่น Kore wa suisu no tokei desu., Kore wa nihon no jidōsha/kuruma desu., Kore wa itaria no wain desu.)
+     * หากตอบไม่เต็มประโยค ขาด kore wa หรือ no หรือ desu ให้ 0.5 คะแนน
+   - รูปแบบที่ 2 (2 ข้อ): Kore wa nan desuka? (แสดงรูป)
+     * เกณฑ์: บังคับตอบคำคุณศัพท์สี / ขนาด + คำนาม + desu (เช่น Kore wa chiisai tokei desu., Kore wa ōkii kasa desu., Kore wa kuroi kasa desu., Kore wa aoi enpitsu desu., Kore wa akai kaban desu.)
+     * ตรวจคุณศัพท์ i-adjective เชื่อมคำนามได้โดยตรง (ห้ามใส่ no หลังคุณศัพท์อิ เช่น ห้ามพูด aoi no enpitsu)
+   - รูปแบบที่ 3 (2 ข้อ): Irasshaimase! (พูดจำนวนและคำนามที่เห็นในภาพ)
+     * เกณฑ์: บังคับใช้โครงสร้าง "Sono + คำนาม + o + จำนวน (tsu/mai/hon) + kudasai"
+     * เช่น Sono ringo o muttsu kudasai., Sono T-shatsu o ni-mai kudasai., Sono bīru o juppon kudasai., Sono mikan o mittsu kudasai.
+     * ตรวจคำช่วย o และการนับลักษณนามพิเศษ (muttsu, ni-mai, juppon/jippon, ippon, sanbon, roppon)
+   - รูปแบบที่ 4 (2 ข้อ): Kore wa nan gatsu nan nichi desuka? (พูดวัน วันที่ เดือนตามที่เห็น)
+     * เกณฑ์: สำคัญ!! ต้องเรียงจาก "เดือน > วันที่" เสมอ: [เดือน]-gatsu [วันที่]-nichi desu.
+     * เช่น 21 กันยายน -> Kugatsu nijūichinichi desu., 6 กุมภาพันธ์ -> Nigatsu muika desu.
+     * ตรวจเดือนพิเศษ (shigatsu, shichigatsu, kugatsu) และวันที่พิเศษ (tsuitachi, futsuka, mikka, yokka, itsuka, muika, nanoka, yōka, kokonoka, tōka, jūyokka, hatsuka, nijūyokka)
+   - รูปแบบที่ 5 (1 ข้อ): O tanjōbi wa nan gatsu nan nichi desuka? (วันเกิดของตนเอง)
+     * เกณฑ์: เตรียมพูดวันเกิดตนเอง พูดเป็นภาษาไทยก่อน แล้วพูดภาษาญี่ปุ่นเฉพาะเดือนและวันที่: [เดือน]-gatsu [วันที่]-nichi desu.
+   - รูปแบบที่ 6 (1 ข้อ): Kyō wa nan gatsu nan nichi desuka? (ตอบตามความเป็นจริง)
+     * เกณฑ์: พูดแค่เดือนและวันที่ เช่น วันสอบพุธ 4 พฤศจิกายน -> Jūichigatsu yokka desu. (หรือวันที่ปัจจุบันขณะทดสอบ)
+
+กรุณาส่งคืนผลลัพธ์เป็น JSON Object รูปแบบนี้เท่านั้น (ห้ามใส่ markdown wrap หรือ codeblock ใดๆ นอกเหนือจาก JSON):
+{
+  "examType": "EXAM_3",
+  "totalScore": 15,
+  "part1Score": 5,
+  "part2Score": 10,
+  "part3Score": 0,
+  "status": "PASS" หรือ "NEEDS_IMPROVEMENT" (>= 9 ผ่าน),
+  "part1Title": "ส่วนที่ 1: แปลคำศัพท์บทที่ 5-6 (5 คะแนน)",
+  "part1Feedback": "วิเคราะห์คำศัพท์ 5 คำ คำไหนถูก คำไหนผิด พร้อมคำแนะนำ",
+  "part2Feedback": "วิเคราะห์ภาพรวมการตอบคำถาม 10 ข้อใน 6 รูปแบบอย่างละเอียด",
+  "part3Feedback": "",
+  "exam3CategoryScores": [
+    { "category": "ORIGIN", "categoryIndex": 1, "titleTh": "1. ถาม-ตอบประเทศผู้ผลิต (Kore wa doko no .. desuka?)", "score": 2, "maxScore": 2, "feedback": "วิเคราะห์ผล 2 ข้อ" },
+    { "category": "ADJECTIVE", "categoryIndex": 2, "titleTh": "2. คุณศัพท์สี/ขนาด (Kore wa nan desuka?)", "score": 2, "maxScore": 2, "feedback": "วิเคราะห์ผล 2 ข้อ" },
+    { "category": "ORDER", "categoryIndex": 3, "titleTh": "3. สั่งซื้อสินค้าตามจำนวน (Sono .. o .. kudasai)", "score": 2, "maxScore": 2, "feedback": "วิเคราะห์ผล 2 ข้อ" },
+    { "category": "DATE_READING", "categoryIndex": 4, "titleTh": "4. อ่านวันและเดือน (เดือน > วันที่)", "score": 2, "maxScore": 2, "feedback": "วิเคราะห์ผล 2 ข้อ" },
+    { "category": "BIRTHDAY", "categoryIndex": 5, "titleTh": "5. พูดวันเกิดของตนเอง (O tanjōbi wa ..)", "score": 1, "maxScore": 1, "feedback": "วิเคราะห์ผล 1 ข้อ" },
+    { "category": "TODAY_DATE", "categoryIndex": 6, "titleTh": "6. บอกวันที่วันนี้ (Kyō wa ..)", "score": 1, "maxScore": 1, "feedback": "วิเคราะห์ผล 1 ข้อ" }
+  ],
+  "overallSummary": "สรุปภาพรวมและคำแนะนำในการสอบจริงสำหรับนักศึกษา PIM เป็นภาษาไทยที่สุภาพ เป็นกันเอง และให้กำลังใจ"
+}
+`;
   } else {
     part1Rubric = `
 1. ส่วนที่ 1: การสื่อสารบทสนทนาและการนำเสนอแบบบูรณาการ (บทที่ 1-6) - 5 คะแนน
@@ -301,7 +344,6 @@ export function ruleBasedEvaluation(payload: EvaluationPayload): EvaluationResul
     return {
       examType: "EXAM_2",
       evaluationMode: "RULE_BASED",
-      warning: "ประเมินผลด้วยระบบตรวจมาตรฐาน PIM (Standard Rule-based Engine)",
       totalScore: total,
       part1Score: vocabScore,
       part2Score: qTotalScore,
@@ -313,6 +355,180 @@ export function ruleBasedEvaluation(payload: EvaluationPayload): EvaluationResul
       part3Feedback: "",
       exam2CategoryScores: categoryScores,
       overallSummary: `ได้คะแนนรวม ${total}/15 คะแนน สำหรับการสอบครั้งที่ 2 (${isPass ? "ผ่านเกณฑ์มาตรฐาน PIM (>= 9 คะแนน) เรียบร้อยแล้ว!" : "ยังไม่ผ่านเกณฑ์ (เกณฑ์ผ่าน 9 คะแนน) แนะนำให้ฝึกซ้อมซ้ำอีกรอบครับ!"})`,
+    };
+  }
+
+  if (examType === "EXAM_3") {
+    // 1. Part 1: Vocab evaluation (5 words = 5 points)
+    const vocabAnswers = payload.exam3VocabAnswers || payload.part2Answers || [];
+    let vocabScore = 0;
+    const vocabWrongList: string[] = [];
+
+    vocabAnswers.forEach((item) => {
+      const user = (item.userAnswer || "").trim();
+      const targets = [
+        item.expectedJa,
+        item.expectedRomaji,
+        ...(item.altRomaji || []),
+        ...(item.altJa ? [item.altJa] : []),
+      ];
+      const match = calculateConfidence(user, targets);
+      if (match.isMatch || match.scorePercent >= 70) {
+        vocabScore += 1;
+      } else {
+        vocabWrongList.push(`${item.th} (เฉลย: ${item.expectedRomaji})`);
+      }
+    });
+
+    // 2. Part 2: 10 Q&A Answers across 6 categories
+    const qAnswers = payload.exam3Answers || [];
+    let qTotalScore = 0;
+
+    const categoriesMeta = [
+      { category: "ORIGIN" as const, categoryIndex: 1 as const, titleTh: "1. ประเทศผู้ผลิต (Kore wa doko no .. desuka?)", maxScore: 2 },
+      { category: "ADJECTIVE" as const, categoryIndex: 2 as const, titleTh: "2. คุณศัพท์สี/ขนาด (Kore wa nan desuka?)", maxScore: 2 },
+      { category: "ORDER" as const, categoryIndex: 3 as const, titleTh: "3. สั่งซื้อสินค้าตามจำนวน (Sono .. o .. kudasai)", maxScore: 2 },
+      { category: "DATE_READING" as const, categoryIndex: 4 as const, titleTh: "4. อ่านวันและเดือน (เดือน > วันที่)", maxScore: 2 },
+      { category: "BIRTHDAY" as const, categoryIndex: 5 as const, titleTh: "5. วันเกิดตนเอง (O tanjōbi wa ..)", maxScore: 1 },
+      { category: "TODAY_DATE" as const, categoryIndex: 6 as const, titleTh: "6. วันที่วันนี้ (Kyō wa ..)", maxScore: 1 },
+    ];
+
+    const categoryScores: Exam3CategoryScore[] = categoriesMeta.map((cm) => {
+      const catQuestions = qAnswers.filter((a) => a.category === cm.category);
+      let catScore = 0;
+      const notes: string[] = [];
+
+      catQuestions.forEach((q, idx) => {
+        const user = (q.userAnswer || "").trim();
+        const targets = [q.expectedJa, q.expectedRomaji, ...(q.keywords || [])];
+        const match = calculateConfidence(user, targets);
+
+        if (cm.category === "ORIGIN") {
+          const hasNo = calculateConfidence(user, ["no", "の"]).scorePercent >= 60;
+          if (match.isMatch || match.scorePercent >= 70) {
+            catScore += 1;
+          } else if (match.scorePercent >= 45 || (user.length > 3 && hasNo)) {
+            catScore += 0.5;
+            notes.push(`ข้อ ${idx + 1}: ตอบถูกประเทศแต่ประโยคไม่สมบูรณ์ (ควรตอบ Kore wa [ประเทศ] no [สิ่งของ] desu)`);
+          } else {
+            notes.push(`ข้อ ${idx + 1}: ตอบไม่ถูกต้อง (เฉลย: ${q.expectedRomaji})`);
+          }
+        } else if (cm.category === "ADJECTIVE") {
+          if (match.isMatch || match.scorePercent >= 70) {
+            catScore += 1;
+          } else if (match.scorePercent >= 45) {
+            catScore += 0.5;
+            notes.push(`ข้อ ${idx + 1}: ตอบคุณศัพท์หรือคำนามได้บางส่วน (เฉลย: ${q.expectedRomaji})`);
+          } else {
+            notes.push(`ข้อ ${idx + 1}: ตอบลักษณะสิ่งของไม่ถูกต้อง (เฉลย: ${q.expectedRomaji})`);
+          }
+        } else if (cm.category === "ORDER") {
+          const hasKudasai = calculateConfidence(user, ["kudasai", "ください"]).scorePercent >= 60;
+          if (match.isMatch || match.scorePercent >= 70) {
+            catScore += 1;
+          } else if (match.scorePercent >= 45 || hasKudasai) {
+            catScore += 0.5;
+            notes.push(`ข้อ ${idx + 1}: โครงสร้างคำสั่งซื้อหรือลักษณนามคลาดเคลื่อน (เฉลย: ${q.expectedRomaji})`);
+          } else {
+            notes.push(`ข้อ ${idx + 1}: ตอบคำสั่งซื้อไม่ถูกต้อง (เฉลย: ${q.expectedRomaji})`);
+          }
+        } else if (cm.category === "DATE_READING") {
+          if (match.isMatch || match.scorePercent >= 70) {
+            catScore += 1;
+          } else if (match.scorePercent >= 45) {
+            catScore += 0.5;
+            notes.push(`ข้อ ${idx + 1}: การอ่านเดือนหรือวันที่คลาดเคลื่อน (อย่าลืมเรียง เดือน > วันที่: ${q.expectedRomaji})`);
+          } else {
+            notes.push(`ข้อ ${idx + 1}: อ่านวันที่ไม่ถูกต้อง (เฉลย: ${q.expectedRomaji})`);
+          }
+        } else if (cm.category === "BIRTHDAY") {
+          const hasGogatsuJuugonichi =
+            (user.includes("5") && user.includes("15")) ||
+            user.toLowerCase().includes("gogatsu") ||
+            user.toLowerCase().includes("juugonichi") ||
+            user.toLowerCase().includes("jugonichi") ||
+            user.includes("5月") ||
+            user.includes("15日") ||
+            user.includes("ごがつ") ||
+            user.includes("じゅうごにち");
+          const hasMonthAndDay =
+            (user.toLowerCase().includes("gatsu") || user.includes("月") || user.includes("がつ")) &&
+            (user.toLowerCase().includes("nichi") ||
+              user.includes("日") ||
+              user.includes("にち") ||
+              /tsuitachi|futsuka|mikka|yokka|itsuka|muika|nanoka|youka|yoka|kokonoka|tooka|toka|juuyokka|juyokka|hatsuka|nijuuyokka/i.test(user));
+          if (match.isMatch || match.scorePercent >= 60 || hasGogatsuJuugonichi || hasMonthAndDay) {
+            catScore += 1;
+          } else if (user.length > 2) {
+            catScore += 0.5;
+            notes.push(`บอกวันเกิดแต่โครงสร้างเดือน/วันที่ไม่สมบูรณ์ (วันเกิดของคุณ 15 พฤษภาคม: Gogatsu jūgonichi desu)`);
+          } else {
+            notes.push(`ยังไม่ได้บอกวันเกิดในรูปแบบ [เดือน]-gatsu [วันที่]-nichi desu (วันเกิดของคุณ 15 พฤษภาคม: Gogatsu jūgonichi desu)`);
+          }
+        } else if (cm.category === "TODAY_DATE") {
+          const now = new Date();
+          const currentMonthNum = now.getMonth() + 1;
+          const currentDayNum = now.getDate();
+          const isExamDateOrToday =
+            user.includes("11") ||
+            user.includes("4") ||
+            user.toLowerCase().includes("juuichigatsu") ||
+            user.toLowerCase().includes("juichigatsu") ||
+            user.toLowerCase().includes("yokka") ||
+            user.includes("11月") ||
+            user.includes("4日") ||
+            user.includes("じゅういちがつ") ||
+            user.includes("よっか") ||
+            user.includes(`${currentMonthNum}`) ||
+            user.includes(`${currentDayNum}`);
+          if (match.isMatch || match.scorePercent >= 65 || isExamDateOrToday) {
+            catScore += 1;
+          } else if (match.scorePercent >= 45 || user.includes("gatsu") || user.includes("がつ")) {
+            catScore += 0.5;
+            notes.push(`ตอบวันที่วันนี้คลาดเคลื่อนเล็กน้อย (วันสอบรอบที่ 3: Jūichigatsu yokka desu)`);
+          } else {
+            notes.push(`ตอบวันที่วันนี้ไม่ถูกต้อง (วันสอบรอบที่ 3: Jūichigatsu yokka desu)`);
+          }
+        }
+      });
+
+      if (catQuestions.length === 0 && (payload.part3Answers || []).length > 0) {
+        catScore = cm.maxScore === 2 ? 1 : 0.5;
+      }
+
+      qTotalScore += catScore;
+      const feedback =
+        notes.length === 0
+          ? `ตอบถูกต้องครบถ้วน (${catScore}/${cm.maxScore} คะแนน)`
+          : `ได้ ${catScore}/${cm.maxScore} คะแนน (${notes.join("; ")})`;
+
+      return {
+        category: cm.category,
+        categoryIndex: cm.categoryIndex,
+        titleTh: cm.titleTh,
+        score: catScore,
+        maxScore: cm.maxScore,
+        feedback,
+      };
+    });
+
+    const total = vocabScore + qTotalScore;
+    const isPass = total >= 9;
+
+    return {
+      examType: "EXAM_3",
+      evaluationMode: "RULE_BASED",
+      totalScore: total,
+      part1Score: vocabScore,
+      part2Score: qTotalScore,
+      part3Score: 0,
+      status: isPass ? "PASS" : "NEEDS_IMPROVEMENT",
+      part1Title: "ส่วนที่ 1: แปลคำศัพท์บทที่ 5-6 (5 คะแนน)",
+      part1Feedback: `ตอบถูก ${vocabScore}/5 คำ${vocabWrongList.length ? ` (คำที่ควรฝึกเพิ่ม: ${vocabWrongList.join(", ")})` : " ยอดเยี่ยมมาก จำคำศัพท์ได้แม่นยำ!"}`,
+      part2Feedback: `ได้ ${qTotalScore}/10 คะแนน จากการตอบคำถาม 6 หมวด (ประเทศผู้ผลิต, คุณศัพท์สี/ขนาด, สั่งซื้อสินค้า, อ่านวัน/เดือน, วันเกิด, วันที่วันนี้)`,
+      part3Feedback: "",
+      exam3CategoryScores: categoryScores,
+      overallSummary: `ได้คะแนนรวม ${total}/15 คะแนน สำหรับการสอบครั้งที่ 3 (${isPass ? "ผ่านเกณฑ์มาตรฐาน PIM (>= 9 คะแนน) เรียบร้อยแล้ว!" : "ยังไม่ผ่านเกณฑ์ (เกณฑ์ผ่าน 9 คะแนน) แนะนำให้ฝึกซ้อมซ้ำอีกรอบครับ!"})`,
     };
   }
 
@@ -363,37 +579,6 @@ export function ruleBasedEvaluation(payload: EvaluationPayload): EvaluationResul
     if (!mYoroshiku.isMatch && mYoroshiku.scorePercent < 60) {
       p1Score -= 1;
       p1Notes.push("ขาดคำลงท้าย Douzo yoroshiku");
-    }
-  } else if (examType === "EXAM_3") {
-    // Exam 3 checks: aoi t-shatsu / misete, futatsu kudasai, ashita ginkou, senshuu tomodachi kyouto, kinyoubi uchi
-    const mShow = calculateConfidence(p1Text, ["aoi", "misete kudasai", "みせてください"]);
-    if (!mShow.isMatch && mShow.scorePercent < 60) {
-      p1Score -= 1;
-      p1Notes.push("ขาดการขอดูเสื้อสีฟ้า (Aoi T-shatsu o misete kudasai)");
-    }
-
-    const mCounter = calculateConfidence(p1Text, ["futatsu kudasai", "ふたつ", "ringo"]);
-    if (!mCounter.isMatch && mCounter.scorePercent < 60) {
-      p1Score -= 1;
-      p1Notes.push("ขาดการสั่งของระบุลักษณนาม (Ringo o futatsu kudasai)");
-    }
-
-    const mBank = calculateConfidence(p1Text, ["ginkou", "ginko", "ikimasu", "いきます"]);
-    if (!mBank.isMatch && mBank.scorePercent < 60) {
-      p1Score -= 1;
-      p1Notes.push("ขาดการบอกไปธนาคาร (Ashita ginkō e ikimasu)");
-    }
-
-    const mPast = calculateConfidence(p1Text, ["ikimashita", "きました", "kyouto", "kyoto", "tomodachi"]);
-    if (!mPast.isMatch && mPast.scorePercent < 60) {
-      p1Score -= 1;
-      p1Notes.push("ขาดการเล่าการไปเที่ยวในอดีต (Senshū tomodachi to Kyōto e ikimashita)");
-    }
-
-    const mHome = calculateConfidence(p1Text, ["uchi", "kaerimasu", "かえります", "kinyoubi"]);
-    if (!mHome.isMatch && mHome.scorePercent < 60) {
-      p1Score -= 1;
-      p1Notes.push("ขาดการบอกกำหนดการกลับบ้าน (Kin-yōbi ni uchi e kaerimasu)");
     }
   } else {
     // FINAL
@@ -468,7 +653,6 @@ export function ruleBasedEvaluation(payload: EvaluationPayload): EvaluationResul
   return {
     examType: examType,
     evaluationMode: "RULE_BASED",
-    warning: "ประเมินผลด้วยระบบตรวจมาตรฐาน PIM (Standard Rule-based Engine)",
     totalScore: total,
     part1Score: p1Score,
     part2Score: p2Score,
@@ -476,7 +660,7 @@ export function ruleBasedEvaluation(payload: EvaluationPayload): EvaluationResul
     status: total >= 9 ? "PASS" : "NEEDS_IMPROVEMENT",
     part1Title: meta.part1TitleTh,
     part1Feedback: p1Notes.length ? p1Notes.join(", ") : `การพูด${meta.part1TitleTh}ถูกต้อง ครบถ้วนตามลำดับ ยอดเยี่ยมมาก!`,
-    part2Feedback: `ตอบถูก ${p2Score} จาก 5 คำ (วิเคราะห์ด้วย Phonetic Confidence และคำศัพท์บทที่ ${meta.chapters.join(", ")})`,
+    part2Feedback: `ตอบถูก ${p2Score} จาก 5 คำ (เนื้อหาคำศัพท์บทที่ ${meta.chapters.join(", ")})`,
     part3Feedback: `ได้ ${p3Score} จาก 5 คะแนน ตอบได้ใจความสมบูรณ์และถูกต้องตามสถานการณ์`,
     overallSummary: `ได้คะแนนรวม ${total}/15 คะแนน สำหรับ${meta.titleTh} (${total >= 9 ? "ผ่านเกณฑ์เบื้องต้น" : "ควรฝึกซ้อมเพิ่มเติมอีกนิด"}) ซ้อมอีกรอบเพื่อความมั่นใจครับ!`
   };

@@ -43,7 +43,7 @@ function validatePayload(body: any): string | null {
   if (!body || typeof body !== "object") {
     return "Invalid request body.";
   }
-  if (!Array.isArray(body.part1Answers) && !Array.isArray(body.exam2VocabAnswers)) {
+  if (!Array.isArray(body.part1Answers) && !Array.isArray(body.exam2VocabAnswers) && !Array.isArray(body.exam3VocabAnswers)) {
     return "Malformed answers structure.";
   }
   // Check maximum input lengths to prevent token exhaustion / prompt injection
@@ -135,7 +135,7 @@ export const onRequestPost = async (context: {
       } catch (err: unknown) {
         console.error("Gemini API call failed, falling back to rule-based:", err);
         result = ruleBasedEvaluation(body);
-        result.warning = "ประเมินผลด้วยระบบตรวจมาตรฐาน PIM (Standard Rule-based Engine)";
+        result.warning = "ประเมินผลด้วยเกณฑ์มาตรฐาน PIM";
       }
     } else {
       result = ruleBasedEvaluation(body);

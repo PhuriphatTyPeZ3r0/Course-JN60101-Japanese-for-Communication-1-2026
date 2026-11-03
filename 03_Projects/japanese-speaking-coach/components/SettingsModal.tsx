@@ -4,7 +4,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Icon } from "./Icon";
 import { UserConfig, SeiyuuVoiceId, SEIYUU_ROSTER } from "@/lib/types";
-import { playSeiyuuGreeting } from "@/lib/speech";
+import { playSeiyuuGreeting, speakWithSeiyuuVoice } from "@/lib/speech";
 import {
   HOBBY_DICTIONARY,
   HobbyItem,
@@ -458,16 +458,199 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </div>
           </div>
 
-          {/* 3. Voice Engine Selection (Web Speech & Fish Audio) */}
+          {/* Birthday & Exam 3 Date Profile */}
+          <div className="p-3.5 rounded-2xl bg-rose-50/70 border-2 border-slate-900 shadow-[2px_2px_0px_#0f172a] space-y-3">
+            <div className="flex items-center justify-between pb-1.5 border-b border-rose-200">
+              <label className="flex items-center text-xs font-black text-slate-900">
+                <Icon name="cake" className="text-sm text-rose-600 mr-1" />
+                วันเกิด & วันที่สอบรอบที่ 3 (Exam 3 Profile)
+              </label>
+              <span className="manga-badge bg-rose-500 text-white text-[9px]">
+                บทที่ 5-6
+              </span>
+            </div>
+
+            {/* 1. Birthday Card */}
+            <div className="p-2.5 rounded-xl bg-white border-2 border-slate-900 shadow-[1px_1px_0px_#0f172a] space-y-2">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-1.5">
+                  <span className="text-xs font-black text-slate-900">
+                    วันเกิดของคุณ (O-tanjōbi):
+                  </span>
+                  <span className="manga-badge bg-pink-100 text-pink-900 border-pink-300 text-[10px]">
+                    15 พฤษภาคม (5月15日)
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() =>
+                    speakWithSeiyuuVoice(
+                      "Gogatsu juugonichi desu.",
+                      formConfig.seiyuuVoice,
+                      formConfig.speechRate,
+                      "ja-JP"
+                    )
+                  }
+                  className="manga-btn px-2 py-0.5 bg-rose-50 hover:bg-rose-100 text-rose-900 text-[10px] font-black rounded-lg border border-rose-400 flex items-center space-x-1"
+                >
+                  <Icon name="volume_up" className="text-xs text-rose-600" />
+                  <span>ฟังคำอ่าน</span>
+                </button>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                <div>
+                  <label className="block text-[10px] font-bold text-slate-600 mb-0.5">
+                    วันที่ (Day):
+                  </label>
+                  <select
+                    value={formConfig.birthdayDay ?? 15}
+                    onChange={(e) =>
+                      setFormConfig({ ...formConfig, birthdayDay: Number(e.target.value) })
+                    }
+                    className="w-full px-2 py-1 rounded-lg border-2 border-slate-900 font-bold bg-slate-50 text-xs"
+                  >
+                    {Array.from({ length: 31 }, (_, i) => i + 1).map((d) => (
+                      <option key={d} value={d}>
+                        วันที่ {d}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-[10px] font-bold text-slate-600 mb-0.5">
+                    เดือน (Month):
+                  </label>
+                  <select
+                    value={formConfig.birthdayMonth ?? 5}
+                    onChange={(e) =>
+                      setFormConfig({ ...formConfig, birthdayMonth: Number(e.target.value) })
+                    }
+                    className="w-full px-2 py-1 rounded-lg border-2 border-slate-900 font-bold bg-slate-50 text-xs"
+                  >
+                    {[
+                      { m: 1, name: "มกราคม (1月)" },
+                      { m: 2, name: "กุมภาพันธ์ (2月)" },
+                      { m: 3, name: "มีนาคม (3月)" },
+                      { m: 4, name: "เมษายน (4月)" },
+                      { m: 5, name: "พฤษภาคม (5月)" },
+                      { m: 6, name: "มิถุนายน (6月)" },
+                      { m: 7, name: "กรกฎาคม (7月)" },
+                      { m: 8, name: "สิงหาคม (8月)" },
+                      { m: 9, name: "กันยายน (9月)" },
+                      { m: 10, name: "ตุลาคม (10月)" },
+                      { m: 11, name: "พฤศจิกายน (11月)" },
+                      { m: 12, name: "ธันวาคม (12月)" },
+                    ].map((mo) => (
+                      <option key={mo.m} value={mo.m}>
+                        {mo.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <p className="text-[10px] text-slate-600 font-medium">
+                รูปแบบคำตอบในห้องสอบ: พูดไทยก่อน <span className="font-bold">&quot;15 พฤษภาคมครับ&quot;</span> แล้วตอบญี่ปุ่น <span className="font-bold text-emerald-800 font-jp">Gogatsu jūgonichi desu. (ごがつ じゅうごにち です)</span>
+              </p>
+            </div>
+
+            {/* 2. Exam 3 Date Card */}
+            <div className="p-2.5 rounded-xl bg-white border-2 border-slate-900 shadow-[1px_1px_0px_#0f172a] space-y-2">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-1.5">
+                  <span className="text-xs font-black text-slate-900">
+                    วันสอบรอบที่ 3 (Exam 3 Date):
+                  </span>
+                  <span className="manga-badge bg-emerald-100 text-emerald-900 border-emerald-300 text-[10px]">
+                    4 พฤศจิกายน (11月4日)
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() =>
+                    speakWithSeiyuuVoice(
+                      "Juuichigatsu yokka desu.",
+                      formConfig.seiyuuVoice,
+                      formConfig.speechRate,
+                      "ja-JP"
+                    )
+                  }
+                  className="manga-btn px-2 py-0.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-900 text-[10px] font-black rounded-lg border border-emerald-400 flex items-center space-x-1"
+                >
+                  <Icon name="volume_up" className="text-xs text-emerald-600" />
+                  <span>ฟังคำอ่าน</span>
+                </button>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                <div>
+                  <label className="block text-[10px] font-bold text-slate-600 mb-0.5">
+                    วันที่สอบ (Exam Day):
+                  </label>
+                  <select
+                    value={formConfig.exam3DateDay ?? 4}
+                    onChange={(e) =>
+                      setFormConfig({ ...formConfig, exam3DateDay: Number(e.target.value) })
+                    }
+                    className="w-full px-2 py-1 rounded-lg border-2 border-slate-900 font-bold bg-slate-50 text-xs"
+                  >
+                    {Array.from({ length: 31 }, (_, i) => i + 1).map((d) => (
+                      <option key={d} value={d}>
+                        วันที่ {d} {d === 4 ? "(วันสอบพุธ 4 พ.ย.)" : ""}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-[10px] font-bold text-slate-600 mb-0.5">
+                    เดือนที่สอบ (Exam Month):
+                  </label>
+                  <select
+                    value={formConfig.exam3DateMonth ?? 11}
+                    onChange={(e) =>
+                      setFormConfig({ ...formConfig, exam3DateMonth: Number(e.target.value) })
+                    }
+                    className="w-full px-2 py-1 rounded-lg border-2 border-slate-900 font-bold bg-slate-50 text-xs"
+                  >
+                    {[
+                      { m: 1, name: "มกราคม (1月)" },
+                      { m: 2, name: "กุมภาพันธ์ (2月)" },
+                      { m: 3, name: "มีนาคม (3月)" },
+                      { m: 4, name: "เมษายน (4月)" },
+                      { m: 5, name: "พฤษภาคม (5月)" },
+                      { m: 6, name: "มิถุนายน (6月)" },
+                      { m: 7, name: "กรกฎาคม (7月)" },
+                      { m: 8, name: "สิงหาคม (8月)" },
+                      { m: 9, name: "กันยายน (9月)" },
+                      { m: 10, name: "ตุลาคม (10月)" },
+                      { m: 11, name: "พฤศจิกายน (11月 - สอบรอบที่ 3)" },
+                      { m: 12, name: "ธันวาคม (12月)" },
+                    ].map((mo) => (
+                      <option key={mo.m} value={mo.m}>
+                        {mo.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <p className="text-[10px] text-slate-600 font-medium">
+                รูปแบบคำตอบในห้องสอบ (Kyō wa nan gatsu nan nichi desuka?): ตอบเฉพาะเดือนและวันที่ <span className="font-bold text-emerald-800 font-jp">Jūichigatsu yokka desu. (じゅういちがつ よっか です)</span>
+              </p>
+            </div>
+          </div>
+
+          {/* 3. Voice Selection */}
           <div className="p-3.5 rounded-2xl bg-emerald-50/80 border-2 border-slate-900 shadow-[2px_2px_0px_#0f172a] space-y-2">
             <div className="flex items-center justify-between pb-1.5 border-b border-emerald-200">
               <label className="flex items-center text-xs font-black text-slate-900">
                 <Icon name="record_voice_over" className="text-sm text-emerald-600 mr-1" />
-                เสียงอาจารย์ผู้คุมสอบ (Voice Engine)
+                อาจารย์ผู้คุมสอบ
               </label>
               <span className="manga-badge bg-rose-500 text-white text-[9px] flex items-center space-x-0.5">
                 <Icon name="auto_awesome" className="text-xs mr-0.5" />
-                <span>AI VOICE READY</span>
+                <span>เสียงอาจารย์ AI</span>
               </span>
             </div>
 
@@ -479,7 +662,12 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 return (
                   <div
                     key={seiyuu.id}
-                    onClick={() => setFormConfig({ ...formConfig, seiyuuVoice: seiyuu.id })}
+                    onClick={() => {
+                      const updated = { ...formConfig, seiyuuVoice: seiyuu.id };
+                      setFormConfig(updated);
+                      onSave(updated);
+                      handlePreviewVoice(seiyuu.id);
+                    }}
                     className={`p-3 rounded-xl border-2 transition cursor-pointer flex items-center justify-between ${
                       isSelected
                         ? "bg-amber-100 border-slate-900 shadow-[2px_2px_0px_#0f172a]"
@@ -507,10 +695,10 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                         </div>
                         <p className="text-[10px] text-slate-600 font-medium leading-tight mt-0.5">
                           {seiyuu.id === "saori_hayami"
-                            ? "เสียงพากย์ฮายามิ ซาโอริ (Fish Audio AI) สำเนียงธรรมชาติ อ่อนหวาน สุภาพ"
+                            ? "เสียงอาจารย์ซาโอริ สำเนียงธรรมชาติ อ่อนหวาน สุภาพ"
                             : seiyuu.id === "kirito"
-                            ? "เสียงพากย์คิริโตะ (SAO - Fish Audio AI) สดใส มั่นใจ คมชัด กระตือรือร้น"
-                            : "เสียงมาตรฐานประจำเครื่อง เสถียร 100% ตอบสนองทันที 0ms"}
+                            ? "เสียงรุ่นพี่คิริโตะ สดใส มั่นใจ คมชัด กระตือรือร้น"
+                            : "เสียงมาตรฐานระบบอุปกรณ์"}
                         </p>
                       </div>
                     </div>

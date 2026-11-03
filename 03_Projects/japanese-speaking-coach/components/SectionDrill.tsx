@@ -11,6 +11,8 @@ import {
   IMAGE_QUESTIONS,
   EXAM_2_CATEGORIES,
   EXAM_2_QUESTIONS_POOL,
+  EXAM_3_CATEGORIES,
+  EXAM_3_QUESTIONS_POOL,
 } from "@/lib/dataset";
 import {
   speak,
@@ -29,6 +31,8 @@ import {
   ChapterDialogue,
   Exam2Category,
   Exam2Question,
+  Exam3Category,
+  Exam3Question,
 } from "@/lib/types";
 import { calculateConfidence } from "@/lib/phonetics";
 import { resolveHobby } from "@/lib/hobbies";
@@ -41,7 +45,7 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
   const examiner: SeiyuuProfile =
     SEIYUU_ROSTER.find((s) => s.id === userConfig.seiyuuVoice) || SEIYUU_ROSTER[0];
 
-  const [activePart, setActivePart] = useState<1 | 2 | 3 | 4>(1);
+  const [activePart, setActivePart] = useState<1 | 2 | 3 | 4 | 5>(1);
 
   // ================= Part 1 State =================
   const [selectedChapterP1, setSelectedChapterP1] = useState<number>(1);
@@ -151,6 +155,49 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
     const randomIndex = Math.floor(Math.random() * filteredExam2Questions.length);
     setExam2Index(randomIndex);
     setShowExam2Answer(false);
+    setFeedback(null);
+    setCurrentInput("");
+  };
+
+  // ================= Part 5 State (Exam 3 Drill) =================
+  const [exam3CategoryFilter, setExam3CategoryFilter] = useState<Exam3Category | "ALL">("ALL");
+  const [exam3Index, setExam3Index] = useState<number>(0);
+  const [showExam3Answer, setShowExam3Answer] = useState<boolean>(false);
+
+  const filteredExam3Questions = useMemo(() => {
+    if (exam3CategoryFilter === "ALL") return EXAM_3_QUESTIONS_POOL;
+    return EXAM_3_QUESTIONS_POOL.filter((q) => q.category === exam3CategoryFilter);
+  }, [exam3CategoryFilter]);
+
+  const currentExam3DrillQ: Exam3Question | undefined =
+    filteredExam3Questions[exam3Index] || filteredExam3Questions[0];
+
+  useEffect(() => {
+    setExam3Index(0);
+    setShowExam3Answer(false);
+  }, [exam3CategoryFilter]);
+
+  const handleNextExam3Q = () => {
+    if (filteredExam3Questions.length === 0) return;
+    setExam3Index((prev) => (prev + 1) % filteredExam3Questions.length);
+    setShowExam3Answer(false);
+    setFeedback(null);
+    setCurrentInput("");
+  };
+
+  const handlePrevExam3Q = () => {
+    if (filteredExam3Questions.length === 0) return;
+    setExam3Index((prev) => (prev - 1 + filteredExam3Questions.length) % filteredExam3Questions.length);
+    setShowExam3Answer(false);
+    setFeedback(null);
+    setCurrentInput("");
+  };
+
+  const handleShuffleExam3Q = () => {
+    if (filteredExam3Questions.length === 0) return;
+    const randomIndex = Math.floor(Math.random() * filteredExam3Questions.length);
+    setExam3Index(randomIndex);
+    setShowExam3Answer(false);
     setFeedback(null);
     setCurrentInput("");
   };
@@ -267,6 +314,12 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
         currentExam2DrillQ.expectedAnswerRomaji,
         ...currentExam2DrillQ.keywords,
       ];
+    } else if (activePart === 5 && currentExam3DrillQ) {
+      return [
+        currentExam3DrillQ.expectedAnswerJa,
+        currentExam3DrillQ.expectedAnswerRomaji,
+        ...currentExam3DrillQ.keywords,
+      ];
     }
     return [];
   };
@@ -358,6 +411,28 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
           message: `ยังไม่สมบูรณ์ (ความแม่นยำ ${match.scorePercent}%) รูปประโยคที่ถูกต้อง: "${currentExam2DrillQ.expectedAnswerJa}" (${currentExam2DrillQ.expectedAnswerRomaji})`,
         });
       }
+    } else if (activePart === 5 && currentExam3DrillQ) {
+      const targets = [
+        currentExam3DrillQ.expectedAnswerJa,
+        currentExam3DrillQ.expectedAnswerRomaji,
+        ...currentExam3DrillQ.keywords,
+      ];
+      const match = calculateConfidence(cleaned, targets);
+      const hasKeywords =
+        currentExam3DrillQ.keywords.some((k) => cleaned.toLowerCase().includes(k.toLowerCase())) ||
+        match.scorePercent >= 65;
+
+      if (hasKeywords) {
+        setFeedback({
+          isCorrect: true,
+          message: `ตอบได้ดีมาก! (ความแม่นยำ ${match.scorePercent}%) ประโยคสมบูรณ์: "${currentExam3DrillQ.expectedAnswerJa}"`,
+        });
+      } else {
+        setFeedback({
+          isCorrect: false,
+          message: `ยังไม่สมบูรณ์ (ความแม่นยำ ${match.scorePercent}%) รูปประโยคที่ถูกต้อง: "${currentExam3DrillQ.expectedAnswerJa}" (${currentExam3DrillQ.expectedAnswerRomaji})`,
+        });
+      }
     }
   };
 
@@ -380,12 +455,12 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isRecording, currentInput, activePart, p1Step, vocabIndex, imageIndex, exam2Index]);
+  }, [isRecording, currentInput, activePart, p1Step, vocabIndex, imageIndex, exam2Index, exam3Index]);
 
   return (
     <div className="space-y-3.5 pb-28 sm:pb-32 max-w-2xl mx-auto">
-      {/* Sub-Header Navigation (Segmented 4 Tabs) */}
-      <div className="manga-box-sm p-1 sm:p-1.5 bg-slate-100 grid grid-cols-2 sm:grid-cols-4 gap-1 shadow-[2px_2px_0px_#0f172a]">
+      {/* Sub-Header Navigation (Segmented 5 Tabs) */}
+      <div className="manga-box-sm p-1 sm:p-1.5 bg-slate-100 grid grid-cols-2 sm:grid-cols-5 gap-1 shadow-[2px_2px_0px_#0f172a]">
         <button
           onClick={() => {
             setActivePart(1);
@@ -447,7 +522,23 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
           }`}
         >
           <Icon name="quiz" className="text-sm sm:text-base shrink-0" />
-          <span className="truncate">4. ตะลุยโจทย์สอบ 2</span>
+          <span className="truncate">4. โจทย์สอบ 2</span>
+        </button>
+
+        <button
+          onClick={() => {
+            setActivePart(5);
+            setFeedback(null);
+            setCurrentInput("");
+          }}
+          className={`py-1.5 sm:py-2 px-1 sm:px-2 rounded-xl text-[11px] sm:text-xs font-black transition flex items-center justify-center space-x-1 min-w-0 col-span-2 sm:col-span-1 ${
+            activePart === 5
+              ? "bg-rose-600 text-white shadow-[1px_1px_0px_#0f172a]"
+              : "text-slate-700 hover:text-slate-900"
+          }`}
+        >
+          <Icon name="assignment" className="text-sm sm:text-base shrink-0" />
+          <span className="truncate">5. โจทย์สอบ 3</span>
         </button>
       </div>
 
@@ -1176,11 +1267,11 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
             {showExam2Answer && (
               <div className="mt-2.5 p-3 bg-white border-2 border-slate-900 rounded-xl animate-in fade-in duration-150 text-left">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-[10px] font-bold text-slate-500 uppercase">
-                    คำตอบที่ถูกต้อง (Model Answer):
+                  <span className="text-[10px] font-bold text-slate-500">
+                    ตัวอย่างแนวคำตอบที่ถูกต้อง:
                   </span>
                   <button
-                    onClick={() => speak(currentExam2DrillQ.expectedAnswerJa, userConfig.speechRate, "ja-JP")}
+                    onClick={() => speakWithSeiyuuVoice(currentExam2DrillQ.expectedAnswerJa, userConfig.seiyuuVoice, userConfig.speechRate, "ja-JP")}
                     className="inline-flex items-center space-x-1 text-xs text-emerald-700 font-bold hover:underline"
                   >
                     <Icon name="volume_up" className="text-xs" />
@@ -1238,11 +1329,235 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
         </div>
       )}
 
+      {/* ================= PART 5 DRILL: EXAM 3 SPECIFIC QUESTIONS (6 CATEGORIES) ================= */}
+      {activePart === 5 && currentExam3DrillQ && (
+        <div className="manga-box p-3.5 sm:p-5 space-y-3.5 text-center shadow-[3px_3px_0px_#0f172a]">
+          {/* Header & Category Filter Buttons */}
+          <div className="space-y-2 text-left">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-black text-slate-500 uppercase tracking-wider flex items-center space-x-1">
+                <Icon name="assignment" className="text-sm text-rose-600" />
+                <span>หมวดคำถามข้อสอบครั้งที่ 3 (6 รูปแบบตามประกาศ):</span>
+              </span>
+              <button
+                onClick={handleShuffleExam3Q}
+                className="text-[10px] font-black text-rose-600 hover:text-rose-700 inline-flex items-center space-x-0.5"
+              >
+                <Icon name="shuffle" className="text-xs" />
+                <span>สุ่มคำถาม</span>
+              </button>
+            </div>
+
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
+              <button
+                onClick={() => setExam3CategoryFilter("ALL")}
+                className={`px-2.5 py-1 rounded-xl text-[10px] font-black border border-slate-900 shrink-0 transition ${
+                  exam3CategoryFilter === "ALL"
+                    ? "bg-slate-900 text-white shadow-[1px_1px_0px_#0f172a]"
+                    : "bg-white text-slate-700 hover:bg-slate-100"
+                }`}
+              >
+                ทั้งหมด ({EXAM_3_QUESTIONS_POOL.length})
+              </button>
+              {EXAM_3_CATEGORIES.map((cat) => {
+                const isSelected = exam3CategoryFilter === cat.category;
+                const catCount = EXAM_3_QUESTIONS_POOL.filter((q) => q.category === cat.category).length;
+                const catIcon =
+                  cat.category === "ORIGIN"
+                    ? "public"
+                    : cat.category === "ADJECTIVE"
+                    ? "palette"
+                    : cat.category === "ORDER"
+                    ? "shopping_bag"
+                    : cat.category === "DATE_READING"
+                    ? "calendar_month"
+                    : cat.category === "BIRTHDAY"
+                    ? "cake"
+                    : "today";
+
+                return (
+                  <button
+                    key={cat.category}
+                    onClick={() => setExam3CategoryFilter(cat.category)}
+                    className={`px-2.5 py-1 rounded-xl text-[10px] font-black border border-slate-900 shrink-0 transition flex items-center space-x-1 ${
+                      isSelected
+                        ? "bg-rose-500 text-white shadow-[1px_1px_0px_#0f172a]"
+                        : "bg-white text-slate-700 hover:bg-slate-100"
+                    }`}
+                  >
+                    <Icon name={catIcon} className="text-xs" />
+                    <span>{cat.titleTh.split("(")[0].trim()} ({catCount})</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Question Card Header */}
+          <div className="flex items-center justify-between text-xs font-bold text-slate-500 pt-1">
+            <span className="manga-badge bg-rose-500 text-white text-[10px] flex items-center space-x-1">
+              <Icon
+                name={
+                  currentExam3DrillQ.category === "ORIGIN"
+                    ? "public"
+                    : currentExam3DrillQ.category === "ADJECTIVE"
+                    ? "palette"
+                    : currentExam3DrillQ.category === "ORDER"
+                    ? "shopping_bag"
+                    : currentExam3DrillQ.category === "DATE_READING"
+                    ? "calendar_month"
+                    : currentExam3DrillQ.category === "BIRTHDAY"
+                    ? "cake"
+                    : "today"
+                }
+                className="text-xs"
+              />
+              <span>{currentExam3DrillQ.categoryTitleTh}</span>
+            </span>
+            <span className="text-xs font-bold text-slate-700">
+              ข้อ {exam3Index + 1} / {filteredExam3Questions.length}
+            </span>
+          </div>
+
+          {/* Visual Display Frame */}
+          <div className="w-full max-w-[280px] sm:max-w-[340px] md:max-w-[380px] aspect-[4/3] mx-auto rounded-2xl border-2 border-slate-900 shadow-[3px_3px_0px_#0f172a] overflow-hidden bg-slate-100 flex items-center justify-center relative">
+            <SvgImage
+              svgContent={currentExam3DrillQ.imageSvg}
+              alt={currentExam3DrillQ.categoryTitleTh}
+              fit="contain"
+              position="center"
+              className="w-full h-full p-2"
+            />
+            {currentExam3DrillQ.displayValue && (
+              <div className="absolute bottom-2 bg-slate-900/90 text-white text-[11px] sm:text-xs font-black px-2.5 py-1 rounded-xl border border-slate-700 shadow-md">
+                {currentExam3DrillQ.displayValue}
+              </div>
+            )}
+          </div>
+
+          {/* Examiner Question Bubble */}
+          <div className="speech-bubble p-3.5 text-left bg-rose-50/70 border-2 border-rose-900">
+            <div className="flex items-center justify-between mb-1 pb-1 border-b border-rose-200">
+              <div className="flex items-center space-x-1.5">
+                <Icon name={examiner.avatarIcon} className="text-base text-rose-800" />
+                <span className="text-[11px] font-black text-slate-900">
+                  อาจารย์ AI ({examiner.characterNameJa})
+                </span>
+              </div>
+              <button
+                onClick={() =>
+                  speakWithSeiyuuVoice(
+                    currentExam3DrillQ.questionJa,
+                    userConfig.seiyuuVoice,
+                    userConfig.speechRate,
+                    "ja-JP"
+                  )
+                }
+                className="inline-flex items-center space-x-1 text-xs text-rose-600 font-bold hover:underline"
+              >
+                <Icon name="volume_up" className="text-sm" />
+                <span>ฟังเสียงคำถาม</span>
+              </button>
+            </div>
+
+            <h4 className="text-base font-extrabold text-slate-900 font-jp">
+              {currentExam3DrillQ.questionJa}
+            </h4>
+            {userConfig.showRomaji && (
+              <p className="text-xs font-mono text-slate-500 mt-0.5">
+                {currentExam3DrillQ.questionRomaji}
+              </p>
+            )}
+
+            {/* Official Rule Note from PDF */}
+            <div className="mt-2 p-2 rounded-xl bg-amber-50 border border-amber-300 text-left flex items-start space-x-1.5 text-slate-800">
+              <Icon name="info" className="text-sm text-amber-700 shrink-0 mt-0.5" />
+              <div className="text-[11px] font-bold leading-snug">
+                <span className="text-amber-900 font-black">เกณฑ์สอบจริง: </span>
+                {currentExam3DrillQ.ruleNoteTh}
+              </div>
+            </div>
+
+            {/* Toggle Answer Button */}
+            <button
+              onClick={() => setShowExam3Answer(!showExam3Answer)}
+              className="manga-btn mt-2.5 px-3 py-1 bg-white text-[11px] rounded-xl flex items-center space-x-1"
+            >
+              <Icon name={showExam3Answer ? "visibility_off" : "visibility"} className="text-sm" />
+              <span>{showExam3Answer ? "ซ่อนเฉลยแนวคำตอบ" : "ดูเฉลยแนวคำตอบตามเกณฑ์"}</span>
+            </button>
+
+            {/* Revealed Answer Box */}
+            {showExam3Answer && (
+              <div className="mt-2.5 p-3 bg-white border-2 border-slate-900 rounded-xl animate-in fade-in duration-150 text-left">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-[10px] font-bold text-slate-500">
+                    ตัวอย่างแนวคำตอบที่ถูกต้อง:
+                  </span>
+                  <button
+                    onClick={() => speakWithSeiyuuVoice(currentExam3DrillQ.expectedAnswerJa, userConfig.seiyuuVoice, userConfig.speechRate, "ja-JP")}
+                    className="inline-flex items-center space-x-1 text-xs text-emerald-700 font-bold hover:underline"
+                  >
+                    <Icon name="volume_up" className="text-xs" />
+                    <span>ฟังคำตอบเฉลย</span>
+                  </button>
+                </div>
+                <p className="text-base font-black text-emerald-800 font-jp">
+                  {currentExam3DrillQ.expectedAnswerJa}
+                </p>
+                {userConfig.showRomaji && (
+                  <p className="text-xs font-mono text-slate-500 mt-0.5">
+                    {currentExam3DrillQ.expectedAnswerRomaji}
+                  </p>
+                )}
+                <div className="mt-2 pt-2 border-t border-slate-100 flex flex-wrap gap-1 items-center">
+                  <span className="text-[10px] font-bold text-slate-500">คีย์เวิร์ดตรวจให้คะแนน:</span>
+                  {currentExam3DrillQ.keywords.map((kw, i) => (
+                    <span key={i} className="text-[10px] px-1.5 py-0.5 bg-slate-100 rounded border border-slate-300 font-mono text-slate-700">
+                      {kw}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Stepper Controls */}
+          <div className="flex items-center justify-between pt-1">
+            <button
+              onClick={handlePrevExam3Q}
+              disabled={exam3Index === 0}
+              className="manga-btn px-3 py-1.5 rounded-xl bg-white text-xs disabled:opacity-40 disabled:cursor-not-allowed flex items-center space-x-1"
+            >
+              <Icon name="arrow_back" className="text-sm" />
+              <span>ก่อนหน้า</span>
+            </button>
+
+            <button
+              onClick={handleShuffleExam3Q}
+              className="manga-btn px-3 py-1.5 rounded-xl bg-slate-100 text-xs flex items-center space-x-1"
+            >
+              <Icon name="shuffle" className="text-xs text-slate-700" />
+              <span>สุ่มข้อ</span>
+            </button>
+
+            <button
+              onClick={handleNextExam3Q}
+              disabled={exam3Index === filteredExam3Questions.length - 1}
+              className="manga-btn px-3 py-1.5 rounded-xl bg-white text-xs disabled:opacity-40 disabled:cursor-not-allowed flex items-center space-x-1"
+            >
+              <span>ถัดไป</span>
+              <Icon name="arrow_forward" className="text-sm" />
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Input Box for Speaking Practice */}
       <div className="manga-box p-3 sm:p-4 text-left shadow-[2px_2px_0px_#0f172a]">
         <div className="flex items-center justify-between mb-1">
           <label className="block text-[11px] font-bold text-slate-700">
-            คำตอบของคุณ (กดปุ่มไมค์ด้านล่างเพื่อพูด หรือพิมพ์ตอบ):
+            คำตอบของคุณ:
           </label>
           {isInputFocused && (
             <button
@@ -1268,7 +1583,7 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
           onBlur={() => {
             setTimeout(() => setIsInputFocused(false), 150);
           }}
-          placeholder="พูดคำตอบภาษาญี่ปุ่น หรือพิมพ์ที่นี่..."
+          placeholder="แตะปุ่มไมค์ด้านล่างเพื่อพูด หรือพิมพ์ตอบ..."
           className="w-full px-3.5 py-2 sm:py-2.5 rounded-xl border-2 border-slate-900 text-xs font-semibold focus:outline-none focus:bg-white bg-slate-50 font-jp"
         />
         {speechStatus && (
@@ -1277,13 +1592,13 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
           </p>
         )}
 
-        {/* Real-time Confidence Meter (Mathematical Matching) */}
+        {/* Real-time Confidence Meter */}
         {confidence && (
           <div className="mt-2.5 p-2.5 rounded-xl border-2 border-slate-900 bg-white shadow-[2px_2px_0px_#0f172a] animate-in fade-in duration-150">
             <div className="flex items-center justify-between text-xs font-black mb-1.5">
               <div className="flex items-center space-x-1.5">
-                <span className="text-[10px] uppercase font-mono text-slate-500">
-                  Phonetic Match:
+                <span className="text-[10px] font-bold text-slate-600">
+                  ระดับความแม่นยำ:
                 </span>
                 <span
                   className={`px-2 py-0.5 rounded-md text-[10px] font-black flex items-center space-x-1 ${

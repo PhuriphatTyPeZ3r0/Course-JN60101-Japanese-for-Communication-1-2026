@@ -4,12 +4,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Icon } from "./Icon";
 import { SvgImage } from "./SvgImage";
-import { ScoreCard } from "./ScoreCard";
+import { ScoreCard, ReviewItem } from "./ScoreCard";
 import {
   EXAM_PART1_SCRIPTS,
   VOCABULARY_LIST,
   IMAGE_QUESTIONS,
   generateExam2Questions,
+  generateExam3Questions,
 } from "@/lib/dataset";
 import { resolveHobby } from "@/lib/hobbies";
 import {
@@ -17,6 +18,7 @@ import {
   speakWithSeiyuuVoice,
   playSeiyuuGreeting,
   playSeiyuuPraise,
+  prefetchSeiyuuAudio,
   stopSpeech,
   createSpeechRecognition,
   isSpeechRecognitionSupported,
@@ -29,6 +31,8 @@ import {
   Part3AnswerItem,
   Exam2Question,
   Exam2AnswerItem,
+  Exam3Question,
+  Exam3AnswerItem,
   EvaluationPayload,
   EvaluationResult,
   UserConfig,
@@ -68,6 +72,7 @@ export const MockExam: React.FC<MockExamProps> = ({
   const [selectedVocab, setSelectedVocab] = useState<VocabItem[]>([]);
   const [selectedImages, setSelectedImages] = useState<ImageQuestion[]>([]);
   const [selectedExam2Questions, setSelectedExam2Questions] = useState<Exam2Question[]>([]);
+  const [selectedExam3Questions, setSelectedExam3Questions] = useState<Exam3Question[]>([]);
 
   // Answers Collected
   const [part1Answers, setPart1Answers] = useState<string[]>([]);
@@ -75,6 +80,8 @@ export const MockExam: React.FC<MockExamProps> = ({
   const [part3Answers, setPart3Answers] = useState<Part3AnswerItem[]>([]);
   const [exam2VocabAnswers, setExam2VocabAnswers] = useState<Part2AnswerItem[]>([]);
   const [exam2Answers, setExam2Answers] = useState<Exam2AnswerItem[]>([]);
+  const [exam3VocabAnswers, setExam3VocabAnswers] = useState<Part2AnswerItem[]>([]);
+  const [exam3Answers, setExam3Answers] = useState<Exam3AnswerItem[]>([]);
 
   // Speech & Input
   const [currentInput, setCurrentInput] = useState<string>("");
@@ -85,6 +92,7 @@ export const MockExam: React.FC<MockExamProps> = ({
 
   // Evaluation Result
   const [evaluationResult, setEvaluationResult] = useState<EvaluationResult | null>(null);
+  const [reviewItems, setReviewItems] = useState<ReviewItem[]>([]);
 
   const activeMeta = EXAM_DEFINITIONS[selectedExam];
   const activePart1Script = EXAM_PART1_SCRIPTS[selectedExam] || EXAM_PART1_SCRIPTS.EXAM_1;
@@ -116,7 +124,7 @@ export const MockExam: React.FC<MockExamProps> = ({
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [status, part1Answers, part2Answers, part3Answers, exam2VocabAnswers, exam2Answers, currentInput]);
+  }, [status, part1Answers, part2Answers, part3Answers, exam2VocabAnswers, exam2Answers, exam3VocabAnswers, exam3Answers, currentInput]);
 
   const playSfx = (type: "start" | "next" | "finish") => {
     if (!userConfig.enableSfx || typeof window === "undefined") return;
@@ -158,6 +166,7 @@ export const MockExam: React.FC<MockExamProps> = ({
     setCurrentInput("");
     setSpeechStatus("");
     setEvaluationResult(null);
+    setReviewItems([]);
 
     if (selectedExam === "EXAM_2") {
       const eligibleVocab = VOCABULARY_LIST.filter((v) => meta.chapters.includes(v.chapter));
@@ -170,8 +179,36 @@ export const MockExam: React.FC<MockExamProps> = ({
       setExam2Answers([]);
 
       setStatus("RUNNING");
-      playSeiyuuGreeting("web_speech", userConfig.speechRate);
-      promptVocab(shuffledVocab[0]);
+      playSeiyuuGreeting(userConfig.seiyuuVoice, userConfig.speechRate);
+      // Prefetch questions audio in background for 0ms instant playback
+      exam2Qs.forEach((q) => {
+        prefetchSeiyuuAudio(q.questionJa, userConfig.seiyuuVoice, userConfig.speechRate);
+      });
+      setTimeout(() => {
+        promptVocab(shuffledVocab[0]);
+      }, 1800);
+      return;
+    }
+
+    if (selectedExam === "EXAM_3") {
+      const eligibleVocab = VOCABULARY_LIST.filter((v) => meta.chapters.includes(v.chapter));
+      const shuffledVocab = [...eligibleVocab].sort(() => 0.5 - Math.random()).slice(0, 5);
+      const exam3Qs = generateExam3Questions();
+
+      setSelectedVocab(shuffledVocab);
+      setSelectedExam3Questions(exam3Qs);
+      setExam3VocabAnswers([]);
+      setExam3Answers([]);
+
+      setStatus("RUNNING");
+      playSeiyuuGreeting(userConfig.seiyuuVoice, userConfig.speechRate);
+      // Prefetch questions audio in background for 0ms instant playback
+      exam3Qs.forEach((q) => {
+        prefetchSeiyuuAudio(q.questionJa, userConfig.seiyuuVoice, userConfig.speechRate);
+      });
+      setTimeout(() => {
+        promptVocab(shuffledVocab[0]);
+      }, 1800);
       return;
     }
 
@@ -195,7 +232,10 @@ export const MockExam: React.FC<MockExamProps> = ({
     setPart3Answers([]);
 
     setStatus("RUNNING");
-    playSeiyuuGreeting("web_speech", userConfig.speechRate);
+    playSeiyuuGreeting(userConfig.seiyuuVoice, userConfig.speechRate);
+    shuffledImages.forEach((img) => {
+      prefetchSeiyuuAudio(img.questionJa, userConfig.seiyuuVoice, userConfig.speechRate);
+    });
   };
 
   const toggleRecording = () => {
@@ -305,6 +345,63 @@ export const MockExam: React.FC<MockExamProps> = ({
       return;
     }
 
+    if (selectedExam === "EXAM_3") {
+      if (currentPart === 1) {
+        const item = selectedVocab[stepIndex];
+        const answerObj: Part2AnswerItem = {
+          id: item.id,
+          th: item.th,
+          expectedJa: item.ja,
+          expectedRomaji: item.romaji,
+          altJa: item.altJa,
+          altRomaji: item.altRomaji,
+          userAnswer: answer,
+        };
+        const updatedVocab = [...exam3VocabAnswers, answerObj];
+        setExam3VocabAnswers(updatedVocab);
+        setCurrentInput("");
+        setSpeechStatus("");
+
+        if (stepIndex < 4) {
+          const nextIdx = stepIndex + 1;
+          setStepIndex(nextIdx);
+          promptVocab(selectedVocab[nextIdx]);
+        } else {
+          setCurrentPart(2);
+          setStepIndex(0);
+          promptExam3Question(selectedExam3Questions[0]);
+        }
+      } else if (currentPart === 2) {
+        const q = selectedExam3Questions[stepIndex];
+        const answerObj: Exam3AnswerItem = {
+          id: q.id,
+          category: q.category,
+          categoryIndex: q.categoryIndex,
+          categoryTitleTh: q.categoryTitleTh,
+          questionJa: q.questionJa,
+          questionRomaji: q.questionRomaji,
+          displayValue: q.displayValue,
+          expectedJa: q.expectedAnswerJa,
+          expectedRomaji: q.expectedAnswerRomaji,
+          keywords: q.keywords,
+          userAnswer: answer,
+        };
+        const updatedQ = [...exam3Answers, answerObj];
+        setExam3Answers(updatedQ);
+        setCurrentInput("");
+        setSpeechStatus("");
+
+        if (stepIndex < 9) {
+          const nextIdx = stepIndex + 1;
+          setStepIndex(nextIdx);
+          promptExam3Question(selectedExam3Questions[nextIdx]);
+        } else {
+          finishAndEvaluateExam3(exam3VocabAnswers, updatedQ);
+        }
+      }
+      return;
+    }
+
     if (currentPart === 1) {
       const updatedP1 = [...part1Answers, answer];
       setPart1Answers(updatedP1);
@@ -399,6 +496,8 @@ export const MockExam: React.FC<MockExamProps> = ({
     part3Answers,
     exam2VocabAnswers,
     exam2Answers,
+    exam3VocabAnswers,
+    exam3Answers,
     selectedExam,
   ]);
 
@@ -418,6 +517,16 @@ export const MockExam: React.FC<MockExamProps> = ({
   };
 
   const promptExam2Question = (q: Exam2Question) => {
+    if (!q) return;
+    speakWithSeiyuuVoice(
+      q.questionJa,
+      userConfig.seiyuuVoice,
+      userConfig.speechRate,
+      "ja-JP"
+    );
+  };
+
+  const promptExam3Question = (q: Exam3Question) => {
     if (!q) return;
     speakWithSeiyuuVoice(
       q.questionJa,
@@ -464,15 +573,147 @@ export const MockExam: React.FC<MockExamProps> = ({
         });
       }
       finishAndEvaluateExam2(currentV, currentQ);
-    } else {
-      finishAndEvaluate(part1Answers, part2Answers, part3Answers);
+      return;
     }
+    if (selectedExam === "EXAM_3") {
+      let currentV = [...exam3VocabAnswers];
+      let currentQ = [...exam3Answers];
+      const answer = currentInput.trim();
+      if (currentPart === 1 && selectedVocab[stepIndex]) {
+        const item = selectedVocab[stepIndex];
+        currentV.push({
+          id: item.id,
+          th: item.th,
+          expectedJa: item.ja,
+          expectedRomaji: item.romaji,
+          altJa: item.altJa,
+          altRomaji: item.altRomaji,
+          userAnswer: answer,
+        });
+      } else if (currentPart === 2 && selectedExam3Questions[stepIndex]) {
+        const q = selectedExam3Questions[stepIndex];
+        currentQ.push({
+          id: q.id,
+          category: q.category,
+          categoryIndex: q.categoryIndex,
+          categoryTitleTh: q.categoryTitleTh,
+          questionJa: q.questionJa,
+          questionRomaji: q.questionRomaji,
+          displayValue: q.displayValue,
+          expectedJa: q.expectedAnswerJa,
+          expectedRomaji: q.expectedAnswerRomaji,
+          keywords: q.keywords,
+          userAnswer: answer,
+        });
+      }
+      finishAndEvaluateExam3(currentV, currentQ);
+      return;
+    }
+    finishAndEvaluate(part1Answers, part2Answers, part3Answers);
+  };
+
+  const buildReviewItemsExam2 = (vocabAnswers: Part2AnswerItem[], qAnswers: Exam2AnswerItem[]): ReviewItem[] => {
+    const collected: ReviewItem[] = [];
+    vocabAnswers.forEach((va, idx) => {
+      const user = (va.userAnswer || "").trim().toLowerCase();
+      const match = calculateConfidence(user, [va.expectedJa, va.expectedRomaji, ...(va.altRomaji || [])]);
+      collected.push({
+        id: va.id || `v2-${idx}`,
+        categoryTitleTh: "คำศัพท์บทที่ 3-4",
+        questionJa: `แปลคำว่า: ${va.th}`,
+        questionRomaji: va.expectedRomaji,
+        expectedJa: va.expectedJa,
+        expectedRomaji: va.expectedRomaji,
+        userAnswer: va.userAnswer,
+        isCorrect: match.isMatch || match.scorePercent >= 65,
+      });
+    });
+    qAnswers.forEach((qa, idx) => {
+      const user = (qa.userAnswer || "").trim().toLowerCase();
+      const match = calculateConfidence(user, [qa.expectedJa, qa.expectedRomaji, ...(qa.keywords || [])]);
+      collected.push({
+        id: qa.id || `q2-${idx}`,
+        categoryTitleTh: qa.categoryTitleTh,
+        questionJa: qa.questionJa,
+        questionRomaji: qa.questionRomaji,
+        expectedJa: qa.expectedJa,
+        expectedRomaji: qa.expectedRomaji,
+        userAnswer: qa.userAnswer,
+        isCorrect: match.isMatch || match.scorePercent >= 60,
+      });
+    });
+    return collected;
+  };
+
+  const buildReviewItemsExam3 = (vocabAnswers: Part2AnswerItem[], qAnswers: Exam3AnswerItem[]): ReviewItem[] => {
+    const collected: ReviewItem[] = [];
+    vocabAnswers.forEach((va, idx) => {
+      const user = (va.userAnswer || "").trim().toLowerCase();
+      const match = calculateConfidence(user, [va.expectedJa, va.expectedRomaji, ...(va.altRomaji || [])]);
+      collected.push({
+        id: va.id || `v3-${idx}`,
+        categoryTitleTh: "คำศัพท์บทที่ 5-6",
+        questionJa: `แปลคำว่า: ${va.th}`,
+        questionRomaji: va.expectedRomaji,
+        expectedJa: va.expectedJa,
+        expectedRomaji: va.expectedRomaji,
+        userAnswer: va.userAnswer,
+        isCorrect: match.isMatch || match.scorePercent >= 65,
+      });
+    });
+    qAnswers.forEach((qa, idx) => {
+      const user = (qa.userAnswer || "").trim().toLowerCase();
+      const match = calculateConfidence(user, [qa.expectedJa, qa.expectedRomaji, ...(qa.keywords || [])]);
+      collected.push({
+        id: qa.id || `q3-${idx}`,
+        categoryTitleTh: qa.categoryTitleTh,
+        questionJa: qa.questionJa,
+        questionRomaji: qa.questionRomaji,
+        expectedJa: qa.expectedJa,
+        expectedRomaji: qa.expectedRomaji,
+        userAnswer: qa.userAnswer,
+        isCorrect: match.isMatch || match.scorePercent >= 60,
+      });
+    });
+    return collected;
+  };
+
+  const buildReviewItemsGeneral = (p2: Part2AnswerItem[], p3: Part3AnswerItem[]): ReviewItem[] => {
+    const collected: ReviewItem[] = [];
+    p2.forEach((va, idx) => {
+      const user = (va.userAnswer || "").trim().toLowerCase();
+      const match = calculateConfidence(user, [va.expectedJa, va.expectedRomaji, ...(va.altRomaji || [])]);
+      collected.push({
+        id: va.id || `p2-${idx}`,
+        categoryTitleTh: "คำศัพท์",
+        questionJa: `แปลคำว่า: ${va.th}`,
+        expectedJa: va.expectedJa,
+        expectedRomaji: va.expectedRomaji,
+        userAnswer: va.userAnswer,
+        isCorrect: match.isMatch || match.scorePercent >= 65,
+      });
+    });
+    p3.forEach((qa, idx) => {
+      const user = (qa.userAnswer || "").trim().toLowerCase();
+      const match = calculateConfidence(user, [qa.expectedJa, qa.expectedRomaji, ...(qa.keywords || [])]);
+      collected.push({
+        id: qa.id || `p3-${idx}`,
+        categoryTitleTh: "ตอบจากภาพ",
+        questionJa: qa.questionJa,
+        expectedJa: qa.expectedJa,
+        expectedRomaji: qa.expectedRomaji,
+        userAnswer: qa.userAnswer,
+        isCorrect: match.isMatch || match.scorePercent >= 60,
+      });
+    });
+    return collected;
   };
 
   const finishAndEvaluateExam2 = async (
     vocabAnswers: Part2AnswerItem[],
     qAnswers: Exam2AnswerItem[]
   ) => {
+    setReviewItems(buildReviewItemsExam2(vocabAnswers, qAnswers));
     setStatus("EVALUATING");
     stopSpeech();
     playSfx("finish");
@@ -496,13 +737,51 @@ export const MockExam: React.FC<MockExamProps> = ({
       const result: EvaluationResult = await res.json();
       setEvaluationResult(result);
       setStatus("FINISHED");
-      playSeiyuuPraise("web_speech", userConfig.speechRate);
+      playSeiyuuPraise(userConfig.seiyuuVoice, userConfig.speechRate);
     } catch (err: unknown) {
       console.warn("API Evaluation failed, using rule-based fallback:", err);
       const fallbackResult = ruleBasedEvaluation(payload);
       setEvaluationResult(fallbackResult);
       setStatus("FINISHED");
-      playSeiyuuPraise("web_speech", userConfig.speechRate);
+      playSeiyuuPraise(userConfig.seiyuuVoice, userConfig.speechRate);
+    }
+  };
+
+  const finishAndEvaluateExam3 = async (
+    vocabAnswers: Part2AnswerItem[],
+    qAnswers: Exam3AnswerItem[]
+  ) => {
+    setReviewItems(buildReviewItemsExam3(vocabAnswers, qAnswers));
+    setStatus("EVALUATING");
+    stopSpeech();
+    playSfx("finish");
+
+    const payload: EvaluationPayload = {
+      examType: "EXAM_3",
+      exam3VocabAnswers: vocabAnswers,
+      exam3Answers: qAnswers,
+      userConfig: userConfig,
+      clientApiKey: userConfig.geminiApiKey,
+    };
+
+    try {
+      const res = await fetch("/api/evaluate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const result: EvaluationResult = await res.json();
+      setEvaluationResult(result);
+      setStatus("FINISHED");
+      playSeiyuuPraise(userConfig.seiyuuVoice, userConfig.speechRate);
+    } catch (err: unknown) {
+      console.warn("API Evaluation failed, using rule-based fallback:", err);
+      const fallbackResult = ruleBasedEvaluation(payload);
+      setEvaluationResult(fallbackResult);
+      setStatus("FINISHED");
+      playSeiyuuPraise(userConfig.seiyuuVoice, userConfig.speechRate);
     }
   };
 
@@ -511,6 +790,7 @@ export const MockExam: React.FC<MockExamProps> = ({
     p2: Part2AnswerItem[],
     p3: Part3AnswerItem[]
   ) => {
+    setReviewItems(buildReviewItemsGeneral(p2, p3));
     setStatus("EVALUATING");
     stopSpeech();
     playSfx("finish");
@@ -535,13 +815,13 @@ export const MockExam: React.FC<MockExamProps> = ({
       const result: EvaluationResult = await res.json();
       setEvaluationResult(result);
       setStatus("FINISHED");
-      playSeiyuuPraise("web_speech", userConfig.speechRate);
+      playSeiyuuPraise(userConfig.seiyuuVoice, userConfig.speechRate);
     } catch (err: unknown) {
       console.warn("API Evaluation failed, using rule-based fallback:", err);
       const fallbackResult = ruleBasedEvaluation(payload);
       setEvaluationResult(fallbackResult);
       setStatus("FINISHED");
-      playSeiyuuPraise("web_speech", userConfig.speechRate);
+      playSeiyuuPraise(userConfig.seiyuuVoice, userConfig.speechRate);
     }
   };
 
@@ -657,7 +937,7 @@ export const MockExam: React.FC<MockExamProps> = ({
             </div>
           </div>
 
-          {selectedExam === "EXAM_2" ? (
+          {selectedExam === "EXAM_2" || selectedExam === "EXAM_3" ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700">
               <div className="p-2.5 bg-white rounded-xl border border-slate-300 space-y-1 min-w-0">
                 <span className="manga-badge bg-amber-300 text-slate-900 text-[9px] max-w-full truncate inline-flex items-center tracking-tight px-2 py-0.5">
@@ -668,7 +948,7 @@ export const MockExam: React.FC<MockExamProps> = ({
                   แปลคำศัพท์ 5 คำ (ไทย ➔ ญี่ปุ่น)
                 </p>
                 <p className="text-[10px] text-slate-500 leading-relaxed">
-                  สุ่มคำศัพท์จากเนื้อหาบทที่ 3 และ 4 (1 คำ / 1 คะแนน)
+                  สุ่มคำศัพท์จากเนื้อหาบทที่ {selectedExam === "EXAM_2" ? "3 และ 4" : "5 และ 6"} (1 คำ / 1 คะแนน)
                 </p>
               </div>
 
@@ -678,10 +958,14 @@ export const MockExam: React.FC<MockExamProps> = ({
                   <span>2. 質疑応答 Q&A (10 คะแนน)</span>
                 </span>
                 <p className="text-[11px] font-black text-slate-900 leading-snug">
-                  ตอบคำถาม 5 รูปแบบ (รูปแบบละ 2 ข้อ)
+                  {selectedExam === "EXAM_2"
+                    ? "ตอบคำถาม 5 รูปแบบ (รูปแบบละ 2 ข้อ)"
+                    : "ตอบคำถาม 6 รูปแบบ รวม 10 ข้อ"}
                 </p>
                 <p className="text-[10px] text-slate-500 leading-relaxed">
-                  1) สถานที่ • 2) เวลา • 3) เบอร์โทร • 4) ราคา • 5) เวลาทำการ
+                  {selectedExam === "EXAM_2"
+                    ? "1) สถานที่ • 2) เวลา • 3) เบอร์โทร • 4) ราคา • 5) เวลาทำการ"
+                    : "1) ประเทศผู้ผลิต • 2) สี/ขนาด • 3) สั่งซื้อ • 4) วัน/เดือน • 5) วันเกิด • 6) วันนี้"}
                 </p>
               </div>
             </div>
@@ -729,6 +1013,32 @@ export const MockExam: React.FC<MockExamProps> = ({
           )}
         </div>
 
+        {/* Active Coach Indicator */}
+        <div className="flex items-center justify-between p-2.5 rounded-xl bg-amber-50 border-2 border-slate-900 shadow-[2px_2px_0px_#0f172a] text-left">
+          <div className="flex items-center space-x-2 min-w-0">
+            <div className="w-8 h-8 rounded-lg bg-white border border-slate-900 flex items-center justify-center shrink-0 text-rose-600">
+              <Icon name={examiner.avatarIcon} className="text-lg" />
+            </div>
+            <div className="min-w-0">
+              <div className="flex items-center space-x-1.5">
+                <span className="text-[10px] text-slate-500 font-bold">อาจารย์ผู้คุมสอบ:</span>
+                <span className="text-xs font-black text-slate-900 truncate">
+                  {examiner.characterNameJa} ({examiner.characterNameTh})
+                </span>
+              </div>
+              <p className="text-[10px] text-slate-500 truncate">{examiner.animeTitle}</p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={() => playSeiyuuGreeting(userConfig.seiyuuVoice, userConfig.speechRate)}
+            className="manga-btn px-2.5 py-1 bg-white hover:bg-slate-100 text-slate-900 rounded-lg text-[10px] font-black flex items-center space-x-1 border border-slate-900 shrink-0 ml-2"
+          >
+            <Icon name="volume_up" className="text-xs text-rose-600" />
+            <span>ทดสอบเสียง</span>
+          </button>
+        </div>
+
         {/* Start Button */}
         <button
           onClick={startExam}
@@ -752,7 +1062,7 @@ export const MockExam: React.FC<MockExamProps> = ({
           อาจารย์ AI กำลังตรวจและประเมินผล...
         </h3>
         <p className="text-xs text-slate-600 font-medium">
-          ระบบกำลังวิเคราะห์เสียง สำเนียง ความถูกต้องของโครงสร้างประโยคตามเกณฑ์ PIM
+          กำลังวิเคราะห์สำเนียงและความถูกต้องตามเกณฑ์การสอบ PIM...
         </p>
       </div>
     );
@@ -766,6 +1076,8 @@ export const MockExam: React.FC<MockExamProps> = ({
           result={evaluationResult}
           onRetake={startExam}
           onGoToDrill={onGoToDrill}
+          userConfig={userConfig}
+          reviewItems={reviewItems}
         />
       </div>
     );
@@ -773,13 +1085,16 @@ export const MockExam: React.FC<MockExamProps> = ({
 
   // 4. RUNNING State
   const isExam2 = selectedExam === "EXAM_2";
+  const isExam3 = selectedExam === "EXAM_3";
+  const isTwoPartExam = isExam2 || isExam3;
   const currentP1Line: DialogueLine = activePart1Script[stepIndex] || activePart1Script[0];
   const currentVocabItem = selectedVocab[stepIndex];
   const currentImgItem = selectedImages[stepIndex];
   const currentExam2Q = selectedExam2Questions[stepIndex];
+  const currentExam3Q = selectedExam3Questions[stepIndex];
 
   // Overall Exam Progress Percentage: 15 questions total
-  const currentTotalQuestionIndex = isExam2
+  const currentTotalQuestionIndex = isTwoPartExam
     ? currentPart === 1
       ? stepIndex + 1
       : 5 + stepIndex + 1
@@ -797,31 +1112,54 @@ export const MockExam: React.FC<MockExamProps> = ({
   return (
     <div className="space-y-3.5 max-w-2xl mx-auto pb-28 sm:pb-32">
       {/* Top Status Bar: Exam Title, Part Badge, & Countdown Timer */}
-      <div className="manga-box-sm p-2 sm:p-3 bg-white flex items-center justify-between shadow-[2px_2px_0px_#0f172a]">
-        <div className="flex items-center space-x-1.5 sm:space-x-2">
-          <span className="manga-badge bg-slate-900 text-white text-[9px] sm:text-[10px]">
-            {activeMeta.titleTh}
-          </span>
-          <span className="manga-badge bg-rose-500 text-white text-[9px] sm:text-[10px]">
-            {isExam2
-              ? `ส่วนที่ ${currentPart}/2 • ข้อ ${stepIndex + 1}/${currentPart === 1 ? 5 : 10}`
-              : `ส่วนที่ ${currentPart}/3 • ข้อ ${stepIndex + 1}/5`}
-          </span>
+      <div className="manga-box-sm p-2 sm:p-3 bg-white flex flex-col gap-2 shadow-[2px_2px_0px_#0f172a]">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-1.5 sm:space-x-2">
+            <span className="manga-badge bg-slate-900 text-white text-[9px] sm:text-[10px]">
+              {activeMeta.titleTh}
+            </span>
+            <span className="manga-badge bg-rose-500 text-white text-[9px] sm:text-[10px]">
+              {isTwoPartExam
+                ? `ส่วนที่ ${currentPart}/2 • ข้อ ${stepIndex + 1}/${currentPart === 1 ? 5 : 10}`
+                : `ส่วนที่ ${currentPart}/3 • ข้อ ${stepIndex + 1}/5`}
+            </span>
+          </div>
+
+          <div className="flex items-center space-x-1.5 font-mono font-black text-xs sm:text-sm">
+            <Icon
+              name="timer"
+              className={`text-base sm:text-lg ${timeLeft <= 30 ? "text-rose-600 animate-bounce" : "text-slate-800"}`}
+            />
+            <span className={`px-2 py-0.5 rounded-lg border border-slate-900 ${timerBadgeColor}`}>
+              {formatTime(timeLeft)}
+            </span>
+          </div>
         </div>
 
-        <div className="flex items-center space-x-1.5 font-mono font-black text-xs sm:text-sm">
-          <Icon
-            name="timer"
-            className={`text-base sm:text-lg ${timeLeft <= 30 ? "text-rose-600 animate-bounce" : "text-slate-800"}`}
+        {/* 180s Visual Dynamic Time Bar (Green -> Amber -> Red Alert) */}
+        <div className="w-full h-1.5 sm:h-2 rounded-full bg-slate-200 border border-slate-900 overflow-hidden relative">
+          <div
+            className={`h-full transition-all duration-1000 ${
+              timeLeft > 90
+                ? "bg-emerald-500"
+                : timeLeft > 30
+                ? "bg-amber-400"
+                : "bg-rose-600 animate-pulse"
+            }`}
+            style={{ width: `${Math.min(100, Math.max(0, (timeLeft / (activeMeta.timeLimitSeconds || 180)) * 100))}%` }}
           />
-          <span className={`px-2 py-0.5 rounded-lg border border-slate-900 ${timerBadgeColor}`}>
-            {formatTime(timeLeft)}
-          </span>
         </div>
+
+        {timeLeft <= 30 && (
+          <div className="text-[10px] font-black text-rose-700 bg-rose-50 px-2 py-0.5 rounded border border-rose-300 flex items-center justify-center space-x-1 animate-pulse">
+            <Icon name="crisis_alert" className="text-xs text-rose-600" />
+            <span>30 วินาทีสุดท้าย! บริหารเวลาให้ทันส่งข้อสอบ</span>
+          </div>
+        )}
       </div>
 
       {/* Segmented Progress Bar */}
-      {isExam2 ? (
+      {isTwoPartExam ? (
         <div className="manga-box-sm p-2 bg-slate-100 flex flex-col gap-1.5">
           <div className="flex items-center justify-between text-[10px] font-black text-slate-600 uppercase gap-1">
             <span className={`shrink-0 ${currentPart === 1 ? "text-amber-600 font-black" : ""}`}>
@@ -907,13 +1245,13 @@ export const MockExam: React.FC<MockExamProps> = ({
         </div>
       )}
 
-      {/* ================= EXAM 2 SPECIFIC QUESTION RENDERING ================= */}
-      {isExam2 && currentPart === 1 && currentVocabItem && (
+      {/* ================= TWO-PART EXAM (EXAM 2 & 3) PART 1: VOCABULARY ================= */}
+      {isTwoPartExam && currentPart === 1 && currentVocabItem && (
         <div className="manga-box p-4 sm:p-5 text-center space-y-3 shadow-[3px_3px_0px_#0f172a]">
           <div className="flex items-center justify-between text-xs font-bold text-slate-500">
             <span className="manga-badge bg-amber-400 text-slate-900 text-[10px] flex items-center space-x-1">
               <Icon name="translate" className="text-xs" />
-              <span>ส่วนที่ 1: แปลคำศัพท์บทที่ 3-4 • คำที่ {stepIndex + 1} / 5</span>
+              <span>ส่วนที่ 1: แปลคำศัพท์บทที่ {isExam2 ? "3-4" : "5-6"} • คำที่ {stepIndex + 1} / 5</span>
             </span>
             <span className="text-[10px] text-slate-500 font-bold">
               หมวด: {currentVocabItem.category}
@@ -964,7 +1302,7 @@ export const MockExam: React.FC<MockExamProps> = ({
           </div>
 
           {/* Visual Display Frame */}
-          <div className="w-full max-w-[280px] sm:max-w-[340px] md:max-w-[380px] aspect-[4/3] mx-auto rounded-2xl border-2 border-slate-900 shadow-[3px_3px_0px_#0f172a] overflow-hidden bg-slate-100 flex items-center justify-center relative">
+          <div className="w-full max-w-[240px] sm:max-w-[320px] aspect-[16/10] sm:aspect-[4/3] max-h-[160px] sm:max-h-[220px] mx-auto rounded-2xl border-2 border-slate-900 shadow-[2px_2px_0px_#0f172a] sm:shadow-[3px_3px_0px_#0f172a] overflow-hidden bg-slate-100 flex items-center justify-center relative">
             <SvgImage
               svgContent={currentExam2Q.imageSvg}
               alt={currentExam2Q.categoryTitleTh}
@@ -1018,8 +1356,91 @@ export const MockExam: React.FC<MockExamProps> = ({
         </div>
       )}
 
+      {/* ================= EXAM 3 SPECIFIC Q&A RENDERING ================= */}
+      {isExam3 && currentPart === 2 && currentExam3Q && (
+        <div className="manga-box p-4 sm:p-5 text-center space-y-3 shadow-[3px_3px_0px_#0f172a]">
+          <div className="flex items-center justify-between text-xs font-bold text-slate-500">
+            <span className="manga-badge bg-rose-500 text-white text-[10px] flex items-center space-x-1">
+              <Icon
+                name={
+                  currentExam3Q.category === "ORIGIN"
+                    ? "public"
+                    : currentExam3Q.category === "ADJECTIVE"
+                    ? "palette"
+                    : currentExam3Q.category === "ORDER"
+                    ? "shopping_bag"
+                    : currentExam3Q.category === "DATE_READING"
+                    ? "calendar_month"
+                    : currentExam3Q.category === "BIRTHDAY"
+                    ? "cake"
+                    : "today"
+                }
+                className="text-xs"
+              />
+              <span>{currentExam3Q.categoryTitleTh}</span>
+            </span>
+            <span className="text-xs font-black text-slate-700">
+              ข้อที่ {stepIndex + 1} / 10
+            </span>
+          </div>
+
+          {/* Visual Display Frame */}
+          <div className="w-full max-w-[240px] sm:max-w-[320px] aspect-[16/10] sm:aspect-[4/3] max-h-[160px] sm:max-h-[220px] mx-auto rounded-2xl border-2 border-slate-900 shadow-[2px_2px_0px_#0f172a] sm:shadow-[3px_3px_0px_#0f172a] overflow-hidden bg-slate-100 flex items-center justify-center relative">
+            <SvgImage
+              svgContent={currentExam3Q.imageSvg}
+              alt={currentExam3Q.categoryTitleTh}
+              fit="contain"
+              position="center"
+              className="w-full h-full p-2"
+            />
+            {currentExam3Q.displayValue && (
+              <div className="absolute bottom-2 bg-slate-900/90 text-white text-[11px] sm:text-xs font-black px-2.5 py-1 rounded-xl border border-slate-700 shadow-md">
+                {currentExam3Q.displayValue}
+              </div>
+            )}
+          </div>
+
+          {/* Examiner Speech Bubble */}
+          <div className="speech-bubble p-3 text-left bg-rose-50/70 border-2 border-rose-900">
+            <div className="flex items-center justify-between mb-1 pb-1 border-b border-rose-200">
+              <div className="flex items-center space-x-1.5">
+                <Icon name={examiner.avatarIcon} className="text-base text-rose-800" />
+                <span className="text-[11px] font-black text-slate-900">
+                  อาจารย์ AI ({examiner.characterNameJa})
+                </span>
+              </div>
+              <button
+                onClick={() => promptExam3Question(currentExam3Q)}
+                className="inline-flex items-center space-x-1 text-xs text-rose-600 font-bold hover:underline"
+              >
+                <Icon name="volume_up" className="text-sm" />
+                <span>ฟังเสียงคำถาม</span>
+              </button>
+            </div>
+
+            <h4 className="text-base font-extrabold text-slate-900 font-jp">
+              {currentExam3Q.questionJa}
+            </h4>
+            {userConfig.showRomaji && (
+              <p className="text-xs font-mono text-slate-500 mt-0.5">
+                {currentExam3Q.questionRomaji}
+              </p>
+            )}
+          </div>
+
+          {/* Official Rule Note from PDF */}
+          <div className="p-2.5 rounded-xl bg-amber-50 border-2 border-amber-300 text-left flex items-start space-x-2 text-slate-800 shadow-[2px_2px_0px_#0f172a]">
+            <Icon name="info" className="text-base text-amber-700 shrink-0 mt-0.5" />
+            <div className="text-[11px] sm:text-xs font-bold leading-relaxed">
+              <span className="text-amber-900 font-black">เกณฑ์ตอบสอบจริง: </span>
+              {currentExam3Q.ruleNoteTh}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* ================= OTHER EXAMS PART 1: PRESENTATION / DIALOGUE ================= */}
-      {!isExam2 && currentPart === 1 && currentP1Line && (
+      {!isTwoPartExam && currentPart === 1 && currentP1Line && (
         <div className="manga-box p-4 sm:p-5 text-center space-y-3 shadow-[3px_3px_0px_#0f172a]">
           <div className="flex items-center justify-between text-xs font-bold text-slate-500">
             <span className="manga-badge bg-rose-500 text-white text-[10px]">
@@ -1066,7 +1487,7 @@ export const MockExam: React.FC<MockExamProps> = ({
       )}
 
       {/* ================= OTHER EXAMS PART 2: VOCABULARY ================= */}
-      {!isExam2 && currentPart === 2 && currentVocabItem && (
+      {!isTwoPartExam && currentPart === 2 && currentVocabItem && (
         <div className="manga-box p-4 sm:p-5 text-center space-y-3 shadow-[3px_3px_0px_#0f172a]">
           <div className="flex items-center justify-between text-xs font-bold text-slate-500">
             <span className="manga-badge bg-amber-400 text-slate-900 text-[10px]">
@@ -1096,7 +1517,7 @@ export const MockExam: React.FC<MockExamProps> = ({
       )}
 
       {/* ================= OTHER EXAMS PART 3: SITUATIONAL SVG ================= */}
-      {!isExam2 && currentPart === 3 && currentImgItem && (
+      {!isTwoPartExam && currentPart === 3 && currentImgItem && (
         <div className="manga-box p-4 sm:p-5 text-center space-y-3 shadow-[3px_3px_0px_#0f172a]">
           <div className="flex items-center justify-between text-xs font-bold text-slate-500">
             <span className="manga-badge bg-emerald-500 text-white text-[10px]">
@@ -1107,8 +1528,8 @@ export const MockExam: React.FC<MockExamProps> = ({
             </span>
           </div>
 
-          {/* Manga Image Frame - 4:3 Aspect Ratio */}
-          <div className="w-full max-w-[260px] sm:max-w-[320px] md:max-w-[360px] aspect-[4/3] mx-auto rounded-2xl border-2 border-slate-900 shadow-[3px_3px_0px_#0f172a] overflow-hidden bg-slate-100 flex items-center justify-center">
+          {/* Manga Image Frame */}
+          <div className="w-full max-w-[240px] sm:max-w-[320px] aspect-[16/10] sm:aspect-[4/3] max-h-[160px] sm:max-h-[220px] mx-auto rounded-2xl border-2 border-slate-900 shadow-[2px_2px_0px_#0f172a] sm:shadow-[3px_3px_0px_#0f172a] overflow-hidden bg-slate-100 flex items-center justify-center">
             <SvgImage
               svgContent={currentImgItem.imageSvg}
               imageUrl={currentImgItem.imageUrl}
@@ -1158,7 +1579,7 @@ export const MockExam: React.FC<MockExamProps> = ({
       <div className="manga-box p-3 sm:p-4 text-left shadow-[2px_2px_0px_#0f172a]">
         <div className="flex items-center justify-between mb-1">
           <label className="block text-[11px] font-bold text-slate-700">
-            คำตอบของคุณ (กดปุ่มไมค์ด้านล่างเพื่อพูด หรือพิมพ์):
+            คำตอบของคุณ:
           </label>
           {isInputFocused && (
             <button
@@ -1184,7 +1605,7 @@ export const MockExam: React.FC<MockExamProps> = ({
           onBlur={() => {
             setTimeout(() => setIsInputFocused(false), 150);
           }}
-          placeholder="พูดคำตอบภาษาญี่ปุ่น หรือพิมพ์ตอบที่นี่..."
+          placeholder="แตะปุ่มไมค์ด้านล่างเพื่อพูด หรือพิมพ์ตอบ..."
           className="w-full px-3 py-2 sm:py-2.5 rounded-xl border-2 border-slate-900 text-xs font-semibold focus:outline-none focus:bg-white bg-slate-50 font-jp"
         />
         {speechStatus && (
@@ -1195,24 +1616,35 @@ export const MockExam: React.FC<MockExamProps> = ({
       </div>
 
       {/* Compact Floating Bottom Action Bar */}
-      <div className="manga-floating-bar fixed bottom-0 left-0 right-0 z-40 px-3 sm:px-4 py-2 sm:py-2.5 pb-[max(0.75rem,calc(env(safe-area-inset-bottom)+0.5rem))]">
+      <div className="manga-floating-bar fixed bottom-0 left-0 right-0 z-40 px-3 sm:px-4 py-2 sm:py-2.5 pb-[max(0.75rem,calc(env(safe-area-inset-bottom)+0.5rem))] bg-white/95 backdrop-blur border-t-2 border-slate-900 shadow-[0_-3px_0px_#0f172a]">
         <div className="max-w-2xl mx-auto flex items-center justify-between gap-2.5">
           <button
             onClick={toggleRecording}
-            className={`manga-btn flex-1 py-2.5 sm:py-3 px-3 sm:px-4 rounded-2xl flex items-center justify-center space-x-1.5 text-xs sm:text-sm text-white min-w-0 ${
+            className={`manga-btn flex-1 py-2.5 sm:py-3 px-3 sm:px-4 rounded-2xl flex items-center justify-center space-x-2 text-xs sm:text-sm text-white min-w-0 transition-all ${
               isRecording
-                ? "bg-red-600 manga-recording-pulse"
-                : "bg-rose-600 hover:bg-rose-500"
+                ? "bg-red-600 shadow-[2px_2px_0px_#0f172a] manga-recording-pulse"
+                : "bg-rose-600 hover:bg-rose-500 shadow-[2px_2px_0px_#0f172a]"
             }`}
           >
             <Icon
-              name={isRecording ? "mic_off" : "mic"}
-              className="text-xl sm:text-2xl shrink-0"
+              name={isRecording ? "mic" : "mic_none"}
+              className={`text-xl sm:text-2xl shrink-0 ${isRecording ? "animate-pulse" : ""}`}
               filled
             />
             <span className="font-black tracking-tight truncate">
-              {isRecording ? "กำลังฟัง... (แตะหยุด)" : "พูดคำตอบ"}
+              {isRecording ? "กำลังฟังเสียงคุณ..." : "แตะเพื่อพูดคำตอบ"}
             </span>
+
+            {/* Manga Retro Equalizer Bars */}
+            {isRecording && (
+              <div className="flex items-end space-x-1 h-5 px-1.5 py-0.5 bg-slate-950/80 rounded-lg border border-slate-900 shrink-0">
+                <span className="w-1 bg-amber-400 rounded-t animate-[bounce_0.6s_ease-in-out_infinite] h-2.5" />
+                <span className="w-1 bg-rose-400 rounded-t animate-[bounce_0.4s_ease-in-out_infinite] h-4" />
+                <span className="w-1 bg-emerald-400 rounded-t animate-[bounce_0.5s_ease-in-out_infinite] h-5" />
+                <span className="w-1 bg-sky-400 rounded-t animate-[bounce_0.35s_ease-in-out_infinite] h-3" />
+                <span className="w-1 bg-amber-400 rounded-t animate-[bounce_0.7s_ease-in-out_infinite] h-4.5" />
+              </div>
+            )}
           </button>
 
           <button
@@ -1220,7 +1652,7 @@ export const MockExam: React.FC<MockExamProps> = ({
             className="manga-btn px-4 sm:px-6 py-2.5 sm:py-3 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-900 text-xs sm:text-sm font-black flex items-center space-x-1 shrink-0 shadow-[2px_2px_0px_#0f172a]"
           >
             <span>
-              {isExam2
+              {isTwoPartExam
                 ? currentPart === 2 && stepIndex === 9
                   ? "ส่งข้อสอบ"
                   : "ข้อถัดไป"

@@ -111,7 +111,7 @@ export function sanitizeJapaneseForTTS(text: string): string {
  */
 export async function prefetchSeiyuuAudio(
   text: string,
-  seiyuuId: SeiyuuVoiceId = "web_speech",
+  seiyuuId: SeiyuuVoiceId = "saori_hayami",
   rate: number = 0.9,
   _provider?: "web_speech" | "fish_audio",
   _fishAudioApiKey?: string
@@ -142,7 +142,7 @@ export async function prefetchSeiyuuAudio(
 
 export async function speakWithSeiyuuVoice(
   text: string,
-  seiyuuId: SeiyuuVoiceId = "web_speech",
+  seiyuuId: SeiyuuVoiceId = "saori_hayami",
   rate: number = 0.9,
   lang: string = "ja-JP",
   _provider?: "web_speech" | "fish_audio",
@@ -197,22 +197,22 @@ export async function speakWithSeiyuuVoice(
 }
 
 export async function playSeiyuuGreeting(
-  seiyuuId: SeiyuuVoiceId = "web_speech",
+  seiyuuId: SeiyuuVoiceId = "saori_hayami",
   rate: number = 0.9,
   provider?: "web_speech" | "fish_audio",
   fishAudioApiKey?: string
 ): Promise<void> {
-  const seiyuu = SEIYUU_ROSTER.find((s) => s.id === seiyuuId) || SEIYUU_ROSTER[0];
+  const seiyuu = SEIYUU_ROSTER.find((s) => s.id === seiyuuId) || SEIYUU_ROSTER[1] || SEIYUU_ROSTER[0];
   await speakWithSeiyuuVoice(seiyuu.greetingJa, seiyuuId, rate, "ja-JP", provider, fishAudioApiKey);
 }
 
 export async function playSeiyuuPraise(
-  seiyuuId: SeiyuuVoiceId = "web_speech",
+  seiyuuId: SeiyuuVoiceId = "saori_hayami",
   rate: number = 0.9,
   provider?: "web_speech" | "fish_audio",
   fishAudioApiKey?: string
 ): Promise<void> {
-  const seiyuu = SEIYUU_ROSTER.find((s) => s.id === seiyuuId) || SEIYUU_ROSTER[0];
+  const seiyuu = SEIYUU_ROSTER.find((s) => s.id === seiyuuId) || SEIYUU_ROSTER[1] || SEIYUU_ROSTER[0];
   await speakWithSeiyuuVoice(seiyuu.praiseJa, seiyuuId, rate, "ja-JP", provider, fishAudioApiKey);
 }
 
