@@ -479,6 +479,7 @@ export const VOCABULARY_LIST: VocabItem[] = [
 const imageConfigMap = new Map<
   string,
   {
+    imagePath?: string;
     imageUrl?: string;
     alt?: string;
     title?: string;
@@ -499,6 +500,7 @@ const RAW_IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerRomaji: "Kore wa isu desu.",
     keywords: ["isu", "kore wa isu desu", "いす", "椅子", "hon", "hon desu", "kore wa hon desu", "ほん", "本"],
     imageType: "url",
+    imagePath: "/images/situations/ch1_6/q1.webp",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/5/54/Wikipe-tan_Currently_reading_the_book.png",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#F8FAFC"/>
@@ -524,6 +526,7 @@ const RAW_IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerRomaji: "Anohito wa Nihon kara kimashita.",
     keywords: ["anohito wa nihon kara kimashita", "nihon kara kimashita", "にほんから きました", "日本から来ました"],
     imageType: "url",
+    imagePath: "/images/situations/ch1_6/q2.webp",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Wikipe-tan_kimono.png",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#FEF2F2"/>
@@ -546,6 +549,7 @@ const RAW_IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerRomaji: "Anohito wa ginkō-in desu.",
     keywords: ["anohito wa ginkoin desu", "ginkoin desu", "ginko-in", "ぎんこういんです", "銀行員です", "sensei", "sensei desu", "anohito wa sensei desu", "せんせい", "先生"],
     imageType: "url",
+    imagePath: "/images/situations/ch1_6/q3.webp",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/75/Adult_Commons-tan.png",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#EFF6FF"/>
@@ -570,6 +574,7 @@ const RAW_IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerRomaji: "Kore wa nihongo no zasshi desu.",
     keywords: ["kore wa nihongo no zasshi desu", "nihongo no zasshi desu", "nihongo no zasshi", "にほんごの ざっしです", "日本語の雑誌です", "kuruma no zasshi", "kuruma no zasshi desu", "zasshi", "くるまの ざっし", "雑誌"],
     imageType: "url",
+    imagePath: "/images/situations/ch1_6/q4.webp",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Comic-book.png",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#FDF4FF"/>
@@ -593,6 +598,7 @@ const RAW_IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerRomaji: "Kochira wa uketsuke desu.",
     keywords: ["kochira wa uketsuke desu", "uketsuke desu", "uketsuke", "うけつけです", "受付です", "pen", "pen desu", "nooto", "nooto desu", "enpitsu", "ペン", "ノート", "えんぴつ"],
     imageType: "url",
+    imagePath: "/images/situations/ch1_6/q5.webp",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/0/0d/Wikipe-tan_wearing_Hotel_Maid_attire_02.png",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#F0FDF4"/>
@@ -615,6 +621,7 @@ const RAW_IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerRomaji: "Watashi no kasa desu.",
     keywords: ["watashi no kasa desu", "watashi no kasa", "kasa", "kasa desu", "わたしの かさです", "私の傘です", "かさ"],
     imageType: "url",
+    imagePath: "/images/situations/ch1_6/q6.webp",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c6/Karakasa.jpg",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#EFF6FF"/>
@@ -636,6 +643,7 @@ const RAW_IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerRomaji: "Kore wa tokei desu.",
     keywords: ["kore wa tokei desu", "tokei desu", "tokei", "とけいです", "時計です"],
     imageType: "url",
+    imagePath: "/images/situations/ch1_6/q7.webp",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/4/45/MontreGousset001.jpg",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#FFFBEB"/>
@@ -659,6 +667,7 @@ const RAW_IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerRomaji: "Kore wa kuruma no hon desu.",
     keywords: ["kore wa kuruma no hon desu", "kuruma no hon desu", "jidousha no hon desu", "くるまの ほんです", "車の本です", "nihongo no hon", "hon", "にほんごの ほん", "日本語の本"],
     imageType: "url",
+    imagePath: "/images/situations/ch1_6/q8.webp",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Chibi_Mirai_Suenaga_itasha.png/500px-Chibi_Mirai_Suenaga_itasha.png",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#F8FAFC"/>
@@ -684,6 +693,7 @@ const RAW_IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerRomaji: "Ima san-ji desu.",
     keywords: ["ima sanji desu", "sanji desu", "choudo sanji", "いま さんじです", "3時です"],
     imageType: "url",
+    imagePath: "/images/situations/ch1_6/q_ch3_1.webp",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Clock_03-00.svg",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#F0F9FF"/>
@@ -712,6 +722,7 @@ const RAW_IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerRomaji: "Ku-ji kara go-ji made desu.",
     keywords: ["kuji kara goji made desu", "kuji kara goji made", "9-ji kara 5-ji made", "くじから ごじまでです", "9時から5時まで"],
     imageType: "url",
+    imagePath: "/images/situations/ch1_6/q_ch3_2.webp",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c6/Anime_calendar_-_8502402804.jpg",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#F8FAFC"/>
@@ -735,6 +746,7 @@ const RAW_IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerRomaji: "Koko wa shokudō desu.",
     keywords: ["koko wa shokudo desu", "shokudou desu", "shokudo", "しょくどうです", "食堂です"],
     imageType: "url",
+    imagePath: "/images/situations/ch1_6/q_ch3_3.webp",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Hina_Matsuri.jpg/500px-Hina_Matsuri.jpg",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#FFFBEB"/>
@@ -761,6 +773,7 @@ const RAW_IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerRomaji: "Kaban wa san-zen-en desu.",
     keywords: ["sanzen en desu", "san-zen-en", "sanzenen", "さんぜんえんです", "3000円です"],
     imageType: "url",
+    imagePath: "/images/situations/ch1_6/q_ch4_1.webp",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Cosplay_of_Wikipe-tan_%28in_school_uniform_dress%29_at_NOiZUcon_2023.jpg/500px-Cosplay_of_Wikipe-tan_%28in_school_uniform_dress%29_at_NOiZUcon_2023.jpg",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#F8FAFC"/>
@@ -787,6 +800,7 @@ const RAW_IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerRomaji: "Kore wa pasokon desu.",
     keywords: ["pasokon desu", "konpyuta desu", "konpyuutaa", "パソコンです", "コンピューターです"],
     imageType: "url",
+    imagePath: "/images/situations/ch1_6/q_ch4_2.webp",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/1/16/Wikipe-tan_at_her_computer.png",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#F1F5F9"/>
@@ -814,6 +828,7 @@ const RAW_IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerRomaji: "Kono aoi T-shatsu desu.",
     keywords: ["aoi t-shatsu desu", "aoi tshatsu", "kono aoi", "あおい Tシャツです", "青いTシャツです"],
     imageType: "url",
+    imagePath: "/images/situations/ch1_6/q_ch5_1.webp",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b5/Blue_Admin_T-shirt.svg",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#F0F9FF"/>
@@ -835,6 +850,7 @@ const RAW_IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerRomaji: "Ringo o futatsu kudasai.",
     keywords: ["ringo o futatsu kudasai", "futatsu kudasai", "futatsu", "ふたつ ください", "2つください"],
     imageType: "url",
+    imagePath: "/images/situations/ch1_6/q_ch5_2.webp",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/fe/Apple_%28PSF%29.png",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#FEF2F2"/>
@@ -861,6 +877,7 @@ const RAW_IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerRomaji: "Kore wa Suisu no tokei desu.",
     keywords: ["suisu no tokei desu", "suisu no tokei", "suisu", "スイスの とけいです", "スイスの時計です"],
     imageType: "url",
+    imagePath: "/images/situations/ch1_6/q_ch5_3.webp",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/3/33/BwcOmega911a.jpg",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#FFFBEB"/>
@@ -887,6 +904,7 @@ const RAW_IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerRomaji: "Kyō wa getsu-yōbi desu.",
     keywords: ["getsuyoubi desu", "getsuyobi desu", "getsu-yobi", "げつようびです", "月曜日です"],
     imageType: "url",
+    imagePath: "/images/situations/ch1_6/q_ch6_1.webp",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c6/Anime_calendar_-_8502402804.jpg",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#F8FAFC"/>
@@ -915,6 +933,7 @@ const RAW_IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerRomaji: "Ashita kūkō e ikimasu.",
     keywords: ["ashita kuukou e ikimasu", "kuukou e ikimasu", "kuko e ikimasu", "くうこうへ いきます", "空港へ行きます"],
     imageType: "url",
+    imagePath: "/images/situations/ch1_6/q_ch6_2.webp",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/JC_Staff%E8%A3%BD%E4%BD%9CMirai_Millennium.jpg/500px-JC_Staff%E8%A3%BD%E4%BD%9CMirai_Millennium.jpg",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#EFF6FF"/>
@@ -939,6 +958,7 @@ const RAW_IMAGE_QUESTIONS: ImageQuestion[] = [
     expectedAnswerRomaji: "Koko wa eki desu.",
     keywords: ["koko wa eki desu", "eki desu", "eki", "えきです", "駅です"],
     imageType: "url",
+    imagePath: "/images/situations/ch1_6/q_ch6_3.webp",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Culture_Japan_booth_at_Anime_Expo_20130703.jpg/500px-Culture_Japan_booth_at_Anime_Expo_20130703.jpg",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#F0FDF4"/>
@@ -965,6 +985,7 @@ export const IMAGE_QUESTIONS: ImageQuestion[] = RAW_IMAGE_QUESTIONS.map((q) => {
   const resolvedUrl = custom?.imageUrl !== undefined ? custom.imageUrl : q.imageUrl;
   return {
     ...q,
+    imagePath: custom?.imagePath || q.imagePath,
     imageUrl: resolvedUrl,
     imageType: resolvedUrl ? "url" : "svg",
     fit: custom?.fit || "cover",

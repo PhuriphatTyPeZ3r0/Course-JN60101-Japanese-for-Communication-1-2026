@@ -110,6 +110,7 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
     displaySubtext: "ภาพนาฬิกาข้อมือ + ธงชาติสวิตเซอร์แลนด์ (ตรงตามสไลด์ข้อสอบ)",
     expectedAnswerJa: "Kore wa suisu no tokei desu.",
     expectedAnswerRomaji: "Kore wa suisu no tokei desu.",
+    imagePath: "/images/situations/exam3/e3_q1_suisu_tokei.webp",
     keywords: [
       "kore wa suisu no tokei desu",
       "suisu no tokei desu",
@@ -144,6 +145,88 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
     </svg>`,
   },
   {
+    id: "e3_q1_nihon_kamera",
+    category: "ORIGIN",
+    categoryIndex: 1,
+    categoryTitleTh: "1. ประเทศผู้ผลิต (แสดงรูป)",
+    categoryTitleJa: "生産国の確認",
+    questionJa: "Kore wa doko no kamera desuka?",
+    questionRomaji: "Kore wa doko no kamera desuka?",
+    questionTh: "สิ่งนี้คือกล้องถ่ายรูปของประเทศใด? (ญี่ปุ่น)",
+    displayLabel: "สินค้า + สัญชาติ",
+    displayValue: "กล้องถ่ายรูปญี่ปุ่น (日本のカメラ)",
+    displaySubtext: "ภาพกล้องถ่ายรูปในร้าน Akihabara + ป้าย Made in Japan",
+    expectedAnswerJa: "Kore wa nihon no kamera desu.",
+    expectedAnswerRomaji: "Kore wa nihon no kamera desu.",
+    imagePath: "/images/situations/exam3/e3_q1_nihon_kamera.webp",
+    keywords: [
+      "kore wa nihon no kamera desu",
+      "nihon no kamera desu",
+      "nihon no kamera",
+      "日本のカメラ",
+      "にほんのかめら",
+      "にほんのかめらです",
+    ],
+    ruleNoteTh: "ตอบเต็มประโยค: Kore wa nihon no kamera desu.",
+    imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="200" height="200" rx="16" fill="#F8FAFC"/>
+      <g transform="translate(25, 30)">
+        <rect width="60" height="45" rx="4" fill="#FFFFFF" stroke="#0F172A" stroke-width="2"/>
+        <circle cx="30" cy="22.5" r="12" fill="#DC2626"/>
+      </g>
+      <text x="100" y="58" font-family="sans-serif" font-size="24" font-weight="900" fill="#0F172A" text-anchor="middle">+</text>
+      <g transform="translate(120, 25)">
+        <rect x="5" y="15" width="50" height="35" rx="6" fill="#334155" stroke="#0F172A" stroke-width="2"/>
+        <circle cx="30" cy="32" r="12" fill="#64748B" stroke="#0F172A" stroke-width="2"/>
+      </g>
+      <rect x="20" y="145" width="160" height="32" rx="8" fill="#DC2626" stroke="#0F172A" stroke-width="2"/>
+      <text x="100" y="166" font-family="sans-serif" font-size="12" font-weight="900" fill="#FFFFFF" text-anchor="middle">日本 + カメラ (Nihon + Kamera)</text>
+    </svg>`,
+  },
+  {
+    id: "e3_q1_doitsu_kuruma",
+    category: "ORIGIN",
+    categoryIndex: 1,
+    categoryTitleTh: "1. ประเทศผู้ผลิต (แสดงรูป)",
+    categoryTitleJa: "生産国の確認",
+    questionJa: "Kore wa doko no kuruma desuka?",
+    questionRomaji: "Kore wa doko no kuruma desuka?",
+    questionTh: "สิ่งนี้คือรถยนต์ของประเทศใด? (เยอรมนี)",
+    displayLabel: "สินค้า + สัญชาติ",
+    displayValue: "รถยนต์เยอรมนี (ドイツの車)",
+    displaySubtext: "ภาพรถสปอร์ตในโชว์รูม + สัญลักษณ์เยอรมัน",
+    expectedAnswerJa: "Kore wa doitsu no kuruma desu.",
+    expectedAnswerRomaji: "Kore wa doitsu no kuruma desu.",
+    imagePath: "/images/situations/exam3/e3_q1_doitsu_kuruma.webp",
+    keywords: [
+      "kore wa doitsu no kuruma desu",
+      "kore wa doitsu no jidousha desu",
+      "doitsu no kuruma desu",
+      "doitsu no kuruma",
+      "ドイツの車",
+      "どいつのくるま",
+      "どいつのくるまです",
+    ],
+    ruleNoteTh: "ตอบเต็มประโยค: Kore wa doitsu no kuruma desu.",
+    imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="200" height="200" rx="16" fill="#F8FAFC"/>
+      <g transform="translate(25, 30)">
+        <rect width="60" height="45" rx="4" fill="#FFFFFF" stroke="#0F172A" stroke-width="2"/>
+        <rect x="0" y="0" width="60" height="15" rx="2" fill="#0F172A"/>
+        <rect x="0" y="15" width="60" height="15" fill="#DC2626"/>
+        <rect x="0" y="30" width="60" height="15" rx="2" fill="#FBBF24"/>
+      </g>
+      <text x="100" y="58" font-family="sans-serif" font-size="24" font-weight="900" fill="#0F172A" text-anchor="middle">+</text>
+      <g transform="translate(115, 25)">
+        <path d="M5 40 L15 25 L45 25 L55 40 L60 45 L60 55 L5 55 Z" fill="#3B82F6" stroke="#0F172A" stroke-width="2"/>
+        <circle cx="18" cy="55" r="8" fill="#1E293B" stroke="#FFFFFF" stroke-width="2"/>
+        <circle cx="47" cy="55" r="8" fill="#1E293B" stroke="#FFFFFF" stroke-width="2"/>
+      </g>
+      <rect x="20" y="145" width="160" height="32" rx="8" fill="#0F172A" stroke="#0F172A" stroke-width="2"/>
+      <text x="100" y="166" font-family="sans-serif" font-size="12" font-weight="900" fill="#FFFFFF" text-anchor="middle">ドイツ + 車 (Doitsu + Kuruma)</text>
+    </svg>`,
+  },
+  {
     id: "e3_q1_nihon_kuruma",
     category: "ORIGIN",
     categoryIndex: 1,
@@ -157,6 +240,7 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
     displaySubtext: "ภาพรถยนต์ + ธงชาติญี่ปุ่น",
     expectedAnswerJa: "Kore wa nihon no jidōsha desu.",
     expectedAnswerRomaji: "Kore wa nihon no jidōsha desu.",
+    imagePath: "/images/situations/exam3/e3_q1_nihon_kuruma.webp",
     keywords: [
       "kore wa nihon no jidousha desu",
       "kore wa nihon no jidosha desu",
@@ -205,6 +289,7 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
     displaySubtext: "ภาพขวดไวน์ + ธงชาติอิตาลี",
     expectedAnswerJa: "Kore wa itaria no wain desu.",
     expectedAnswerRomaji: "Kore wa itaria no wain desu.",
+    imagePath: "/images/situations/exam3/e3_q1_itaria_wain.webp",
     keywords: [
       "kore wa itaria no wain desu",
       "itaria no wain desu",
@@ -246,6 +331,7 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
     displaySubtext: "ภาพกล้องถ่ายรูป + ธงชาติเยอรมนี",
     expectedAnswerJa: "Kore wa doitsu no kamera desu.",
     expectedAnswerRomaji: "Kore wa doitsu no kamera desu.",
+    imagePath: "/images/situations/exam3/e3_q1_doitsu_kamera.webp",
     keywords: [
       "kore wa doitsu no kamera desu",
       "doitsu no kamera desu",
@@ -289,6 +375,7 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
     displaySubtext: "ภาพคอมพิวเตอร์โน้ตบุ๊ก + ธงชาติสหรัฐฯ",
     expectedAnswerJa: "Kore wa amerika no konpyūtā desu.",
     expectedAnswerRomaji: "Kore wa amerika no konpyūtā desu.",
+    imagePath: "/images/situations/exam3/e3_q1_amerika_konpyuta.webp",
     keywords: [
       "kore wa amerika no konpyuta desu",
       "kore wa amerika no konpyuutaa desu",
@@ -335,6 +422,7 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
     displaySubtext: "ภาพเสื้อยืด + ธงชาติไทย",
     expectedAnswerJa: "Kore wa tai no T-shatsu desu.",
     expectedAnswerRomaji: "Kore wa tai no T-shatsu desu.",
+    imagePath: "/images/situations/exam3/e3_q1_tai_tshatsu.webp",
     keywords: [
       "kore wa tai no tshatsu desu",
       "kore wa tai no tiishatsu desu",
@@ -368,6 +456,100 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
   // หมวดที่ 2: คุณศัพท์สี / ขนาด (Kore wa nan desuka?)
   // =========================================================================
   {
+    id: "e3_q2_oishii_resutoran",
+    category: "ADJECTIVE",
+    categoryIndex: 2,
+    categoryTitleTh: "2. คุณศัพท์บรรยายสิ่งของ/สถานที่ (แสดงรูป)",
+    categoryTitleJa: "物の特徴",
+    questionJa: "Kono resutoran wa dō desuka?",
+    questionRomaji: "Kono resutoran wa dō desuka?",
+    questionTh: "ร้านอาหารแห่งนี้เป็นอย่างไร? (อร่อย / คึกคักมีชีวิตชีวา)",
+    displayLabel: "สถานที่ + คุณศัพท์",
+    displayValue: "ร้านอาหารอร่อย (美味しいレストラン)",
+    displaySubtext: "ภาพหน้าร้านราเม็งบรรยากาศอบอุ่นคึกคัก",
+    expectedAnswerJa: "Kono resutoran wa oishii desu.",
+    expectedAnswerRomaji: "Kono resutoran wa oishii desu.",
+    imagePath: "/images/situations/exam3/e3_q2_oishii_resutoran.webp",
+    keywords: [
+      "kono resutoran wa oishii desu",
+      "resutoran wa oishii desu",
+      "oishii desu",
+      "nigiyaka desu",
+      "おいしいです",
+      "にぎやかです",
+      "美味しいです",
+    ],
+    ruleNoteTh: "ตอบเต็มประโยค: Kono resutoran wa oishii desu. (หรือ nigiyaka desu)",
+    imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="200" height="200" rx="16" fill="#FFFBEB"/>
+      <rect x="30" y="30" width="140" height="90" rx="12" fill="#D97706"/>
+      <text x="100" y="80" font-family="sans-serif" font-size="28" font-weight="900" fill="#FFFFFF" text-anchor="middle">ラーメン</text>
+      <rect x="20" y="145" width="160" height="32" rx="8" fill="#D97706" stroke="#0F172A" stroke-width="2"/>
+      <text x="100" y="166" font-family="sans-serif" font-size="12" font-weight="900" fill="#FFFFFF" text-anchor="middle">美味しい (Oishii)</text>
+    </svg>`,
+  },
+  {
+    id: "e3_q2_shizuka_machi",
+    category: "ADJECTIVE",
+    categoryIndex: 2,
+    categoryTitleTh: "2. คุณศัพท์บรรยายสิ่งของ/สถานที่ (แสดงรูป)",
+    categoryTitleJa: "物の特徴",
+    questionJa: "Kono machi wa dō desuka?",
+    questionRomaji: "Kono machi wa dō desuka?",
+    questionTh: "เมืองแห่งนี้เป็นอย่างไร? (เงียบสงบ)",
+    displayLabel: "สถานที่ + คุณศัพท์",
+    displayValue: "เมืองเงียบสงบ (静かな町)",
+    displaySubtext: "ภาพถนนย่านที่พักอาศัยเงียบสงบ มีกลีบซากุระ",
+    expectedAnswerJa: "Kono machi wa shizuka desu.",
+    expectedAnswerRomaji: "Kono machi wa shizuka desu.",
+    imagePath: "/images/situations/exam3/e3_q2_shizuka_machi.webp",
+    keywords: [
+      "kono machi wa shizuka desu",
+      "machi wa shizuka desu",
+      "shizuka desu",
+      "しずかです",
+      "静かです",
+      "静かな町",
+    ],
+    ruleNoteTh: "ตอบเต็มประโยค: Kono machi wa shizuka desu. (คำคุณศัพท์ na ตัด na ใส่ desu)",
+    imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="200" height="200" rx="16" fill="#F0FDF4"/>
+      <circle cx="100" cy="70" r="40" fill="#86EFAC"/>
+      <rect x="20" y="145" width="160" height="32" rx="8" fill="#16A34A" stroke="#0F172A" stroke-width="2"/>
+      <text x="100" y="166" font-family="sans-serif" font-size="12" font-weight="900" fill="#FFFFFF" text-anchor="middle">静か (Shizuka)</text>
+    </svg>`,
+  },
+  {
+    id: "e3_q2_isogashii_shigoto",
+    category: "ADJECTIVE",
+    categoryIndex: 2,
+    categoryTitleTh: "2. คุณศัพท์บรรยายสิ่งของ/สถานที่ (แสดงรูป)",
+    categoryTitleJa: "物の特徴",
+    questionJa: "O shigoto wa dō desuka?",
+    questionRomaji: "O shigoto wa dō desuka?",
+    questionTh: "งานของคุณเป็นอย่างไรบ้าง? (ยุ่งมาก)",
+    displayLabel: "สถานการณ์ + คุณศัพท์",
+    displayValue: "งานยุ่ง (忙しい仕事)",
+    displaySubtext: "ภาพโต๊ะทำงานมีเอกสารกองและแล็ปท็อป",
+    expectedAnswerJa: "Watashi no shigoto wa isogashii desu.",
+    expectedAnswerRomaji: "Watashi no shigoto wa isogashii desu.",
+    imagePath: "/images/situations/exam3/e3_q2_isogashii_shigoto.webp",
+    keywords: [
+      "watashi no shigoto wa isogashii desu",
+      "shigoto wa isogashii desu",
+      "isogashii desu",
+      "いそがしいです",
+      "忙しいです",
+    ],
+    ruleNoteTh: "ตอบเต็มประโยค: Watashi no shigoto wa isogashii desu. (หรือ isogashii desu)",
+    imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="200" height="200" rx="16" fill="#EFF6FF"/>
+      <rect x="40" y="35" width="120" height="70" rx="8" fill="#3B82F6"/>
+      <rect x="20" y="145" width="160" height="32" rx="8" fill="#2563EB" stroke="#0F172A" stroke-width="2"/>
+      <text x="100" y="166" font-family="sans-serif" font-size="12" font-weight="900" fill="#FFFFFF" text-anchor="middle">忙しい (Isogashii)</text>
+    </svg>`,
+  },
+  {
     id: "e3_q2_chiisai_tokei",
     category: "ADJECTIVE",
     categoryIndex: 2,
@@ -381,6 +563,7 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
     displaySubtext: "ภาพนาฬิกาเรือนขนาดกะทัดรัด/เล็ก (ตรงตามสไลด์หน้า 6)",
     expectedAnswerJa: "Kore wa chiisai tokei desu.",
     expectedAnswerRomaji: "Kore wa chiisai tokei desu.",
+    imagePath: "/images/situations/exam3/e3_q2_chiisai_tokei.webp",
     keywords: [
       "kore wa chiisai tokei desu",
       "chiisai tokei desu",
@@ -421,6 +604,7 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
     displaySubtext: "ภาพร่มกางคันใหญ่ (ตรงตามสไลด์หน้า 7)",
     expectedAnswerJa: "Kore wa ōkii kasa desu.",
     expectedAnswerRomaji: "Kore wa ōkii kasa desu.",
+    imagePath: "/images/situations/exam3/e3_q2_okii_kasa.webp",
     keywords: [
       "kore wa okii kasa desu",
       "kore wa ookii kasa desu",
@@ -461,6 +645,7 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
     displaySubtext: "ภาพร่มกางสีดำสนิท (ตรงตามสไลด์หน้า 7)",
     expectedAnswerJa: "Kore wa kuroi kasa desu.",
     expectedAnswerRomaji: "Kore wa kuroi kasa desu.",
+    imagePath: "/images/situations/exam3/e3_q2_kuroi_kasa.webp",
     keywords: [
       "kore wa kuroi kasa desu",
       "kuroi kasa desu",
@@ -499,6 +684,7 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
     displaySubtext: "ภาพแท่งดินสอสีฟ้าสดใส (ตรงตามสไลด์หน้า 8)",
     expectedAnswerJa: "Kore wa aoi enpitsu desu.",
     expectedAnswerRomaji: "Kore wa aoi enpitsu desu.",
+    imagePath: "/images/situations/exam3/e3_q2_aoi_enpitsu.webp",
     keywords: [
       "kore wa aoi enpitsu desu",
       "aoi enpitsu desu",
@@ -539,6 +725,7 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
     displaySubtext: "ภาพกระเป๋าถือสีแดง",
     expectedAnswerJa: "Kore wa akai kaban desu.",
     expectedAnswerRomaji: "Kore wa akai kaban desu.",
+    imagePath: "/images/situations/exam3/e3_q2_akai_kaban.webp",
     keywords: [
       "kore wa akai kaban desu",
       "akai kaban desu",
@@ -577,6 +764,7 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
     displaySubtext: "ภาพเสื้อยืดสีขาวสะอาด",
     expectedAnswerJa: "Kore wa shiroi T-shatsu desu.",
     expectedAnswerRomaji: "Kore wa shiroi T-shatsu desu.",
+    imagePath: "/images/situations/exam3/e3_q2_shiroi_tshatsu.webp",
     keywords: [
       "kore wa shiroi tshatsu desu",
       "kore wa shiroi tiishatsu desu",
@@ -613,6 +801,7 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
     displaySubtext: "ภาพปกหนังสือสีเหลือง",
     expectedAnswerJa: "Kore wa kiiroi hon desu.",
     expectedAnswerRomaji: "Kore wa kiiroi hon desu.",
+    imagePath: "/images/situations/exam3/e3_q2_kiiroi_hon.webp",
     keywords: [
       "kore wa kiiroi hon desu",
       "kiiroi hon desu",
@@ -641,6 +830,123 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
   // หมวดที่ 3: สั่งซื้อสินค้าตามจำนวนในภาพ (Sono .. o .. kudasai)
   // =========================================================================
   {
+    id: "e3_q3_ramen_futatsu",
+    category: "ORDER",
+    categoryIndex: 3,
+    categoryTitleTh: "3. สั่งซื้อสินค้าตามจำนวนในภาพ",
+    categoryTitleJa: "注文 (いらっしゃいませ)",
+    questionJa: "いらっしゃいませ！ (Irasshaimase!)",
+    questionRomaji: "Irasshaimase!",
+    questionTh: "ยินดีต้อนรับครับ/ค่ะ! รับอะไรดีครับ? (ราเม็ง 2 ชาม)",
+    displayLabel: "สินค้า + จำนวน",
+    displayValue: "ราเม็ง 2 ชาม (ラーメン 2杯)",
+    displaySubtext: "ภาพราเม็งร้อนๆ ควันฉุย 2 ชามบนเคาน์เตอร์",
+    expectedAnswerJa: "Sono rāmen o futatsu kudasai.",
+    expectedAnswerRomaji: "Sono rāmen o futatsu kudasai.",
+    imagePath: "/images/situations/exam3/e3_q3_ramen_futatsu.webp",
+    keywords: [
+      "sono ramen o futatsu kudasai",
+      "sono raamen o futatsu kudasai",
+      "ramen o futatsu kudasai",
+      "futatsu kudasai",
+      "ラーメンを2つください",
+      "そのらーめんをふたつください",
+    ],
+    ruleNoteTh: "ใช้โครงสร้าง: Sono rāmen o futatsu kudasai. (Sono + คำนาม + o + จำนวน tsu + kudasai)",
+    imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="200" height="200" rx="16" fill="#FFFBEB"/>
+      <rect x="20" y="152" width="160" height="32" rx="8" fill="#D97706" stroke="#0F172A" stroke-width="2"/>
+      <text x="100" y="173" font-family="sans-serif" font-size="12" font-weight="900" fill="#FFFFFF" text-anchor="middle">ラーメン 2杯 (Futatsu)</text>
+    </svg>`,
+  },
+  {
+    id: "e3_q3_ocha_hitotsu",
+    category: "ORDER",
+    categoryIndex: 3,
+    categoryTitleTh: "3. สั่งซื้อสินค้าตามจำนวนในภาพ",
+    categoryTitleJa: "注文 (いらっしゃいませ)",
+    questionJa: "いらっしゃいませ！ (Irasshaimase!)",
+    questionRomaji: "Irasshaimase!",
+    questionTh: "ยินดีต้อนรับครับ/ค่ะ! รับอะไรดีครับ? (ชาเขียว 1 ถ้วย)",
+    displayLabel: "สินค้า + จำนวน",
+    displayValue: "ชาเขียว 1 ถ้วย (お茶 1杯)",
+    displaySubtext: "ภาพชาเขียวมัทฉะร้อน 1 ถ้วยในโรงน้ำชา",
+    expectedAnswerJa: "Sono ocha o hitotsu kudasai.",
+    expectedAnswerRomaji: "Sono ocha o hitotsu kudasai.",
+    imagePath: "/images/situations/exam3/e3_q3_ocha_hitotsu.webp",
+    keywords: [
+      "sono ocha o hitotsu kudasai",
+      "ocha o hitotsu kudasai",
+      "hitotsu kudasai",
+      "お茶をひとつください",
+      "お茶を1つください",
+    ],
+    ruleNoteTh: "ใช้โครงสร้าง: Sono ocha o hitotsu kudasai. (1 อย่าง: hitotsu)",
+    imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="200" height="200" rx="16" fill="#F0FDF4"/>
+      <rect x="20" y="152" width="160" height="32" rx="8" fill="#16A34A" stroke="#0F172A" stroke-width="2"/>
+      <text x="100" y="173" font-family="sans-serif" font-size="12" font-weight="900" fill="#FFFFFF" text-anchor="middle">お茶 1杯 (Hitotsu)</text>
+    </svg>`,
+  },
+  {
+    id: "e3_q3_biiru_hitotsu",
+    category: "ORDER",
+    categoryIndex: 3,
+    categoryTitleTh: "3. สั่งซื้อสินค้าตามจำนวนในภาพ",
+    categoryTitleJa: "注文 (いらっしゃいませ)",
+    questionJa: "いらっしゃいませ！ (Irasshaimase!)",
+    questionRomaji: "Irasshaimase!",
+    questionTh: "ยินดีต้อนรับครับ/ค่ะ! รับอะไรดีครับ? (เบียร์ 1 แก้ว)",
+    displayLabel: "สินค้า + จำนวน",
+    displayValue: "เบียร์ 1 แก้ว (ビール 1杯)",
+    displaySubtext: "ภาพแก้วเบียร์สดเย็นฉ่ำ 1 แก้วในร้านอิซากายะ",
+    expectedAnswerJa: "Sono bīru o hitotsu kudasai.",
+    expectedAnswerRomaji: "Sono bīru o hitotsu kudasai.",
+    imagePath: "/images/situations/exam3/e3_q3_biiru_hitotsu.webp",
+    keywords: [
+      "sono biiru o hitotsu kudasai",
+      "biiru o hitotsu kudasai",
+      "hitotsu kudasai",
+      "ビールをひとつください",
+      "ビールを1つください",
+    ],
+    ruleNoteTh: "ใช้โครงสร้าง: Sono bīru o hitotsu kudasai. (1 แก้ว: hitotsu หรือ ippai)",
+    imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="200" height="200" rx="16" fill="#FEF3C7"/>
+      <rect x="20" y="152" width="160" height="32" rx="8" fill="#D97706" stroke="#0F172A" stroke-width="2"/>
+      <text x="100" y="173" font-family="sans-serif" font-size="12" font-weight="900" fill="#FFFFFF" text-anchor="middle">ビール 1杯 (Hitotsu)</text>
+    </svg>`,
+  },
+  {
+    id: "e3_q3_juusu_futatsu",
+    category: "ORDER",
+    categoryIndex: 3,
+    categoryTitleTh: "3. สั่งซื้อสินค้าตามจำนวนในภาพ",
+    categoryTitleJa: "注文 (いらっしゃいませ)",
+    questionJa: "いらっしゃいませ！ (Irasshaimase!)",
+    questionRomaji: "Irasshaimase!",
+    questionTh: "ยินดีต้อนรับครับ/ค่ะ! รับอะไรดีครับ? (น้ำผลไม้ 2 แก้ว)",
+    displayLabel: "สินค้า + จำนวน",
+    displayValue: "น้ำผลไม้ 2 แก้ว (ジュース 2杯)",
+    displaySubtext: "ภาพแก้วน้ำส้มสด 2 แก้วบนโต๊ะคาเฟ่",
+    expectedAnswerJa: "Sono jūsu o futatsu kudasai.",
+    expectedAnswerRomaji: "Sono jūsu o futatsu kudasai.",
+    imagePath: "/images/situations/exam3/e3_q3_juusu_futatsu.webp",
+    keywords: [
+      "sono juusu o futatsu kudasai",
+      "juusu o futatsu kudasai",
+      "futatsu kudasai",
+      "ジュースをふたつください",
+      "ジュースを2つください",
+    ],
+    ruleNoteTh: "ใช้โครงสร้าง: Sono jūsu o futatsu kudasai. (2 แก้ว: futatsu)",
+    imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="200" height="200" rx="16" fill="#FFF7ED"/>
+      <rect x="20" y="152" width="160" height="32" rx="8" fill="#EA580C" stroke="#0F172A" stroke-width="2"/>
+      <text x="100" y="173" font-family="sans-serif" font-size="12" font-weight="900" fill="#FFFFFF" text-anchor="middle">ジュース 2杯 (Futatsu)</text>
+    </svg>`,
+  },
+  {
     id: "e3_q3_ringo_6",
     category: "ORDER",
     categoryIndex: 3,
@@ -654,6 +960,7 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
     displaySubtext: "ภาพแอปเปิ้ลสีแดง 6 ผล (ตรงตามสไลด์หน้า 10)",
     expectedAnswerJa: "Sono ringo o muttsu kudasai.",
     expectedAnswerRomaji: "Sono ringo o muttsu kudasai.",
+    imagePath: "/images/situations/exam3/e3_q3_ringo_6.webp",
     keywords: [
       "sono ringo o muttsu kudasai",
       "sono ringo wo muttsu kudasai",
@@ -706,6 +1013,7 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
     displaySubtext: "ภาพเสื้อยืดสีน้ำเงิน 2 ตัว (ตรงตามสไลด์หน้า 11)",
     expectedAnswerJa: "Sono T-shatsu o ni-mai kudasai.",
     expectedAnswerRomaji: "Sono T-shatsu o ni-mai kudasai.",
+    imagePath: "/images/situations/exam3/e3_q3_tshatsu_2.webp",
     keywords: [
       "sono tshatsu o nimai kudasai",
       "sono tshatsu wo nimai kudasai",
@@ -750,6 +1058,7 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
     displaySubtext: "ภาพเบียร์ 10 ขวด (ตรงตามสไลด์หน้า 12)",
     expectedAnswerJa: "Sono bīru o juppon kudasai.",
     expectedAnswerRomaji: "Sono bīru o juppon kudasai.",
+    imagePath: "/images/situations/exam3/e3_q3_biiru_10.webp",
     keywords: [
       "sono biiru o juppon kudasai",
       "sono biiru wo juppon kudasai",
@@ -790,6 +1099,7 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
     displaySubtext: "ภาพส้มสีส้ม 3 ผล",
     expectedAnswerJa: "Sono mikan o mittsu kudasai.",
     expectedAnswerRomaji: "Sono mikan o mittsu kudasai.",
+    imagePath: "/images/situations/exam3/e3_q3_mikan_3.webp",
     keywords: [
       "sono mikan o mittsu kudasai",
       "sono mikan wo mittsu kudasai",
@@ -831,6 +1141,7 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
     displaySubtext: "ภาพขวดไวน์ 1 ขวด",
     expectedAnswerJa: "Sono wain o ippon kudasai.",
     expectedAnswerRomaji: "Sono wain o ippon kudasai.",
+    imagePath: "/images/situations/exam3/e3_q3_wain_1.webp",
     keywords: [
       "sono wain o ippon kudasai",
       "sono wain wo ippon kudasai",
@@ -874,6 +1185,7 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
     displaySubtext: "ข้อความวันที่: 21 กันยายน (ตรงตามสไลด์หน้า 13)",
     expectedAnswerJa: "Kugatsu nijūichinichi desu.",
     expectedAnswerRomaji: "Kugatsu nijūichinichi desu.",
+    imagePath: "/images/situations/exam3/e3_q4_sep_21.webp",
     keywords: [
       "kugatsu nijuuichinichi desu",
       "kugatsu nijuichinichi desu",
@@ -900,6 +1212,46 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
     </svg>`,
   },
   {
+    id: "e3_q4_oct_10",
+    category: "DATE_READING",
+    categoryIndex: 4,
+    categoryTitleTh: "4. อ่านวันและเดือนตามที่เห็น",
+    categoryTitleJa: "日付の読み方",
+    questionJa: "Kore wa nan gatsu nan nichi desuka?",
+    questionRomaji: "Kore wa nan gatsu nan nichi desuka?",
+    questionTh: "นี่คือวันที่และเดือนอะไร? (10 ตุลาคม)",
+    displayLabel: "วันที่และเดือน",
+    displayValue: "10 ตุลาคม (10月10日)",
+    displaySubtext: "ข้อความวันที่: 10 ตุลาคม (10月10日)",
+    expectedAnswerJa: "Jūgatsu tooka desu.",
+    expectedAnswerRomaji: "Jūgatsu tooka desu.",
+    imagePath: "/images/situations/exam3/e3_q4_oct_10.webp",
+    keywords: [
+      "juugatsu tooka desu",
+      "jugatsu tooka desu",
+      "juugatsu toka desu",
+      "juugatsu tooka",
+      "jugatsu tooka",
+      "10月10日",
+      "10がつ10にち",
+      "じゅうがつ とおか",
+      "じゅうがつとおかです",
+    ],
+    ruleNoteTh: "สำคัญ!! เรียงจาก เดือน > วันที่: Jūgatsu tooka desu. (วันที่ 10 = Tooka ออกเสียงพิเศษ)",
+    imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="200" height="200" rx="16" fill="#F8FAFC"/>
+      <g transform="translate(30, 25)">
+        <rect width="140" height="110" rx="12" fill="#FFFFFF" stroke="#0F172A" stroke-width="3"/>
+        <rect width="140" height="32" rx="12" fill="#EA580C"/>
+        <rect y="22" width="140" height="10" fill="#EA580C"/>
+        <text x="70" y="22" font-family="sans-serif" font-size="14" font-weight="900" fill="#FFFFFF" text-anchor="middle">ตุลาคม (10月)</text>
+        <text x="70" y="85" font-family="sans-serif" font-size="44" font-weight="900" fill="#0F172A" text-anchor="middle">10</text>
+      </g>
+      <rect x="20" y="152" width="160" height="32" rx="8" fill="#EA580C" stroke="#0F172A" stroke-width="2"/>
+      <text x="100" y="173" font-family="sans-serif" font-size="12" font-weight="900" fill="#FFFFFF" text-anchor="middle">Jūgatsu tooka desu</text>
+    </svg>`,
+  },
+  {
     id: "e3_q4_feb_6",
     category: "DATE_READING",
     categoryIndex: 4,
@@ -913,6 +1265,7 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
     displaySubtext: "ข้อความวันที่: 6 กุมภาพันธ์ (ตรงตามสไลด์หน้า 13)",
     expectedAnswerJa: "Nigatsu muika desu.",
     expectedAnswerRomaji: "Nigatsu muika desu.",
+    imagePath: "/images/situations/exam3/e3_q4_feb_6.webp",
     keywords: [
       "nigatsu muika desu",
       "nigatsu muika",
@@ -952,6 +1305,7 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
     displaySubtext: "วันปีใหม่: 1 มกราคม",
     expectedAnswerJa: "Ichigatsu tsuitachi desu.",
     expectedAnswerRomaji: "Ichigatsu tsuitachi desu.",
+    imagePath: "/images/situations/exam3/e3_q4_jan_1.webp",
     keywords: [
       "ichigatsu tsuitachi desu",
       "ichigatsu tsuitachi",
@@ -987,6 +1341,7 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
     displaySubtext: "วันสงกรานต์: 14 เมษายน",
     expectedAnswerJa: "Shigatsu jūyokka desu.",
     expectedAnswerRomaji: "Shigatsu jūyokka desu.",
+    imagePath: "/images/situations/exam3/e3_q4_apr_14.webp",
     keywords: [
       "shigatsu juuyokka desu",
       "shigatsu juyokka desu",
@@ -1024,6 +1379,7 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
     displaySubtext: "วันเด็กญี่ปุ่น: 5 พฤษภาคม",
     expectedAnswerJa: "Gogatsu itsuka desu.",
     expectedAnswerRomaji: "Gogatsu itsuka desu.",
+    imagePath: "/images/situations/exam3/e3_q4_may_5.webp",
     keywords: [
       "gogatsu itsuka desu",
       "gogatsu itsuka",
@@ -1059,6 +1415,7 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
     displaySubtext: "วันที่: 20 ตุลาคม",
     expectedAnswerJa: "Jūgatsu hatsuka desu.",
     expectedAnswerRomaji: "Jūgatsu hatsuka desu.",
+    imagePath: "/images/situations/exam3/e3_q4_oct_20.webp",
     keywords: [
       "juugatsu hatsuka desu",
       "jugatsu hatsuka desu",
@@ -1101,6 +1458,7 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
     displaySubtext: "พูดไทยก่อน: '15 พฤษภาคมครับ' -> Gogatsu jūgonichi desu. (5がつ 15にち です)",
     expectedAnswerJa: "Gogatsu jūgonichi desu.",
     expectedAnswerRomaji: "Gogatsu jūgonichi desu.",
+    imagePath: "/images/situations/exam3/e3_q5_birthday_15may.webp",
     keywords: [
       "gogatsu",
       "juugonichi",
@@ -1162,6 +1520,7 @@ export const EXAM_3_QUESTIONS_POOL: Exam3Question[] = [
     displaySubtext: "วันสอบรอบที่ 3: 4 พฤศจิกายน -> Jūichigatsu yokka desu. (11がつ 4にち です)",
     expectedAnswerJa: "Jūichigatsu yokka desu.",
     expectedAnswerRomaji: "Jūichigatsu yokka desu.",
+    imagePath: "/images/situations/exam3/e3_q6_today.webp",
     keywords: [
       "juuichigatsu yokka desu",
       "juichigatsu yokka desu",

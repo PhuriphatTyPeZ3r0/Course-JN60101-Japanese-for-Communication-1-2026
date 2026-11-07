@@ -97,6 +97,7 @@ export const EXAM_2_QUESTIONS_POOL: Exam2Question[] = [
       "会議室",
     ],
     ruleNoteTh: "ตอบเต็มประโยค: Koko wa kaigi-shitsu desu.",
+    imagePath: "/images/situations/exam2/e2_q1_kaigishitsu.webp",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#F8FAFC"/>
       <rect x="25" y="30" width="150" height="70" rx="6" fill="#E2E8F0" stroke="#0F172A" stroke-width="3"/>
@@ -137,6 +138,7 @@ export const EXAM_2_QUESTIONS_POOL: Exam2Question[] = [
       "食堂",
     ],
     ruleNoteTh: "ตอบเต็มประโยค: Koko wa shokudō desu.",
+    imagePath: "/images/situations/exam2/e2_q1_shokudo.webp",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#FFFBEB"/>
       <circle cx="100" cy="80" r="48" fill="#FDE68A" stroke="#B45309" stroke-width="3"/>
@@ -174,6 +176,7 @@ export const EXAM_2_QUESTIONS_POOL: Exam2Question[] = [
       "お手洗い",
     ],
     ruleNoteTh: "ตอบเต็มประโยค: Koko wa otearai desu. (หรือ toire desu)",
+    imagePath: "/images/situations/exam2/e2_q1_otearai.webp",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#F0FDF4"/>
       <rect x="30" y="30" width="140" height="110" rx="12" fill="#FFFFFF" stroke="#059669" stroke-width="3"/>
@@ -211,6 +214,7 @@ export const EXAM_2_QUESTIONS_POOL: Exam2Question[] = [
       "デパート",
     ],
     ruleNoteTh: "ตอบเต็มประโยค: Koko wa depāto desu.",
+    imagePath: "/images/situations/exam2/e2_q1_depato.webp",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#FDF4FF"/>
       <rect x="45" y="30" width="110" height="120" rx="6" fill="#F472B6" stroke="#9D174D" stroke-width="3"/>
@@ -248,6 +252,7 @@ export const EXAM_2_QUESTIONS_POOL: Exam2Question[] = [
       "スーパー",
     ],
     ruleNoteTh: "ตอบเต็มประโยค: Koko wa sūpā desu.",
+    imagePath: "/images/situations/exam2/e2_q1_supa.webp",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#F0FDF4"/>
       <rect x="30" y="30" width="140" height="50" rx="8" fill="#16A34A" stroke="#14532D" stroke-width="3"/>
@@ -280,6 +285,7 @@ export const EXAM_2_QUESTIONS_POOL: Exam2Question[] = [
       "レストラン",
     ],
     ruleNoteTh: "ตอบเต็มประโยค: Koko wa resutoran desu.",
+    imagePath: "/images/situations/exam2/e2_q1_resutoran.webp",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#FEF2F2"/>
       <rect x="25" y="30" width="150" height="40" rx="8" fill="#DC2626" stroke="#991B1B" stroke-width="3"/>
@@ -316,6 +322,7 @@ export const EXAM_2_QUESTIONS_POOL: Exam2Question[] = [
       "郵便局",
     ],
     ruleNoteTh: "ตอบเต็มประโยค: Koko wa yūbinkyoku desu.",
+    imagePath: "/images/situations/exam2/e2_q1_yubinkyoku.webp",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#EFF6FF"/>
       <rect x="40" y="30" width="120" height="120" rx="10" fill="#EF4444" stroke="#991B1B" stroke-width="3"/>
@@ -347,6 +354,7 @@ export const EXAM_2_QUESTIONS_POOL: Exam2Question[] = [
       "受付",
     ],
     ruleNoteTh: "ตอบเต็มประโยค: Koko wa uketsuke desu.",
+    imagePath: "/images/situations/exam2/e2_q1_uketsuke.webp",
     imageSvg: `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="200" height="200" rx="16" fill="#F0FDF4"/>
       <ellipse cx="100" cy="140" rx="75" ry="25" fill="#10B981" stroke="#047857" stroke-width="2"/>

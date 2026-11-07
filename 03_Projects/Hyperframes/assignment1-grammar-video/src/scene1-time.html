@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080, height=1920, initial-scale=1.0">
+  <title>Scene 1: Telling Time (Telling Time ~ji / ~fun) - JN60101</title>
+  
+  <!-- Google Fonts: Thai, Japanese, and Latin -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800;900&family=Prompt:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+  
+  <!-- GSAP Animation Library -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+
+  <style>
+    :root {
+      --primary-red: #E11D48;
+      --primary-wine: #6B0D1E;
+      --primary-amber: #F59E0B;
+      --primary-blue: #0284C7;
+      --accent-green: #10B981;
+      --accent-coral: #FB7185;
+      --dark-navy: #0F172A;
+      --text-main: #1E293B;
+      --text-sub: #64748B;
+      --card-bg: rgba(255, 255, 255, 0.96);
+      --card-border: #FFE4A0;
+      --shadow-drop: 0 16px 36px rgba(15, 23, 42, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      width: 1080px;
+      height: 1920px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Prompt', 'M PLUS Rounded 1c', 'Inter', sans-serif;
+      background: transparent;
+      user-select: none;
+    }
+
+    /* Standalone Preview Sunburst Background (Can be toggled) */
+    .bg-sunburst {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 30%, #881337 0%, #4C0519 65%, #25020B 100%);
+      z-index: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .sunburst-rays {
+      position: absolute;
+      top: -20%;
+      left: -20%;
+      width: 140%;
+      height: 140%;
+      background: repeating-conic-gradient(
+        from 0deg,
+        rgba(244, 63, 94, 0.08) 0deg 15deg,
+        transparent 15deg 30deg
+      );
+      animation: spinRays 120s linear infinite;
+      transform-origin: center center;
+    }
+
+    @keyframes spinRays {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* 1080x1920 Root Stage */
+    #root {
+      position: relative;
+      width: 1080px;
+      height: 1920px;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    /* Motion Graphics Canvas: Upper Half Zone (Y: 60 to 1100) */
+    .graphics-container {
+      position: absolute;
+      top: 60px;
+      left: 40px;
+      width: 1000px;
+      height: 1040px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      z-index: 10;
+    }
+
+    /* Bottom Safe Zone Indicator for Presenter & Mascot (Y: 1100 to 1920) */
+    .safe-zone-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 1080px;
+      height: 820px;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    /* Top Header Pill */
+    .header-pill {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(135deg, #FF385C 0%, #F59E0B 100%);
+      border: 4px solid #FFFFFF;
+      border-radius: 9999px;
+      padding: 12px 32px;
+      box-shadow: 0 10px 24px rgba(225, 29, 72, 0.4), 0 0 0 4px rgba(255, 255, 255, 0.25);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .step-badge {
+      background: #FFFFFF;
+      color: #E11D48;
+      font-weight: 800;
+      font-size: 24px;
+      padding: 6px 18px;
+      border-radius: 9999px;
+      letter-spacing: -0.5px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .header-title {
+      color: #FFFFFF;
+      font-size: 34px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .header-tag {
+      background: rgba(0, 0, 0, 0.22);
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      color: #FEF08A;
+      font-weight: 700;
+      font-size: 22px;
+      padding: 6px 20px;
+      border-radius: 9999px;
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+    }
+
+    /* Card 1: Analog Clock & Time Readout Hero Card */
+    .time-hero-card {
+      background: var(--card-bg);
+      border: 4px solid var(--card-border);
+      border-radius: 32px;
+      padding: 24px 32px;
+      box-shadow: var(--shadow-drop);
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .time-hero-card::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(251, 191, 36, 0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* SVG Analog Clock Styling */
+    .clock-wrapper {
+      position: relative;
+      width: 250px;
+      height: 250px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .clock-svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.15));
+    }
+
+    .clock-hand {
+      transform-origin: 125px 125px;
+      stroke-linecap: round;
+    }
+
+    /* Clock Digital Readout & Kana Display */
+    .time-readout-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex-grow: 1;
+    }
+
+    .digital-pill-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .digital-badge {
+      background: #0F172A;
+      border: 3px solid #38BDF8;
+      border-radius: 16px;
+      padding: 6px 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.3);
+    }
+
+    .digital-icon {
+      color: #38BDF8;
+      font-size: 20px;
+    }
+
+    .digital-time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 38px;
+      font-weight: 700;
+      color: #38BDF8;
+      letter-spacing: 2px;
+    }
+
+    .time-tag-pill {
+      background: #FEF3C7;
+      border: 2px solid #F59E0B;
+      color: #B45309;
+      font-weight: 700;
+      font-size: 20px;
+      padding: 6px 16px;
+      border-radius: 9999px;
+    }
+
+    /* 3-Tier Japanese Time Showcase */
+    .time-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .japanese-time-row {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+
+    .kanji-time {
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+      font-size: 64px;
+      font-weight: 900;
+      color: #0F172A;
+      line-height: 1.1;
+      letter-spacing: -1px;
+    }
+
+    .furigana-time {
+      font-family: 'Prompt', sans-serif;
+      font-size: 30px;
+      font-weight: 700;
+      color: #E11D48;
+    }
+
+    .thai-meaning {
+      font-size: 26px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    .formula-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 4px;
+      background: #F1F5F9;
+      border-radius: 12px;
+      padding: 6px 16px;
+      width: fit-content;
+    }
+
+    .formula-badge {
+      color: #0369A1;
+      font-size: 20px;
+      font-weight: 700;
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+    }
+
+    /* Card 2: Warning Box (Exceptions in JN1) */
+    .warning-card {
+      background: var(--card-bg);
+      border: 4px solid #FB7185;
+      border-radius: 32px;
+      padding: 22px 28px;
+      box-shadow: var(--shadow-drop);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+    }
+
+    .warning-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .warning-title-pill {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #FFF1F2;
+      border: 2px solid #E11D48;
+      border-radius: 9999px;
+      padding: 6px 20px;
+      color: #BE123C;
+      font-weight: 800;
+      font-size: 24px;
+    }
+
+    .exam-flag {
+      background: #E11D48;
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 18px;
+      padding: 4px 12px;
+      border-radius: 8px;
+      text-transform: uppercase;
+    }
+
+    /* Grid layout for 2 exception columns */
+    .exceptions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .exception-col {
+      background: #F8FAFC;
+      border: 2px solid #E2E8F0;
+      border-radius: 20px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .col-header {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0F172A;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 2px dashed #CBD5E1;
+      padding-bottom: 8px;
+    }
+
+    .exception-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #FFFFFF;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 14px;
+      padding: 8px 14px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    }
+
+    .item-label {
+      font-weight: 700;
+      font-size: 20px;
+      color: #475569;
+    }
+
+    .correct-reading {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .reading-highlight {
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      color: #E11D48;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .reading-romaji {
+      font-size: 16px;
+      font-weight: 600;
+      color: #0284C7;
+    }
+
+    .wrong-pill {
+      background: #FEE2E2;
+      color: #DC2626;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      text-decoration: line-through;
+      margin-top: 2px;
+    }
+
+    /* Card 3: Example Dialogue Card */
+    .dialogue-card {
+      background: var(--card-bg);
+      border: 4px solid #38BDF8;
+      border-radius: 32px;
+      padding: 22px 28px;
+      box-shadow: var(--shadow-drop);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .dialogue-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .dialogue-title-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #F0F9FF;
+      border: 2px solid #0284C7;
+      border-radius: 9999px;
+      padding: 6px 20px;
+      color: #0369A1;
+      font-weight: 800;
+      font-size: 22px;
+    }
+
+    .dialogue-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* 3-Tier Chat Bubbles */
+    .chat-bubble {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: #F8FAFC;
+      border: 2px solid #E2E8F0;
+      border-radius: 20px;
+      padding: 12px 18px;
+    }
+
+    .chat-bubble.answer {
+      background: #FFFBEB;
+      border-color: #FDE68A;
+    }
+
+    .speaker-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #0284C7;
+      color: #FFFFFF;
+      font-weight: 800;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 8px rgba(2, 132, 199, 0.3);
+    }
+
+    .chat-bubble.answer .speaker-avatar {
+      background: #F59E0B;
+      box-shadow: 0 4px 8px rgba(245, 158, 11, 0.3);
+    }
+
+    .bubble-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .tier-kanji {
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: #0F172A;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .tier-romaji {
+      font-size: 19px;
+      font-weight: 600;
+      color: #0284C7;
+    }
+
+    .chat-bubble.answer .tier-romaji {
+      color: #D97706;
+    }
+
+    .tier-thai {
+      font-size: 21px;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    /* Subtle Interactive Controls (Hidden in video recording, helpful for dev/preview) */
+    .dev-controls {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      display: flex;
+      gap: 8px;
+      z-index: 1000;
+      opacity: 0.15;
+      transition: opacity 0.2s;
+    }
+
+    .dev-controls:hover {
+      opacity: 1;
+    }
+
+    .dev-btn {
+      background: rgba(0, 0, 0, 0.7);
+      color: #FFF;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      padding: 6px 12px;
+      font-size: 14px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Sunburst (Visual styling matching reference, togglable) -->
+  <div id="bg-layer" class="bg-sunburst">
+    <div class="sunburst-rays"></div>
+  </div>
+
+  <!-- Standalone Root Node according to HyperFrames Contract -->
+  <div 
+    id="root" 
+    data-composition-id="scene1-time" 
+    data-width="1080" 
+    data-height="1920" 
+    data-duration="10"
+  >
+    <!-- Dev / Verification toolbar -->
+    <div class="dev-controls">
+      <button class="dev-btn" id="btn-toggle-bg">Toggle BG</button>
+      <button class="dev-btn" id="btn-restart">Restart (R)</button>
+    </div>
+
+    <!-- Graphics Container: Upper Half (Y: 60 to 1100) -->
+    <main class="graphics-container">
+      
+      <!-- 1. Header Pill -->
+      <header id="header" class="header-pill">
+        <div class="header-left">
+          <span class="step-badge">STEP 1</span>
+          <h1 class="header-title">การบอกเวลา (โมง &amp; นาที)</h1>
+        </div>
+        <div class="header-tag">〜時・〜分</div>
+      </header>
+
+      <!-- 2. Central Interactive / Animated SVG Analog Clock Hero Card -->
+      <section id="clock-card" class="time-hero-card">
+        
+        <!-- SVG Analog Clock Dial -->
+        <div class="clock-wrapper">
+          <svg class="clock-svg" viewBox="0 0 250 250">
+            <!-- Clock Drop Shadow Definition -->
+            <defs>
+              <filter id="clock-shadow" x="-10%" y="-10%" width="130%" height="130%">
+                <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000000" flood-opacity="0.2"/>
+              </filter>
+            </defs>
+
+            <!-- Outer Bezel Ring -->
+            <circle cx="125" cy="125" r="118" fill="#FFFDF8" stroke="#F59E0B" stroke-width="6" filter="url(#clock-shadow)"/>
+            <circle cx="125" cy="125" r="110" fill="none" stroke="#FDE68A" stroke-width="2" stroke-dasharray="3 3"/>
+
+            <!-- 12 Hour Number Markers (4, 7, 9 highlighted for exception learning) -->
+            <g font-family="'M PLUS Rounded 1c', sans-serif" font-weight="800" font-size="18" text-anchor="middle" dominant-baseline="central">
+              <text x="125" y="32" fill="#334155">12</text>
+              <text x="172" y="45" fill="#334155">1</text>
+              <text x="205" y="78" fill="#334155">2</text>
+              <text x="218" y="125" fill="#334155">3</text>
+              <!-- 4 Exception Highlight -->
+              <circle cx="205" cy="172" r="15" fill="#FEE2E2"/>
+              <text x="205" y="172" fill="#E11D48" font-size="20">4</text>
+              <text x="172" y="205" fill="#334155">5</text>
+              <text x="125" y="218" fill="#334155">6</text>
+              <!-- 7 Exception Highlight -->
+              <circle cx="78" cy="205" r="15" fill="#FEE2E2"/>
+              <text x="78" y="205" fill="#E11D48" font-size="20">7</text>
+              <text x="45" y="172" fill="#334155">8</text>
+              <!-- 9 Exception Highlight -->
+              <circle cx="32" cy="125" r="15" fill="#FEE2E2"/>
+              <text x="32" y="125" fill="#E11D48" font-size="20">9</text>
+              <text x="45" y="78" fill="#334155">10</text>
+              <text x="78" y="45" fill="#334155">11</text>
+            </g>
+
+            <!-- Hour Hand (Length: 54px, Pivot: 125, 125) -->
+            <line 
+              id="hour-hand" 
+              class="clock-hand" 
+              x1="125" y1="125" 
+              x2="125" y2="72" 
+              stroke="#0F172A" 
+              stroke-width="7"
+            />
+
+            <!-- Minute Hand (Length: 82px, Pivot: 125, 125) -->
+            <line 
+              id="minute-hand" 
+              class="clock-hand" 
+              x1="125" y1="125" 
+              x2="125" y2="44" 
+              stroke="#E11D48" 
+              stroke-width="5"
+            />
+
+            <!-- Center Pin Pivot -->
+            <circle cx="125" cy="125" r="9" fill="#0F172A" stroke="#F59E0B" stroke-width="3"/>
+            <circle cx="125" cy="125" r="3.5" fill="#FFFFFF"/>
+          </svg>
+        </div>
+
+        <!-- Readout & Japanese Grammar Showcase -->
+        <div class="time-readout-container">
+          <div class="digital-pill-row">
+            <div class="digital-badge">
+              <span class="digital-icon">⏱</span>
+              <span id="digital-clock" class="digital-time">04:30</span>
+            </div>
+            <span class="time-tag-pill">ตัวอย่างเวลา</span>
+          </div>
+
+          <!-- 3-tier Showcase -->
+          <div class="time-showcase">
+            <div class="japanese-time-row">
+              <span id="kanji-time-text" class="kanji-time">4時半</span>
+              <span class="furigana-time">よじはん (yo-ji han)</span>
+            </div>
+            <div class="thai-meaning">👉 4 โมงครึ่ง <span style="color: #64748B; font-size: 20px;">(หรือ 4時30分 : yo-ji san-jup-pun)</span></div>
+          </div>
+
+          <div class="formula-row">
+            <span class="formula-badge">สูตร: [ตัวเลข] + 時 (ji) / [ตัวเลข] + 分 (fun/pun)</span>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- 3. Special Warning Box: Irregular Hours & Minutes Rules -->
+      <section id="warning-card" class="warning-card">
+        <div class="warning-header">
+          <div class="warning-title-pill">
+            <span>⚠️</span>
+            <span>ข้อยกเว้นจำขึ้นใจ (JN1 Exam Points!)</span>
+          </div>
+          <span class="exam-flag">ออกสอบบ่อย</span>
+        </div>
+
+        <div class="exceptions-grid">
+          <!-- Col 1: Hours Exceptions (4, 7, 9) -->
+          <div class="exception-col">
+            <div class="col-header">
+              <span>⏰</span>
+              <span>ชั่วโมงระวัง 3 ตัวนี้ (~時 ji)</span>
+            </div>
+
+            <!-- Item 1: 4:00 -->
+            <div class="exception-item">
+              <span class="item-label">4 โมง (4:00)</span>
+              <div class="correct-reading">
+                <span class="reading-highlight">よじ <span class="reading-romaji">(yo-ji)</span></span>
+                <span class="wrong-pill">❌ yon-ji</span>
+              </div>
+            </div>
+
+            <!-- Item 2: 7:00 -->
+            <div class="exception-item">
+              <span class="item-label">7 โมง (7:00)</span>
+              <div class="correct-reading">
+                <span class="reading-highlight">しちじ <span class="reading-romaji">(shichi-ji)</span></span>
+                <span class="wrong-pill">❌ nana-ji</span>
+              </div>
+            </div>
+
+            <!-- Item 3: 9:00 -->
+            <div class="exception-item">
+              <span class="item-label">9 โมง (9:00)</span>
+              <div class="correct-reading">
+                <span class="reading-highlight">くじ <span class="reading-romaji">(ku-ji)</span></span>
+                <span class="wrong-pill">❌ kyuu-ji</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Col 2: Minutes Exceptions (เสียงกัก ~分 fun/pun) -->
+          <div class="exception-col">
+            <div class="col-header">
+              <span>⚡</span>
+              <span>นาทีเสียงกัก &amp; พิเศษ (~分)</span>
+            </div>
+
+            <!-- Item 1: 1 min -->
+            <div class="exception-item">
+              <span class="item-label">1 นาที (1分)</span>
+              <div class="correct-reading">
+                <span class="reading-highlight" style="color: #0284C7;">いっぷん</span>
+                <span class="reading-romaji">ip-pun</span>
+              </div>
+            </div>
+
+            <!-- Item 2: 6 min -->
+            <div class="exception-item">
+              <span class="item-label">6 นาที (6分)</span>
+              <div class="correct-reading">
+                <span class="reading-highlight" style="color: #0284C7;">ろっぷん</span>
+                <span class="reading-romaji">rop-pun</span>
+              </div>
+            </div>
+
+            <!-- Item 3: 10 min -->
+            <div class="exception-item">
+              <span class="item-label">10 นาที (10分)</span>
+              <div class="correct-reading">
+                <span class="reading-highlight" style="color: #0284C7;">じゅっぷん</span>
+                <span class="reading-romaji">jup-pun / jip-pun</span>
+              </div>
+            </div>
+
+            <!-- Item 4: 30 min / Half -->
+            <div class="exception-item">
+              <span class="item-label">ครึ่ง (30 นาที)</span>
+              <div class="correct-reading">
+                <span class="reading-highlight" style="color: #D97706;">半 (はん)</span>
+                <span class="reading-romaji">han</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Example Dialogue Card (3-Tier Typography) -->
+      <section id="dialogue-card" class="dialogue-card">
+        <div class="dialogue-header">
+          <div class="dialogue-title-pill">
+            <span>💬</span>
+            <span>บทสนทนาถาม-ตอบเวลา (Dialogue)</span>
+          </div>
+        </div>
+
+        <div class="dialogue-list">
+          <!-- Question Bubble -->
+          <div class="chat-bubble" id="bubble-q">
+            <div class="speaker-avatar">Q</div>
+            <div class="bubble-content">
+              <div class="tier-kanji">
+                <span>今、何時ですか。</span>
+                <span class="tier-romaji">(Ima, nan-ji desu ka?)</span>
+              </div>
+              <div class="tier-thai">ตอนนี้นาฬิกากี่โมงแล้วครับ / คะ?</div>
+            </div>
+          </div>
+
+          <!-- Answer Bubble -->
+          <div class="chat-bubble answer" id="bubble-a">
+            <div class="speaker-avatar">A</div>
+            <div class="bubble-content">
+              <div class="tier-kanji">
+                <span style="color: #B45309;">4時半です。</span>
+                <span class="tier-romaji">(Yo-ji han desu.)</span>
+              </div>
+              <div class="tier-thai">4 โมงครึ่งครับ / ค่ะ</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Half Safe Zone for Speaker & Mascot (Y: 1100 to 1920) -->
+    <div class="safe-zone-bottom"></div>
+
+  </div>
+
+  <!-- Animation & Timeline Script (HyperFrames + Standalone Compatible) -->
+  <script>
+    // Ensure HyperFrames timeline registry exists
+    window.__timelines = window.__timelines || {};
+
+    // Build the master timeline for Scene 1
+    function createScene1Timeline() {
+      const tl = gsap.timeline({ 
+        paused: true,
+        defaults: { ease: "power3.out" }
+      });
+
+      // Target elements
+      const header = "#header";
+      const clockCard = "#clock-card";
+      const warningCard = "#warning-card";
+      const dialogueCard = "#dialogue-card";
+      const hourHand = "#hour-hand";
+      const minuteHand = "#minute-hand";
+      const digitalClock = "#digital-clock";
+      const bubbleQ = "#bubble-q";
+      const bubbleA = "#bubble-a";
+
+      // Initial visual setup using GSAP (avoiding CSS conflicting transforms)
+      gsap.set([header, clockCard, warningCard, dialogueCard], { 
+        y: -30, 
+        opacity: 0, 
+        scale: 0.96 
+      });
+      gsap.set([bubbleQ, bubbleA], { 
+        x: -20, 
+        opacity: 0 
+      });
+
+      // Clock hands initial state: 12:00 (0 deg)
+      gsap.set(hourHand, { rotation: 0, transformOrigin: "125px 125px" });
+      gsap.set(minuteHand, { rotation: 0, transformOrigin: "125px 125px" });
+
+      // --- SEQUENCE TIMELINE ---
+      
+      // Step 1: Header Drop (t = 0.2s)
+      tl.to(header, {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 0.7,
+        ease: "back.out(1.4)"
+      }, 0.2);
+
+      // Step 2: Clock Hero Card Entrance (t = 0.6s)
+      tl.to(clockCard, {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 0.8,
+        ease: "back.out(1.2)"
+      }, 0.5);
+
+      // Step 3: Clock Hands Smooth Spin to 04:30 (t = 1.0s to 3.0s)
+      // Minute hand: 4 full revolutions (1440°) + 180° = 1620°
+      tl.to(minuteHand, {
+        rotation: 1620,
+        duration: 2.2,
+        ease: "power2.inOut"
+      }, 0.9);
+
+      // Hour hand: Moves from 12:00 (0°) to 4:30 (4.5 * 30° = 135°)
+      tl.to(hourHand, {
+        rotation: 135,
+        duration: 2.2,
+        ease: "power2.inOut"
+      }, 0.9);
+
+      // Digital time ticker simulation from 12:00 to 04:30
+      const timeObj = { hour: 12, min: 0 };
+      tl.to(timeObj, {
+        hour: 4,
+        min: 30,
+        duration: 2.2,
+        ease: "power2.inOut",
+        onUpdate: () => {
+          const el = document.querySelector(digitalClock);
+          if (el) {
+            const h = Math.round(timeObj.hour).toString().padStart(2, '0');
+            const m = Math.round(timeObj.min).toString().padStart(2, '0');
+            el.textContent = `${h}:${m}`;
+          }
+        }
+      }, 0.9);
+
+      // Little punch on the Kanji time text at settlement (t = 3.1s)
+      tl.fromTo("#kanji-time-text", 
+        { scale: 0.9, color: "#E11D48" }, 
+        { scale: 1, color: "#0F172A", duration: 0.4, ease: "back.out(2)" }, 
+        3.1
+      );
+
+      // Step 4: Warning Exceptions Card Entrance (t = 3.3s)
+      tl.to(warningCard, {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 0.8,
+        ease: "back.out(1.2)"
+      }, 3.3);
+
+      // Highlight the exception items with slight stagger
+      tl.from(".exception-item", {
+        scale: 0.94,
+        opacity: 0,
+        duration: 0.4,
+        stagger: 0.08,
+        ease: "power2.out"
+      }, 3.7);
+
+      // Step 5: Dialogue Card Entrance (t = 4.6s)
+      tl.to(dialogueCard, {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 0.8,
+        ease: "back.out(1.2)"
+      }, 4.6);
+
+      // Question bubble pop
+      tl.to(bubbleQ, {
+        x: 0,
+        opacity: 1,
+        duration: 0.5,
+        ease: "power2.out"
+      }, 5.0);
+
+      // Answer bubble pop with golden highlight
+      tl.to(bubbleA, {
+        x: 0,
+        opacity: 1,
+        duration: 0.5,
+        ease: "back.out(1.4)"
+      }, 5.4);
+
+      // Gentle resting float / pulse to keep visual energy dynamic (t = 6.0 to 10.0s)
+      tl.to([header, clockCard], {
+        y: "+=4",
+        duration: 2.0,
+        repeat: 1,
+        yoyo: true,
+        ease: "sine.inOut"
+      }, 6.0);
+
+      return tl;
+    }
+
+    // Register into HyperFrames global registry
+    const scene1Timeline = createScene1Timeline();
+    window.__timelines["scene1-time"] = scene1Timeline;
+
+    // Standalone playback support (if opened directly in browser)
+    const isHyperFramesCapture = window.__HYPERFRAMES_CAPTURING__ || window.location.search.includes('mode=capture');
+    if (!isHyperFramesCapture) {
+      scene1Timeline.play();
+    }
+
+    // Development Controls
+    const btnToggleBg = document.getElementById('btn-toggle-bg');
+    const bgLayer = document.getElementById('bg-layer');
+    if (btnToggleBg && bgLayer) {
+      btnToggleBg.addEventListener('click', () => {
+        bgLayer.style.opacity = bgLayer.style.opacity === '0' ? '1' : '0';
+      });
+    }
+
+    const btnRestart = document.getElementById('btn-restart');
+    if (btnRestart) {
+      btnRestart.addEventListener('click', () => {
+        scene1Timeline.restart();
+      });
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'r' || e.key === 'R') {
+        scene1Timeline.restart();
+      } else if (e.key === ' ') {
+        if (scene1Timeline.paused()) {
+          scene1Timeline.play();
+        } else {
+          scene1Timeline.pause();
+        }
+      }
+    });
+
+    // Check URL parameters for background mode (?bg=none or ?transparent=true)
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('bg') === 'none' || urlParams.get('transparent') === 'true') {
+      if (bgLayer) bgLayer.style.display = 'none';
+      document.body.style.background = 'transparent';
+    }
+  </script>
+</body>
+</html>

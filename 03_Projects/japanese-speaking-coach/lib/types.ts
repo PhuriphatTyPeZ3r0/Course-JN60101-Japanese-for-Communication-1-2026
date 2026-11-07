@@ -282,6 +282,7 @@ export interface ImageQuestion {
   imageType: "svg" | "url";
   imageSvg?: string;
   imageUrl?: string;
+  imagePath?: string;
   title: string;
   note: string;
   fit?: "cover" | "contain" | "fill";

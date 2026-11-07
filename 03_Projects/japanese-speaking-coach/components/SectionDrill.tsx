@@ -1001,6 +1001,7 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
             <SvgImage
               svgContent={currentImageQ.imageSvg}
               imageUrl={currentImageQ.imageUrl}
+              imagePath={currentImageQ.imagePath}
               alt={currentImageQ.title}
               fit={currentImageQ.fit || "cover"}
               position={currentImageQ.position || "center"}
@@ -1199,10 +1200,12 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
           <div className="w-full max-w-[280px] sm:max-w-[340px] md:max-w-[380px] aspect-[4/3] mx-auto rounded-2xl border-2 border-slate-900 shadow-[3px_3px_0px_#0f172a] overflow-hidden bg-slate-100 flex items-center justify-center relative">
             <SvgImage
               svgContent={currentExam2DrillQ.imageSvg}
+              imagePath={currentExam2DrillQ.imagePath}
+              imageUrl={currentExam2DrillQ.imageUrl}
               alt={currentExam2DrillQ.categoryTitleTh}
-              fit="contain"
+              fit={currentExam2DrillQ.imagePath ? "cover" : "contain"}
               position="center"
-              className="w-full h-full p-2"
+              className={currentExam2DrillQ.imagePath ? "w-full h-full" : "w-full h-full p-2"}
             />
             {currentExam2DrillQ.displayValue && (
               <div className="absolute bottom-2 bg-slate-900/90 text-white text-[11px] sm:text-xs font-black px-2.5 py-1 rounded-xl border border-slate-700 shadow-md">
@@ -1423,10 +1426,11 @@ export const SectionDrill: React.FC<SectionDrillProps> = ({ userConfig }) => {
           <div className="w-full max-w-[280px] sm:max-w-[340px] md:max-w-[380px] aspect-[4/3] mx-auto rounded-2xl border-2 border-slate-900 shadow-[3px_3px_0px_#0f172a] overflow-hidden bg-slate-100 flex items-center justify-center relative">
             <SvgImage
               svgContent={currentExam3DrillQ.imageSvg}
+              imagePath={currentExam3DrillQ.imagePath}
               alt={currentExam3DrillQ.categoryTitleTh}
-              fit="contain"
+              fit="cover"
               position="center"
-              className="w-full h-full p-2"
+              className="w-full h-full"
             />
             {currentExam3DrillQ.displayValue && (
               <div className="absolute bottom-2 bg-slate-900/90 text-white text-[11px] sm:text-xs font-black px-2.5 py-1 rounded-xl border border-slate-700 shadow-md">

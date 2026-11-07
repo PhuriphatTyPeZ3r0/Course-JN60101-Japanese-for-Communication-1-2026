@@ -1305,10 +1305,12 @@ export const MockExam: React.FC<MockExamProps> = ({
           <div className="w-full max-w-[240px] sm:max-w-[320px] aspect-[16/10] sm:aspect-[4/3] max-h-[160px] sm:max-h-[220px] mx-auto rounded-2xl border-2 border-slate-900 shadow-[2px_2px_0px_#0f172a] sm:shadow-[3px_3px_0px_#0f172a] overflow-hidden bg-slate-100 flex items-center justify-center relative">
             <SvgImage
               svgContent={currentExam2Q.imageSvg}
+              imagePath={currentExam2Q.imagePath}
+              imageUrl={currentExam2Q.imageUrl}
               alt={currentExam2Q.categoryTitleTh}
-              fit="contain"
+              fit={currentExam2Q.imagePath ? "cover" : "contain"}
               position="center"
-              className="w-full h-full p-2"
+              className={currentExam2Q.imagePath ? "w-full h-full" : "w-full h-full p-2"}
             />
             {currentExam2Q.displayValue && (
               <div className="absolute bottom-2 bg-slate-900/90 text-white text-[11px] sm:text-xs font-black px-2.5 py-1 rounded-xl border border-slate-700 shadow-md">
@@ -1388,10 +1390,11 @@ export const MockExam: React.FC<MockExamProps> = ({
           <div className="w-full max-w-[240px] sm:max-w-[320px] aspect-[16/10] sm:aspect-[4/3] max-h-[160px] sm:max-h-[220px] mx-auto rounded-2xl border-2 border-slate-900 shadow-[2px_2px_0px_#0f172a] sm:shadow-[3px_3px_0px_#0f172a] overflow-hidden bg-slate-100 flex items-center justify-center relative">
             <SvgImage
               svgContent={currentExam3Q.imageSvg}
+              imagePath={currentExam3Q.imagePath}
               alt={currentExam3Q.categoryTitleTh}
-              fit="contain"
+              fit="cover"
               position="center"
-              className="w-full h-full p-2"
+              className="w-full h-full"
             />
             {currentExam3Q.displayValue && (
               <div className="absolute bottom-2 bg-slate-900/90 text-white text-[11px] sm:text-xs font-black px-2.5 py-1 rounded-xl border border-slate-700 shadow-md">
@@ -1533,6 +1536,7 @@ export const MockExam: React.FC<MockExamProps> = ({
             <SvgImage
               svgContent={currentImgItem.imageSvg}
               imageUrl={currentImgItem.imageUrl}
+              imagePath={currentImgItem.imagePath}
               alt={currentImgItem.title}
               fit={currentImgItem.fit || "cover"}
               position={currentImgItem.position || "center"}

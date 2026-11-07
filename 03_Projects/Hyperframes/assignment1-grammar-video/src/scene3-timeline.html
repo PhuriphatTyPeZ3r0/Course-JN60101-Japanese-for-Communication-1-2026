@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080, height=1920, initial-scale=1.0">
+  <title>Scene 3: Time Range Particle (~kara ... ~made) - JN60101</title>
+  
+  <!-- Google Fonts: Thai, Japanese, and Latin -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800;900&family=Prompt:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+  
+  <!-- GSAP Animation Library -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+
+  <style>
+    :root {
+      --primary-red: #E11D48;
+      --primary-wine: #6B0D1E;
+      --primary-amber: #F59E0B;
+      --primary-blue: #0284C7;
+      --accent-green: #10B981;
+      --accent-emerald: #059669;
+      --accent-coral: #F97316;
+      --dark-navy: #0F172A;
+      --text-main: #1E293B;
+      --text-sub: #64748B;
+      --card-bg: rgba(255, 255, 255, 0.96);
+      --card-border: #FFE4A0;
+      --shadow-drop: 0 16px 36px rgba(15, 23, 42, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      width: 1080px;
+      height: 1920px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Prompt', 'M PLUS Rounded 1c', 'Inter', sans-serif;
+      background: transparent;
+      user-select: none;
+    }
+
+    /* Standalone Preview Sunburst Background (Can be toggled) */
+    .bg-sunburst {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 30%, #881337 0%, #4C0519 65%, #25020B 100%);
+      z-index: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .sunburst-rays {
+      position: absolute;
+      top: -20%;
+      left: -20%;
+      width: 140%;
+      height: 140%;
+      background: repeating-conic-gradient(
+        from 0deg,
+        rgba(244, 63, 94, 0.08) 0deg 15deg,
+        transparent 15deg 30deg
+      );
+      animation: spinRays 120s linear infinite;
+      transform-origin: center center;
+    }
+
+    @keyframes spinRays {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* 1080x1920 Root Stage */
+    #root {
+      position: relative;
+      width: 1080px;
+      height: 1920px;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    /* Motion Graphics Canvas: Upper Half Zone (Y: 60 to 1100) */
+    .graphics-container {
+      position: absolute;
+      top: 60px;
+      left: 40px;
+      width: 1000px;
+      height: 1040px;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+      z-index: 10;
+    }
+
+    /* Bottom Safe Zone Indicator for Presenter & Mascot (Y: 1100 to 1920) */
+    .safe-zone-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 1080px;
+      height: 820px;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    /* 1. Top Header Pill */
+    .header-pill {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(135deg, #FF385C 0%, #F59E0B 100%);
+      border: 4px solid #FFFFFF;
+      border-radius: 9999px;
+      padding: 10px 28px;
+      box-shadow: 0 10px 24px rgba(225, 29, 72, 0.4), 0 0 0 4px rgba(255, 255, 255, 0.25);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .step-badge {
+      background: #FFFFFF;
+      color: #E11D48;
+      font-weight: 800;
+      font-size: 22px;
+      padding: 5px 16px;
+      border-radius: 9999px;
+      letter-spacing: -0.5px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .header-title {
+      color: #FFFFFF;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .header-tag {
+      background: rgba(0, 0, 0, 0.22);
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      color: #FEF08A;
+      font-weight: 700;
+      font-size: 20px;
+      padding: 5px 18px;
+      border-radius: 9999px;
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+    }
+
+    /* 2. Grammar Formula Card */
+    .formula-card {
+      background: var(--card-bg);
+      border: 3.5px solid #FDE68A;
+      border-radius: 24px;
+      padding: 12px 22px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.18);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .formula-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .formula-title-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      font-size: 19px;
+      color: #854D0E;
+    }
+
+    .formula-desc-tag {
+      background: #FEF3C7;
+      color: #B45309;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 3px 12px;
+      border-radius: 9999px;
+      border: 1.5px solid #FCD34D;
+    }
+
+    .formula-equation-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #F8FAFC;
+      border: 2px solid #E2E8F0;
+      border-radius: 16px;
+      padding: 8px 14px;
+      gap: 6px;
+    }
+
+    .f-slot {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .f-chip {
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      padding: 5px 14px;
+      border-radius: 12px;
+      line-height: 1.2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    .f-subtext {
+      font-size: 13px;
+      font-weight: 700;
+      color: #64748B;
+    }
+
+    .chip-place {
+      background: #EEF2FF;
+      color: #4338CA;
+      border: 2px solid #C7D2FE;
+    }
+
+    .chip-wa {
+      background: #E0E7FF;
+      color: #3730A3;
+      border: 2px solid #A5B4FC;
+      font-weight: 900;
+    }
+
+    .chip-start-time {
+      background: #ECFDF5;
+      color: #065F46;
+      border: 2px solid #A7F3D0;
+    }
+
+    .chip-kara {
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      color: #FFFFFF;
+      border: 2px solid #047857;
+      font-weight: 900;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 10px rgba(16, 185, 129, 0.35);
+    }
+
+    .chip-end-time {
+      background: #FFF7ED;
+      color: #9A3412;
+      border: 2px solid #FED7AA;
+    }
+
+    .chip-made {
+      background: linear-gradient(135deg, #F97316 0%, #EA580C 100%);
+      color: #FFFFFF;
+      border: 2px solid #C2410C;
+      font-weight: 900;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 10px rgba(249, 115, 22, 0.35);
+    }
+
+    .chip-desu {
+      background: #F1F5F9;
+      color: #334155;
+      border: 2px solid #CBD5E1;
+      font-weight: 800;
+    }
+
+    /* 3. Hero Animated SVG Timeline Card */
+    .timeline-hero-card {
+      background: var(--card-bg);
+      border: 4px solid var(--card-border);
+      border-radius: 28px;
+      padding: 16px 24px;
+      box-shadow: var(--shadow-drop);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .timeline-hero-card::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 170px;
+      height: 170px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .timeline-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .location-badge-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .bank-icon-box {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+      border: 2px solid #BAE6FD;
+      color: #FFFFFF;
+      flex-shrink: 0;
+    }
+
+    .location-text-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .location-kanji-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .location-kanji {
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+      font-size: 32px;
+      font-weight: 900;
+      color: #0F172A;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+    }
+
+    .location-furigana {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0284C7;
+      font-family: 'Prompt', sans-serif;
+    }
+
+    .location-thai {
+      font-size: 18px;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    .status-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #ECFDF5;
+      border: 2px solid #10B981;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      color: #065F46;
+      font-weight: 800;
+      font-size: 17px;
+    }
+
+    .status-beacon {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 8px #10B981;
+      animation: beaconPulse 1.8s infinite ease-in-out;
+    }
+
+    @keyframes beaconPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.6; }
+    }
+
+    /* Timeline SVG Container */
+    .timeline-svg-wrapper {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      background: #F8FAFC;
+      border: 2px solid #E2E8F0;
+      border-radius: 20px;
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.04);
+    }
+
+    .timeline-svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    /* Duration & Summary Footer Bar */
+    .timeline-footer-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #FFFFFF;
+      border: 2px solid #CBD5E1;
+      border-radius: 14px;
+      padding: 6px 18px;
+    }
+
+    .time-slot-summary {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .slot-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .slot-pill.start {
+      color: #059669;
+    }
+
+    .slot-pill.end {
+      color: #EA580C;
+    }
+
+    .slot-arrow {
+      color: #94A3B8;
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .duration-badge {
+      background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+      border: 2px solid #F59E0B;
+      color: #92400E;
+      font-weight: 800;
+      font-size: 16px;
+      padding: 3px 14px;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 6px rgba(245, 158, 11, 0.2);
+    }
+
+    /* 4. 3-Tier Dialogue Card */
+    .dialogue-card {
+      background: var(--card-bg);
+      border: 4px solid #93C5FD;
+      border-radius: 28px;
+      padding: 14px 22px;
+      box-shadow: var(--shadow-drop);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .dialogue-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .dialogue-title-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #0369A1;
+      font-weight: 800;
+      font-size: 19px;
+    }
+
+    .dialogue-context-tag {
+      background: #E0F2FE;
+      color: #0369A1;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 3px 12px;
+      border-radius: 9999px;
+      border: 1.5px solid #BAE6FD;
+    }
+
+    .dialogue-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* 3-Tier Chat Bubbles */
+    .chat-bubble {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: #F8FAFC;
+      border: 2px solid #E2E8F0;
+      border-radius: 18px;
+      padding: 9px 16px;
+    }
+
+    .chat-bubble.answer {
+      background: #FFFBEB;
+      border-color: #FDE68A;
+    }
+
+    .speaker-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #0284C7;
+      color: #FFFFFF;
+      font-weight: 800;
+      font-size: 19px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 8px rgba(2, 132, 199, 0.3);
+    }
+
+    .chat-bubble.answer .speaker-avatar {
+      background: #F59E0B;
+      box-shadow: 0 4px 8px rgba(245, 158, 11, 0.3);
+    }
+
+    .bubble-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      flex-grow: 1;
+    }
+
+    .tier-kanji {
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+      font-size: 25px;
+      font-weight: 800;
+      color: #0F172A;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .highlight-kara {
+      background: #ECFDF5;
+      color: #059669;
+      padding: 1px 6px;
+      border-radius: 6px;
+      border-bottom: 2px solid #10B981;
+    }
+
+    .highlight-made {
+      background: #FFF7ED;
+      color: #EA580C;
+      padding: 1px 6px;
+      border-radius: 6px;
+      border-bottom: 2px solid #F97316;
+    }
+
+    .highlight-kuji {
+      background: #FFE4E6;
+      color: #BE123C;
+      padding: 1px 6px;
+      border-radius: 6px;
+      border-bottom: 2px solid #E11D48;
+      font-weight: 900;
+    }
+
+    .tier-romaji {
+      font-size: 16px;
+      font-weight: 600;
+      color: #0284C7;
+    }
+
+    .chat-bubble.answer .tier-romaji {
+      color: #B45309;
+    }
+
+    .tier-thai {
+      font-size: 18px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    /* Warning Callout inside dialogue answer */
+    .answer-alert-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 2px;
+      background: #FFF1F2;
+      border: 1.5px solid #FECDD3;
+      border-radius: 8px;
+      padding: 3px 10px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #BE123C;
+    }
+
+    /* 5. Key Pro-Tip Card (เกร็ดไวยากรณ์) */
+    .pro-tip-card {
+      background: linear-gradient(135deg, #FFFFFF 0%, #FEF9C3 100%);
+      border: 3.5px solid #FACC15;
+      border-radius: 24px;
+      padding: 12px 20px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.16);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .pro-tip-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .pro-tip-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      font-size: 18px;
+      color: #854D0E;
+    }
+
+    .pro-tip-tag {
+      background: #FEF08A;
+      color: #854D0E;
+      font-weight: 800;
+      font-size: 14px;
+      padding: 2px 10px;
+      border-radius: 9999px;
+      border: 1.5px solid #EAB308;
+    }
+
+    .pro-tip-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .tip-box {
+      background: rgba(255, 255, 255, 0.9);
+      border: 2px solid #FDE047;
+      border-radius: 14px;
+      padding: 8px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .tip-label {
+      font-size: 14px;
+      font-weight: 800;
+      color: #A16207;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tip-jp {
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: #0F172A;
+    }
+
+    .tip-th {
+      font-size: 14px;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    /* Dev Controls */
+    .dev-controls {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      display: flex;
+      gap: 8px;
+      z-index: 1000;
+      opacity: 0.15;
+      transition: opacity 0.2s;
+    }
+
+    .dev-controls:hover {
+      opacity: 1;
+    }
+
+    .dev-btn {
+      background: rgba(0, 0, 0, 0.7);
+      color: #FFF;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      padding: 6px 12px;
+      font-size: 14px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Sunburst (Visual styling matching reference, togglable) -->
+  <div id="bg-layer" class="bg-sunburst">
+    <div class="sunburst-rays"></div>
+  </div>
+
+  <!-- Standalone Root Node according to HyperFrames Contract -->
+  <div 
+    id="root" 
+    data-composition-id="scene3-timeline" 
+    data-width="1080" 
+    data-height="1920" 
+    data-duration="10"
+  >
+    <!-- Dev / Verification toolbar -->
+    <div class="dev-controls">
+      <button class="dev-btn" id="btn-toggle-bg">Toggle BG</button>
+      <button class="dev-btn" id="btn-restart">Restart (R)</button>
+    </div>
+
+    <!-- Graphics Container: Upper Half (Y: 60 to 1100) -->
+    <main class="graphics-container">
+      
+      <!-- 1. Header Pill -->
+      <header id="header" class="header-pill">
+        <div class="header-left">
+          <span class="step-badge">สเต็ป 3</span>
+          <h1 class="header-title">คำช่วย 〜から・・・〜まで (~kara ... ~made)</h1>
+        </div>
+        <div class="header-tag">ช่วงเวลา (จาก... ถึง...)</div>
+      </header>
+
+      <!-- 2. Grammar Formula Card -->
+      <section id="formula-card" class="formula-card">
+        <div class="formula-header">
+          <div class="formula-title-badge">
+            <span>📐</span>
+            <span>โครงสร้างประโยคบอกช่วงเวลา (Grammar Pattern)</span>
+          </div>
+          <span class="formula-desc-tag">บอกเวลาทำการ / กิจกรรม</span>
+        </div>
+
+        <div class="formula-equation-bar">
+          <div class="f-slot">
+            <span class="f-chip chip-place">[ สถานที่ ]</span>
+            <span class="f-subtext">เช่น 銀行 (ธนาคาร)</span>
+          </div>
+
+          <div class="f-slot">
+            <span class="f-chip chip-wa">は</span>
+            <span class="f-subtext">หัวข้อ (wa)</span>
+          </div>
+
+          <div class="f-slot">
+            <span class="f-chip chip-start-time">[ เวลาเริ่ม ]</span>
+            <span class="f-subtext">เช่น 9時 (ku-ji)</span>
+          </div>
+
+          <div class="f-slot">
+            <span class="f-chip chip-kara formula-particle" id="chip-kara">から</span>
+            <span class="f-subtext" style="color: #059669; font-weight:800;">ตั้งแต่ / จาก (kara)</span>
+          </div>
+
+          <div class="f-slot">
+            <span class="f-chip chip-end-time">[ เวลาจบ ]</span>
+            <span class="f-subtext">เช่น 3時 (san-ji)</span>
+          </div>
+
+          <div class="f-slot">
+            <span class="f-chip chip-made formula-particle" id="chip-made">まで</span>
+            <span class="f-subtext" style="color: #EA580C; font-weight:800;">ถึง / จนถึง (made)</span>
+          </div>
+
+          <div class="f-slot">
+            <span class="f-chip chip-desu">です。</span>
+            <span class="f-subtext">สุภาพ (desu)</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Animated SVG Timeline Hero Card -->
+      <section id="timeline-hero-card" class="timeline-hero-card">
+        <div class="timeline-header-row">
+          <div class="location-badge-group">
+            <div class="bank-icon-box">
+              <!-- Classical Bank SVG Icon with Columns and Pediment -->
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 2 7 22 7 12 2"></polygon>
+                <rect x="4" y="10" width="3" height="8" rx="0.5"></rect>
+                <rect x="10.5" y="10" width="3" height="8" rx="0.5"></rect>
+                <rect x="17" y="10" width="3" height="8" rx="0.5"></rect>
+                <line x1="2" y1="21" x2="22" y2="21"></line>
+              </svg>
+            </div>
+            <div class="location-text-col">
+              <div class="location-kanji-row">
+                <span class="location-kanji">銀行</span>
+                <span class="location-furigana">(ぎんこう / Ginkō)</span>
+              </div>
+              <span class="location-thai">ธนาคาร (Bank)</span>
+            </div>
+          </div>
+
+          <div class="status-badge" id="bank-status-badge">
+            <span class="status-beacon"></span>
+            <span>営業時間: 09:00 - 15:00</span>
+          </div>
+        </div>
+
+        <!-- Horizontal Timeline Vector Stage -->
+        <div class="timeline-svg-wrapper">
+          <svg class="timeline-svg" viewBox="0 0 940 180" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <!-- Active Range Gradient: Emerald to Orange -->
+              <linearGradient id="activeRangeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#10B981" />
+                <stop offset="50%" stop-color="#F59E0B" />
+                <stop offset="100%" stop-color="#F97316" />
+              </linearGradient>
+
+              <!-- Laser Glow Filter -->
+              <filter id="laserGlow" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur stdDeviation="4" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+
+              <!-- Pin Shadow -->
+              <filter id="pinShadow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="4" stdDeviation="3" flood-opacity="0.25" />
+              </filter>
+            </defs>
+
+            <!-- Base Full Timeline Rail (08:00 to 17:00) -->
+            <!-- Ticks X: 8h=90, 9h=175, 10h=260, 11h=345, 12h=430, 13h=515, 14h=600, 15h=685, 16h=770, 17h=855 -->
+            <line x1="70" y1="110" x2="870" y2="110" stroke="#CBD5E1" stroke-width="8" stroke-linecap="round" />
+
+            <!-- Hourly Tick Marks and Time Labels along baseline -->
+            <g font-family="'JetBrains Mono', monospace" font-size="13" font-weight="700" fill="#64748B" text-anchor="middle">
+              <line x1="90" y1="104" x2="90" y2="116" stroke="#94A3B8" stroke-width="2.5" />
+              <text x="90" y="136">08:00</text>
+
+              <!-- 9:00 Tick -->
+              <line x1="175" y1="102" x2="175" y2="118" stroke="#10B981" stroke-width="3" />
+              <text x="175" y="136" fill="#059669" font-weight="800">09:00</text>
+
+              <line x1="260" y1="104" x2="260" y2="116" stroke="#94A3B8" stroke-width="2.5" />
+              <text x="260" y="136">10:00</text>
+
+              <line x1="345" y1="104" x2="345" y2="116" stroke="#94A3B8" stroke-width="2.5" />
+              <text x="345" y="136">11:00</text>
+
+              <line x1="430" y1="104" x2="430" y2="116" stroke="#94A3B8" stroke-width="2.5" />
+              <text x="430" y="136">12:00</text>
+
+              <line x1="515" y1="104" x2="515" y2="116" stroke="#94A3B8" stroke-width="2.5" />
+              <text x="515" y="136">13:00</text>
+
+              <line x1="600" y1="104" x2="600" y2="116" stroke="#94A3B8" stroke-width="2.5" />
+              <text x="600" y="136">14:00</text>
+
+              <!-- 15:00 Tick -->
+              <line x1="685" y1="102" x2="685" y2="118" stroke="#F97316" stroke-width="3" />
+              <text x="685" y="136" fill="#EA580C" font-weight="800">15:00</text>
+
+              <line x1="770" y1="104" x2="770" y2="116" stroke="#94A3B8" stroke-width="2.5" />
+              <text x="770" y="136">16:00</text>
+
+              <line x1="855" y1="104" x2="855" y2="116" stroke="#94A3B8" stroke-width="2.5" />
+              <text x="855" y="136">17:00</text>
+            </g>
+
+            <!-- Active Range Track Highlight: 9:00 (175) to 15:00 (685) = 510px width -->
+            <rect 
+              id="timeline-active-track" 
+              x="175" 
+              y="104" 
+              width="0" 
+              height="12" 
+              rx="6" 
+              fill="url(#activeRangeGrad)" 
+              opacity="0.35" 
+            />
+
+            <!-- Animated Glowing Laser Arrow Path -->
+            <!-- Length = 510px (175 to 685) -->
+            <path 
+              id="timeline-laser-path" 
+              d="M 175 110 L 685 110" 
+              stroke="url(#activeRangeGrad)" 
+              stroke-width="8" 
+              stroke-linecap="round" 
+              stroke-dasharray="510" 
+              stroke-dashoffset="510" 
+              filter="url(#laserGlow)" 
+            />
+
+            <!-- Traveling Glowing Laser Head -->
+            <circle 
+              id="timeline-laser-head" 
+              cx="175" 
+              cy="110" 
+              r="8" 
+              fill="#F59E0B" 
+              stroke="#FFFFFF" 
+              stroke-width="2.5" 
+              filter="url(#laserGlow)" 
+              opacity="0" 
+            />
+
+            <!-- Animated Arrow Tip Marker at 15:00 (685, 110) -->
+            <polygon 
+              id="timeline-arrow-tip" 
+              points="685,102 699,110 685,118" 
+              fill="#F97316" 
+              stroke="#EA580C" 
+              stroke-width="1.5" 
+              opacity="0" 
+            />
+
+            <!-- Start Pin Group: 9:00 から (ku-ji kara) at X=175 -->
+            <g id="start-pin" transform="translate(175, 110)" filter="url(#pinShadow)">
+              <!-- Outer pulse beacon ring -->
+              <circle id="start-beacon-ring" cx="0" cy="0" r="14" fill="none" stroke="#10B981" stroke-width="2" opacity="0.6" />
+              <!-- Center anchor pin dot -->
+              <circle cx="0" cy="0" r="7" fill="#059669" stroke="#FFFFFF" stroke-width="2.5" />
+              
+              <!-- Floating Pin Stem & Card Header -->
+              <line x1="0" y1="-8" x2="0" y2="-28" stroke="#059669" stroke-width="3" stroke-linecap="round" />
+              
+              <!-- Pin Tooltip Box (Centered at x=0, y=-65) -->
+              <g transform="translate(-85, -95)">
+                <rect width="170" height="64" rx="14" fill="#FFFFFF" stroke="#10B981" stroke-width="3" filter="url(#pinShadow)" />
+                <rect x="0" y="0" width="170" height="24" rx="12" fill="#ECFDF5" />
+                <!-- Start Badge Label -->
+                <text x="85" y="17" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="800" fill="#047857" text-anchor="middle">
+                  ⏱️ 09:00 START
+                </text>
+                <!-- Japanese & Particle -->
+                <text x="85" y="44" font-family="'M PLUS Rounded 1c', sans-serif" font-size="18" font-weight="900" fill="#0F172A" text-anchor="middle">
+                  9時<tspan fill="#059669" font-weight="900"> から</tspan>
+                </text>
+                <!-- Romaji hint -->
+                <text x="85" y="58" font-family="'Prompt', sans-serif" font-size="12" font-weight="700" fill="#059669" text-anchor="middle">
+                  (くじ / ku-ji kara)
+                </text>
+              </g>
+            </g>
+
+            <!-- End Pin Group: 15:00 / 3:00 まで (san-ji made) at X=685 -->
+            <g id="end-pin" transform="translate(685, 110)" filter="url(#pinShadow)">
+              <!-- Outer pulse beacon ring -->
+              <circle id="end-beacon-ring" cx="0" cy="0" r="14" fill="none" stroke="#F97316" stroke-width="2" opacity="0.6" />
+              <!-- Center anchor pin dot -->
+              <circle cx="0" cy="0" r="7" fill="#EA580C" stroke="#FFFFFF" stroke-width="2.5" />
+              
+              <!-- Floating Pin Stem & Card Header -->
+              <line x1="0" y1="-8" x2="0" y2="-28" stroke="#EA580C" stroke-width="3" stroke-linecap="round" />
+              
+              <!-- Pin Tooltip Box (Centered at x=0, y=-65) -->
+              <g transform="translate(-85, -95)">
+                <rect width="170" height="64" rx="14" fill="#FFFFFF" stroke="#F97316" stroke-width="3" filter="url(#pinShadow)" />
+                <rect x="0" y="0" width="170" height="24" rx="12" fill="#FFF7ED" />
+                <!-- End Badge Label -->
+                <text x="85" y="17" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="800" fill="#C2410C" text-anchor="middle">
+                  🏁 15:00 / 3:00 PM
+                </text>
+                <!-- Japanese & Particle -->
+                <text x="85" y="44" font-family="'M PLUS Rounded 1c', sans-serif" font-size="18" font-weight="900" fill="#0F172A" text-anchor="middle">
+                  3時<tspan fill="#EA580C" font-weight="900"> まで</tspan>
+                </text>
+                <!-- Romaji hint -->
+                <text x="85" y="58" font-family="'Prompt', sans-serif" font-size="12" font-weight="700" fill="#EA580C" text-anchor="middle">
+                  (さんじ / san-ji made)
+                </text>
+              </g>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Footer Bar with Duration and Formula Summary -->
+        <div class="timeline-footer-bar">
+          <div class="time-slot-summary">
+            <div class="slot-pill start">
+              <span>🟢</span>
+              <span>เริ่ม: 9時 から (ku-ji kara)</span>
+            </div>
+            <span class="slot-arrow">➔</span>
+            <div class="slot-pill end">
+              <span>🔴</span>
+              <span>จบ: 3時 まで (san-ji made)</span>
+            </div>
+          </div>
+
+          <div class="duration-badge" id="duration-badge">
+            <span>⌛</span>
+            <span>รวมเวลาให้บริการ: <strong>6 時間 (6 ชั่วโมง)</strong></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. 3-Tier Dialogue Card -->
+      <section id="dialogue-card" class="dialogue-card">
+        <div class="dialogue-header">
+          <div class="dialogue-title-badge">
+            <span>💬</span>
+            <span>บทสนทนาตัวอย่าง (Conversation Practice)</span>
+          </div>
+          <span class="dialogue-context-tag">ถามเวลาเปิด-ปิดธนาคาร</span>
+        </div>
+
+        <div class="dialogue-list">
+          <!-- Question Bubble (Speaker A) -->
+          <div class="chat-bubble" id="bubble-q">
+            <div class="speaker-avatar">A</div>
+            <div class="bubble-content">
+              <div class="tier-kanji">
+                <span>銀行は何時から何時までですか。</span>
+              </div>
+              <div class="tier-romaji">
+                ぎんこうは なんじから なんじまで ですか。(Ginkō wa nan-ji kara nan-ji made desu ka?)
+              </div>
+              <div class="tier-thai">
+                "ธนาคารเปิดทำการตั้งแต่กี่โมงถึงกี่โมงครับ?"
+              </div>
+            </div>
+          </div>
+
+          <!-- Answer Bubble (Speaker B) -->
+          <div class="chat-bubble answer" id="bubble-a">
+            <div class="speaker-avatar">B</div>
+            <div class="bubble-content">
+              <div class="tier-kanji">
+                <span class="highlight-kara"><span class="highlight-kuji">9時</span>から</span>
+                <span class="highlight-made">3時まで</span>
+                <span>です。</span>
+              </div>
+              <div class="tier-romaji">
+                くじから さんじまで です。(Ku-ji kara san-ji made desu.)
+              </div>
+              <div class="tier-thai">
+                "เปิดตั้งแต่ 9 โมงเช้า ถึงบ่าย 3 โมงครับ"
+              </div>
+              
+              <!-- Pronunciation Alert Badge -->
+              <div class="answer-alert-row">
+                <span>⚠️</span>
+                <span>จุดระวังข้อสอบ: 9 โมง ออกเสียงว่า <strong>「くじ」 (ku-ji)</strong> ห้ามออกเสียง ❌ <em>kyuu-ji</em></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Key Pro-Tip Card (เกร็ดไวยากรณ์) -->
+      <section id="pro-tip-card" class="pro-tip-card">
+        <div class="pro-tip-header">
+          <div class="pro-tip-badge">
+            <span>💡</span>
+            <span>เกร็ดไวยากรณ์สำคัญ (Grammar Pro-Tip)</span>
+          </div>
+          <span class="pro-tip-tag">สามารถแยกใช้เดี่ยวๆ ได้!</span>
+        </div>
+
+        <div class="pro-tip-grid">
+          <!-- Tip 1: Solo kara -->
+          <div class="tip-box" id="tip-kara">
+            <div class="tip-label">
+              <span>🟢</span>
+              <span>ใช้เฉพาะ <strong>〜から</strong> (เน้นเวลาเริ่มต้น):</span>
+            </div>
+            <div class="tip-jp">会議は 10時からです。</div>
+            <div class="tip-th">Kaigi wa jū-ji kara desu. (การประชุมเริ่มตั้งแต่ 10 โมง)</div>
+          </div>
+
+          <!-- Tip 2: Solo made -->
+          <div class="tip-box" id="tip-made">
+            <div class="tip-label">
+              <span>🔴</span>
+              <span>ใช้เฉพาะ <strong>〜まで</strong> (เน้นกำหนดสิ้นสุด):</span>
+            </div>
+            <div class="tip-jp">仕事は 5時までです。</div>
+            <div class="tip-th">Shigoto wa go-ji made desu. (ทำงานถึง 5 โมงเย็น)</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Half Preserved Safe Zone for Presenter & Mascot (Y: 1100 to 1920) -->
+    <div class="safe-zone-bottom" aria-hidden="true"></div>
+  </div>
+
+  <!-- GSAP Animation Engine Script -->
+  <script>
+    // Initialize HyperFrames global registry
+    window.__timelines = window.__timelines || {};
+
+    function createScene3Timeline() {
+      // Create master paused GSAP timeline
+      const tl = gsap.timeline({ paused: true });
+
+      // Cache DOM references
+      const header = "#header";
+      const formulaCard = "#formula-card";
+      const formulaParticles = ".formula-particle";
+      const timelineHeroCard = "#timeline-hero-card";
+      const bankStatusBadge = "#bank-status-badge";
+      const timelineActiveTrack = "#timeline-active-track";
+      const timelineLaserPath = "#timeline-laser-path";
+      const timelineLaserHead = "#timeline-laser-head";
+      const timelineArrowTip = "#timeline-arrow-tip";
+      const startPin = "#start-pin";
+      const endPin = "#end-pin";
+      const durationBadge = "#duration-badge";
+      const dialogueCard = "#dialogue-card";
+      const bubbleQ = "#bubble-q";
+      const bubbleA = "#bubble-a";
+      const proTipCard = "#pro-tip-card";
+      const tipBoxes = ".tip-box";
+
+      // Initial state setup (off-screen / hidden)
+      gsap.set(header, { y: -50, opacity: 0, scale: 0.95 });
+      gsap.set(formulaCard, { y: 25, opacity: 0, scale: 0.96 });
+      gsap.set(timelineHeroCard, { y: 30, opacity: 0, scale: 0.96 });
+      gsap.set(startPin, { scale: 0, opacity: 0, transformOrigin: "0 0" });
+      gsap.set(endPin, { scale: 0, opacity: 0, transformOrigin: "0 0" });
+      gsap.set(dialogueCard, { y: 25, opacity: 0, scale: 0.96 });
+      gsap.set(bubbleQ, { x: -30, opacity: 0 });
+      gsap.set(bubbleA, { x: 30, opacity: 0 });
+      gsap.set(proTipCard, { y: 25, opacity: 0, scale: 0.96 });
+      gsap.set(tipBoxes, { opacity: 0, y: 15 });
+
+      // --- SEQUENCE TIMELINE (Total: 10s) ---
+
+      // Step 1: Header Drop (t = 0.2s)
+      tl.to(header, {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 0.65,
+        ease: "back.out(1.4)"
+      }, 0.2);
+
+      // Step 2: Formula Card Entrance (t = 0.5s)
+      tl.to(formulaCard, {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 0.7,
+        ease: "back.out(1.2)"
+      }, 0.5);
+
+      // Pulse highlight formula particles kara & made
+      tl.fromTo(formulaParticles, 
+        { scale: 0.9 }, 
+        { scale: 1.08, duration: 0.35, stagger: 0.15, yoyo: true, repeat: 1, ease: "power2.out" }, 
+        0.9
+      );
+
+      // Step 3: Timeline Hero Card Entrance (t = 1.1s)
+      tl.to(timelineHeroCard, {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 0.75,
+        ease: "back.out(1.2)"
+      }, 1.1);
+
+      // Step 4: Start Pin Pop (9:00 ku-ji kara) (t = 1.5s)
+      tl.to(startPin, {
+        scale: 1,
+        opacity: 1,
+        duration: 0.55,
+        ease: "back.out(1.6)"
+      }, 1.5);
+
+      // Pulse beacon ring around start pin
+      tl.fromTo("#start-beacon-ring", 
+        { r: 7, opacity: 1 }, 
+        { r: 24, opacity: 0, duration: 0.8, ease: "power1.out" }, 
+        1.7
+      );
+
+      // Step 5: Laser line drawing & head traveling from 9:00 (175) to 15:00 (685) (t = 1.8s - 3.1s)
+      // Reveal laser head
+      tl.to(timelineLaserHead, { opacity: 1, duration: 0.1 }, 1.8);
+
+      // Draw SVG stroke path (510px dashoffset to 0)
+      tl.to(timelineLaserPath, {
+        strokeDashoffset: 0,
+        duration: 1.3,
+        ease: "power2.inOut"
+      }, 1.8);
+
+      // Expand background active highlight bar
+      tl.to(timelineActiveTrack, {
+        width: 510,
+        duration: 1.3,
+        ease: "power2.inOut"
+      }, 1.8);
+
+      // Move laser head across timeline (cx from 175 to 685)
+      tl.to(timelineLaserHead, {
+        attr: { cx: 685 },
+        duration: 1.3,
+        ease: "power2.inOut"
+      }, 1.8);
+
+      // Step 6: End Pin Pop (15:00 san-ji made) (t = 3.1s)
+      tl.to(endPin, {
+        scale: 1,
+        opacity: 1,
+        duration: 0.55,
+        ease: "back.out(1.6)"
+      }, 3.0);
+
+      // Pop arrow tip at end point
+      tl.to(timelineArrowTip, {
+        opacity: 1,
+        scale: 1.2,
+        duration: 0.25,
+        ease: "back.out(2)"
+      }, 3.1);
+
+      // Pulse beacon ring around end pin
+      tl.fromTo("#end-beacon-ring", 
+        { r: 7, opacity: 1 }, 
+        { r: 24, opacity: 0, duration: 0.8, ease: "power1.out" }, 
+        3.2
+      );
+
+      // Highlight duration badge in footer
+      tl.fromTo(durationBadge,
+        { scale: 0.9, backgroundColor: "#FEF08A" },
+        { scale: 1, duration: 0.4, ease: "back.out(1.5)" },
+        3.3
+      );
+
+      // Step 7: Dialogue Card Entrance (t = 3.8s)
+      tl.to(dialogueCard, {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 0.7,
+        ease: "back.out(1.2)"
+      }, 3.8);
+
+      // Question bubble pop (t = 4.2s)
+      tl.to(bubbleQ, {
+        x: 0,
+        opacity: 1,
+        duration: 0.5,
+        ease: "back.out(1.2)"
+      }, 4.2);
+
+      // Answer bubble pop with golden punch (t = 4.8s)
+      tl.to(bubbleA, {
+        x: 0,
+        opacity: 1,
+        duration: 0.55,
+        ease: "back.out(1.3)"
+      }, 4.8);
+
+      // Little punch on the "ku-ji" warning highlight
+      tl.fromTo(".highlight-kuji", 
+        { scale: 0.9, color: "#E11D48" }, 
+        { scale: 1.1, color: "#9F1239", duration: 0.35, yoyo: true, repeat: 1, ease: "power2.out" }, 
+        5.2
+      );
+
+      // Step 8: Pro-Tip Card Entrance (t = 5.7s)
+      tl.to(proTipCard, {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 0.65,
+        ease: "back.out(1.2)"
+      }, 5.7);
+
+      // Stagger in tip boxes
+      tl.to(tipBoxes, {
+        y: 0,
+        opacity: 1,
+        duration: 0.45,
+        stagger: 0.12,
+        ease: "power2.out"
+      }, 6.0);
+
+      // Step 9: Ambient subtle float to keep screen alive (t = 6.8s to 10.0s)
+      tl.to([header, timelineHeroCard], {
+        y: "+=3",
+        duration: 1.6,
+        repeat: 1,
+        yoyo: true,
+        ease: "sine.inOut"
+      }, 6.8);
+
+      return tl;
+    }
+
+    // Register into HyperFrames global registry
+    const scene3Timeline = createScene3Timeline();
+    window.__timelines["scene3-timeline"] = scene3Timeline;
+
+    // Standalone playback support (if opened directly in browser)
+    const isHyperFramesCapture = window.__HYPERFRAMES_CAPTURING__ || window.location.search.includes('mode=capture');
+    if (!isHyperFramesCapture) {
+      scene3Timeline.play();
+    }
+
+    // Development & Verification Controls
+    const btnToggleBg = document.getElementById('btn-toggle-bg');
+    const bgLayer = document.getElementById('bg-layer');
+    if (btnToggleBg && bgLayer) {
+      btnToggleBg.addEventListener('click', () => {
+        bgLayer.style.opacity = bgLayer.style.opacity === '0' ? '1' : '0';
+      });
+    }
+
+    const btnRestart = document.getElementById('btn-restart');
+    if (btnRestart) {
+      btnRestart.addEventListener('click', () => {
+        scene3Timeline.restart();
+      });
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'r' || e.key === 'R') {
+        scene3Timeline.restart();
+      } else if (e.key === ' ') {
+        if (scene3Timeline.paused()) {
+          scene3Timeline.play();
+        } else {
+          scene3Timeline.pause();
+        }
+      }
+    });
+
+    // Check URL parameters for background mode (?bg=none or ?transparent=true)
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('bg') === 'none' || urlParams.get('transparent') === 'true') {
+      if (bgLayer) bgLayer.style.display = 'none';
+      document.body.style.background = 'transparent';
+    }
+  </script>
+</body>
+</html>

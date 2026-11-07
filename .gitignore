@@ -33,3 +33,9 @@ node_modules/
 .vercel/
 .wrangler/
 .env*.local
+
+# AI & Tool Cache Artifacts
+.superpowers/
+.playwright-mcp/
+graphify-out/
+
